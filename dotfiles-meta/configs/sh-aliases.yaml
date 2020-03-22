@@ -1,0 +1,5 @@
+- link:
+    ~/.aliases: dotfiles/sh-aliases/aliases
+- shell:
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.aliases-local ] && echo '=> Already exists, skipping' || cp dotfiles/sh-aliases/aliases-local ~/.aliases-local", Initialising .aliases-local]

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+############################################
+###       THIS CONFIG IS SYMLINKED       ###
+###    DONT' ENTER ANY SENSITIVE INFO    ###
+###                                      ###
+###  USE LOCAL CONFIG FOR MODIFICATIONS  ###
+### UNLESS CHANGES WILL BECOME PERMANENT ###
+############################################
+
+set -ue
+
+#if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+if [[ "${OSTYPE}" == "darwin"* ]]; then
+    # Toggle hidden files
+    alias show='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'
+    alias hide='defaults write com.apple.finder AppleShowAllFiles NO;killall Finder /System/Library/CoreServices/Finder.app'
+fi
+
+alias ..='cd ..'
+
+alias clc='clear'
+
+alias la='ls --color=auto -la'
+
+alias grep='grep --color=auto'
+
+alias gh-doctoc='doctoc --github --title "$(echo "\n## Table of Contents\nGenerated with [DocToc](https://github.com/thlorenz/doctoc)\n\nLast Update: `date +%Y-%m-%d`")"'
+alias bb-doctoc='doctoc --bitbucket --title "$(echo "\n## Table of Contents\nGenerated with [DocToc](https://github.com/thlorenz/doctoc)\n\nLast Update: `date +%Y-%m-%d`")"'
+
+
+ALIASES_LOCAL="${HOME}/.aliases-local"
+if [[ -f "${ALIASES_LOCAL}" ]]; then
+    source "${ALIASES_LOCAL}"
+fi
