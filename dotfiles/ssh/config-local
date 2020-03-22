@@ -1,0 +1,4 @@
+HOST github.com
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/github_IlyaKisil

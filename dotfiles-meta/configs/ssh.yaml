@@ -1,0 +1,12 @@
+- link:
+    ~/.ssh/config: dotfiles/ssh/config
+- shell:
+    # Make sure that this dir exists
+    - ["mkdir -p ~/.ssh"]
+
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.ssh/config-local ] && echo '=> Already exists, skipping' || cp dotfiles/ssh/config-local ~/.ssh/config-local", Initialising ssh config file]
+
+    # Restrictions and logic on executions are specified within script,
+    # since it doesn't fit into one-liner
+    - ["bash setup-utils/common/setup-ssh.sh", Initialising .ssh/config]

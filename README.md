@@ -3,13 +3,15 @@
 
 This repository contains various configuration file and scripts for quick setup of a working environment.
 
+Ideally, bootstrap configurations should be idempotent. That is, the installer should be able to be run multiple times without causing any problems. This makes a lot of things easier to do (in particular, syncing updates between machines becomes really easy).
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 ## Table of Contents
 Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2020-03-21
+Last Update: 2020-03-22
 
 - [Quick setups](#quick-setups)
 - [Overview of this configuration files and scripts](#overview-of-this-configuration-files-and-scripts)
@@ -18,6 +20,8 @@ Last Update: 2020-03-21
   - [setup-utils](#setup-utils)
   - [bin](#bin)
   - [misc](#misc)
+  - [tests](#tests)
+- [Development](#development)
 - [Reporting problems and issues](#reporting-problems-and-issues)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -31,7 +35,17 @@ Last Update: 2020-03-21
 ### setup-utils
 ### bin
 ### misc
+### tests
 
+
+## Development
+Testing out new configuration can easily be done within Docker.
+In this way, you don't risk of accidentally overriding your existing dotfiles of configs.
+```bash
+make test-install-config
+# or
+make test-install-profile
+```
 
 
 ## Reporting problems and issues

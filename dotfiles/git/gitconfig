@@ -1,0 +1,47 @@
+############################################
+###       THIS CONFIG IS SYMLINKED       ###
+###  USE LOCAL CONFIG FOR MODIFICATIONS  ###
+### UNLESS CHANGES WILL BECOME PERMANENT ###
+############################################
+
+[color]
+    ui = true
+    iu = true
+[user]
+    name = Ilya Kisil
+[push]
+    default = simple
+[core]
+    # excludesfile = ~/.gitignore-global
+    editor = `which vim`
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = red
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[alias]
+    cm = commit --message
+    co = checkout
+    s = status
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    unstage = reset HEAD --
+    last = log -1 HEAD
+
+    # merge to always create a new commit object,
+    # even if the merge could be performed with a fast-forward
+    m = merge --no-ff
+
+    # Show user defined alias list
+    aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[include]
+    path = ~/.gitconfig-local
+

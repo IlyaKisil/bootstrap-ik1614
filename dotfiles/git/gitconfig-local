@@ -1,0 +1,4 @@
+[includeIf "gitdir:IlyaKisil/"]
+    path = ~/.gitconfig-personal
+
+# Use similar pattern to include work related configs if needed

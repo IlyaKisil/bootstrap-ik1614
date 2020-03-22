@@ -1,0 +1,7 @@
+- link:
+    ~/.gitconfig: dotfiles/git/gitconfig
+    ~/.gitconfig-personal: dotfiles/git/gitconfig-personal
+    ~/.gitignore-global: dotfiles/git/gitignore-global
+- shell:
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.gitconfig-local ] && echo '=> Already exists, skipping' || cp dotfiles/git/gitconfig-local ~/.gitconfig-local", Initialising .gitconfig-local]

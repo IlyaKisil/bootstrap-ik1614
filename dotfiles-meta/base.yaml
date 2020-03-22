@@ -1,0 +1,16 @@
+# Parent config to reduce code duplication.
+# Shouldn't contain any other directives.
+# In return, all child configs shouldn't
+# contain these directives as well
+- defaults:
+    link:
+        create: true
+        relink: true
+    shell:
+        stdin: true
+        stdout: true
+        stderr: true
+- clean: [
+    '~',
+    '~/.ssh'
+]

@@ -1,0 +1,21 @@
+############################################
+###       THIS CONFIG IS SYMLINKED       ###
+###  USE LOCAL CONFIG FOR MODIFICATIONS  ###
+### UNLESS CHANGES WILL BECOME PERMANENT ###
+############################################
+
+Include config.d/config-local.conf
+
+
+
+### This speeds up scp tab completion tremendously.
+Controlmaster auto
+Controlpath ~/.ssh/ssh-%r@%h:%p.sock
+
+### GitHub Personal
+HOST IlyaKisil.github.com
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/github_IlyaKisil
+
+
