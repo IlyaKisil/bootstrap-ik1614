@@ -1,6 +1,7 @@
 [includeIf "gitdir:IlyaKisil/"]
     path = ~/.gitconfig-personal
 
+# Subject to change
 [includeIf "gitdir:~/"]
     path = ~/.gitconfig-personal
 

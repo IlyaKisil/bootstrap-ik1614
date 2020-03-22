@@ -1,0 +1,11 @@
+- link:
+    ~/.tmux.conf: dotfiles/tmux/tmux.conf
+    ~/.tmux/plugins/tpm: dotfiles/tmux/tpm/
+
+- shell:
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.tmux-local.conf ] && echo '=> Already exists, skipping' || cp dotfiles/tmux/tmux-local.conf ~/.tmux-local.conf", Initialising .tmux-local.conf]
+
+    # Bootstrap Tmux plugin manges and init plugins based on info in tmux.conf and tmux-local.conf
+    - ["git submodule update --init --remote dotfiles/tmux/tpm", Initiliasing tmux plugin manager]
+    - ["bash ~/.tmux/plugins/tpm/scripts/install_plugins.sh", Initialising tmux plugins]

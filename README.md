@@ -46,6 +46,7 @@ make test-install-config
 # or
 make test-install-profile
 ```
+> :exclamation: **Important:** Some of the configs are git submodules, i.e. `tpm`, `oh-my-zsh`. However, we don't want our install bash scripts, i.e. `install-profile`, `install-config`,  to pull/update them as a default behaviour, since we don't want to overload different environments. Thus, this should be manged as a stand-alone task within `shell` directive of a config.
 
 
 ## Reporting problems and issues
