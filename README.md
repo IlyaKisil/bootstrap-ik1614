@@ -40,10 +40,13 @@ cd bootstrap-ik1614
 
 # Apply selected configs
 ./install-config.sh git tmux zsh sh-aliases bin
+
+# Verify the corresponding parts are configures correctly
+./tests/verify-setup.sh
 ```
 
 ### Setup iTerm
-My color scheme of choice for iTerm2 is DoomOne with minor custom tweaks, mainly to make background match prompt line. It also makes `zsh-autosuggestions` easily visible, but not without too much of a distraction
+My color scheme of choice for iTerm2 is [DoomOne](https://raw.githubusercontent.com/IlyaKisil/bootstrap-ik1614/master/misc/color-themes/iterm2/DoomOne-CustomP10K.itermcolors) with minor custom tweaks, mainly to make background match prompt line. It also makes `zsh-autosuggestions` easily visible, but not without too much of a distraction
 
 ## Overview of this configuration files and scripts
 ### dotfiles
