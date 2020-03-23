@@ -12,3 +12,5 @@ alias jl='jupyter-lab'
 ### Matlab
 alias mat='matlab -nodisplay -nosplash'
 
+### LaTeX
+alias pdflatex='pdflatex -output-directory=build'

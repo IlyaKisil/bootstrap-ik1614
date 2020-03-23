@@ -11,9 +11,11 @@ Ideally, bootstrap configurations should be idempotent. That is, the installer s
 ## Table of Contents
 Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2020-03-22
+Last Update: 2020-03-23
 
 - [Quick setups](#quick-setups)
+  - [Setup dotfiles](#setup-dotfiles)
+  - [Setup iTerm](#setup-iterm)
 - [Overview of this configuration files and scripts](#overview-of-this-configuration-files-and-scripts)
   - [dotfiles](#dotfiles)
   - [dotfiles-meta](#dotfiles-meta)
@@ -28,6 +30,17 @@ Last Update: 2020-03-22
 
 ## Quick setups
 
+### Setup dotfiles
+```bash
+# Apply profile, i.e. a collection of configs
+./install-profile default-cli
+
+# Apply selected configs
+./install-config git tmux zsh sh-aliases bin
+```
+
+### Setup iTerm
+My color scheme of choice for iTerm2 is DoomOne with minor custom tweaks, mainly to make background match prompt line. It also makes `zsh-autosuggestions` easily visible, but not without too much of a distraction
 
 ## Overview of this configuration files and scripts
 ### dotfiles
