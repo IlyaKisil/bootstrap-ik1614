@@ -85,23 +85,23 @@ ZSHRC_LOCAL=${HOME}/.zshrc-local
 ### Set zsh plugins to use
 plugins=(
   ${plugins}
-  ${ZSH_PLUGINS}
+  ${ZSH_PLUGINS:=""}
 )
 
 
 ### Set PATH
-export PATH=${MATLAB_BIN}${PATH:+:${PATH}}
-export PATH=${USER_BIN}${PATH:+:${PATH}}
+export PATH=${MATLAB_BIN:=""}${PATH:+:${PATH}}
+export PATH=${USER_BIN:=""}${PATH:+:${PATH}}
 
 # Configurations for 'CUDA'
-export PATH=${CUDA_BIN}${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=${CUDA_LIB64_HOME}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export LD_LIBRARY_PATH=${CUDA_CUPTI_LIB64_HOME}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=${CUDA_BIN:=""}${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=${CUDA_LIB64_HOME:=""}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export LD_LIBRARY_PATH=${CUDA_CUPTI_LIB64_HOME:=""}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Configurations for python
-export PATH=${ANACONDA_BIN}${PATH:+:${PATH}}
-export PATH=${LOCAL_BIN}${PATH:+:${PATH}}
-export PATH=${PYENV_BIN}${PATH:+:${PATH}}
+export PATH=${ANACONDA_BIN:=""}${PATH:+:${PATH}}
+export PATH=${LOCAL_BIN:=""}${PATH:+:${PATH}}
+export PATH=${PYENV_BIN:=""}${PATH:+:${PATH}}
 
 
 ### Python specific configs
