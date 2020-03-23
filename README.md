@@ -36,10 +36,10 @@ git clone https://github.com/IlyaKisil/bootstrap-ik1614.git
 cd bootstrap-ik1614
 
 # Apply profile, i.e. a collection of configs
-./install-profile default-cli
+./install-profile.sh default-cli
 
 # Apply selected configs
-./install-config git tmux zsh sh-aliases bin
+./install-config.sh git tmux zsh sh-aliases bin
 ```
 
 ### Setup iTerm
