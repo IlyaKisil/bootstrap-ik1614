@@ -12,5 +12,6 @@
         stderr: true
 - clean: [
     '~',
-    '~/.ssh'
+    '~/.ssh',
+    '~/.config/zsh'
 ]

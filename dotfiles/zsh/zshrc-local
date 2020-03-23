@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+#####################################################
+### Specific configurations for the local machine ###
+###     This file is sourced by the ~/.zshrc      ###
+###                                               ###
+###     All aliases should go into dedicated      ###
+###   file, i.e. ~/.aliases or ~/.aliases-local   ###
+#####################################################
+
+ZSH_CUSTOM="${HOME}/.config/zsh/custom"
+
+###------------------------------    THEME   -------------------------------###
+### Bundled with oh-my-zsh
+#ZSH_THEME="agnoster"
+
+### External theme for zsh
+# Although it is not required, but Powerline10k can take advantage of Meslo Nerd Font
+# https://github.com/romkatv/powerlevel10k#fonts
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r '${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh' ]]; then
+  source '${XDG_CACHE_HOME:-${HOME}/.cache}/p10k-instant-prompt-${(%):-%n}.zsh'
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+P10K_CONFIG=${HOME}/.p10k.zsh
+[[ ! -f ${P10K_CONFIG} ]] || source ${P10K_CONFIG}
+
+# This is tailored specifically for the p10k
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595858,bg=underline"
+
+
+
+###-----------------------------    PLUGINS   ------------------------------###
+ZSH_PLUGINS=(
+    # tmux
+    vi-mode
+    zsh-autosuggestions
+    docker
+    gcloud  # Relies on google-sdk being in certain locations, e.g. $HOME
+)
+
+
+
+###-----------------   ${PATH} EXPORTS USED IN ~/.zshrc   ------------------###
+USER_BIN="${HOME}/bin"
+LOCAL_BIN="${HOME}/.local/bin"
+
+### Uncomment and correctly define these if you are going to be using this software
+#MATLAB_BIN=/path/to/matlab/bin
+#CUDA_BIN=/usr/local/cuda/bin
+#CUDA_LIB64_HOME=/usr/local/cuda/lib64
+#CUDA_CUPTI_LIB64_HOME=/usr/local/cuda/extras/CUPTI/lib64
+
+
+### Configurations for nodejs version manager (nvm)
+### Uncomment and change 'NVM_DIR' if required
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+### Conda specific configuration (adaptation of contents which is managed by 'conda init')
+### Uncomment and correctly define 'ANACONDA_HOME'
+## >>> conda initialize >>>
+#ANACONDA_HOME=/path/to/anaconda
+#ANACONDA_BIN="${ANACONDA_HOME}/bin"
+#__conda_setup="$('$ANACONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [[ $? -eq 0 ]]; then
+#    eval "${__conda_setup}"
+#else
+#    if [[ -f "${ANACONDA_HOME}/etc/profile.d/conda.sh" ]]; then
+#        . "${ANACONDA_HOME}/etc/profile.d/conda.sh"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+
+
+### Configuration for Pyenv
+PYENV_ROOT="${HOME}/.pyenv"
+PYENV_BIN="${PYENV_ROOT}/bin"
+
+
+
+###------------------------------    MISC   --------------------------------###
+### Variables used by 'sync-settings' in ATOM
+### Uncomment and define these if you are using this package
+# Personal access token to GitHub which has the gist scope
+#export GITHUB_TOKEN=""
+# Last part of url (after username) related to private gist with Atom dotfiles
+#export GIST_ID=""

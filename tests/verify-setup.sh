@@ -21,6 +21,13 @@ ls -la ${HOME}/.tmux/plugins
 
 
 echo -e "\n==> Test BIN"
-ls -la ${HOME}/opt | grep --color=always "bin"
+ls -la ${HOME}/bin
+
+
+echo -e "\n==> Test ZSH"
+ls -la ${HOME} | grep --color=always "zsh"
+ls -la ${HOME}/.config/zsh
+ls -la ${HOME}/.config/zsh/custom/plugins
+ls -la ${HOME}/.config/zsh/custom/themes
 
 echo -e "\n\n========   END TESTS   =========\n\n"
