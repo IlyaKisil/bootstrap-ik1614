@@ -55,3 +55,6 @@ BASE_CONFIG_CONTENT=$(cat "${META_HOME}/${BASE_CONFIG}${CONFIG_SUFFIX}")
 
 ### Make sure that we are in correct location
 cd "${BASE_DIR}"
+
+### Make sure that we have 'dotbot' submodule on free install
+git submodule update --init --depth 1 --remote dotbot

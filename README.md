@@ -32,6 +32,9 @@ Last Update: 2020-03-23
 
 ### Setup dotfiles
 ```bash
+git clone https://github.com/IlyaKisil/bootstrap-ik1614.git
+cd bootstrap-ik1614
+
 # Apply profile, i.e. a collection of configs
 ./install-profile default-cli
 
