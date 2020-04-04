@@ -18,6 +18,4 @@ Controlpath ~/.ssh/ssh-%r@%h:%p.sock
 HOST IlyaKisil.github.com
     HostName github.com
     PreferredAuthentications publickey
-    IdentityFile ~/.ssh/github_IlyaKisil
-
-
+    IdentityFile ~/.ssh/github-IlyaKisil
