@@ -64,6 +64,7 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(
   colored-man-pages
   safe-paste
+  vi-mode
 )
 
 
@@ -106,12 +107,14 @@ export PATH=${PYENV_BIN:=""}${PATH:+:${PATH}}
 
 ### Python specific configs
 # pipenv
-export PIPENV_VENV_IN_PROJECT=1
+if command -v pyenv 1>/dev/null 2>&1; then
+    export PIPENV_VENV_IN_PROJECT=1
+fi
 
 # pyenv
-export PYENV_ROOT
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+    export PYENV_ROOT
+    eval "$(pyenv init -)"
 fi
 
 
