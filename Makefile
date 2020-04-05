@@ -6,7 +6,11 @@
 
 SHELL = /bin/bash
 
-.PHONY: test-install-profile test-install-config
+.PHONY: update-submodules test-install-profile test-install-config
+
+## Recursively udpate all existing submodules
+update-submodules:
+	git submodule update --init --recursive --remote
 
 ## Build docker image with installed profile
 test-install-profile:

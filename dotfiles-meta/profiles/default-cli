@@ -3,4 +3,5 @@ ssh
 tmux
 zsh
 sh-aliases
-bin
+vim
+sbin

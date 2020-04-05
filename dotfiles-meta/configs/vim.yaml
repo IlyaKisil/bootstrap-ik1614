@@ -1,0 +1,6 @@
+- link:
+    ~/.vimrc: dotfiles/vim/vimrc
+    ~/.vim/autoload: dotfiles/vim/vim/autoload
+- shell:
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.vimrc-local ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.vimrc-local", Initialising .vimrc-local]

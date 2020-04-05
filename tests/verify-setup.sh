@@ -30,4 +30,10 @@ ls -la ${HOME}/.config/zsh
 ls -la ${HOME}/.config/zsh/custom/plugins
 ls -la ${HOME}/.config/zsh/custom/themes
 
+
+echo -e "\n==> Test VIM"
+ls -la ${HOME} | grep --color=always "vim"
+ls -la ${HOME}/.vim
+ls -la ${HOME}/.vim/autoload
+
 echo -e "\n\n========   END TESTS   =========\n\n"
