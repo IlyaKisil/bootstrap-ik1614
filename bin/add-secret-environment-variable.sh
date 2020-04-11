@@ -7,4 +7,4 @@ security add-generic-password -U -a ${USER} -D "environment variable" -s "$1" -w
 
 >&2 echo -n "Add this to .zshenv.secrets / .bashrc etc: (NB: you can append the output of this script directly to a file of your choice)"
 >&2 echo ""
-echo "export $1=\$(load-secret-environment-variable $1)"
+echo "export $1=\$(load-secret-environment-variable.sh $1)"
