@@ -120,3 +120,8 @@ fi
 
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
+
+
+# Source ~/.zshenv-secrets if it exists
+ZSHENV_SECRETS=${HOME}/.zshenv-secrets
+[[ ! -f ${ZSHENV_SECRETS} ]] || source ${ZSHENV_SECRETS}
