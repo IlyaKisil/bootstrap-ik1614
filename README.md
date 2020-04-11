@@ -11,7 +11,7 @@ Ideally, bootstrap configurations should be idempotent. That is, the installer s
 ## Table of Contents
 Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2020-03-23
+Last Update: 2020-04-11
 
 - [Quick setups](#quick-setups)
   - [Setup dotfiles](#setup-dotfiles)
@@ -29,6 +29,8 @@ Last Update: 2020-03-23
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Quick setups
+
+:exclamation: **Important:** You need to have `pyyaml` installed before trying to install profile or configuration.
 
 ### Setup dotfiles
 ```bash
