@@ -7,8 +7,6 @@
 ### UNLESS CHANGES WILL BECOME PERMANENT ###
 ############################################
 
-set -ue
-
 #if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 if [[ "${OSTYPE}" == "darwin"* ]]; then
     # Toggle hidden files
