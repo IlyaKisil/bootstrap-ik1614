@@ -1,8 +1,9 @@
-[includeIf "gitdir:IlyaKisil/"]
-    path = ~/.gitconfig-personal
-
-# Subject to change
+# Path is subject to change, so as the name of the config
 [includeIf "gitdir:~/"]
     path = ~/.gitconfig-personal
 
-# Use similar pattern to include work related configs if needed
+
+# Keep this at the bottom as a fallback for personal repos
+# regardless of any setting above
+[includeIf "gitdir:IlyaKisil/"]
+    path = ~/.gitconfig-personal
