@@ -39,18 +39,13 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595858,bg=underline"
 ZSH_PLUGINS=(
     # tmux
     # zsh-autosuggestions  # Don't really like it. Better to use 'fzf'
+    # gcloud               # Relies on google-sdk being in certain locations, e.g. $HOME
     docker
 )
 
 if command -v fzf 1>/dev/null 2>&1; then
     ZSH_PLUGINS=(${ZSH_PLUGINS} fzf)
     export FZF_DEFAULT_OPTS='--height 40% --inline-info --layout=reverse --border'
-fi
-
-if command -v gcloud 1>/dev/null 2>&1; then
-    # gcloud plugin bundled with OMZ relies on google-sdk being
-    # in certain locations, e.g. $HOME and a couple of others
-    ZSH_PLUGINS=(${ZSH_PLUGINS} gcloud)
 fi
 
 
