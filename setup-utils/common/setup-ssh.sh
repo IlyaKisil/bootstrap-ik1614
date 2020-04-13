@@ -23,6 +23,7 @@ function main() {
                     if [ ! -f ${ssh_key_path} ] && [ ! -f "${ssh_key_path}.pub" ]   ; then
                         printf "=> Creating [${ssh_key_path}] SSH key.\n"
                         ssh-keygen -t rsa -b 4096 -C "${SSH_USER}@${SSH_PC}" -f ${ssh_key_path} -q -N ""
+                        ssh-add -K ${ssh_key_path}
                     else
                         printf "=> SSH key [${ssh_key_path}] exists. Creation is skipped.\n"
                     fi
