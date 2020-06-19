@@ -83,6 +83,7 @@ set nocompatible                 " No vi-compatible
 set ls=2                         " Always show status bar
 set incsearch                    " Incremental search
 set nu                           " Show line numbers
+set rnu                          " Set relative numbering of line
 set hlsearch                     " Highlighted search results
 set expandtab                    " Tabs and spaces handling
 set tabstop=4                    " Tabs and spaces handling
@@ -99,8 +100,11 @@ set showcmd                      " Show partial commands in the last line of the
 set cmdheight=2                  " Give more space for displaying messages he
 set backspace=indent,eol,start   " Allow backspacing over autoindent, line breaks and start of insert action
 set clipboard=unnamed            " Copy to system wide clipboaard
-
-
+set list
+set listchars=space:.            " Show special charachters
+set splitright                   " Open vertical split on the right
+set splitbelow                   " Opne horizontal split below
+set hidden                       " Allow swithing to another buffer without saving current one
 
 " ---------- Better backup, swap and undos storage for vim default
 set directory=~/.vim/dirs/tmp       " directory to place swap files in
@@ -159,7 +163,7 @@ set background=dark
 let g:airline_theme = 'bubblegum'
 let g:airline#extensions#whitespace#enabled = 0
 " Show all buffers at the top
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
 " custom airline symbols
@@ -271,7 +275,12 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 autocmd BufWritePre * :call TrimWhitespace()
-
+" ripgrep
+if executable('rg')
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  set grepprg=rg\ --vimgrep
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+endif
 
 
 " ============================================================================
