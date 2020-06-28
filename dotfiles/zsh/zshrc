@@ -121,6 +121,9 @@ fi
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
 
+# For some reason OMZ, doens't let you to set this var in a pluggable way
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 # Source ~/.zshenv-secrets if it exists
 ZSHENV_SECRETS=${HOME}/.zshenv-secrets

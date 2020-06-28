@@ -12,7 +12,7 @@
 [user]
     name = Ilya Kisil
 [push]
-    default = simple
+    default = current
 [core]
     # excludesfile = ~/.gitignore-global
     editor = `which vim`
@@ -48,4 +48,3 @@
     required = true
 [include]
     path = ~/.gitconfig-local
-
