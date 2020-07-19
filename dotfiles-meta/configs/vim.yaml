@@ -1,6 +1,9 @@
 - link:
     ~/.vimrc: dotfiles/vim/vimrc
-    ~/.vim/autoload: dotfiles/vim/vim/autoload
+    ~/.vim/general: dotfiles/vim/common/general
+    ~/.vim/autoload: dotfiles/vim/common/autoload
+    ~/.vim/vim-plug: dotfiles/vim/common/vim-plug
+    ~/.vim/themes: dotfiles/vim/common/themes
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
-    - ["[ -f ~/.vimrc-local ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.vimrc-local", Initialising .vimrc-local]
+    - ["[ -f ~/.vim/vimrc-local ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.vim/vimrc-local", Initialising .vimrc-local]

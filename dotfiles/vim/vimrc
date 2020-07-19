@@ -5,288 +5,34 @@
 " ###  USE LOCAL CONFIG FOR MODIFICATIONS  ###
 " ### UNLESS CHANGES WILL BECOME PERMANENT ###
 " ############################################
-"
-" ============================================================================
-" PLUGINS
-" ============================================================================
-call plug#begin("~/.vim/plugged")
-
-" ---------- Themes and styling
-" A list of themes. TODO: not sure how to go about tweaking each one of them when needed
-" Plug 'https://github.com/joshdick/onedark.vim'
-Plug 'https://github.com/morhetz/gruvbox'
-" Plug 'https://github.com/NLKNguyen/papercolor-theme'
-" Plug 'https://github.com/mhartington/oceanic-next'
-" Plug 'https://github.com/rakr/vim-one'
-" Plug 'https://github.com/jacoborus/tender.vim'
-
-Plug 'https://github.com/sheerun/vim-polyglot'              " A collection of language packs for Vim.
-Plug 'https://github.com/vim-airline/vim-airline'           " Lean & mean status/tabline for vim
-Plug 'https://github.com/vim-airline/vim-airline-themes'
-Plug 'https://github.com/ryanoasis/vim-devicons'            " Adds file type icons to Vim plugins such as: NERDTree, vim-airline. Requires additional fonts to be installed
-
-
-" ---------- File and content browsers
-Plug 'https://github.com/preservim/nerdtree'                " File system explorer. NOTE: try to use fzf for locating files
-"Plug 'https://github.com/preservim/nerdcommenter'           " Code commenter. TODO: Still need to figure out what this one is doing
-Plug 'https://github.com/junegunn/fzf'                      " Code and files fuzzy finder (Assumes that fzf is installed on a machine)
-Plug 'https://github.com/junegunn/fzf.vim'
-"Plug 'https://github.com/ctrlpvim/ctrlp.vim'                " Fuzzy file, buffer, mru, tag, etc finder
-"Plug 'https://github.com/fisadev/FixedTaskList.vim'         " Search the file for FIXME, TODO, and XXX (or a custom list) and put them in a handy list for you to browse
-Plug 'https://github.com/google/vim-searchindex'            " Shows how many times a search pattern occurs and your current position
-" Plug 'https://github.com/jfo/hound.vim'                     " A vim plugin to talk to Etsy's Hound trigram search. Requires additional setup
-
-
-" ---------- Autocompletion. TODO: Still need to figure out how to install everything...
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'https://github.com/Shougo/deoplete.nvim'              " Async autocompletion
-" Plug 'https://github.com/roxma/nvim-yarp'
-" Plug 'https://github.com/roxma/vim-hug-neovim-rpc'
-" Plug 'https://github.com/deoplete-plugins/deoplete-jedi'    " Python autocompletion
-" Plug 'https://github.com/Shougo/context_filetype.vim'       " Completion from other opened files
-" Plug 'https://github.com/davidhalter/jedi-vim'              " Add the python go-to-definition and similar features, Might require to disable autocompletion
-" Plug 'https://github.com/ycm-core/YouCompleteMe'            " A code-completion engine for Vim. Uses a few different auto-completers (including Jedi)
-
-
-" ---------- Python specific
-" Plug 'https://github.com/majutsushi/tagbar'                 " Provides an easy way to browse the tags of the current file and get an overview of its structure
-
-
-" ---------- Salt
-Plug 'https://github.com/Glench/Vim-Jinja2-Syntax'          " Jinja2 syntax file for vim with the ability to detect either HTML or Jinja
-Plug 'https://github.com/saltstack/salt-vim'                " Vim files for editing Salt files
-
-
-" ---------- Misc
-Plug 'https://github.com/Townk/vim-autoclose'               " Enable an auto-close chars feature
-"Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more
-"Plug 'https://github.com/michaeljsmith/vim-indent-object'   " Defines a new text object representing lines of code at the same indent level. Useful for python/vim scripts, etc.
-"Plug 'https://github.com/jeetsukumaran/vim-indentwise'      " Provides for motions based on indent depths or levels in normal, visual, and operator-pending modes.
-Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
-"Plug 'https://github.com/terryma/vim-multiple-cursors'      " Support for multiple cursors
-" Plug 'https://github.com/mhinz/vim-signify'                 " Git/mercurial/others diff icons on the side of the file lines
-" Plug 'https://github.com/neomake/neomake'                   " Asynchronous linting and make framework for Neovim/Vim
-" Plug 'https://github.com/vim-syntastic/syntastic'           " Syntax checking hacks for vim
-
-call plug#end()
-
-
 
 " ============================================================================
-" GENERAL SETTINGS
+" LOAD VM INVARIANT CONFIGURATIONS
 " ============================================================================
-syntax on                         " Syntax highlight on
-filetype plugin on                " Allow plugins by file type (required for plugins!)
-filetype indent on                " Allow plugins by file type (required for plugins!)
-set encoding=UTF-8
-set nocompatible                 " No vi-compatible
-set ls=2                         " Always show status bar
-set incsearch                    " Incremental search
-set nu                           " Show line numbers
-set rnu                          " Set relative numbering of line
-set hlsearch                     " Highlighted search results
-set expandtab                    " Tabs and spaces handling
-set tabstop=4                    " Tabs and spaces handling
-set softtabstop=4                " Tabs and spaces handling
-set shiftwidth=4                 " Tabs and spaces handling
-set scrolloff=5                  " When scrolling, keep cursor N lines away from screen border
-set nowrap                       " Don't wrap lines by default
-set ignorecase                   " Use case insensitive search
-set smartcase                    " Except when using capital letters
-set autoindent                   " Keep the same indent when there is no file type specific instructions
-set mouse=a                      " Enable use of the mouse for all modes
-set wildmenu                     " Better command-line completion
-set showcmd                      " Show partial commands in the last line of the screen
-set cmdheight=2                  " Give more space for displaying messages he
-set backspace=indent,eol,start   " Allow backspacing over autoindent, line breaks and start of insert action
-set clipboard=unnamed            " Copy to system wide clipboaard
-set list
-set listchars=space:.            " Show special charachters
-set splitright                   " Open vertical split on the right
-set splitbelow                   " Opne horizontal split below
-set hidden                       " Allow swithing to another buffer without saving current one
-
-" ---------- Better backup, swap and undos storage for vim default
-set directory=~/.vim/dirs/tmp       " directory to place swap files in
-set backup                          " make backup files
-set backupdir=~/.vim/dirs/backups   " where to put backup files
-set undofile                        " persistent undos - undo after you re-open the file
-set undodir=~/.vim/dirs/undos
-set viminfo+=n~/.vim/dirs/viminfo
-" create needed directories if they don't exist
-if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p")
-endif
-if !isdirectory(&directory)
-    call mkdir(&directory, "p")
-endif
-if !isdirectory(&undodir)
-    call mkdir(&undodir, "p")
+if has("nvim")
+    let $__VIM_DOTFILES_HOME = $HOME.'/.config/nvim'
+    let __local_configs_path = $__VIM_DOTFILES_HOME.'init-local.vim'
+else
+    let $__VIM_DOTFILES_HOME = $HOME.'/.vim'
+    let __local_configs_path = $__VIM_DOTFILES_HOME.'vimrc-local'
 endif
 
+source $__VIM_DOTFILES_HOME/general/settings.vim
+source $__VIM_DOTFILES_HOME/general/mappings.vim
+source $__VIM_DOTFILES_HOME/general/functions.vim
+source $__VIM_DOTFILES_HOME/vim-plug/plugins.vim
 
-" ---------- Generic mappings (not related to plugins)
-" Use space as a leader key
-let mapleader = " "
+"source $__VIM_DOTFILES_HOME/themes/onedark.vim
+source $__VIM_DOTFILES_HOME/themes/gruvbox.vim
+source $__VIM_DOTFILES_HOME/themes/airline.vim
 
-" Movement between windows
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the next search
-nnoremap <C-L> :nohl<CR><C-L>
-
+source $__VIM_DOTFILES_HOME/vim-plug/configs/nerdtree.vim
+source $__VIM_DOTFILES_HOME/vim-plug/configs/fzf.vim
 
 
 " ============================================================================
-" PLUGINS SETTINGS AND MAPPINGS
+" LOAD VM SPECIFIC (LOCAL) CONFIGURATIONS
 " ============================================================================
-" ---------- Theme
-"let g:onedark_termcolors=256
-"colorscheme onedark
-colorscheme gruvbox
-set background=dark
-
-" ---------- VIM-devicons
-" let g:webdevicons_enable = 1  " Enable vim-devicons
-" let g:webdevicons_enable_nerdtree = 1
-" let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-" let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-" let g:DevIconsEnableFoldersOpenClose = 1
-
-
-" ---------- Airline
-"let g:airline_powerline_fonts = 0
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#whitespace#enabled = 0
-" Show all buffers at the top
-" let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-
-" custom airline symbols
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''  " Powerline symbol
-
-
-" ---------- NERDTree
-" (MacOS: if there are problems with displaying vim-devicons, chances are you need to update vim)
-
-map <F3> :NERDTreeToggle<CR>    " toggle nerdtree display
-nmap ,t :NERDTreeFind<CR>       " open nerdtree with the current file selected
-
-let NERDTreeShowHidden=1
-
-" Don't show these file types
-let NERDTreeIgnore = [
-    \ '\.pyc$',
-    \ '\.pyo$',
-    \ '\py.class$',
-    \ '\.egg-info$',
-    \ '\.hprof$',
-    \ '\.rbc$',
-    \ '\.yarb$',
-    \ '\.DS_Store$',
-    \ '\pycache__$']
-
-
-" Remove expandable arrow
-let NERDTreeDirArrowExpandable = "\u00a0"
-let NERDTreeDirArrowCollapsible = "\u00a0"
-
-" Auto refresh on tree focus
-function! NERDTreeRefresh()
-    if &filetype == "nerdtree"
-        silent exe substitute(mapcheck("R"), "<CR>", "", "")
-    endif
-endfunction
-
-if exists("g:loaded_webdevicons")
-    call webdevicons#refresh()
-endif
-autocmd BufEnter * call NERDTreeRefresh()
-
-
-" ---------- FZF
-nnoremap <C-p> :GFiles<CR>
-
-
-
-" ---------- ctrlp NOTE: Use FZF instead when working in terminal
-" Custom command to search files only under certain path while respecting gitignore
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-" Disable caching, seems to be fast enough
-" let g:ctrlp_use_caching = 0
-
-
-" ---------- Autoclose
-" Fix to let ESC work as expected with Autoclose plugin
-" (without this, when showing an autocompletion window, ESC won't leave insert mode)
-let g:AutoClosePumvisible = {"ENTER": "\<C-Y>", "ESC": "\<ESC>"}
-
-
-" ---------- Completion
-" Use CoC as default tool for completion of all files
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-fun! GoCoc()
-    " Use <tab> for trigger completion and navigate to the next complete item
-    inoremap <buffer> <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
-    " Use <S-Tab> to navigate backwards in completion list
-    inoremap <buffer> <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-    " Use <CR> to confirm completion, NOTE: don't really need this since you can jsut
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-    " Use <C-space> for trigger completion. TODO: need to remap to something else as I use this as TMUX prefix
-    "inoremap <buffer> <silent><expr> <C-space> coc#refresh()
-
-    " GoTo code navigation.
-    nmap <buffer> <leader>gd <Plug>(coc-definition)
-    nmap <buffer> <leader>gy <Plug>(coc-type-definition)
-    nmap <buffer> <leader>gi <Plug>(coc-implementation)
-    nmap <buffer> <leader>gr <Plug>(coc-references)
-    nnoremap <buffer> <leader>cr :CocRestart
-endfun
-autocmd FileType * :call GoCoc()
-
-
-
-" ============================================================================
-" FUNCTIONS
-" ============================================================================
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-autocmd BufWritePre * :call TrimWhitespace()
-" ripgrep
-if executable('rg')
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
-  set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-endif
-
-
-" ============================================================================
-" LOAD LOCAL CONFIGURATIONS
-" ============================================================================
-let custom_configs_path = "~/.vimrc-local"
-if filereadable(expand(custom_configs_path))
-    execute "source " . custom_configs_path
+if filereadable(expand(__local_configs_path))
+    execute "source " . __local_configs_path
 endif

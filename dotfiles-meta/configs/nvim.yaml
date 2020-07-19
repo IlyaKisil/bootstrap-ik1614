@@ -1,0 +1,9 @@
+- link:
+    ~/.config/nvim/init.vim: dotfiles/vim/vimrc
+    ~/.config/nvim/general: dotfiles/vim/common/general
+    ~/.config/nvim/autoload: dotfiles/vim/common/autoload
+    ~/.config/nvim/vim-plug: dotfiles/vim/common/vim-plug
+    ~/.config/nvim/themes: dotfiles/vim/common/themes
+- shell:
+    # Executed only if this file doesn't exist (to prevent overriding)
+    - ["[ -f ~/.config/nvim/init-local.vim ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.config/nvim/init-local.vim", Initialising init-local.vim]
