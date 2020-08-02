@@ -15,9 +15,9 @@ filetype indent on                " Allow plugins by file type (required for plu
 set encoding=UTF-8
 set nocompatible                 " No vi-compatible
 set ls=2                         " Always show status bar
-set incsearch                    " Incremental search
 set nu                           " Show line numbers
 set rnu                          " Set relative numbering of line
+set incsearch                    " Incremental search
 set hlsearch                     " Highlighted search results
 set expandtab                    " Tabs and spaces handling
 set tabstop=4                    " Tabs and spaces handling
@@ -39,6 +39,13 @@ set listchars=space:.            " Show special characters
 set splitright                   " Open vertical split on the right
 set splitbelow                   " Opne horizontal split below
 set hidden                       " Allow switching to another buffer without saving current one
+set autoread                     " Reload files changed outside vim
+set cursorline                   " highlight the current line
+set colorcolumn=90
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
 
 
 " ---------- Better backup, swap and undos storage for vim default

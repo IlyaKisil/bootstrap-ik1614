@@ -12,6 +12,8 @@
 if has("nvim")
     let $__VIM_DOTFILES_HOME = $HOME.'/.config/nvim'
     let __local_configs_path = $__VIM_DOTFILES_HOME.'init-local.vim'
+
+    source $__VIM_DOTFILES_HOME/init-nvim-specific.vim
 else
     let $__VIM_DOTFILES_HOME = $HOME.'/.vim'
     let __local_configs_path = $__VIM_DOTFILES_HOME.'vimrc-local'

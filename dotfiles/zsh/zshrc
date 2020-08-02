@@ -109,6 +109,7 @@ export PATH=${PYENV_BIN:=""}${PATH:+:${PATH}}
 # pipenv
 if command -v pipenv 1>/dev/null 2>&1; then
     export PIPENV_VENV_IN_PROJECT=1
+    export PIPENV_VERBOSITY=-1
 fi
 
 # pyenv

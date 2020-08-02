@@ -27,10 +27,8 @@ Plug 'https://github.com/preservim/nerdtree'                " File system explor
 "Plug 'https://github.com/preservim/nerdcommenter'           " Code commenter. TODO: Still need to figure out what this one is doing
 Plug 'https://github.com/junegunn/fzf'                      " Code and files fuzzy finder (Assumes that fzf is installed on a machine)
 Plug 'https://github.com/junegunn/fzf.vim'
-"Plug 'https://github.com/ctrlpvim/ctrlp.vim'                " Fuzzy file, buffer, mru, tag, etc finder
 "Plug 'https://github.com/fisadev/FixedTaskList.vim'         " Search the file for FIXME, TODO, and XXX (or a custom list) and put them in a handy list for you to browse
 Plug 'https://github.com/google/vim-searchindex'            " Shows how many times a search pattern occurs and your current position
-" Plug 'https://github.com/jfo/hound.vim'                     " A vim plugin to talk to Etsy's Hound trigram search. Requires additional setup
 
 
 " ---------- Autocompletion. TODO: Still need to figure out how to install everything...
@@ -46,7 +44,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ---------- Python specific
 " Plug 'https://github.com/majutsushi/tagbar'                 " Provides an easy way to browse the tags of the current file and get an overview of its structure
-
+Plug 'https://github.com/heavenshell/vim-pydocstring'   " Docstring generator"
 
 " ---------- Salt
 Plug 'https://github.com/Glench/Vim-Jinja2-Syntax'          " Jinja2 syntax file for vim with the ability to detect either HTML or Jinja
@@ -63,4 +61,5 @@ Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
 " Plug 'https://github.com/mhinz/vim-signify'                 " Git/mercurial/others diff icons on the side of the file lines
 " Plug 'https://github.com/neomake/neomake'                   " Asynchronous linting and make framework for Neovim/Vim
 " Plug 'https://github.com/vim-syntastic/syntastic'           " Syntax checking hacks for vim
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
