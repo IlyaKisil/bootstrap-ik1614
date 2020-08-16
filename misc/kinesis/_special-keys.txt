@@ -1,0 +1,31 @@
+# Multimedia keys
+[prtscr]>[mute]
+[scroll]>[vol-]
+[pause]>[vol+]
+[pup]>[play]
+[pdown]>[next]
+
+
+# MacOS thumb cluster special keys
+[lctrl]>[lwin]
+[rwin]>[delete]
+[rctrl]>[rwin]
+[delete]>[lctrl]
+[kp-lctrl]>[lwin]
+[kp-rwin]>[rctrl]
+[kp-rctrl]>[rwin]
+[kp-pdown]>[kptoggle]
+
+
+# Special character map to match UK - PC
+[intl-\]>[\]
+[\]>[hyphen]
+[=]>[intl-\]
+[hyphen]>[=]
+
+# Arrows swap
+[left]>[obrack]
+[right]>[cbrack]
+[up]>[left]
+[obrack]>[up]
+[cbrack]>[right]
