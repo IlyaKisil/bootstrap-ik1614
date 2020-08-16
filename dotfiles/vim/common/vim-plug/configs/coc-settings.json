@@ -15,7 +15,7 @@
         "json",
         "python"
     ],
-    // ========= PYTHON CONFIG =========
+    // ========= COC PYTHON CONFIG =========
     // These have to be inline with 'g:python3_host_prog'
     "python.jediPath": "~/.pyenv/versions/3.7.6/lib/python3.7/site-packages",
     "python.linting.pylintPath": "~/.pyenv/versions/3.7.6/bin/pylint",
@@ -40,8 +40,9 @@
     "python.formatting.autopep8Args": [
         "--max-line-length=99999"
     ],
+    // ========= COC SNIPPETS CONFIG =========
     "snippets.ultisnips.directories": [
         "UltiSnips",
-        "~/.config/nvim/utils/snips"
+        "~/.config/ultisnips"
     ]
 }

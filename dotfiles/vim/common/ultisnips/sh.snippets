@@ -1,0 +1,82 @@
+snippet here "Get the full path to location of current script" b
+HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+endsnippet
+
+snippet base "Script template with parsing options and help message" b
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+__SCRIPT_NAME=$(basename ${BASH_SOURCE[0]})
+
+function __show_help() {
+  cat << HELP_USAGE
+
+Description:
+
+Usage: ${__SCRIPT_NAME} [-h|--help] [--option=<option_value>]
+
+Examples:
+  ${__SCRIPT_NAME} --option=my_value
+
+Options:
+  -h|--help
+    Show this message.
+
+  --option=<option_value>
+    Use key value option.
+
+HELP_USAGE
+}
+
+### Utility functions
+function echodebug() {
+  printf "* DEBUG: %s\\n" "$@";
+}
+
+function echoinfo() {
+  printf "* INFO: %s\\n" "$@";
+}
+
+function echowarn() {
+  printf "* WARN: %s\\n" "$@";
+}
+
+function echoerror() {
+   printf "* ERROR: %s\\n" "$@";
+}
+
+### Default values for variables
+option_value="default_value"
+
+### Parse arguments
+for arg in "$@"; do
+  case ${arg} in
+    -h|--help)
+      __show_help
+      exit
+      ;;
+    --option=*)
+      option_value="${arg#*=}"
+      ;;
+    *)
+      # Skip unknown option
+      ;;
+  esac
+  shift
+done
+
+### Define new variables with respect to the parsed arguments
+
+
+##########################################
+#--------          MAIN          --------#
+##########################################
+
+${1:### !!! DELETE IF SUDO PRIVILEGE IS NOT REQUIRED !!!
+if [[ ${EUID} -ne 0 ]]; then
+  echoerror "This script must be run as root" >&2
+  exit 1
+fi}
+endsnippet
+
