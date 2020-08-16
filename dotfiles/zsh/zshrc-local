@@ -55,6 +55,7 @@ USER_BIN="${HOME}/bin"
 LOCAL_BIN="${HOME}/.local/bin"
 
 ### Uncomment and correctly define these if you are going to be using this software
+#LATEX_BIN=/path/to/tex/bin
 #MATLAB_BIN=/path/to/matlab/bin
 #CUDA_BIN=/usr/local/cuda/bin
 #CUDA_LIB64_HOME=/usr/local/cuda/lib64

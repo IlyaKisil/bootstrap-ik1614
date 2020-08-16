@@ -93,6 +93,7 @@ plugins=(
 ### Set PATH
 export PATH=${MATLAB_BIN:=""}${PATH:+:${PATH}}
 export PATH=${USER_BIN:=""}${PATH:+:${PATH}}
+export PATH=${LATEX_BIN:=""}${PATH:+:${PATH}}
 
 # Configurations for 'CUDA'
 export PATH=${CUDA_BIN:=""}${PATH:+:${PATH}}
