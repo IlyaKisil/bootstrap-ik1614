@@ -53,7 +53,7 @@ Plug 'https://github.com/saltstack/salt-vim'                " Vim files for edit
 
 " ---------- Misc
 Plug 'https://github.com/Townk/vim-autoclose'               " Enable an auto-close chars feature
-"Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more
+Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more
 "Plug 'https://github.com/michaeljsmith/vim-indent-object'   " Defines a new text object representing lines of code at the same indent level. Useful for python/vim scripts, etc.
 "Plug 'https://github.com/jeetsukumaran/vim-indentwise'      " Provides for motions based on indent depths or levels in normal, visual, and operator-pending modes.
 Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
@@ -62,4 +62,8 @@ Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
 " Plug 'https://github.com/neomake/neomake'                   " Asynchronous linting and make framework for Neovim/Vim
 " Plug 'https://github.com/vim-syntastic/syntastic'           " Syntax checking hacks for vim
 Plug 'editorconfig/editorconfig-vim'
+Plug 'https://github.com/machakann/vim-highlightedyank'
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'justinmk/vim-sneak'
+Plug 'https://github.com/easymotion/vim-easymotion'
 call plug#end()
