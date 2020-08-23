@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 function help() {
 
 local _FILE_NAME
-_FILE_NAME=`basename ${BASH_SOURCE[0]}`
+_FILE_NAME=$(basename ${BASH_SOURCE[0]})
 
 cat << HELP_USAGE
 
@@ -87,8 +87,8 @@ HELP_USAGE
 }
 
 ### Utility functions
-source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/print_utils.sh"
-MAKE_PDF=`basename ${BASH_SOURCE[0]}`
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )/print-utils.sh"
+MAKE_PDF=$(basename ${BASH_SOURCE[0]})
 
 
 ### Default values for variables
@@ -154,7 +154,7 @@ file_name="${FILE%.*}"
 if [[ -z ${AUX_DIR} ]]; then
     aux_home=${PWD}
 else
-    aux_home=${PWD}/${AUX_DIR}
+    aux_home="${PWD}/${AUX_DIR}"
 fi
 
 function compile () {
@@ -162,7 +162,7 @@ function compile () {
         mkdir -p ${AUX_DIR}
     fi
     if [[ (${ENGINE} == 1) ]]; then
-        echo "`INFO $MAKE_PDF` Creating pdf with 'latexmk'"
+        echo "$(INFO $MAKE_PDF) Creating pdf with 'latexmk'"
         if [[ (${USE_BIBTEX} == 1) ]]; then
             BIBTEX="-bibtex"
         else
@@ -171,7 +171,7 @@ function compile () {
         latexmk -pdf ${QUIET} ${BIBTEX} -auxdir=${AUX_DIR} -outdir=${AUX_DIR} ${FILE}
 
     elif [[ (${ENGINE} == 2) ]]; then
-        echo "`INFO $MAKE_PDF` Creating pdf with 'pdflatex'"
+        echo "$(INFO $MAKE_PDF) Creating pdf with 'pdflatex'"
         pdflatex -output-directory=${AUX_DIR} ${FILE}
         if [[ (${USE_BIBTEX} == 1) ]]; then
             file_aux="${file_name}.aux"
@@ -180,13 +180,13 @@ function compile () {
             pdflatex -output-directory=${AUX_DIR} ${FILE}
         fi
     else
-        echo "`WARNING $MAKE_PDF` Unknown compiling engine. Nothing has been compiled" >&2
+        echo "$(WARNING $MAKE_PDF) Unknown compiling engine. Nothing has been compiled" >&2
     fi
 }
 
 function clean_aux() {
     local file
-    echo "`INFO $MAKE_PDF` Removing auto-generated auxiliary files."
+    echo "$(INFO $MAKE_PDF) Removing auto-generated auxiliary files."
     for extension in "${AUX_EXTENSIONS[@]}"
     do
         file=${aux_home}/${file_name}${extension}
@@ -199,7 +199,7 @@ function clean_aux() {
 
 function clean_build() {
     local file
-    echo "`INFO $MAKE_PDF` Removing build files."
+    echo "$(INFO $MAKE_PDF) Removing build files."
     for extension in "${BUILD_EXTENSIONS[@]}"
     do
         file=${aux_home}/${file_name}${extension}
@@ -217,13 +217,13 @@ function clean_build() {
 ##########################################
 
 if [[ ${FILE} != *.tex ]]; then
-    echo "`ERROR $MAKE_PDF` This script can only be used for files with LaTeX extension (*.tex)" >&2
+    echo "$(ERROR $MAKE_PDF) This script can only be used for files with LaTeX extension (*.tex)" >&2
     echo "$FILE" >&2
     exit 1
 fi
 
 if [[ ! -f ${FILE} ]]; then
-    echo "`ERROR $MAKE_PDF` Specified source file does not exist in the current directory." >&2
+    echo "$(ERROR $MAKE_PDF) Specified source file does not exist in the current directory." >&2
     echo "$FILE" >&2
     exit 1
 fi
@@ -237,4 +237,4 @@ elif [[ (${CLEAN} == 2) ]]; then
     clean_build
 fi
 
-echo "`INFO $MAKE_PDF` Success :-)"
+echo "$(INFO $MAKE_PDF) Success :-)"
