@@ -55,6 +55,7 @@ USER_BIN="${HOME}/bin"
 LOCAL_BIN="${HOME}/.local/bin"
 
 ### Uncomment and correctly define these if you are going to be using this software
+#MYSQL_BIN="/path/to/mysql/bin"
 #LATEX_BIN=/path/to/tex/bin
 #MATLAB_BIN=/path/to/matlab/bin
 #CUDA_BIN=/usr/local/cuda/bin
@@ -89,13 +90,20 @@ LOCAL_BIN="${HOME}/.local/bin"
 ### Configuration for Pyenv
 PYENV_ROOT="${HOME}/.pyenv"
 PYENV_BIN="${PYENV_ROOT}/bin"
+PYENV_AUTOCOMPLETE=""
 
 
 
-###------------------------------    MISC   --------------------------------###
+###------------------------------    SECRETS   --------------------------------###
 ### Variables used by 'sync-settings' in ATOM
 ### Uncomment and define these if you are using this package
 # Personal access token to GitHub which has the gist scope
 #export GITHUB_TOKEN=""
 # Last part of url (after username) related to private gist with Atom dotfiles
 #export GIST_ID=""
+
+# Source ~/.zshenv-secrets if it exists
+# Use in conjunction with 'add-secret-environment-variable.sh' and 'load-secret-environment-variable.sh'
+ZSHENV_SECRETS=${HOME}/.zshenv-secrets
+[[ ! -f ${ZSHENV_SECRETS} ]] || source ${ZSHENV_SECRETS}
+

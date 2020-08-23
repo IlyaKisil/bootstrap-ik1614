@@ -93,6 +93,7 @@ plugins=(
 ### Set PATH
 export PATH=${MATLAB_BIN:=""}${PATH:+:${PATH}}
 export PATH=${USER_BIN:=""}${PATH:+:${PATH}}
+export PATH=${MYSQL_BIN:=""}${PATH:+:${PATH}}
 export PATH=${LATEX_BIN:=""}${PATH:+:${PATH}}
 
 # Configurations for 'CUDA'
@@ -116,17 +117,15 @@ fi
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
     export PYENV_ROOT
-    eval "$(pyenv init -)"
+    if [[ ! -z ${PYENV_AUTOCOMPLETE} ]]; then
+        eval "$(pyenv init -)"
+    fi
 fi
 
 
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
 
-# For some reason OMZ, doens't let you to set this var in a pluggable way
+# For some reason OMZ, doesn't let you to set this var in a pluggable way
 export HISTSIZE=100000
 export SAVEHIST=100000
-
-# Source ~/.zshenv-secrets if it exists
-ZSHENV_SECRETS=${HOME}/.zshenv-secrets
-[[ ! -f ${ZSHENV_SECRETS} ]] || source ${ZSHENV_SECRETS}
