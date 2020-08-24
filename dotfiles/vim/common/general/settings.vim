@@ -24,6 +24,7 @@ set tabstop=4                    " Tabs and spaces handling
 set softtabstop=4                " Tabs and spaces handling
 set shiftwidth=4                 " Tabs and spaces handling
 set scrolloff=5                  " When scrolling, keep cursor N lines away from screen border
+set sidescroll=5
 set nowrap                       " Don't wrap lines by default
 set ignorecase                   " Use case insensitive search
 set smartcase                    " Except when using capital letters

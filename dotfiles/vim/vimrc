@@ -36,6 +36,7 @@ source $__VIM_DOTFILES_HOME/vim-plug/configs/youcompleteme.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-autoclose.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/sneak.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-snippets.vim
+source $__VIM_DOTFILES_HOME/vim-plug/configs/vimtex.vim
 
 
 " ============================================================================

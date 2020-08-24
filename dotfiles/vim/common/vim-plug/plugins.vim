@@ -55,6 +55,11 @@ Plug 'https://github.com/Glench/Vim-Jinja2-Syntax'          " Jinja2 syntax file
 Plug 'https://github.com/saltstack/salt-vim'                " Vim files for editing Salt files
 
 
+" ---------- Latex
+Plug 'https://github.com/lervag/vimtex'
+Plug 'https://github.com/xuhdev/vim-latex-live-preview'
+
+
 " ---------- Misc
 Plug 'https://github.com/Townk/vim-autoclose'               " Enable an auto-close chars feature
 Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more

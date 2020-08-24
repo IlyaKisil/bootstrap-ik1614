@@ -21,6 +21,7 @@ fun! GoCoc()
         \ 'coc-python',
         \ 'coc-snippets',
         \ 'coc-sh',
+        \ 'coc-texlab',
         \ ]
 
     " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
