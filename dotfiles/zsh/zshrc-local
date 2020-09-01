@@ -64,10 +64,11 @@ LOCAL_BIN="${HOME}/.local/bin"
 
 
 ### Configurations for nodejs version manager (nvm)
-### Uncomment and change 'NVM_DIR' if required
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Change 'NVM_DIR' and 'NODE_VERSION' as required
+# Note: when 'NODE_VERSION' is set we don't use NVM as is slows down opening a new shell
+NVM_DIR="$HOME/.nvm"
+NODE_VERSION="13.10.1"
+NODE_BIN="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin"
 
 
 ### Conda specific configuration (adaptation of contents which is managed by 'conda init')
@@ -90,7 +91,9 @@ LOCAL_BIN="${HOME}/.local/bin"
 ### Configuration for Pyenv
 PYENV_ROOT="${HOME}/.pyenv"
 PYENV_BIN="${PYENV_ROOT}/bin"
-PYENV_AUTOCOMPLETE=""
+PYENV_SHIMS="${PYENV_ROOT}/shims"
+# Set to non-empty if you want to eval 'pyenv init'.
+PYENV_INIT=""
 
 
 

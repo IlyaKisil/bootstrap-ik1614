@@ -117,9 +117,24 @@ fi
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
     export PYENV_ROOT
-    if [[ ! -z ${PYENV_AUTOCOMPLETE} ]]; then
+    if [[ ! -z ${PYENV_INIT:=""} ]]; then
+        # This will slow down opening a new shell
         eval "$(pyenv init -)"
+    else
+        export PATH=${PYENV_SHIMS:=""}${PATH:+:${PATH}}
     fi
+fi
+
+
+### Node specific configs
+if [[ -z ${NODE_VERSION:=""} ]]; then
+    # This considerably slows down opening a new shell
+    export NVM_DIR
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+else
+    # This will work after initial node setup of via NVM
+    export PATH=${NODE_BIN:=""}${PATH:+:${PATH}}
 fi
 
 
