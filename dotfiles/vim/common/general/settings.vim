@@ -10,7 +10,8 @@
 " GENERAL SETTINGS (not related to plugins)
 " ============================================================================
 "----------- Syntax
-syntax on
+"syntax on
+syntax enable
 set encoding=UTF-8
 set nocompatible
 " Allow plugins by file type (required for plugins!)
@@ -35,6 +36,7 @@ set nowrap
 set number
 set relativenumber
 set cursorline
+set signcolumn=yes
 set colorcolumn=90
 " When scrolling, keep cursor N lines away from screen border
 " Better to keep greater then 'pumheight'

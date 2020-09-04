@@ -53,5 +53,33 @@
     "%f"
   ],
   "latex.lint.onSave": true,
-  "latex.lint.onChange": false
+  "latex.lint.onChange": false,
+  // ========= COC SPELLING CONFIG =========
+  "cSpell.language": "en-GB",
+  "cSpell.enabledLanguageIds": [
+    "csharp",
+    "go",
+    "javascript",
+    "javascriptreact",
+    "tex",
+    "latex",
+    "markdown",
+    "php",
+    "plaintext",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ],
+  "cSpell.dictionaryDefinitions": [
+    // Unfortunately, this has to use a global path. So will need to have separate
+    // definitions for different VMs...
+    {
+      "name": "ik1614-main-en-GB",
+      "path": "/Users/ilya/.config/dictionaries-ik1614/main-en-GB.txt"
+    }
+  ],
+  // List of dictionaries to use when checking files
+  "cSpell.dictionaries": [
+    "ik1614-main-en-GB"
+  ]
 }

@@ -1,7 +1,9 @@
-set spell
-set spelllang=en_gb
 set colorcolumn=90
 set textwidth=89
+
+" In general we use 'coc-spell-check'
+" set spell
+" set spelllang=en_gb
 
 " Break at the end of the word
 set linebreak
