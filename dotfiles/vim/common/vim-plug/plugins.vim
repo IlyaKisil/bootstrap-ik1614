@@ -57,15 +57,18 @@ Plug 'https://github.com/saltstack/salt-vim'                " Vim files for edit
 
 " ---------- Latex
 Plug 'https://github.com/lervag/vimtex'
-Plug 'https://github.com/xuhdev/vim-latex-live-preview'
+" Plug 'https://github.com/xuhdev/vim-latex-live-preview'
+
+
+" ---------- Git
+Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
 
 
 " ---------- Misc
 Plug 'https://github.com/Townk/vim-autoclose'               " Enable an auto-close chars feature
 Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more
-Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
 Plug 'https://github.com/tpope/vim-commentary'              " Comment out lines with ease
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/machakann/vim-highlightedyank'
-"Plug 'https://github.com/terryma/vim-multiple-cursors'      " Support for multiple cursors
 call plug#end()
