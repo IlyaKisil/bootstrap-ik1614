@@ -6,43 +6,52 @@
 // " ### UNLESS CHANGES WILL BECOME PERMANENT ###
 // " ############################################
 {
-    "diagnostic.errorSign": "",
-    "diagnostic.warningSign": "",
-    "diagnostic.infoSign": "",
-    "diagnostic.hintSign": "",
-    "coc.preferences.formatOnSaveFiletypes": [
-        "yaml",
-        "json",
-        "python"
-    ],
-    // ========= COC PYTHON CONFIG =========
-    // These have to be inline with 'g:python3_host_prog'
-    "python.jediPath": "~/.pyenv/versions/3.7.6/lib/python3.7/site-packages",
-    "python.linting.pylintPath": "~/.pyenv/versions/3.7.6/bin/pylint",
-    "python.linting.flake8Path": "~/.pyenv/versions/3.7.6/bin/flake8",
-    "python.linting.mypyPath": "~/.pyenv/versions/3.7.6/bin/mypy",
-    "python.formatting.autopep8Path": "~/.pyenv/versions/3.7.6/bin/autopep8",
-    "python.formatting.blackPath": "~/.pyenv/versions/3.7.6/bin/black",
-    "python.formatting.yapfPath": "~/.pyenv/versions/3.7.6/bin/yapf",
-    // Overall settings
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintUseMinimalCheckers": false,
-    // List of human readable pylint messages https://github.com/janjur/readable-pylint-messages/blob/master/README.md
-    "python.linting.pylintArgs": [
-        "--enable=C,R,W,E,F",
-        "--disable=missing-docstring",
-        "--disable=empty-docstring",
-        "--disable=line-too-long",
-        "--disable=too-many-lines"
-    ],
-    "python.formatting.provider": "autopep8",
-    "python.formatting.autopep8Args": [
-        "--max-line-length=99999"
-    ],
-    // ========= COC SNIPPETS CONFIG =========
-    "snippets.ultisnips.directories": [
-        "UltiSnips",
-        "~/.config/ultisnips"
-    ]
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "yaml",
+    "json",
+    "python"
+  ],
+  // ========= COC PYTHON CONFIG =========
+  // These have to be inline with 'g:python3_host_prog'
+  "python.jediPath": "~/.pyenv/versions/3.7.6/lib/python3.7/site-packages",
+  "python.linting.pylintPath": "~/.pyenv/versions/3.7.6/bin/pylint",
+  "python.linting.flake8Path": "~/.pyenv/versions/3.7.6/bin/flake8",
+  "python.linting.mypyPath": "~/.pyenv/versions/3.7.6/bin/mypy",
+  "python.formatting.autopep8Path": "~/.pyenv/versions/3.7.6/bin/autopep8",
+  "python.formatting.blackPath": "~/.pyenv/versions/3.7.6/bin/black",
+  "python.formatting.yapfPath": "~/.pyenv/versions/3.7.6/bin/yapf",
+  // Overall settings
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintUseMinimalCheckers": false,
+  // List of human readable pylint messages https://github.com/janjur/readable-pylint-messages/blob/master/README.md
+  "python.linting.pylintArgs": [
+    "--enable=C,R,W,E,F",
+    "--disable=missing-docstring",
+    "--disable=empty-docstring",
+    "--disable=line-too-long",
+    "--disable=too-many-lines"
+  ],
+  "python.formatting.provider": "autopep8",
+  "python.formatting.autopep8Args": [
+    "--max-line-length=99999"
+  ],
+  // ========= COC SNIPPETS CONFIG =========
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "~/.config/ultisnips"
+  ],
+  // ========= COC TEXLAB CONFIG =========
+  "latex.forwardSearch.executable": "/Applications/Skim.app/Contents/SharedSupport/displayline",
+  "latex.forwardSearch.args": [
+    "%l",
+    "%p",
+    "%f"
+  ],
+  "latex.lint.onSave": true,
+  "latex.lint.onChange": false
 }

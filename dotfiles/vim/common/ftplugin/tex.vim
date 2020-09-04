@@ -7,7 +7,7 @@ set textwidth=89
 set linebreak
 
 " Resize paragraph
-set formatoptions+=a
+"set formatoptions+=a
 
 " Wrap text when exceeding window width (in case it is < textwidth)
 set wrap
