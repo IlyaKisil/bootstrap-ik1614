@@ -21,4 +21,4 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-highlight SignColumn guibg=#262626
+highlight SignColumn guibg=#3a3a3a

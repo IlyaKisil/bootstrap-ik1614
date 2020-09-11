@@ -7,9 +7,9 @@ highlight GitGutterChangeDelete guifg=#135fa8 guibg=#135fa8 ctermfg=6 ctermbg=6
 
 " But for deleted lines use sign to see where exactly line was removed
 " i.e. shows between which lines content was removed
-" Use red, but leave background as is
+" Use red, but leave background to match
 let g:gitgutter_sign_removed = '__'
-highlight GitGutterDelete guifg=#ff6b6b ctermfg=1
+highlight GitGutterDelete guifg=#ff6b6b guibg=#3a3a3a ctermfg=1
 
 " Some additional characters that I don't really understand the meaning of ...
 let g:gitgutter_sign_removed_first_line = '^^'

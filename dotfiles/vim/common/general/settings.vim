@@ -87,7 +87,7 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 " Show special characters
 set list
-set listchars=space:.
+set listchars=space:.,tab:->
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
