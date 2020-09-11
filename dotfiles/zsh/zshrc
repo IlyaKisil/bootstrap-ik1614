@@ -74,13 +74,13 @@ plugins=(
 # should break anything.
 
 ### KEEP THIS AT THE TOP OF MAIN PART
-# Source ~/.aliases if it exists
-ALIASES=$HOME/.aliases
-[[ ! -f ${ALIASES} ]] || source ${ALIASES}
-
 # Source ~/.zshrc-local if it exists
 ZSHRC_LOCAL=${HOME}/.zshrc-local
 [[ ! -f ${ZSHRC_LOCAL} ]] || source ${ZSHRC_LOCAL}
+
+# Source ~/.aliases if it exists
+ALIASES=$HOME/.aliases
+[[ ! -f ${ALIASES} ]] || source ${ALIASES}
 
 
 ### Set zsh plugins to use
@@ -135,6 +135,13 @@ if [[ -z ${NODE_VERSION:=""} ]]; then
 else
     # This will work after initial node setup of via NVM
     export PATH=${NODE_BIN:=""}${PATH:+:${PATH}}
+fi
+
+### Other variables
+if command -v nvim 1>/dev/null 2>&1; then
+    export EDITOR="$(which nvim)"
+else
+    export EDITOR="$(which vim)"
 fi
 
 
