@@ -23,3 +23,7 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " When you paste over something send that content to "the black hole register"
 vnoremap <leader>p "_dP
+
+" Keep selection after tab adjust
+vnoremap < <gv
+vnoremap > >gv
