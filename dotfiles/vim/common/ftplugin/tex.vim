@@ -1,18 +1,30 @@
-set colorcolumn=90
-set textwidth=89
+" ############################################
+" ###       THIS CONFIG IS SYMLINKED       ###
+" ###    DONT' ENTER ANY SENSITIVE INFO    ###
+" ###                                      ###
+" ###  USE LOCAL CONFIG FOR MODIFICATIONS  ###
+" ### UNLESS CHANGES WILL BECOME PERMANENT ###
+" ############################################
+
+setlocal colorcolumn=90
+setlocal textwidth=89
 
 " In general we use 'coc-spell-check'
 " set spell
 " set spelllang=en_gb
 
 " Break at the end of the word
-set linebreak
+setlocal linebreak
 
 " Resize paragraph
 "set formatoptions+=a
 
 " Wrap text when exceeding window width (in case it is < textwidth)
-set wrap
+setlocal wrap
 
-" Use unicode character for continuation line (set with 'C-v u 2026')
-set showbreak=…
+" Add header with tex and cSpell settings
+call functions#add_file_header([
+            \ '% !TEX root =',
+            \ '% cSpell:ignoreRegExp ^%.*',
+            \ '% cSpell:ignoreRegExp \\[0-9a-zA-Z]*',
+            \ ])

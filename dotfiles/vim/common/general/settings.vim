@@ -79,8 +79,9 @@ set wildmenu
 
 
 "----------- Misc
-set lazyredraw
 set mouse=a
+" don't bother updating screen during macro playback
+set lazyredraw
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 " Copy to system wide clipboard
@@ -88,6 +89,10 @@ set clipboard=unnamed
 " Show special characters
 set list
 set listchars=space:.,tab:->
+" Arrow pointing downwards then curving rightwards (U+2937, UTF-8: E2 A4 B7)
+if has('linebreak')
+  let &showbreak='⤷ '
+endif
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
