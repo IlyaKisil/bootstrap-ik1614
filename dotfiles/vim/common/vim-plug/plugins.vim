@@ -71,4 +71,5 @@ Plug 'https://github.com/tpope/vim-surround'                " Surroundings: pare
 Plug 'https://github.com/tpope/vim-commentary'              " Comment out lines with ease
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/machakann/vim-highlightedyank'
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
 call plug#end()
