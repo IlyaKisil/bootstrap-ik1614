@@ -31,12 +31,9 @@ fi
 P10K_CONFIG=${HOME}/.p10k.zsh
 [[ ! -f ${P10K_CONFIG} ]] || source ${P10K_CONFIG}
 
-# This is tailored specifically for the p10k
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595858,bg=underline"
 
 
-
-###-----------------------------    PLUGINS   ------------------------------###
+###---------------------------   ZSH PLUGINS   -----------------------------###
 ZSH_PLUGINS=(
     # tmux
     # zsh-autosuggestions  # Don't really like it. Better to use 'fzf'
@@ -44,9 +41,20 @@ ZSH_PLUGINS=(
     docker
 )
 
+# This is tailored specifically for the p10k prompt scheme
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595858,bg=underline"
+
+
+
+###----------------------------    CLI TOOLS   -----------------------------###
 if command -v fzf 1>/dev/null 2>&1; then
     ZSH_PLUGINS=(${ZSH_PLUGINS} fzf)
     export FZF_DEFAULT_OPTS='--height 40% --inline-info --layout=reverse --border'
+
+    # Provides nice coloring for preview window with clear
+    # highlight of search result. To see other options use
+    # bat --list-themes | fzf --preview="bat --theme={} --color=always --highlight-line 5:10 /path/to/file
+    export BAT_THEME="Nord"
 fi
 
 
@@ -66,7 +74,7 @@ LOCAL_BIN="${HOME}/.local/bin"
 
 ### Configurations for nodejs version manager (nvm)
 # Change 'NVM_DIR' and 'NODE_VERSION' as required
-# Note: when 'NODE_VERSION' is set we don't use NVM as is slows down opening a new shell
+# Note: when 'NODE_VERSION' is set we don't use NVM as it slows down opening a new shell
 NVM_DIR="$HOME/.nvm"
 NODE_VERSION="13.10.1"
 NODE_BIN="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin"
