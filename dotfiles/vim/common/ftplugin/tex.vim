@@ -27,4 +27,8 @@ call functions#add_file_header([
             \ '% !TEX root =',
             \ '% cSpell:ignoreRegExp ^%.*',
             \ '% cSpell:ignoreRegExp \\[0-9a-zA-Z]*',
+            \ '% cSpell:ignoreRegExp .*\\usepackage.*',
+            \ '% cSpell:ignoreRegExp .*\\cite\{[\w:\-]*\}',
+            \ '% cSpell:ignoreRegExp .*\\c?ref\{[\w:\-]*\}',
+            \ '% cSpell:ignoreRegExp .*\\(begin|end){.*}.*',
             \ ])
