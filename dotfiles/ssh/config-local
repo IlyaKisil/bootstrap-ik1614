@@ -2,3 +2,21 @@ HOST github.com
     HostName github.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/github-IlyaKisil
+
+
+### Multiplex SSH connections that go through the same host
+# This speeds up scp, tab completion tremendously. But downside
+# is that you have lower bandwidth for concurrent copies. Also
+# killing master session with Ctrl-C will drop all child sessions.
+# Also there might be some issues with stale port forwarding
+#
+# Here is an example of using ControlMaster when all SSH
+# connections need to go through some Bastion host
+#Host dev
+#    HostName some-bastion-host
+#    Controlpath ~/.ssh/control-master/ssh-%r@%h:%p.sock
+#    Controlpath ~/.ssh/control-master/%r@%n.sock
+#    ControlMaster auto
+#    ControlPersist 10m
+#Host *.dev
+#    ProxyCommand ssh %r@dev -W $(echo %h | awk '{ gsub(/.dev$/, "some-internal-host-pattern", $1); print $1}'):%p

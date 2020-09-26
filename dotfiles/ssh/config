@@ -9,11 +9,6 @@
 Include config-local
 
 
-### This speeds up scp tab completion tremendously.
-Controlmaster auto
-Controlpath ~/.ssh/ssh-%r@%h:%p.sock
-
-
 ### GitHub Personal
 HOST IlyaKisil.github.com
     HostName github.com
