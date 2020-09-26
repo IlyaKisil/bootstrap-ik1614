@@ -17,18 +17,8 @@ setlocal textwidth=89
 setlocal linebreak
 
 " Auto Resize paragraphs based on 'textwidth'
-"set formatoptions+=a
+set formatoptions+=a
 
 " Wrap text when exceeding window width (in case it is < textwidth)
 setlocal wrap
 
-" Add header with tex and cSpell settings
-call functions#add_file_header([
-            \ '% !TEX root =',
-            \ '% cSpell:ignoreRegExp ^%.*',
-            \ '% cSpell:ignoreRegExp \\[0-9a-zA-Z]*',
-            \ '% cSpell:ignoreRegExp .*\\usepackage.*',
-            \ '% cSpell:ignoreRegExp .*\\cite\{[\w:\-]*\}',
-            \ '% cSpell:ignoreRegExp .*\\c?ref\{[\w:\-]*\}',
-            \ '% cSpell:ignoreRegExp .*\\(begin|end){.*}.*',
-            \ ])
