@@ -27,34 +27,101 @@ let g:fzf_colors = {
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 
-" Helper for having horizontal or vertical preview based on window width
-function! FzfPreviewIfWide(spec)
+function! FzfPreviewIfWide(...)
+    " Helper for having horizontal or vertical preview based on window width
+    let preview_extra_opts = get(a:, 1, [])
+    let preview_default_opts = [
+                \ '--delimiter', ':',
+                \ '--nth', '4..',
+                \ ]
+
+    let spec = {"options": extend(preview_default_opts, preview_extra_opts)}
     return &columns > 120
-                \ ? fzf#vim#with_preview(a:spec, 'right:50%', '?')
-                \ : fzf#vim#with_preview(a:spec, 'down:50%', '?')
+                \ ? fzf#vim#with_preview(spec, 'right:50%', '?')
+                \ : fzf#vim#with_preview(spec, 'down:50%', '?')
 endfunction
 
 " Integration with Ripgrep
 if executable('rg')
-    let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*" --color=always'
+
+    function! GetRgFlags(...)
+        " Generate string of flags to be passed to 'ripgrep'
+        let rg_extra_flags = get(a:, 1, [])
+        let rg_default_flags = [
+                    \ '--column',
+                    \ '--line-number',
+                    \ '--no-heading',
+                    \ '--hidden',
+                    \ '--follow',
+                    \ '--smart-case',
+                    \ '--glob "!.git/*"',
+                    \ '--color "always"',
+                    \ ]
+        let rg_flags = extend(rg_default_flags, rg_extra_flags)
+        let rg_flags_string = join(rg_flags, ' ')
+        return rg_flags_string
+    endfunction
+
+    function! ExactSearchWithPreview(query, path, rg_extra_flags, fullscreen)
+        " Search interface similar to the one provided by 'fzf' but show only
+        " exact matches. I think you don't get fuzzy searches due to the way
+        " query (<q-args>) gets evaluated and is feed back into fzf preview.
+        "
+        " When 'path' is set to empty string then root of project will be used
+        "
+        " Usage:
+        "   command! -nargs=* -bang FOO
+        "               \ call ExactSearchWithPreview(
+        "               \ <q-args>,
+        "               \ "",
+        "               \ ["--no-ignore"],
+        "               \ <bang>0)
+
+        let rg_flags_string = GetRgFlags(a:rg_extra_flags)
+
+        let command_fmt = 'rg '.rg_flags_string.' %s '.a:path.' || true '
+        let initial_command = printf(command_fmt, shellescape(a:query))
+        let reload_command = printf(command_fmt, '{q}')
+
+        let preview_extra_opts = [
+                    \ '--phony',
+                    \ '--query', a:query,
+                    \ '--bind', 'change:reload:'.reload_command
+                    \ ]
+        call fzf#vim#grep(
+                    \ initial_command,
+                    \ 1,
+                    \ FzfPreviewIfWide(preview_extra_opts),
+                    \ a:fullscreen
+                    \ )
+    endfunction
+
     set grepprg=rg\ --vimgrep
+    let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags()
 
-    command! -bang -nargs=* Find
+    " Make Ripgrep search ONLY file contents and not filenames
+    command! -bang -nargs=* RG
                 \ call fzf#vim#grep(
-                \   'rg --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1,
-                \   <bang>0)
+                \ "rg ".GetRgFlags()." ".shellescape(<q-args>),
+                \ 1,
+                \ FzfPreviewIfWide(),
+                \ <bang>0)
 
-    " Make Ripgrep ONLY search file contents and not filenames
-    command! -bang -nargs=* Rg
+    " Search through content in ALL files (including gitignored)
+    command! -bang -nargs=* FIND
                 \ call fzf#vim#grep(
-                \   'rg --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
-                \   FzfPreviewIfWide({'options': '--delimiter : --nth 4..'}),
-                \   <bang>0)
+                \ "rg ".GetRgFlags(["--no-ignore"])." ".shellescape(<q-args>),
+                \ 1,
+                \ FzfPreviewIfWide(),
+                \ <bang>0)
 
-    " Add preview for the lines search within opened buffers
-    command! -bang -nargs=* Lines
+    " Use custom preview for the lines search within opened buffers
+    command! -bang -nargs=* LINES
                 \ call fzf#vim#grep(
-                \   'rg --with-filename --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
-                \   FzfPreviewIfWide({'options': '--delimiter : --nth 4..'}),
-                \   <bang>0)
+                \ "rg ".GetRgFlags(["--with-filename"])." ".shellescape(<q-args>)." ".fnameescape(expand('%')),
+                \ 1,
+                \ FzfPreviewIfWide(),
+                \ <bang>0)
+
 endif
+
