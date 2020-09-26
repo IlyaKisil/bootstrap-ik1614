@@ -21,3 +21,7 @@ vnoremap <leader>p "_dP
 " Keep selection after tab adjust
 vnoremap < <gv
 vnoremap > >gv
+
+" Move cursor through long soft-wrapped lines that doesn't break <count>
+noremap <expr> k (v:count == 0 ? 'gk' : 'k')
+noremap <expr> j (v:count == 0 ? 'gj' : 'j')
