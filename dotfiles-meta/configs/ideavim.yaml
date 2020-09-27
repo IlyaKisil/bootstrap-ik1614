@@ -1,0 +1,4 @@
+- link:
+    ~/.ideavimrc: dotfiles/vim/ideavimrc
+    ~/.config/nvim/init.vim: dotfiles/vim/vimrc
+    ~/.config/nvim/general: dotfiles/vim/common/general

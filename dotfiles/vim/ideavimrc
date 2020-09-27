@@ -1,0 +1,96 @@
+source ~/.config/nvim/init.vim
+source ~/.config/nvim/general/settings.vim
+source ~/.config/nvim/general/mappings.vim
+
+
+" ---------------------------------------------------------------------------------------
+" General settings
+" ---------------------------------------------------------------------------------------
+set showmode
+
+" Enable native IJ insertion in Vim
+set clipboard+=ideaput
+
+
+" ---------------------------------------------------------------------------------------
+" Plugins
+" ---------------------------------------------------------------------------------------
+set surround
+set commentary
+set argtextobj
+set easymotion
+set highlightedyank
+
+
+" ---------------------------------------------------------------------------------------
+" Plugin settings
+" ---------------------------------------------------------------------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+" s{char}{char} to move to {char}{char}
+"nmap s <Plug>(easymotion-overwin-f2)
+
+
+" ---------------------------------------------------------------------------------------
+" Idea specific settings
+" ---------------------------------------------------------------------------------------
+set ideajoin
+"set ideastatusicon=gray
+set idearefactormode=keep
+
+" Sync IJ bookmarks and Vim marks
+set ideamarks
+
+
+" ---------------------------------------------------------------------------------------
+" Mappings
+"
+" Need to keep bindings like in VIM as much as possible
+" ---------------------------------------------------------------------------------------
+""" NAVIGATION COMMANDS
+map <C-L> :action NextSplitter<CR>
+map <C-H> :action PrevSplitter<CR>
+map <C-S-L> :action SplitVertically<CR>
+
+map <TAB> :action NextTab<CR>
+map <S-TAB> :action PreviousTab<CR>
+
+
+""" INTELLISENSE-ish COMMANDS (try to keep similar to 'CoC' bindings)
+map <leader>rn :action RenameElement<CR>
+
+map <leader>gi :action GotoImplementation<CR>
+
+" Looks like go to declaration and to references is kinda the same within JetBrains
+map <leader>gd :action GotoDeclaration<CR>
+map <leader>gr :action GotoDeclaration<CR>
+
+
+""" FZF like commands: '<leader>f ...' (try to keep similar to 'fzf' bindings)
+" Find Files and Actions (available through different tabs)
+" Equivalent to ':GFiles', ':Files' and ':Commands'
+map <C-P> :action SearchEverywhere<CR>
+map <leader>ff :action SearchEverywhere<CR>
+map <leader>fc :action SearchEverywhere<CR>
+
+" Toggle Recent files.
+" Equivalent to ':Buffers'
+map <leader>fb :action RecentFiles<CR>
+
+" Search words (available through different tabs)
+" Equivalent to ':Lines', ':Rg' and ':SEARCH', however it is not a fuzzy search :cry:
+map <leader>fr :action FindInPath<CR>
+map <leader>fl :action FindInPath<CR>
+map <leader>fs :action FindInPath<CR>
+
+
+
+""" SHOW COMMANDS: '<leader>s ...'
+" Documentation (although it says 'JavaDoc' should also work with other languages)
+map <leader>sd :action QuickJavaDoc<CR>
+
+" Show clipboard/copy/paste history
+map <leader>sp :action PasteMultiple<CR>
+
+""" OPEN COMMANDS: '<leader>o ...'
+map <leader>ot :action ActivateTerminalToolWindow<CR>
