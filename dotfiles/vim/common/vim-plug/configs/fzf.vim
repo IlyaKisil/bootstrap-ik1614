@@ -6,8 +6,6 @@
 " ### UNLESS CHANGES WILL BECOME PERMANENT ###
 " ############################################
 
-nnoremap <C-p> :GFiles<CR>
-
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0,'xoffset': 0, 'highlight': 'Todo'} }
 
@@ -41,7 +39,9 @@ function! FzfPreviewIfWide(...)
                 \ : fzf#vim#with_preview(spec, 'down:50%', '?')
 endfunction
 
+" ----------------------------------------------------------------------------
 " Integration with Ripgrep
+" ----------------------------------------------------------------------------
 if executable('rg')
 
     function! GetRgFlags(...)
@@ -55,7 +55,7 @@ if executable('rg')
                     \ '--follow',
                     \ '--smart-case',
                     \ '--glob "!.git/*"',
-                    \ '--color "always"',
+                    \ '--color "auto"',
                     \ ]
         let rg_flags = extend(rg_default_flags, rg_extra_flags)
         let rg_flags_string = join(rg_flags, ' ')
@@ -97,7 +97,7 @@ if executable('rg')
     endfunction
 
     set grepprg=rg\ --vimgrep
-    let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags()
+    let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags(["--files"])
 
     " Make Ripgrep search ONLY file contents and not filenames
     command! -bang -nargs=* RG
@@ -108,7 +108,7 @@ if executable('rg')
                 \ <bang>0)
 
     " Search through content in ALL files (including gitignored)
-    command! -bang -nargs=* FIND
+    command! -bang -nargs=* SEARCH
                 \ call fzf#vim#grep(
                 \ "rg ".GetRgFlags(["--no-ignore"])." ".shellescape(<q-args>),
                 \ 1,
@@ -125,3 +125,13 @@ if executable('rg')
 
 endif
 
+" ----------------------------------------------------------------------------
+" Mappings
+" ----------------------------------------------------------------------------
+nnoremap <C-p> :<C-u>GFiles<CR>
+nnoremap <silent><nowait> <leader>ff :<C-u>Files<CR>
+nnoremap <silent><nowait> <leader>fb :<C-u>Buffers<CR>
+nnoremap <silent><nowait> <leader>fs :<C-u>SEARCH<CR>
+nnoremap <silent><nowait> <leader>fr :<C-u>RG<CR>
+nnoremap <silent><nowait> <leader>fl :<C-u>LINES<CR>
+nnoremap <silent><nowait> <leader>fc :<C-u>Commands<CR>
