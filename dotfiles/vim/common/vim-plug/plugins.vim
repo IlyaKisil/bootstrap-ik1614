@@ -42,7 +42,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 " ---------- Navigation with a file
 Plug 'justinmk/vim-sneak'
-Plug 'https://github.com/easymotion/vim-easymotion'
+" Plug 'https://github.com/easymotion/vim-easymotion'
 
 
 " ---------- Python specific
@@ -69,6 +69,7 @@ Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
 Plug 'https://github.com/Townk/vim-autoclose'               " Enable an auto-close chars feature
 Plug 'https://github.com/tpope/vim-surround'                " Surroundings: parentheses, brackets, quotes, XML tags, and more
 Plug 'https://github.com/tpope/vim-commentary'              " Comment out lines with ease
+Plug 'SirVer/ultisnips'
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/machakann/vim-highlightedyank'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
