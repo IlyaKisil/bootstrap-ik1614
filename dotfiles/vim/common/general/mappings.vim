@@ -13,7 +13,7 @@ let mapleader="\<Space>"
 let maplocalleader="\\"
 
 " Map (redraw screen) to also turn off search highlighting until the next search
-nnoremap <leader>l :nohl<CR><C-L>
+nnoremap <C-l> :nohl<CR><C-L>
 
 
 " When you paste over something send that content to "the black hole register"
@@ -45,6 +45,6 @@ command! Lnext try | lnext | catch | lfirst | catch | endtry
 command! Lprev try | lprev | catch | llast | catch | endtry
 
 map <C-n> :Cnext<CR>
-" Can't use <C-k> as it is reserved for switching between panes
 " Can't use <C-p> as it is reserved for 'fzf'
-map <C-m> :Cprev<CR>
+" Consider using <C-m>, if you reserve <C-k> for pane movement
+map <C-k> :Cprev<CR>

@@ -48,8 +48,8 @@ set ideamarks
 " Need to keep bindings like in VIM as much as possible
 " ---------------------------------------------------------------------------------------
 """ NAVIGATION COMMANDS
-map <C-L> :action NextSplitter<CR>
-map <C-H> :action PrevSplitter<CR>
+map <S-Right> :action NextSplitter<CR>
+map <S-Left> :action PrevSplitter<CR>
 map <C-S-L> :action SplitVertically<CR>
 
 map <TAB> :action NextTab<CR>
