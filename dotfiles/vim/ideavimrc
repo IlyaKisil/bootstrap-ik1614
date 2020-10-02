@@ -59,11 +59,11 @@ map <S-TAB> :action PreviousTab<CR>
 """ INTELLISENSE-ish COMMANDS (try to keep similar to 'CoC' bindings)
 map <leader>rn :action RenameElement<CR>
 
-map <leader>gi :action GotoImplementation<CR>
+map gi :action GotoImplementation<CR>
 
 " Looks like go to declaration and to references is kinda the same within JetBrains
-map <leader>gd :action GotoDeclaration<CR>
-map <leader>gr :action GotoDeclaration<CR>
+map gd :action GotoDeclaration<CR>
+map gr :action GotoDeclaration<CR>
 
 
 """ FZF like commands: '<leader>f ...' (try to keep similar to 'fzf' bindings)
@@ -94,3 +94,8 @@ map <leader>sp :action PasteMultiple<CR>
 
 """ OPEN COMMANDS: '<leader>o ...'
 map <leader>ot :action ActivateTerminalToolWindow<CR>
+
+
+""" GIT COMMANDS: '<leader>g ...'
+map <leader>gr :action Git.ResolveConflicts<CR>
+map <leader>gd :action Compare.SameVersion<CR>

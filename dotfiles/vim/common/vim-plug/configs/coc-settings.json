@@ -10,6 +10,8 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
+  "list.nextKeymap": "<C-n>",
+  "list.previousKeymap": "<C-k>",
   "coc.preferences.formatOnSaveFiletypes": [
     "yaml",
     "json",

@@ -78,18 +78,17 @@ fun! GoCoc()
       inoremap <silent><expr> <c-@> coc#refresh()
     endif
 
+    " function! s:check_back_space() abort
+    "   let col = col('.') - 1
+    "   return !col || getline('.')[col - 1]  =~# '\s'
+    " endfunction
     " Use <tab> for trigger completion and navigate to the next complete item
-    inoremap <buffer> <silent><expr> <TAB>
-        \ pumvisible() ? "\<C-n>" :
-        \ <SID>check_back_space() ? "\<TAB>" :
-        \ coc#refresh()
-    function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
+    " inoremap <buffer> <silent><expr> <TAB>
+    "     \ pumvisible() ? "\<C-n>" :
+    "     \ <SID>check_back_space() ? "\<TAB>" :
+    "     \ coc#refresh()
     " Use <S-Tab> to navigate backwards in completion list
-    inoremap <buffer> <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    " inoremap <buffer> <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
     " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
     " position. Coc only does snippet and additional edit on confirm.
@@ -99,13 +98,6 @@ fun! GoCoc()
     else
       inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     endif
-
-    " Symbol renaming.
-    nmap <leader>rn <Plug>(coc-rename)
-
-    " Formatting selected code.
-    xmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>f  <Plug>(coc-format-selected)
 
     " Applying codeAction to the selected region.
     " Example: `<leader>aap` for current paragraph
@@ -128,15 +120,18 @@ fun! GoCoc()
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-    " GoTo code navigation.
-    nmap <buffer> <leader>gd <Plug>(coc-definition)
-    nmap <buffer> <leader>gy <Plug>(coc-type-definition)
-    nmap <buffer> <leader>gi <Plug>(coc-implementation)
-    nmap <buffer> <leader>gr <Plug>(coc-references)
-    " nmap <silent> gd <Plug>(coc-definition)
-    " nmap <silent> gy <Plug>(coc-type-definition)
-    " nmap <silent> gi <Plug>(coc-implementation)
-    " nmap <silent> gr <Plug>(coc-references)
+        " GoTo code navigation.
+    " nmap <buffer> <leader>gd <Plug>(coc-definition)
+    " nmap <buffer> <leader>gy <Plug>(coc-type-definition)
+    " nmap <buffer> <leader>gi <Plug>(coc-implementation)
+    " nmap <buffer> <leader>gr <Plug>(coc-references)
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+
+    " Symbol renaming.
+    nmap <leader>rn <Plug>(coc-rename)
 
     " Use K to show documentation in preview window.
     function! s:show_documentation()
@@ -168,6 +163,10 @@ fun! GoCoc()
     nnoremap <silent><nowait> <leader>cn  :<C-u>CocNext<CR>
     " Do default action for previous item.
     nnoremap <silent><nowait> <leader>cp  :<C-u>CocPrev<CR>
+
+    " Formatting selected code.
+    xmap <leader>cf  <Plug>(coc-format-selected)
+    nmap <leader>cf  <Plug>(coc-format-selected)
 
     "-------- Mappings for CoCList
     " Show all diagnostics.
