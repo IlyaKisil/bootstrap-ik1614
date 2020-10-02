@@ -45,6 +45,10 @@ Plug 'justinmk/vim-sneak'
 " Plug 'https://github.com/easymotion/vim-easymotion'
 
 
+" ---------- GO specific
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
 " ---------- Python specific
 " Plug 'https://github.com/majutsushi/tagbar'                 " Provides an easy way to browse the tags of the current file and get an overview of its structure
 Plug 'https://github.com/heavenshell/vim-pydocstring'   " Docstring generator. FIXME: might be able to do this with ultisnips

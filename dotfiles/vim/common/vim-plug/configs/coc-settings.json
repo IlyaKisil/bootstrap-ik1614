@@ -45,6 +45,9 @@
   // ========= COC SNIPPETS CONFIG =========
   "snippets.ultisnips.directories": [
     "UltiSnips",
+    // Snippets from vim-go
+    "gosnippets/UltiSnips",
+    // Custom snippets
     "~/.config/ultisnips"
   ],
   // ========= COC TEXLAB CONFIG =========
