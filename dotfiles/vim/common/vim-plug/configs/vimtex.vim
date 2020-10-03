@@ -13,7 +13,7 @@ if has('nvim')
     let g:vimtex_compiler_progname = 'nvr'
 endif
 
-" Automatically open only on errors
+" Automatically open quickfix window only on errors and make it active
 let g:vimtex_quickfix_mode = 2
 let g:vimtex_quickfix_open_on_warning = 0
 
@@ -48,3 +48,12 @@ if has('unix')
 elseif has('win32')
 
 endif
+
+" Toggle quickfix window with errors. For some reason ':cclose' doesn't work
+autocmd FileType tex nmap <leader>q  <Plug>(vimtex-errors)
+
+" Compile document
+autocmd FileType tex nmap <leader>b  <Plug>(vimtex-compile)
+
+" Synctex from source code to document
+autocmd FileType tex nmap <leader>v  <Plug>(vimtex-view)

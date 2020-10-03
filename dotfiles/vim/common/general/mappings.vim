@@ -30,7 +30,7 @@ noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 noremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 
-" Use <C-k> to go up within a comletion menu. For going down, use default
+" Use <C-k> to go up within a completion menu. For going down, use default
 " binding <C-n>, which is convenient with Colemak layout
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
@@ -38,13 +38,23 @@ cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 " cnoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 
 
-" Make cnext, cprevious etc to loop back to the begining
+" Loop through quickfix and locations lists
 command! Cnext try | cnext | catch | cfirst | catch | endtry
 command! Cprev try | cprev | catch | clast | catch | endtry
 command! Lnext try | lnext | catch | lfirst | catch | endtry
 command! Lprev try | lprev | catch | llast | catch | endtry
 
-map <C-n> :Cnext<CR>
 " Can't use <C-p> as it is reserved for 'fzf'
 " Consider using <C-m>, if you reserve <C-k> for pane movement
 map <C-k> :Cprev<CR>
+map <C-n> :Cnext<CR>
+
+" Since location list is for current buffer, it kind makes sense to
+" use local leader for mnemonic, although I'd prefer to have something
+" that can be constantly pressed (similar to <C-n>)
+map <localleader>k :Lprev<CR>
+map <localleader>n :Lnext<CR>
+
+" Convenience for applying macros
+nnoremap Q @q
+vnoremap Q :norm @q<cr>

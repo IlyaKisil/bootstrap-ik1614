@@ -25,6 +25,7 @@ fun! GoCoc()
         \ 'coc-go',
         \ 'coc-spell-checker',
         \ 'coc-actions',
+        \ 'coc-emoji',
         \ ]
 
     " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -78,18 +79,6 @@ fun! GoCoc()
       inoremap <silent><expr> <c-@> coc#refresh()
     endif
 
-    " function! s:check_back_space() abort
-    "   let col = col('.') - 1
-    "   return !col || getline('.')[col - 1]  =~# '\s'
-    " endfunction
-    " Use <tab> for trigger completion and navigate to the next complete item
-    " inoremap <buffer> <silent><expr> <TAB>
-    "     \ pumvisible() ? "\<C-n>" :
-    "     \ <SID>check_back_space() ? "\<TAB>" :
-    "     \ coc#refresh()
-    " Use <S-Tab> to navigate backwards in completion list
-    " inoremap <buffer> <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
     " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
     " position. Coc only does snippet and additional edit on confirm.
     " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
@@ -98,50 +87,6 @@ fun! GoCoc()
     else
       inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
     endif
-
-    " Applying codeAction to the selected region.
-    " Example: `<leader>aap` for current paragraph
-    " xmap <leader>a  <Plug>(coc-codeaction-selected)
-    " nmap <leader>a  <Plug>(coc-codeaction-selected)
-    " Use popup instaed of a new pane/buffer
-    xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-    nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-    function! s:cocActionsOpenFromSelected(type) abort
-        execute 'CocCommand actions.open ' . a:type
-    endfunction
-
-    " Remap keys for applying codeAction to the current buffer.
-    nmap <leader>ac  <Plug>(coc-codeaction)
-    " Apply AutoFix to problem on the current line.
-    nmap <leader>af  <Plug>(coc-fix-current)
-
-    " Use `[g` and `]g` to navigate diagnostics
-    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-    nmap <silent> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-        " GoTo code navigation.
-    " nmap <buffer> <leader>gd <Plug>(coc-definition)
-    " nmap <buffer> <leader>gy <Plug>(coc-type-definition)
-    " nmap <buffer> <leader>gi <Plug>(coc-implementation)
-    " nmap <buffer> <leader>gr <Plug>(coc-references)
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
-
-    " Symbol renaming.
-    nmap <leader>rn <Plug>(coc-rename)
-
-    " Use K to show documentation in preview window.
-    function! s:show_documentation()
-      if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-      else
-        call CocAction('doHover')
-      endif
-    endfunction
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
 
     " Map function and class text objects
     " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -159,16 +104,56 @@ fun! GoCoc()
     nmap <silent> <C-s> <Plug>(coc-range-select)
     xmap <silent> <C-s> <Plug>(coc-range-select)
 
-    " Do default action for next item.
-    nnoremap <silent><nowait> <leader>cn  :<C-u>CocNext<CR>
-    " Do default action for previous item.
-    nnoremap <silent><nowait> <leader>cp  :<C-u>CocPrev<CR>
 
+    "-------- Code navigation
+    nmap <silent> gd <Plug>(coc-definition)
+    nmap <silent> gy <Plug>(coc-type-definition)
+    nmap <silent> gi <Plug>(coc-implementation)
+    nmap <silent> gr <Plug>(coc-references)
+    " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+    nmap <silent> gk <Plug>(coc-diagnostic-prev)
+    nmap <silent> gn <Plug>(coc-diagnostic-next)
+
+
+    "-------- IntelliSence like features `<leader>i ...`
     " Formatting selected code.
-    xmap <leader>cf  <Plug>(coc-format-selected)
-    nmap <leader>cf  <Plug>(coc-format-selected)
+    xmap <leader>if <Plug>(coc-format-selected)
+    nmap <leader>if <Plug>(coc-format-selected)
 
-    "-------- Mappings for CoCList
+    " Symbol renaming/refactoring
+    nmap <silent> <leader>ir <Plug>(coc-rename)
+    nmap <silent> <leader>iR <Plug>(coc-refactor)
+
+    " Show documentation in preview window.
+    nnoremap <silent> <leader>id :call <SID>show_documentation()<CR>
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      else
+        call CocAction('doHover')
+      endif
+    endfunction
+
+    " Suggestions/action for current word under the cursor. Potentially, can
+    " use just 'g@' in which case, will need to provide textobjects/motions, e.g
+    " `<leader>isap` -> suggestion around paragraph. However, I would pefer to
+    " do that via visualmode instead
+    nmap <silent> <leader>ia :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@w
+    xmap <silent> <leader>ia :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+    function! s:cocActionsOpenFromSelected(type) abort
+        " Suggestions to fix things (code actions) as a popup instead of a new pane/buffer
+        " You can use, '<Plug>(coc-codeaction-selected)' or '<Plug>(coc-codeaction)' if
+        " you want it in a new buffer
+        execute 'CocCommand actions.open ' . a:type
+    endfunction
+    " Apply AutoFix to problem on the current line. However, it is hard to
+    " tell what that fix is gonna be :shrug:
+    " nmap <leader>isf  <Plug>(coc-fix-current)
+    " nnoremap <silent><nowait> <leader>ian  :<C-u>CocNext<CR>
+    " nnoremap <silent><nowait> <leader>iak  :<C-u>CocPrev<CR>
+
+
+    "-------- Mappings for CoCList `<leader>c ...`
     " Show all diagnostics.
     nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
     " Manage extensions.

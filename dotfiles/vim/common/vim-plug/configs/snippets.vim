@@ -33,3 +33,6 @@ let g:coc_snippet_next = ik_next_placeholder_mapping
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = ik_prev_placeholder_mapping
+
+" Use <leader>x for convert visual selected code to snippet
+" xmap <leader>x  <Plug>(coc-convert-snippet)

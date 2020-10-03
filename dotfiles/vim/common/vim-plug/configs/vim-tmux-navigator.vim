@@ -19,3 +19,9 @@ nnoremap <silent> <S-Down> :TmuxNavigateDown<cr>
 nnoremap <silent> <S-Up> :TmuxNavigateUp<cr>
 nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+inoremap <silent> <S-Left> <C-c>:TmuxNavigateLeft<cr>
+inoremap <silent> <S-Down> <C-c>:TmuxNavigateDown<cr>
+inoremap <silent> <S-Up> <C-c>:TmuxNavigateUp<cr>
+inoremap <silent> <S-Right> <C-c>:TmuxNavigateRight<cr>
+inoremap <silent> <C-\> <C-c>:TmuxNavigatePrevious<cr>
