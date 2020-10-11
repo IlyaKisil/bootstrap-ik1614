@@ -12,6 +12,9 @@
 let mapleader="\<Space>"
 let maplocalleader="\\"
 
+" Don't move cursor
+nnoremap <Space> <Nop>
+
 " Map (redraw screen) to also turn off search highlighting until the next search
 nnoremap <C-l> :nohl<CR><C-L>
 
@@ -58,3 +61,11 @@ map <localleader>n :Lnext<CR>
 " Convenience for applying macros
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
+
+" Movements between tabs
+nnoremap <leader>q        :tabclose<CR>
+nnoremap <silent> <TAB>   :tabnext<CR>
+nnoremap <silent> <S-TAB> :tabprevious<CR>
+
+
+
