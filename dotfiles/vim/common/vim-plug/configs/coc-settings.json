@@ -36,7 +36,9 @@
     "--disable=missing-docstring",
     "--disable=empty-docstring",
     "--disable=line-too-long",
-    "--disable=too-many-lines"
+    "--disable=too-many-lines",
+    // import missing `from __future__ import absolute_import`
+    "--disable=W1618"
   ],
   "python.formatting.provider": "autopep8",
   "python.formatting.autopep8Args": [
