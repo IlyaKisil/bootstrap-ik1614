@@ -4,6 +4,7 @@
     ~/.config/nvim/general: dotfiles/vim/common/general
     ~/.config/nvim/autoload: dotfiles/vim/common/autoload
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
+    ~/.vim/ftdetect: dotfiles/vim/common/ftdetect
     ~/.config/nvim/themes: dotfiles/vim/common/themes
     ~/.config/nvim/vim-plug: dotfiles/vim/common/vim-plug
     ~/.config/nvim/coc-settings.json: dotfiles/vim/common/vim-plug/configs/coc-settings.json
