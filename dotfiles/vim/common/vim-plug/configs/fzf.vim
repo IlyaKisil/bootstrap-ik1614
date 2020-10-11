@@ -27,6 +27,17 @@ let g:fzf_colors = {
 
 function! FzfPreviewIfWide(...)
     " Helper for having horizontal or vertical preview based on window width
+    " Use 'ctrl-/' to toggle preview
+    let spec = get(a:, 1, {})
+
+    return &columns > 120
+                \ ? fzf#vim#with_preview(spec, 'right:50%', 'ctrl-/')
+                \ : fzf#vim#with_preview(spec, 'down:50%',  'ctrl-/')
+endfunction
+
+function! FzfOnlyPreview(...)
+    " Helper for using fzf only as preview instead of performing search
+    " Use '?' to toggle preview
     let preview_extra_opts = get(a:, 1, [])
     let preview_default_opts = [
                 \ '--delimiter', ':',
@@ -34,9 +45,7 @@ function! FzfPreviewIfWide(...)
                 \ ]
 
     let spec = {"options": extend(preview_default_opts, preview_extra_opts)}
-    return &columns > 120
-                \ ? fzf#vim#with_preview(spec, 'right:50%', '?')
-                \ : fzf#vim#with_preview(spec, 'down:50%', '?')
+    return FzfPreviewIfWide(spec)
 endfunction
 
 " ----------------------------------------------------------------------------
@@ -91,7 +100,7 @@ if executable('rg')
         call fzf#vim#grep(
                     \ initial_command,
                     \ 1,
-                    \ FzfPreviewIfWide(preview_extra_opts),
+                    \ FzfOnlyPreview(preview_extra_opts),
                     \ a:fullscreen
                     \ )
     endfunction
@@ -104,7 +113,7 @@ if executable('rg')
                 \ call fzf#vim#grep(
                 \ "rg ".GetRgFlags()." ".shellescape(<q-args>),
                 \ 1,
-                \ FzfPreviewIfWide(),
+                \ FzfOnlyPreview(),
                 \ <bang>0)
 
     " Search through content in ALL files (including gitignored)
@@ -112,7 +121,7 @@ if executable('rg')
                 \ call fzf#vim#grep(
                 \ "rg ".GetRgFlags(["--no-ignore"])." ".shellescape(<q-args>),
                 \ 1,
-                \ FzfPreviewIfWide(),
+                \ FzfOnlyPreview(),
                 \ <bang>0)
 
     " Use custom preview for the lines search within opened buffers
@@ -120,15 +129,22 @@ if executable('rg')
                 \ call fzf#vim#grep(
                 \ "rg ".GetRgFlags(["--with-filename"])." ".shellescape(<q-args>)." ".fnameescape(expand('%')),
                 \ 1,
-                \ FzfPreviewIfWide(),
+                \ FzfOnlyPreview(),
                 \ <bang>0)
 
+    " Slightly modified ':GFile' to show preview either right or down base on
+    " window width
+    command! -bang -nargs=? GFILES
+                \ call fzf#vim#gitfiles(
+                \ <q-args>,
+                \ FzfPreviewIfWide(),
+                \ <bang>0)
 endif
 
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
-nnoremap <C-p> :<C-u>GFiles<CR>
+nnoremap <C-p> :<C-u>GFILES<CR>
 nnoremap <silent><nowait> <leader>ff :<C-u>Files<CR>
 nnoremap <silent><nowait> <leader>fb :<C-u>Buffers<CR>
 nnoremap <silent><nowait> <leader>fs :<C-u>SEARCH<CR>
