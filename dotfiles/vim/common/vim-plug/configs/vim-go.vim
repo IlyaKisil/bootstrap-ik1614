@@ -20,7 +20,7 @@ function! s:build_go_files()
 endfunction
 
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>rr  <Plug>(go-run)
 autocmd FileType go nmap <leader>tt  <Plug>(go-test)
 " Run test function under the cursor (it is sufficient to be within it's scope)
 autocmd FileType go nmap <leader>tf  <Plug>(go-test-func)

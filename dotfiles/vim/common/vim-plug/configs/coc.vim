@@ -90,10 +90,12 @@ fun! GoCoc()
 
     " Map function and class text objects
     " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+    " Inside/Around Function
     xmap if <Plug>(coc-funcobj-i)
     omap if <Plug>(coc-funcobj-i)
     xmap af <Plug>(coc-funcobj-a)
     omap af <Plug>(coc-funcobj-a)
+    " Inside/Around Class
     xmap ic <Plug>(coc-classobj-i)
     omap ic <Plug>(coc-classobj-i)
     xmap ac <Plug>(coc-classobj-a)
@@ -106,13 +108,13 @@ fun! GoCoc()
 
 
     "-------- Code navigation
-    nmap <silent> gd <Plug>(coc-definition)
-    nmap <silent> gy <Plug>(coc-type-definition)
-    nmap <silent> gi <Plug>(coc-implementation)
-    nmap <silent> gr <Plug>(coc-references)
+    nmap <silent> <leader>gd <Plug>(coc-definition)
+    nmap <silent> <leader>gy <Plug>(coc-type-definition)
+    nmap <silent> <leader>gi <Plug>(coc-implementation)
+    nmap <silent> <leader>gr <Plug>(coc-references)
     " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-    nmap <silent> gk <Plug>(coc-diagnostic-prev)
     nmap <silent> gn <Plug>(coc-diagnostic-next)
+    nmap <silent> gk <Plug>(coc-diagnostic-prev)
 
 
     "-------- IntelliSence like features `<leader>i ...`
@@ -121,11 +123,11 @@ fun! GoCoc()
     nmap <leader>if <Plug>(coc-format-selected)
 
     " Symbol renaming/refactoring
-    nmap <silent> <leader>ir <Plug>(coc-rename)
-    nmap <silent> <leader>iR <Plug>(coc-refactor)
+    nmap <silent> <leader>rn <Plug>(coc-rename)
+    nmap <silent> <leader>rR <Plug>(coc-refactor)
 
     " Show documentation in preview window.
-    nnoremap <silent> <leader>id :call <SID>show_documentation()<CR>
+    nnoremap <silent> <leader>sd :call <SID>show_documentation()<CR>
     function! s:show_documentation()
       if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
@@ -138,8 +140,8 @@ fun! GoCoc()
     " use just 'g@' in which case, will need to provide textobjects/motions, e.g
     " `<leader>isap` -> suggestion around paragraph. However, I would pefer to
     " do that via visualmode instead
-    nmap <silent> <leader>ia :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@w
-    xmap <silent> <leader>ia :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+    nmap <silent> <leader>sa :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@w
+    xmap <silent> <leader>sa :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
     function! s:cocActionsOpenFromSelected(type) abort
         " Suggestions to fix things (code actions) as a popup instead of a new pane/buffer
         " You can use, '<Plug>(coc-codeaction-selected)' or '<Plug>(coc-codeaction)' if

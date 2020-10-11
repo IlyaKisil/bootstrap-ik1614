@@ -47,7 +47,7 @@ set ideamarks
 "
 " Need to keep bindings like in VIM as much as possible
 " ---------------------------------------------------------------------------------------
-""" NAVIGATION COMMANDS
+""" NAVIGATION COMMANDS:
 map <S-Right> :action NextSplitter<CR>
 map <S-Left>  :action PrevSplitter<CR>
 map <C-S-L>   :action SplitVertically<CR>
@@ -55,31 +55,36 @@ map <C-S-L>   :action SplitVertically<CR>
 map <TAB>   :action NextTab<CR>
 map <S-TAB> :action PreviousTab<CR>
 
+nnoremap gn :action GotoNextError<cr>
+nnoremap gk :action GotoPreviousError<cr>
+nnoremap <C-n> :action ActivateProblemsViewToolWindow<cr>
+nnoremap <C-k> :action ActivateProblemsViewToolWindow<cr>
 
-""" FZF LIKE COMMANDS: '<leader>f ...' (try to keep similar to 'fzf' bindings)
+
+""" FIND COMMANDS: '<leader>f ...' (try to keep similar to 'fzf' bindings)
 " Find Files. Equivalent to ':GFiles', ':Files'
 nnoremap <C-P>      :action SearchEverywhere<CR>
 nnoremap <leader>ff :action SearchEverywhere<CR>
-
-" Find Commands and Actions. Equivalent to ':Commands' and ':CocList commands'
+" Find Commands. Equivalent to ':Commands'
 nnoremap <leader>fc :action GotoAction<CR>
-nnoremap <leader>cc :action GotoAction<CR>
-
 " Find Recent files. Equivalent to ':Buffers'
 nnoremap <leader>fb :action RecentFiles<CR>
-
 " Find words (available through different tabs). Equivalent to ':Lines', ':Rg' and ':SEARCH', however it is not a fuzzy search :cry:
 nnoremap <leader>fr :action FindInPath<CR>
 nnoremap <leader>fl :action FindInPath<CR>
 nnoremap <leader>fs :action FindInPath<CR>
+" Find Usages/References (shows in separate window with preview usage categories)
+nnoremap <leader>fu :action FindUsages<cr>
 
 
 """ SHOW COMMANDS: '<leader>s ...'
 " Show Documentation (although it says 'JavaDoc' should also work with other languages)
 nnoremap <leader>sd :action QuickJavaDoc<CR>
-
 " Show Paste (clipboard) history
 nnoremap <leader>sp :action PasteMultiple<CR>
+" Show Usages/References (similar to 'FindUsages' but shows only names of files -> class -> function)
+nnoremap <leader>su :action ShowUsages<cr>
+nnoremap <leader>sa :action ShowIntentionActions<CR>
 
 
 """ OPEN COMMANDS: '<leader>o ...'
@@ -87,44 +92,35 @@ nnoremap <leader>sp :action PasteMultiple<CR>
 nnoremap <leader>ot :action ActivateTerminalToolWindow<CR>
 " Open Problems (Errors, Warning and etc. Basically linting results)
 nnoremap <leader>op :action ActivateProblemsViewToolWindow<CR>
+" Open compare window
+nnoremap <leader>od :action Compare.SameVersion<CR>
+" Open conflicts
+nnoremap <leader>oc :action Git.ResolveConflicts<CR>
 
 
-""" GIT COMMANDS: '<leader>g ...'
-nnoremap <leader>gr :action Git.ResolveConflicts<CR>
-nnoremap <leader>gd :action Compare.SameVersion<CR>
+""" GOTO COMMANDS: '<leader>g ...'
+nnoremap <leader>gt :action GotoTest<cr>
+nnoremap <leader>gi :action GotoImplementation<CR>
+" Looks like go to declaration and to references is kinda the same within JetBrains
+nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gr :action GotoDeclaration<CR>
 
 
-""" RUN COMMANDS:
+""" RUN AND RENAME COMMANDS: '<leader>r ...'
 nnoremap <leader>rr :action Run<cr>
 nnoremap <leader>rc :action ChooseRunConfiguration<cr>
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <leader>rf :action RenameFile<cr>
 
 
-""" DEBUG COMMANDS:
+""" DEBUG COMMANDS: '<leader>d ...'
 nnoremap <leader>dd :action Debug<cr>
 nnoremap <leader>dc :action ChooseDebugConfiguration<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 
 
-""" DIAGNOSTICS COMMANDS:
-nnoremap gn :action GotoNextError<cr>
-nnoremap gk :action GotoPreviousError<cr>
+""" COC LIKE COMMANDS: '<leader>c ...'
+" Similar to 'CocList diagnostics'
 nnoremap <leader>cd :action ActivateProblemsViewToolWindow<CR>
-nnoremap <C-n>      :action ActivateProblemsViewToolWindow<cr>
-nnoremap <C-k>      :action ActivateProblemsViewToolWindow<cr>
-nnoremap <leader>ia :action ShowIntentionActions<CR>
-
-
-""" INTELLISENSE COMMANDS: (try to keep similar to 'CoC' bindings)
-nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>rf :action RenameFile<cr>
-
-nnoremap <leader>gi :action GotoImplementation<CR>
-
-" Looks like go to declaration and to references is kinda the same within JetBrains
-nnoremap <leader>gd :action GotoDeclaration<CR>
-nnoremap <leader>gr :action GotoDeclaration<CR>
-
-" Find Usages/References (shows in separate window with preview usage categories)
-nnoremap <leader>fu :action FindUsages<cr>
-" Show Usages/References (similar to 'FindUsages' but shows only names of files -> class -> function)
-nnoremap <leader>su :action ShowUsages<cr>
+" Find Actions. Equivalent to ':CocList commands'
+nnoremap <leader>cc :action GotoAction<CR>
