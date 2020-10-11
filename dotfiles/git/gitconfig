@@ -15,7 +15,7 @@
     default = current
 [core]
     # excludesfile = ~/.gitignore-global
-    editor = `which vim`
+    editor = $EDITOR
 [merge]
     log = true
 [color "status"]
