@@ -25,10 +25,10 @@ setlocal wrap
 " Add header with tex and cSpell settings
 call functions#add_file_header([
             \ '% !TEX root =',
-            \ '% cSpell:ignoreRegExp ^%.*',
+            \ '% cSpell:ignoreRegExp ^[\s]*%.*',
             \ '% cSpell:ignoreRegExp \\[0-9a-zA-Z]*',
             \ '% cSpell:ignoreRegExp .*\\usepackage.*',
-            \ '% cSpell:ignoreRegExp .*\\cite\{[\w:\-]*\}',
+            \ '% cSpell:ignoreRegExp .*\\cite\{[\w:\-,\s]*\}',
             \ '% cSpell:ignoreRegExp .*\\c?ref\{[\w:\-]*\}',
             \ '% cSpell:ignoreRegExp .*\\(begin|end){.*}.*',
             \ ])

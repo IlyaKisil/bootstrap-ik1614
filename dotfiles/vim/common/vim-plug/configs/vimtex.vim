@@ -52,8 +52,11 @@ endif
 " Toggle quickfix window with errors. For some reason ':cclose' doesn't work
 autocmd FileType tex nmap <leader>q  <Plug>(vimtex-errors)
 
-" Compile document
-autocmd FileType tex nmap <leader>b  <Plug>(vimtex-compile)
+" Buid/Compile document
+autocmd FileType tex nmap <leader>b  :w<CR><Plug>(vimtex-compile)
 
 " Synctex from source code to document
 autocmd FileType tex nmap <leader>v  <Plug>(vimtex-view)
+
+" Delete aux files. Can't use 'c' since that is reserved by CoC more or less
+autocmd FileType tex nmap <leader>d  <Plug>(vimtex-clean)
