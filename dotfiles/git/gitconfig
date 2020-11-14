@@ -35,6 +35,13 @@
     unstage = reset HEAD --
     last = log -1 HEAD
 
+    # Delete merged branches unless it is current or one of
+    cleanmerged = "!git branch --merged | egrep -v \"^\\s*(\\*.*|master|main|dev|staging|prod|ilya)\\s*$\" | xargs git branch -d #"
+
+    # Convert a shell command to a properly escaped command that you can use in as alias in .gitconfig
+    quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
+    quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\([\\\"]\\)/\\1/g'; printf \"\\n\""
+
     # merge to always create a new commit object,
     # even if the merge could be performed with a fast-forward
     m = merge --no-ff
@@ -46,5 +53,7 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [include]
     path = ~/.gitconfig-local
