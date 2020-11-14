@@ -1,3 +1,26 @@
 ilya
 kisil
 dima
+olga
+danilo
+color
+colors
+
+# Commands and tools
+Hashicorp
+tikz
+mvault
+mconsul
+mnomad
+doctoc
+vimrc
+dotfiles
+terraform
+
+# Acronyms
+tmp
+API
+ACL
+TOC
+SRE
+VMs

@@ -20,6 +20,8 @@ let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_ignore_filters = [
             \ 'LaTeX Warning: You have requested document class',
             \ 'LaTeX Warning: You have requested package',
+            \ 'Overfull \\hbox ',
+            \ 'I found no \\citation commands',
             \]
 
 let g:vimtex_compiler_latexmk = {
@@ -60,3 +62,7 @@ autocmd FileType tex nmap <leader>v  <Plug>(vimtex-view)
 
 " Delete aux files. Can't use 'c' since that is reserved by CoC more or less
 autocmd FileType tex nmap <leader>d  <Plug>(vimtex-clean)
+
+" Add word to local dictionary. Potentially will be used for all files
+autocmd FileType tex nmap <leader>a  viw:<C-u>execute 'CocCommand cSpell.addWordToDictionary '<CR><CR>
+autocmd FileType tex vmap <leader>a  :<C-u>execute 'CocCommand cSpell.addWordToDictionary '<CR><CR>
