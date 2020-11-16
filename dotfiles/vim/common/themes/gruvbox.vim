@@ -8,6 +8,7 @@
 
 " https://github.com/morhetz/gruvbox/wiki/Terminal-specific#1-italics-is-disabled
 let g:gruvbox_italic=1
+let g:gruvbox_invert_selection = '0'
 
 colorscheme gruvbox
 set background=dark
