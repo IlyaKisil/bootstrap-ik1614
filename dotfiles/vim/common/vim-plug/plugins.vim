@@ -77,4 +77,5 @@ Plug 'SirVer/ultisnips'
 Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/machakann/vim-highlightedyank'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
+Plug 'https://github.com/TaDaa/vimade'                      " Dim inactive buffer
 call plug#end()

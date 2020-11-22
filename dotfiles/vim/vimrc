@@ -41,6 +41,7 @@ source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-fugitive.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-gitgutter.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-tmux-navigator.vim
 source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-go.vim
+source $__VIM_DOTFILES_HOME/vim-plug/configs/vimade.vim
 
 
 " ============================================================================
