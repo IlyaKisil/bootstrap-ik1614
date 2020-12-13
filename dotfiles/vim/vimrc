@@ -24,9 +24,8 @@ source $__VIM_DOTFILES_HOME/general/mappings.vim
 source $__VIM_DOTFILES_HOME/general/functions.vim
 source $__VIM_DOTFILES_HOME/vim-plug/plugins.vim
 
-"source $__VIM_DOTFILES_HOME/themes/onedark.vim
-source $__VIM_DOTFILES_HOME/themes/gruvbox.vim
-source $__VIM_DOTFILES_HOME/themes/airline.vim
+source $__VIM_DOTFILES_HOME/themes/editor.vim
+source $__VIM_DOTFILES_HOME/themes/status-line.vim
 source $__VIM_DOTFILES_HOME/themes/vim-devicons.vim
 
 source $__VIM_DOTFILES_HOME/vim-plug/configs/nerdtree.vim
