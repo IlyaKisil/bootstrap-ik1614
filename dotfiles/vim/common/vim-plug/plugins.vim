@@ -8,13 +8,7 @@
 
 call plug#begin("$__VIM_DOTFILES_HOME/plugged")
 " ---------- Themes and styling
-"Plug 'https://github.com/joshdick/onedark.vim'
-"Plug 'https://github.com/christianchiarulli/onedark.vim'
 Plug 'https://github.com/morhetz/gruvbox'
-" Plug 'https://github.com/NLKNguyen/papercolor-theme'
-" Plug 'https://github.com/mhartington/oceanic-next'
-" Plug 'https://github.com/rakr/vim-one'
-" Plug 'https://github.com/jacoborus/tender.vim'
 
 Plug 'https://github.com/sheerun/vim-polyglot'              " A collection of language packs for Vim.
 Plug 'https://github.com/vim-airline/vim-airline'           " Lean & mean status/tabline for vim
