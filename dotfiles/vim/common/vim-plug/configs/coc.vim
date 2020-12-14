@@ -131,6 +131,10 @@ nmap <leader>if <Plug>(coc-format-selected)
 " Symbol renaming/refactoring
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>rR <Plug>(coc-refactor)
+" Use CocSearch to find all occurencies of a word that you want to rename
+" Then use normal search and replace
+nnoremap <leader>rw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+
 
 " Show documentation in preview window.
 nnoremap <silent> <leader>sd :call <SID>show_documentation()<CR>
