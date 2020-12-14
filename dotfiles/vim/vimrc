@@ -8,39 +8,47 @@
 
 " ============================================================================
 " LOAD VM INVARIANT CONFIGURATIONS
-" ============================================================================
+" ============================================================================"
+
+let s:__configs = []
+
 if has("nvim")
     let $__VIM_DOTFILES_HOME = $HOME.'/.config/nvim'
-    let __local_configs_path = $__VIM_DOTFILES_HOME.'init-local.vim'
+    let __local_configs_path = $__VIM_DOTFILES_HOME.'/init-local.vim'
 
-    source $__VIM_DOTFILES_HOME/init-nvim-specific.vim
+    call add(s:__configs, '/init-nvim-specific.vim')
 else
     let $__VIM_DOTFILES_HOME = $HOME.'/.vim'
-    let __local_configs_path = $__VIM_DOTFILES_HOME.'vimrc-local'
+    let __local_configs_path = $__VIM_DOTFILES_HOME.'/vimrc-local'
 endif
 
-source $__VIM_DOTFILES_HOME/general/settings.vim
-source $__VIM_DOTFILES_HOME/general/mappings.vim
-source $__VIM_DOTFILES_HOME/general/functions.vim
-source $__VIM_DOTFILES_HOME/vim-plug/plugins.vim
+call add(s:__configs, '/general/settings.vim')
+call add(s:__configs, '/general/mappings.vim')
+call add(s:__configs, '/general/functions.vim')
+call add(s:__configs, '/vim-plug/plugins.vim')
+call add(s:__configs, '/themes/editor.vim')
+call add(s:__configs, '/themes/status-line.vim')
+call add(s:__configs, '/themes/vim-devicons.vim')
+call add(s:__configs, '/vim-plug/configs/nerdtree.vim')
+call add(s:__configs, '/vim-plug/configs/fzf.vim')
+call add(s:__configs, '/vim-plug/configs/coc.vim')
+call add(s:__configs, '/vim-plug/configs/youcompleteme.vim')
+call add(s:__configs, '/vim-plug/configs/vim-autoclose.vim')
+call add(s:__configs, '/vim-plug/configs/sneak.vim')
+call add(s:__configs, '/vim-plug/configs/snippets.vim')
+call add(s:__configs, '/vim-plug/configs/vimtex.vim')
+call add(s:__configs, '/vim-plug/configs/vim-fugitive.vim')
+call add(s:__configs, '/vim-plug/configs/vim-gitgutter.vim')
+call add(s:__configs, '/vim-plug/configs/vim-tmux-navigator.vim')
+call add(s:__configs, '/vim-plug/configs/vim-go.vim')
+call add(s:__configs, '/vim-plug/configs/vimade.vim')
 
-source $__VIM_DOTFILES_HOME/themes/editor.vim
-source $__VIM_DOTFILES_HOME/themes/status-line.vim
-source $__VIM_DOTFILES_HOME/themes/vim-devicons.vim
-
-source $__VIM_DOTFILES_HOME/vim-plug/configs/nerdtree.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/fzf.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/coc.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/youcompleteme.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-autoclose.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/sneak.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/snippets.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vimtex.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-fugitive.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-gitgutter.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-tmux-navigator.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vim-go.vim
-source $__VIM_DOTFILES_HOME/vim-plug/configs/vimade.vim
+for s:__config in s:__configs
+    let s:__path = $__VIM_DOTFILES_HOME.s:__config
+    if filereadable(expand(s:__path))
+        execute "source " . s:__path
+    endif
+endfor
 
 
 " ============================================================================
