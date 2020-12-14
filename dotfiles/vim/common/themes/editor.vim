@@ -17,7 +17,7 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
-colorscheme gruvbox
+colorscheme mdracula
 
 " Theme specific settings
 if (g:colors_name == 'gruvbox')
