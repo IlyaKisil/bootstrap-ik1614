@@ -11,11 +11,11 @@ Ideally, bootstrap configurations should be idempotent. That is, the installer s
 ## Table of Contents
 Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2020-04-11
+Last Update: 2020-12-14
 
 - [Quick setups](#quick-setups)
   - [Setup dotfiles](#setup-dotfiles)
-  - [Setup iTerm](#setup-iterm)
+  - [Setup iTerm2](#setup-iterm2)
 - [Overview of this configuration files and scripts](#overview-of-this-configuration-files-and-scripts)
   - [dotfiles](#dotfiles)
   - [dotfiles-meta](#dotfiles-meta)
@@ -47,8 +47,8 @@ cd bootstrap-ik1614
 ./tests/verify-setup.sh
 ```
 
-### Setup iTerm
-My color scheme of choice for iTerm2 is [DoomOne](https://raw.githubusercontent.com/IlyaKisil/bootstrap-ik1614/master/misc/color-themes/iterm2/DoomOne-CustomP10K.itermcolors) with minor custom tweaks, mainly to make background match prompt line. It also makes `zsh-autosuggestions` easily visible, but not without too much of a distraction
+### Setup iTerm2
+Use [misc/iterm2/mdracula.itermcolors](https://github.com/IlyaKisil/bootstrap-ik1614/blob/master/misc/iterm2/mdracula.itermcolors) which kinda replicates Dracula theme from JetBrains products. It will also match `mdracula` color scheme for vim.
 
 ## Overview of this configuration files and scripts
 ### dotfiles
