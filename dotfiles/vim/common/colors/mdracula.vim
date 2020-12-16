@@ -50,11 +50,14 @@ endfunction
 
 " }}}
 " Palette: {{{
-" setup palette dictionary
+" Setup palette dictionary
 let s:p = {}
 
-" expose the palette
+" Expose the palette
 let mdracula#palette=s:p
+
+
+
 
 " fill it with absolute colors
 let s:p.null = ['NONE', 'NONE']
@@ -90,7 +93,8 @@ let s:p.keyword = ['#CC7832', 172]
 let s:p.comment = ['#808080', 244]
 let s:p.docComment = ['#629755', 65]
 let s:p.string = ['#A5C261', 101]
-let s:p.number = ['#6897BB', 103]
+" let s:p.number = ['#6897BB', 103]
+let s:p.number = ['#E5C07B', 103]
 let s:p.delimiter = ['#CC7832', 172]
 let s:p.specialComment = ['#8A653B', 95]
 let s:p.function = ['#FFC66D', 216]
@@ -101,7 +105,8 @@ let s:p.diffChange = ['#303C47', 23]
 let s:p.addStripe = ['#384C38', 66]
 let s:p.stripeWhiteSpace = ['#4C4638', 59]
 let s:p.changeStripe = ['#374752', 60]
-let s:p.deleteStripe = ['#656E76', 242]
+" let s:p.deleteStripe = ['#656E76', 242]
+let s:p.deleteStripe = ['#E06C75', 242]
 let s:p.typo = ['#659C6B', 72]
 let s:p.metaData = ['#BBB529', 142]
 let s:p.macroName = ['#908B25', 100]
@@ -156,6 +161,111 @@ let s:p.UIRed = ['#C75450', 131]
 let s:p.UIBrown = ['#93896C', 102]
 let s:p.test = ['#eb4034', 102]
 
+" FIXME: provide correct values as the second element. See https://jonasjacek.github.io/colors/
+" FIXME: this should be specified befor statement/element based colors
+" Base colors
+let s:p.ilya_blue        = ['#5e94aa',1]
+let s:p.ilya_blue_1      = ['#619AB0',1]
+let s:p.ilya_pink        = ['#94558D',1]
+let s:p.ilya_orange      = ['#CC7832', 172]
+let s:p.ilya_yellow      = ['#BBB529', 142]
+let s:p.ilya_purple      = ['#8888C6',1]
+let s:p.ilya_peach       = ['#E5C07B', 103]
+let s:p.ilya_salmon      = ['#E06C75', 242]
+let s:p.ilya_bright_red  = ['#ff6b6b',1]
+let s:p.ilya_bright_blue = ['#61AFEF',1]
+let s:p.ilya_bright_pink = ['#B200B2',1]
+let s:p.ilya_sky_blue    = ['#56b6c2',1]
+
+call s:HL('IlyaBlue', s:p.ilya_blue)
+call s:HL('IlyaBlue1', s:p.ilya_blue)
+call s:HL('IlyaPink', s:p.ilya_pink)
+call s:HL('IlyaOrange', s:p.ilya_orange)
+call s:HL('IlyaYellow', s:p.ilya_yellow)
+call s:HL('IlyaPurple', s:p.ilya_purple)
+call s:HL('IlyaPeach', s:p.ilya_peach)
+call s:HL('IlyaSalmon', s:p.ilya_salmon)
+call s:HL('IlyaBrightRed', s:p.ilya_bright_red)
+call s:HL('IlyaBrightBlue', s:p.ilya_bright_blue)
+call s:HL('IlyaBrightPink', s:p.ilya_bright_pink)
+call s:HL('IlyaSkyBlue', s:p.ilya_sky_blue)
+call s:HL('IlyaTest', s:p.test, s:p.ilya_yellow)
+call s:HL('IlyaShebang', s:p.fg, s:p.null, 'bold')
+
+let g:polyglot_disabled = ['python']
+" Revised syntax {{{
+hi def link  pythonStatement    IlyaOrange
+hi def link  pythonLambdaExpr   IlyaOrange
+hi def link  pythonInclude      IlyaOrange
+
+hi def link  pythonFunction     IlyaBrightBlue
+hi def link  pythonClass        IlyaPeach
+hi def link  pythonParameters   IlyaTest
+" This also inclued typehints and brackets
+hi def link  pythonParam        IlyaSalmon
+hi def link  pythonBrackets     IlyaTest
+hi def link  pythonClassParameters Normal
+hi def link  pythonSelf         IlyaPink
+
+hi def link  pythonConditional  IlyaOrange
+hi def link  pythonRepeat       IlyaOrange
+hi def link  pythonException    IlyaOrange
+hi def link  pythonOperator     IlyaOrange
+hi def link  pythonExtraOperator        Normal
+hi def link  pythonExtraPseudoOperator  IlyaTest
+
+hi def link  pythonDecorator    IlyaYellow
+hi def link  pythonDottedName   IlyaYellow
+
+hi def link  pythonComment      Comment
+hi def link  pythonCoding       IlyaTest
+hi def link  pythonRun          IlyaShebang
+hi def link  pythonTodo         Todo
+
+hi def link  pythonError        CodeError
+hi def link  pythonIndentError  CodeError
+hi def link  pythonSpaceError   CodeError
+
+hi def link  pythonString       String
+hi def link  pythonDocstring    IlyaBlue1
+hi def link  pythonUniString    String
+hi def link  pythonRawString    String
+hi def link  pythonUniRawString String
+
+hi def link  pythonEscape       IlyaSkyBlue
+hi def link  pythonEscapeError  CodeError
+hi def link  pythonUniEscape    IlyaSkyBlue
+hi def link  pythonUniEscapeError CodeError
+hi def link  pythonUniRawEscape IlyaSkyBlue
+hi def link  pythonUniRawEscapeError CodeError
+" }}}
+
+" Something is a little bit off when using methods within string formatting
+hi def link  pythonStrFormatting IlyaSkyBlue
+hi def link  pythonStrFormat     IlyaSkyBlue
+hi def link  pythonStrTemplate  IlyaSkyBlue
+
+hi def link  pythonDocTest      IlyaTest
+hi def link  pythonDocTest2     docComment
+
+hi def link  pythonNumber       Number
+hi def link  pythonHexNumber    Number
+hi def link  pythonOctNumber    Number
+hi def link  pythonBinNumber    Number
+hi def link  pythonFloat        Float
+hi def link  pythonOctError     CodeError
+hi def link  pythonHexError     CodeError
+hi def link  pythonBinError     CodeError
+
+hi def link  pythonExClass      IlyaPurple
+
+hi def link  pythonBuiltinType  IlyaPurple
+hi def link  pythonBuiltinFunc  IlyaPurple
+" Looks like it also includes dunder methods
+hi def link  pythonBuiltinObj   IlyaOrange
+
+" hi def link  pythonBuiltinDunder   IlyaBrightPink
+
 " }}}
 " Helper Hi Groups: {{{
 
@@ -176,7 +286,7 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 
 " }}}
 
-" Vanilla Colorscheme: {{{
+" Vanilla Colorscheme: {{{ ----------------------------------------------------
   " General UI: {{{
 
   set t_Co=256
@@ -264,7 +374,10 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
   call s:HL('Folded', s:p.foldedFg, s:p.foldedBg)
   " Column where folds are displayed
   hi! link FoldColumn Folded
-  " Diffs
+
+  " }}}
+  " Diffs {{{
+
   call s:HL('DiffAdd', s:p.null, s:p.diffAdd)
   call s:HL('DiffChange', s:p.null, s:p.diffChange)
   call s:HL('DiffDelete', s:p.null, s:p.diffDelete)
@@ -420,3 +533,88 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 
   " }}}
 " }}}
+
+" Plugin Specific: {{{ -------------------------------------------------------
+" GitGutter: {{{
+
+" Fill sign column with color instead of showing characters, but for deleted
+" lines use sign.
+hi! link GitGutterAdd           GitAddStripe
+hi! link GitGutterDelete        GitDeleteStripe
+hi! link GitGutterChange        GitChangeStripe
+hi! link GitGutterChangeDelete  GitChangeStripe
+
+" }}}
+" NERDTree: {{{
+
+hi! link NERDTreeDir GruvboxAqua
+hi! link NERDTreeDirSlash GruvboxAqua
+
+hi! link NERDTreeOpenable GruvboxOrange
+hi! link NERDTreeClosable GruvboxOrange
+
+hi! link NERDTreeFile GruvboxFg1
+hi! link NERDTreeExecFile GruvboxYellow
+
+hi! link NERDTreeUp GruvboxGray
+hi! link NERDTreeCWD GruvboxGreen
+hi! link NERDTreeHelp GruvboxFg1
+
+hi! link NERDTreeToggleOn GruvboxGreen
+hi! link NERDTreeToggleOff GruvboxRed
+
+" }}}
+" Sneak: {{{
+
+hi! link Sneak Search
+hi! link SneakLabel Search
+
+" }}}
+" }}}
+
+" Filetype Specific Colorscheme: {{{ -----------------------------------------
+" Markdown: {{{
+call s:HL('markdownH1', s:p.constant, s:p.null, 'italic')
+hi! link markdownH2 markdownH1
+hi! link markdownH3 markdownH1
+hi! link markdownH4 markdownH1
+hi! link markdownH5 markdownH1
+hi! link markdownH6 markdownH1
+hi! link markdownHeadingRule markdownH1
+hi! link markdownHeadingDelimiter markdownH1
+call s:HL('markdownAutomaticLink', s:p.link, s:p.null, 'underline')
+hi! link markdownBlockquote String
+hi! link markdownBoldDelimiter Keyword
+hi! link markdownBold NormalFg
+hi! link markdownItalicDelimiter Keyword
+hi! link markdownItalic NormalFg
+hi! link markdownCode Comment
+hi! link markdownCodeDelimiter markdownCode
+hi! link markdownCodeBlock markdownCode
+call s:HL('markdownLinkText', s:p.link, s:p.null, 'underline')
+hi! link markdownLinkTextDelimiter markdownLinkText
+hi! link markdownUrlDelimiter markdownLinkText
+call s:HL('markdownUrl', s:p.function, s:p.null, 'italic')
+hi! link markdownIdDelimiter Keyword
+hi! link markdownLinkDelimiter Keyword
+hi! link markdownIdDeclaration Keyword
+hi! link markdownLinkDelimiter NormalFg
+hi! link markdownUrlTitleDelimiter Comment
+hi! link markdownRule Comment
+" }}}
+" YAML: {{{
+hi! link yamlDocumentStart NormalFg
+hi! link yamlDocumentEnd NormalFg
+hi! link yamlBlockMappingKey Keyword
+hi! link yamlKeyValueDelimiter NormalFg
+hi! link yamlInteger NormalFg
+hi! link yamlFloat NormalFg
+hi! link yamlBlockCollectionItemStart NormalFg
+call s:HL('yamlAnchor', s:p.tag)
+hi! link yamlAlias yamlAnchor
+hi! link yamlBool NormalFg
+hi! link yamlNodeTag NormalFg
+hi! link yamlNull NormalFg
+" }}}
+" }}}
+

@@ -6,7 +6,7 @@
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
     ~/.config/nvim/ftdetect: dotfiles/vim/common/ftdetect
     ~/.config/nvim/colors: dotfiles/vim/common/colors
-    ~/.config/nvim/after: dotfiles/vim/common/after
+    ~/.config/nvim/syntax: dotfiles/vim/common/after/syntax
     ~/.config/nvim/themes: dotfiles/vim/common/themes
     ~/.config/nvim/vim-plug: dotfiles/vim/common/vim-plug
     ~/.config/nvim/coc-settings.json: dotfiles/vim/common/vim-plug/configs/coc-settings.json

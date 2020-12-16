@@ -5,7 +5,7 @@
     ~/.vim/ftplugin: dotfiles/vim/common/ftplugin
     ~/.vim/ftdetect: dotfiles/vim/common/ftdetect
     ~/.vim/colors: dotfiles/vim/common/colors
-    ~/.vim/after: dotfiles/vim/common/after
+    ~/.vim/syntax: dotfiles/vim/common/after/syntax
     ~/.vim/themes: dotfiles/vim/common/themes
     ~/.vim/vim-plug: dotfiles/vim/common/vim-plug
     ~/.vim/coc-settings.json: dotfiles/vim/common/vim-plug/configs/coc-settings.json
