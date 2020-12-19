@@ -40,7 +40,7 @@ set signcolumn=yes
 set colorcolumn=90
 " When scrolling, keep cursor N lines away from screen border
 " Better to keep greater then 'pumheight'
-set scrolloff=10
+set scrolloff=8
 set sidescroll=10
 
 
@@ -54,7 +54,13 @@ set ignorecase
 " Except when using capital letters
 set smartcase
 " Determines the maximum number of items to show in the popup menu (auto-completion)
-set pumheight=9
+" Better to keep it less then 'scrolloff'
+set pumheight=7
+
+" FIXME: Sort out autoinsert upon autocompletion
+" set completeopt=noinsert,noselect,menuone
+set completeopt=menu,menuone,noinsert,noselect
+" set completeopt+=noinsert
 
 
 "----------- Splits, Windows, Buffers
@@ -65,6 +71,7 @@ set splitbelow
 set hidden
 " Reload files changed outside vim
 set autoread
+set autowrite
 
 
 "----------- Command line/mode

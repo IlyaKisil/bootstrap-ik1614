@@ -17,7 +17,7 @@ setlocal textwidth=89
 setlocal linebreak
 
 " Auto Resize paragraphs based on 'textwidth'
-set formatoptions+=a
+" set formatoptions+=a
 
 " Wrap text when exceeding window width (in case it is < textwidth)
 setlocal wrap
