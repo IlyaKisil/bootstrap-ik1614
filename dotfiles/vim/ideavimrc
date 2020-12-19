@@ -84,6 +84,7 @@ nnoremap <leader>sd :action QuickJavaDoc<CR>
 nnoremap <leader>sp :action PasteMultiple<CR>
 " Show Usages/References (similar to 'FindUsages' but shows only names of files -> class -> function)
 nnoremap <leader>su :action ShowUsages<cr>
+" Show actions
 nnoremap <leader>sa :action ShowIntentionActions<CR>
 
 
