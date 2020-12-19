@@ -65,6 +65,9 @@ call SetDefaultSyntaxHL('g:pymode_syntax_builtin_types', 1)
 " Highlight builtin types (div, eval, ...)
 call SetDefaultSyntaxHL('g:pymode_syntax_builtin_funcs', 1)
 
+" Highlight builtin dunder methods (__str__, __repr__, ...)
+call SetDefaultSyntaxHL('g:pymode_syntax_builtin_dunder', 1)
+
 " Highlight exceptions (TypeError, ValueError, ...)
 call SetDefaultSyntaxHL('g:pymode_syntax_highlight_exceptions', 1)
 
@@ -90,7 +93,7 @@ endif
     syn keyword pythonStatement with as
     syn keyword pythonLambdaExpr lambda
 
-    syn keyword pythonStatement def nextgroup=pythonFunction skipwhite
+    syn keyword pythonStatement def nextgroup=pythonFunction,pythonBuiltinDunder skipwhite
     syn match pythonFunction "\%(\%(def\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonVars
     syn region pythonVars start="(" skip=+\(".*"\|'.*'\)+ end=")" contained contains=pythonParameters transparent keepend
     syn match pythonParameters "[^,]*" contained contains=pythonParam skipwhite
@@ -275,7 +278,6 @@ endif
     " Builtin objects and types
     if g:pymode_syntax_builtin_objs
         syn keyword pythonBuiltinObj True False Ellipsis None NotImplemented
-        syn keyword pythonBuiltinObj __debug__ __doc__ __file__ __name__ __package__
     endif
 
     if g:pymode_syntax_builtin_types
@@ -285,9 +287,59 @@ endif
         syn keyword pythonBuiltinType file super
     endif
 
+    " Builtin dunder methods
+    if g:pymode_syntax_builtin_dunder
+        " item/attribute/method lookup
+        syn keyword pythonBuiltinDunder __getattribute__ __getattr__ __delattr__ __delitem__
+        syn keyword pythonBuiltinDunder __delslice__ __setattr__ __setitem__ __setslice__
+        syn keyword pythonBuiltinDunder __missing__ __getitem__ __getslice__
+        " equality and hashing
+        syn keyword pythonBuiltinDunder __eq__ __ge__ __gt__ __le__ __ne__ __lt__ __hash__
+        " binary operators
+        syn keyword pythonBuiltinDunder __add__ __and__ __divmod__ __floordiv__ __lshift__
+        syn keyword pythonBuiltinDunder __matmul__ __mod__ __mul__ __or__ __pow__ __rshift__
+        syn keyword pythonBuiltinDunder __sub__ __truediv__ __xor__ __radd__ __rand__ __rdiv__
+        syn keyword pythonBuiltinDunder __rdivmod__ __rfloordiv__ __rlshift__ __rmatmul__
+        syn keyword pythonBuiltinDunder __rmod__ __rmul__ __ror__ __rpow__ __rrshift__
+        syn keyword pythonBuiltinDunder __rsub__ __rtruediv__ __rxor__ __iadd__ __iand__
+        syn keyword pythonBuiltinDunder __ifloordiv__ __ilshift__ __imatmul__ __imod__ __imul__
+        syn keyword pythonBuiltinDunder __ior__ __ipow__ __irshift__ __isub__ __itruediv__ __ixor__
+        " unary operators
+        syn keyword pythonBuiltinDunder __abs__ __neg__ __pos__ __invert__
+        " math
+        syn keyword pythonBuiltinDunder __index__ __trunc__ __floor__ __ceil__ __round__
+        " iterator
+        syn keyword pythonBuiltinDunder __iter__ __len__ __reversed__ __contains__ __next__
+        " numeric type casting
+        syn keyword pythonBuiltinDunder __int__ __bool__ __nonzero__ __complex__ __float__
+        " others
+        syn keyword pythonBuiltinDunder __format__ __cmp__
+        " context manager
+        syn keyword pythonBuiltinDunder __enter__ __exit__
+        " descriptor
+        syn keyword pythonBuiltinDunder __get__ __set__ __delete__ __set_name__
+        " async
+        syn keyword pythonBuiltinDunder __aenter__ __aexit__ __aiter__ __anext__ __await__
+        " creation and typing
+        syn keyword pythonBuiltinDunder __call__ __class__ __dir__ __init__ __init_subclass__
+        syn keyword pythonBuiltinDunder __prepare__ __new__ __subclasses__
+        " instance / subclass check
+        syn keyword pythonBuiltinDunder __instancecheck__ __subclasscheck__
+        " generic types
+        syn keyword pythonBuiltinDunder __class_getitem__
+        " str and repr
+        syn keyword pythonBuiltinDunder __str__ __repr__ __doc__
+        " modules
+        syn keyword pythonBuiltinDunder __import__ __file__ __package__ __name__
+        " others
+        syn keyword pythonBuiltinDunder __bytes__ __fspath__ __getnewargs__ __reduce__
+        syn keyword pythonBuiltinDunder __reduce_ex__ __sizeof__ __length_hint__
+        syn keyword pythonBuiltinDunder __debug__
+    endif
+
     " Builtin functions
     if g:pymode_syntax_builtin_funcs
-        syn keyword pythonBuiltinFunc   __import__ abs all any apply
+        syn keyword pythonBuiltinFunc   abs all any apply
         syn keyword pythonBuiltinFunc   bin callable classmethod cmp coerce compile
         syn keyword pythonBuiltinFunc   delattr dir divmod enumerate eval execfile filter
         syn keyword pythonBuiltinFunc   format getattr globals locals hasattr hash help hex id
@@ -343,72 +395,75 @@ else
     syn sync maxlines=200
 endif
 
-" " Highlight {{{
-" " =============
+" Highlight {{{
+" =============
 
-hi def link  pythonStatement    Statement
-hi def link  pythonLambdaExpr   Statement
-hi def link  pythonInclude      Include
-hi def link  pythonFunction     Function
-hi def link  pythonClass        Type
-hi def link  pythonParameters   Normal
-hi def link  pythonParam        Normal
-hi def link  pythonBrackets     Normal
+hi def link  pythonStatement    IlyaOrange
+hi def link  pythonLambdaExpr   IlyaOrange
+hi def link  pythonInclude      IlyaOrange
+
+hi def link  pythonFunction     IlyaBrightBlue
+hi def link  pythonClass        IlyaPeach
+hi def link  pythonParameters   IlyaTest
+" This also inclued typehints and brackets
+hi def link  pythonParam        IlyaSalmon
+" hi def link  pythonParam        IlyaTest
+hi def link  pythonBrackets     IlyaTest
 hi def link  pythonClassParameters Normal
-hi def link  pythonSelf         Identifier
+hi def link  pythonSelf         IlyaPink
 
-hi def link  pythonConditional  Conditional
-hi def link  pythonRepeat       Repeat
-hi def link  pythonException    Exception
-hi def link  pythonOperator     Operator
-hi def link  pythonExtraOperator        Operator
-hi def link  pythonExtraPseudoOperator  Operator
+hi def link  pythonConditional  IlyaOrange
+hi def link  pythonRepeat       IlyaOrange
+hi def link  pythonException    IlyaOrange
+hi def link  pythonOperator     IlyaOrange
+hi def link  pythonExtraOperator        Normal
+hi def link  pythonExtraPseudoOperator  IlyaTest
 
-hi def link  pythonDecorator    Define
-hi def link  pythonDottedName   Function
+hi def link  pythonDecorator    IlyaYellow
+hi def link  pythonDottedName   IlyaYellow
 
 hi def link  pythonComment      Comment
-hi def link  pythonCoding       Special
-hi def link  pythonRun          Special
+hi def link  pythonCoding       IlyaTest
+hi def link  pythonRun          IlyaShebang
 hi def link  pythonTodo         Todo
 
-hi def link  pythonError        Error
-hi def link  pythonIndentError  Error
-hi def link  pythonSpaceError   Error
+hi def link  pythonError        CodeError
+hi def link  pythonIndentError  CodeError
+hi def link  pythonSpaceError   CodeError
 
 hi def link  pythonString       String
-hi def link  pythonDocstring    String
+hi def link  pythonDocstring    IlyaBlue1
 hi def link  pythonUniString    String
 hi def link  pythonRawString    String
 hi def link  pythonUniRawString String
 
-hi def link  pythonEscape       Special
-hi def link  pythonEscapeError  Error
-hi def link  pythonUniEscape    Special
-hi def link  pythonUniEscapeError Error
-hi def link  pythonUniRawEscape Special
-hi def link  pythonUniRawEscapeError Error
+hi def link  pythonEscape       IlyaSkyBlue
+hi def link  pythonEscapeError  CodeError
+hi def link  pythonUniEscape    IlyaSkyBlue
+hi def link  pythonUniEscapeError CodeError
+hi def link  pythonUniRawEscape IlyaSkyBlue
+hi def link  pythonUniRawEscapeError CodeError
+" Something is a little bit off when using methods within string formatting
+hi def link  pythonStrFormatting IlyaSkyBlue
+hi def link  pythonStrFormat     IlyaSkyBlue
+hi def link  pythonStrTemplate  IlyaSkyBlue
 
-hi def link  pythonStrFormatting Special
-hi def link  pythonStrFormat     Special
-hi def link  pythonStrTemplate   Special
-
-hi def link  pythonDocTest      Special
-hi def link  pythonDocTest2     Special
+hi def link  pythonDocTest      IlyaTest
+hi def link  pythonDocTest2     docComment
 
 hi def link  pythonNumber       Number
 hi def link  pythonHexNumber    Number
 hi def link  pythonOctNumber    Number
 hi def link  pythonBinNumber    Number
 hi def link  pythonFloat        Float
-hi def link  pythonOctError     Error
-hi def link  pythonHexError     Error
-hi def link  pythonBinError     Error
+hi def link  pythonOctError     CodeError
+hi def link  pythonHexError     CodeError
+hi def link  pythonBinError     CodeError
 
-hi def link  pythonBuiltinType  Type
-hi def link  pythonBuiltinObj   Structure
-hi def link  pythonBuiltinFunc  Function
+hi def link  pythonExClass      IlyaPurple
 
-hi def link  pythonExClass      Structure
-
-" " }}}
+hi def link  pythonBuiltinType  IlyaPurple
+hi def link  pythonBuiltinFunc  IlyaPurple
+hi def link  pythonBuiltinObj   IlyaOrange
+hi def link  pythonBuiltinDunder   IlyaBrightPink
+" }}}

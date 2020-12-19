@@ -22,6 +22,9 @@ class Bar(Foo):
         format_string = f'{x!s:{"^10"}}'
         _int, _float, big_int, scientific = (1, 1.2, 1_000_000, 2e3)
 
+    def __repr__(self):
+        return "haha"
+
     def hello(self):
         pass
 
