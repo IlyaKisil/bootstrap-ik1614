@@ -18,6 +18,10 @@
     editor = $EDITOR
 [merge]
     log = true
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
 [color "status"]
     added = yellow
     changed = green
@@ -31,6 +35,7 @@
     cm = commit --message
     co = checkout
     s = status
+    d = difftool
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     unstage = reset HEAD --
     last = log -1 HEAD
@@ -54,6 +59,6 @@
     process = git-lfs filter-process
     required = true
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 [include]
     path = ~/.gitconfig-local
