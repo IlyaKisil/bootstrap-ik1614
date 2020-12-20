@@ -68,4 +68,6 @@ nnoremap <silent> <TAB>   :tabnext<CR>
 nnoremap <silent> <S-TAB> :tabprevious<CR>
 
 
-
+" Open URL on the current line in a web browser
+nnoremap <leader>ow :call functions#OpenURL()<CR>
+vnoremap <leader>ow :call functions#OpenURL()<CR>

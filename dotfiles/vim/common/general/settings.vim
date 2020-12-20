@@ -125,3 +125,23 @@ if !isdirectory(&undodir)
 endif
 " Continue where you left off upon reopening vim session
 set viminfo+=n$__VIM_DOTFILES_HOME/dirs/viminfo
+
+
+
+augroup now
+    autocmd!
+    autocmd Syntax * call functions#UpdateTodoKeywords(
+                \ "NOTE",
+                \ "Note",
+                \ "note",
+                \ "Todo",
+                \ "todo",
+                \ "Fixme",
+                \ "fixme",
+                \ )
+
+    autocmd BufWritePre * :call functions#TrimWhitespace()
+    autocmd BufWritePre * :call functions#MakeNonExistingDir(expand('<afile>'), +expand('<abuf>'))
+
+augroup END
+
