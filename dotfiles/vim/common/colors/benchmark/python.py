@@ -4,6 +4,8 @@ from pathlib import Path
 
 
 # TODO: one two three.
+# Todo: one two three.
+# todo: one two three.
 # NonText:  , space ,
 class Foo:
     pass
@@ -13,19 +15,25 @@ class Bar(Foo):
     tags: List[str]
 
     def __init__(self: Foo):
-        self.make_sense(whatever=1)
+        self.make_sense(whatever="5")
         raw_string = r'Hi\nHello'
         byte_string: bytes = b'newline:\n also newline:\x0a'
         text_string = u"Cyrillic Я is \u042f. Oops: \u042g UniEscapeError"
         hello = "hello"
+        multi_line_string = """
+            hello
+            how is it going?
+        """
         format_string = f'{hello} {hello.capitalize()}'
         format_string = f'{x!s:{"^10"}}'
         _int, _float, big_int, scientific = (1, 1.2, 1_000_000, 2e3)
 
+        i += 2
+
     def __repr__(self):
         return "haha"
 
-    def hello(self):
+    def hello(self, f=5, b="s", b=[], a={}, d=dict(), c=()) -> List[str]:
         pass
 
     def make_sense(self, parameter: str, whatever: List[str], *arg, **kwargs):

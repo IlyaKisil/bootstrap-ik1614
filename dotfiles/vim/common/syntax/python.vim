@@ -26,26 +26,11 @@ endif
 " Highlight all by default
 call SetDefaultSyntaxHL('g:pymode_syntax_all', 1)
 
-" Highlight 'print' as function
-call SetDefaultSyntaxHL("g:pymode_syntax_print_as_function", 1)
-
 " Highlight 'async/await' keywords
 call SetDefaultSyntaxHL("g:pymode_syntax_highlight_async_await", 1)
 
-" Highlight '=' operator
-call SetDefaultSyntaxHL('g:pymode_syntax_highlight_equal_operator', 1)
-
-" Highlight '*' operator
-call SetDefaultSyntaxHL('g:pymode_syntax_highlight_stars_operator', 1)
-
-" Highlight 'self' keyword
-call SetDefaultSyntaxHL('g:pymode_syntax_highlight_self', 1)
-
 " Highlight indent's errors
 call SetDefaultSyntaxHL('g:pymode_syntax_indent_errors', 1)
-
-" Highlight space's errors
-call SetDefaultSyntaxHL('g:pymode_syntax_space_errors', 1)
 
 " Highlight string formatting
 call SetDefaultSyntaxHL('g:pymode_syntax_string_formatting', 1)
@@ -93,48 +78,38 @@ endif
     syn keyword pythonStatement with as
     syn keyword pythonLambdaExpr lambda
 
-    syn keyword pythonStatement def nextgroup=pythonFunction,pythonBuiltinDunder skipwhite
-    syn match pythonFunction "\%(\%(def\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonVars
-    syn region pythonVars start="(" skip=+\(".*"\|'.*'\)+ end=")" contained contains=pythonParameters transparent keepend
-    syn match pythonParameters "[^,]*" contained contains=pythonParam skipwhite
-    syn match pythonParam "[^,]*" contained contains=pythonExtraOperator,pythonLambdaExpr,pythonBuiltinObj,pythonBuiltinType,pythonConstant,pythonString,pythonNumber,pythonBrackets,pythonSelf,pythonComment skipwhite
-    syn match pythonBrackets "{[(|)]}" contained skipwhite
-
-    syn keyword pythonStatement class nextgroup=pythonClass skipwhite
-    syn match pythonClass "\%(\%(class\s\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonClassVars
-    syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
-    syn match pythonClassParameters "[^,\*]*" contained contains=pythonBuiltin,pythonBuiltinObj,pythonBuiltinType,pythonExtraOperatorpythonStatement,pythonBrackets,pythonString,pythonComment skipwhite
-
     syn keyword pythonRepeat        for while
     syn keyword pythonConditional   if elif else
     syn keyword pythonInclude       import from
     syn keyword pythonException     try except finally
     syn keyword pythonOperator      and in is not or
+    syn keyword pythonSelf self cls
+
 
     syn match pythonExtraOperator "\%([~!^&|/%+-]\|\%(class\s*\)\@<!<<\|<=>\|<=\|\%(<\|\<class\s\+\u\w*\s*\)\@<!<[^<]\@=\|===\|==\|=\~\|>>\|>=\|=\@<!>\|\.\.\.\|\.\.\|::\)"
+    syn match pythonExtraOperator "\%(=\)"
+    syn match pythonExtraOperator "\%(\*\|\*\*\)"
+
     syn match pythonExtraPseudoOperator "\%(-=\|/=\|\*\*=\|\*=\|&&=\|&=\|&&\|||=\||=\|||\|%=\|+=\|!\~\|!=\)"
 
-    if !g:pymode_syntax_print_as_function
-        syn keyword pythonStatement print
-    endif
+    syn keyword pythonStatement def nextgroup=pythonFunction,pythonBuiltinDunder skipwhite
+    syn match pythonFunction "\%(\%(def\s\|@\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonVars
+    syn region pythonVars start="(" skip=+\(".*"\|'.*'\)+ end=")" contained contains=pythonParameters transparent keepend
+    syn match pythonParameters "[^,:(){}\[\]]*" contained contains=pythonExtraOperator,pythonLambdaExpr,pythonBuiltinObj,pythonBuiltinType,pythonConstant,pythonString,pythonNumber,pythonBrackets,pythonSelf,pythonComment skipwhite
+    " Doesn't look like it works correctly
+    syn match pythonBrackets "{[(|)]}" contained skipwhite
+    " TODO: colors for typehints
+
+    syn keyword pythonStatement class nextgroup=pythonClass skipwhite
+    syn match pythonClass "\%(\%(class\s\)\s*\)\@<=\h\%(\w\|\.\)*" contained nextgroup=pythonClassVars
+    syn region pythonClassVars start="(" end=")" contained contains=pythonClassParameters transparent keepend
+    syn match pythonClassParameters "[^,()\*]*" contained contains=pythonBuiltin,pythonBuiltinObj,pythonBuiltinType,pythonExtraOperatorpythonStatement,pythonBrackets,pythonString,pythonComment skipwhite
 
     if g:pymode_syntax_highlight_async_await
         syn keyword pythonStatement async await
         syn match pythonStatement "\<async\s\+def\>" nextgroup=pythonFunction skipwhite
         syn match pythonStatement "\<async\s\+with\>" display
         syn match pythonStatement "\<async\s\+for\>" nextgroup=pythonRepeat skipwhite
-    endif
-
-    if g:pymode_syntax_highlight_equal_operator
-        syn match pythonExtraOperator "\%(=\)"
-    endif
-
-    if g:pymode_syntax_highlight_stars_operator
-        syn match pythonExtraOperator "\%(\*\|\*\*\)"
-    endif
-
-    if g:pymode_syntax_highlight_self
-        syn keyword pythonSelf self cls
     endif
 
 " }}}
@@ -153,7 +128,9 @@ endif
     syn match   pythonComment   "#.*$" display contains=pythonTodo,@Spell
     syn match   pythonRun       "\%^#!.*$"
     syn match   pythonCoding    "\%^.*\(\n.*\)\?#.*coding[:=]\s*[0-9A-Za-z-_.]\+.*$"
-    syn keyword pythonTodo      TODO FIXME XXX contained
+    syn keyword pythonTodo      TODO FIXME NOTE XXX contained
+    syn keyword pythonTodo      todo fixme note contained
+    syn keyword pythonTodo      Todo Fixme Note contained
 
 " }}}
 
@@ -170,11 +147,6 @@ endif
         syn match pythonIndentError "^\s*\( \t\|\t \)\s*\S"me=e-1 display
     endif
 
-    " Trailing space errors
-    if g:pymode_syntax_space_errors
-        syn match pythonSpaceError  "\s\+$" display
-    endif
-
 " }}}
 
 " Strings {{{
@@ -182,8 +154,8 @@ endif
 
     syn region pythonString     start=+[bB]\='+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
     syn region pythonString     start=+[bB]\="+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonEscape,pythonEscapeError,@Spell
-    syn region pythonString     start=+[bB]\="""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest2,pythonSpaceError,@Spell
-    syn region pythonString     start=+[bB]\='''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,@Spell
+    syn region pythonString     start=+[bB]\="""+ end=+"""+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest2,@Spell
+    syn region pythonString     start=+[bB]\='''+ end=+'''+ keepend contains=pythonEscape,pythonEscapeError,pythonDocTest,@Spell
 
     syn match  pythonEscape     +\\[abfnrtv'"\\]+ display contained
     syn match  pythonEscape     "\\\o\o\=\o\=" display contained
@@ -195,8 +167,8 @@ endif
     " Unicode
     syn region pythonUniString  start=+[uU]'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,@Spell
     syn region pythonUniString  start=+[uU]"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,@Spell
-    syn region pythonUniString  start=+[uU]"""+ end=+"""+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,pythonDocTest2,pythonSpaceError,@Spell
-    syn region pythonUniString  start=+[uU]'''+ end=+'''+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,pythonDocTest,pythonSpaceError,@Spell
+    syn region pythonUniString  start=+[uU]"""+ end=+"""+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,pythonDocTest2,@Spell
+    syn region pythonUniString  start=+[uU]'''+ end=+'''+ keepend contains=pythonEscape,pythonUniEscape,pythonEscapeError,pythonUniEscapeError,pythonDocTest,@Spell
 
     syn match  pythonUniEscape          "\\u\x\{4}" display contained
     syn match  pythonUniEscapeError     "\\u\x\{,3}\X" display contained
@@ -208,16 +180,16 @@ endif
     " Raw strings
     syn region pythonRawString  start=+[rR]'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonRawEscape,@Spell
     syn region pythonRawString  start=+[rR]"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonRawEscape,@Spell
-    syn region pythonRawString  start=+[rR]"""+ end=+"""+ keepend contains=pythonDocTest2,pythonSpaceError,@Spell
-    syn region pythonRawString  start=+[rR]'''+ end=+'''+ keepend contains=pythonDocTest,pythonSpaceError,@Spell
+    syn region pythonRawString  start=+[rR]"""+ end=+"""+ keepend contains=pythonDocTest2,@Spell
+    syn region pythonRawString  start=+[rR]'''+ end=+'''+ keepend contains=pythonDocTest,@Spell
 
     syn match pythonRawEscape           +\\['"]+ display transparent contained
 
     " Unicode raw strings
     syn region pythonUniRawString   start=+[uU][rR]'+ skip=+\\\\\|\\'\|\\$+ excludenl end=+'+ end=+$+ keepend contains=pythonRawEscape,pythonUniRawEscape,pythonUniRawEscapeError,@Spell
     syn region pythonUniRawString   start=+[uU][rR]"+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend contains=pythonRawEscape,pythonUniRawEscape,pythonUniRawEscapeError,@Spell
-    syn region pythonUniRawString   start=+[uU][rR]"""+ end=+"""+ keepend contains=pythonUniRawEscape,pythonUniRawEscapeError,pythonDocTest2,pythonSpaceError,@Spell
-    syn region pythonUniRawString   start=+[uU][rR]'''+ end=+'''+ keepend contains=pythonUniRawEscape,pythonUniRawEscapeError,pythonDocTest,pythonSpaceError,@Spell
+    syn region pythonUniRawString   start=+[uU][rR]"""+ end=+"""+ keepend contains=pythonUniRawEscape,pythonUniRawEscapeError,pythonDocTest2,@Spell
+    syn region pythonUniRawString   start=+[uU][rR]'''+ end=+'''+ keepend contains=pythonUniRawEscape,pythonUniRawEscapeError,pythonDocTest,@Spell
 
     syn match  pythonUniRawEscape   "\([^\\]\(\\\\\)*\)\@<=\\u\x\{4}" display contained
     syn match  pythonUniRawEscapeError  "\([^\\]\(\\\\\)*\)\@<=\\u\x\{,3}\X" display contained
@@ -249,8 +221,8 @@ endif
 
     " DocStrings
     if g:pymode_syntax_docstrings
-        syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?"""+ end=+"""+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError
-        syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?'''+ end=+'''+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError
+        syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?"""+ end=+"""+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,
+        syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?'''+ end=+'''+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,
     endif
 
 
@@ -347,11 +319,7 @@ endif
         syn keyword pythonBuiltinFunc   next oct open ord pow property range xrange
         syn keyword pythonBuiltinFunc   raw_input reduce reload repr reversed round setattr
         syn keyword pythonBuiltinFunc   slice sorted staticmethod sum vars zip
-
-        if g:pymode_syntax_print_as_function
-            syn keyword pythonBuiltinFunc   print
-        endif
-
+        syn keyword pythonBuiltinFunc   print
     endif
 
     " Builtin exceptions and warnings
@@ -397,73 +365,78 @@ endif
 
 " Highlight {{{
 " =============
-
-hi def link  pythonStatement    IlyaOrange
-hi def link  pythonLambdaExpr   IlyaOrange
-hi def link  pythonInclude      IlyaOrange
-
-hi def link  pythonFunction     IlyaBrightBlue
-hi def link  pythonClass        IlyaPeach
-hi def link  pythonParameters   IlyaTest
-" This also inclued typehints and brackets
-hi def link  pythonParam        IlyaSalmon
-" hi def link  pythonParam        IlyaTest
-hi def link  pythonBrackets     IlyaTest
-hi def link  pythonClassParameters Normal
-hi def link  pythonSelf         IlyaPink
-
-hi def link  pythonConditional  IlyaOrange
-hi def link  pythonRepeat       IlyaOrange
-hi def link  pythonException    IlyaOrange
-hi def link  pythonOperator     IlyaOrange
+" Use vanilla highlighting modes
+hi def link  pythonBrackets             Normal
+hi def link  pythonClassParameters      Normal
 hi def link  pythonExtraOperator        Normal
-hi def link  pythonExtraPseudoOperator  IlyaTest
-
-hi def link  pythonDecorator    IlyaYellow
-hi def link  pythonDottedName   IlyaYellow
+hi def link  pythonExtraPseudoOperator  Normal
 
 hi def link  pythonComment      Comment
-hi def link  pythonCoding       IlyaTest
-hi def link  pythonRun          IlyaShebang
 hi def link  pythonTodo         Todo
 
-hi def link  pythonError        CodeError
-hi def link  pythonIndentError  CodeError
-hi def link  pythonSpaceError   CodeError
+hi def link  pythonError             CodeError
+hi def link  pythonIndentError       CodeError
+hi def link  pythonEscapeError       CodeError
+hi def link  pythonUniEscapeError    CodeError
+hi def link  pythonUniRawEscapeError CodeError
+hi def link  pythonOctError          CodeError
+hi def link  pythonHexError          CodeError
+hi def link  pythonBinError          CodeError
 
 hi def link  pythonString       String
-hi def link  pythonDocstring    IlyaBlue1
 hi def link  pythonUniString    String
 hi def link  pythonRawString    String
 hi def link  pythonUniRawString String
-
-hi def link  pythonEscape       IlyaSkyBlue
-hi def link  pythonEscapeError  CodeError
-hi def link  pythonUniEscape    IlyaSkyBlue
-hi def link  pythonUniEscapeError CodeError
-hi def link  pythonUniRawEscape IlyaSkyBlue
-hi def link  pythonUniRawEscapeError CodeError
-" Something is a little bit off when using methods within string formatting
-hi def link  pythonStrFormatting IlyaSkyBlue
-hi def link  pythonStrFormat     IlyaSkyBlue
-hi def link  pythonStrTemplate  IlyaSkyBlue
-
-hi def link  pythonDocTest      IlyaTest
-hi def link  pythonDocTest2     docComment
 
 hi def link  pythonNumber       Number
 hi def link  pythonHexNumber    Number
 hi def link  pythonOctNumber    Number
 hi def link  pythonBinNumber    Number
-hi def link  pythonFloat        Float
-hi def link  pythonOctError     CodeError
-hi def link  pythonHexError     CodeError
-hi def link  pythonBinError     CodeError
+hi def link  pythonFloat        Number
+
+hi def link  pythonStatement    IlyaOrange
+hi def link  pythonLambdaExpr   IlyaOrange
+hi def link  pythonInclude      IlyaOrange
+hi def link  pythonConditional  IlyaOrange
+hi def link  pythonRepeat       IlyaOrange
+hi def link  pythonException    IlyaOrange
+hi def link  pythonOperator     IlyaOrange
+hi def link  pythonBuiltinObj   IlyaOrange
 
 hi def link  pythonExClass      IlyaPurple
-
 hi def link  pythonBuiltinType  IlyaPurple
 hi def link  pythonBuiltinFunc  IlyaPurple
-hi def link  pythonBuiltinObj   IlyaOrange
+
 hi def link  pythonBuiltinDunder   IlyaBrightPink
+
+hi def link  pythonClass        IlyaPeach
+
+" Parameters within function definition
+hi def link  pythonParameters   IlyaSalmon
+
+hi def link  pythonSelf         IlyaPink
+
+hi def link  pythonDocstring    IlyaBlue1
+
+" Function definition
+hi def link  pythonFunction     IlyaBrightBlue
+
+hi def link  pythonEscape       IlyaSkyBlue
+hi def link  pythonUniEscape    IlyaSkyBlue
+hi def link  pythonUniRawEscape IlyaSkyBlue
+" Something is a little bit off when using methods within string formatting
+hi def link  pythonStrFormatting IlyaSkyBlue
+hi def link  pythonStrFormat     IlyaSkyBlue
+hi def link  pythonStrTemplate   IlyaSkyBlue
+
+hi def link  pythonDecorator    IlyaYellow
+hi def link  pythonDottedName   IlyaYellow
+
+hi def link  pythonRun          IlyaShebang
+hi def link  pythonDocTest      docComment
+hi def link  pythonDocTest2     docComment
+
+" Unidetified highlight groups
+hi def link  pythonCoding       IlyaTest
+
 " }}}
