@@ -394,49 +394,49 @@ hi def link  pythonOctNumber    Number
 hi def link  pythonBinNumber    Number
 hi def link  pythonFloat        Number
 
-hi def link  pythonStatement    IlyaOrange
-hi def link  pythonLambdaExpr   IlyaOrange
-hi def link  pythonInclude      IlyaOrange
-hi def link  pythonConditional  IlyaOrange
-hi def link  pythonRepeat       IlyaOrange
-hi def link  pythonException    IlyaOrange
-hi def link  pythonOperator     IlyaOrange
-hi def link  pythonBuiltinObj   IlyaOrange
+hi def link  pythonStatement    MdraculaOrange
+hi def link  pythonLambdaExpr   MdraculaOrange
+hi def link  pythonInclude      MdraculaOrange
+hi def link  pythonConditional  MdraculaOrange
+hi def link  pythonRepeat       MdraculaOrange
+hi def link  pythonException    MdraculaOrange
+hi def link  pythonOperator     MdraculaOrange
+hi def link  pythonBuiltinObj   MdraculaOrange
 
-hi def link  pythonExClass      IlyaPurple
-hi def link  pythonBuiltinType  IlyaPurple
-hi def link  pythonBuiltinFunc  IlyaPurple
+hi def link  pythonExClass      MdraculaPurple
+hi def link  pythonBuiltinType  MdraculaPurple
+hi def link  pythonBuiltinFunc  MdraculaPurple
 
-hi def link  pythonBuiltinDunder   IlyaBrightPink
+hi def link  pythonBuiltinDunder   MdraculaBrightPink
 
-hi def link  pythonClass        IlyaPeach
+hi def link  pythonClass        MdraculaPeach
 
 " Parameters within function definition
-hi def link  pythonParameters   IlyaSalmon
+hi def link  pythonParameters   MdraculaSalmon
 
-hi def link  pythonSelf         IlyaPink
+hi def link  pythonSelf         MdraculaPink
 
-hi def link  pythonDocstring    IlyaBlue1
+hi def link  pythonDocstring    MdraculaBlue1
 
 " Function definition
-hi def link  pythonFunction     IlyaBrightBlue
+hi def link  pythonFunction     MdraculaBrightBlue
 
-hi def link  pythonEscape       IlyaSkyBlue
-hi def link  pythonUniEscape    IlyaSkyBlue
-hi def link  pythonUniRawEscape IlyaSkyBlue
+hi def link  pythonEscape       MdraculaSkyBlue
+hi def link  pythonUniEscape    MdraculaSkyBlue
+hi def link  pythonUniRawEscape MdraculaSkyBlue
 " Something is a little bit off when using methods within string formatting
-hi def link  pythonStrFormatting IlyaSkyBlue
-hi def link  pythonStrFormat     IlyaSkyBlue
-hi def link  pythonStrTemplate   IlyaSkyBlue
+hi def link  pythonStrFormatting MdraculaSkyBlue
+hi def link  pythonStrFormat     MdraculaSkyBlue
+hi def link  pythonStrTemplate   MdraculaSkyBlue
 
-hi def link  pythonDecorator    IlyaYellow
-hi def link  pythonDottedName   IlyaYellow
+hi def link  pythonDecorator    MdraculaYellow
+hi def link  pythonDottedName   MdraculaYellow
 
-hi def link  pythonRun          IlyaShebang
+hi def link  pythonRun          MdraculaShebang
 hi def link  pythonDocTest      docComment
 hi def link  pythonDocTest2     docComment
 
 " Unidetified highlight groups
-hi def link  pythonCoding       IlyaTest
+hi def link  pythonCoding       MdraculaTest
 
 " }}}

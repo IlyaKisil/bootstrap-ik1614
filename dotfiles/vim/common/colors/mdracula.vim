@@ -60,15 +60,18 @@ let mdracula#palette=s:p
 
 
 " fill it with absolute colors
+" Choose analogous colors:
+"   * https://pinetools.com/lighten-color
+"   * https://www.hexcolortool.com
 let s:p.null = ['NONE', 'NONE']
 let s:p.none = ['NONE', 'NONE']
-let s:p.bg = ['#282c31', 235]
-let s:p.fg = ['#A9B7C6', 145]
+let s:p.bg  = ['#282c31', 235]
+let s:p.bg8 = ['#373c43', 238]
+let s:p.fg  = ['#A9B7C6', 145]
 let s:p.cursorLine = ['#2c3238', 236]
 let s:p.wrapGuide = s:p.cursorLine
 let s:p.gutter = s:p.cursorLine
 let s:p.cursorLineNr = ['#A4A3A3', 248]
-" let s:p.muted = ['#606060', 241]
 let s:p.muted = ['#606366', 241]
 let s:p.lineNumber = s:p.muted
 
@@ -93,7 +96,6 @@ let s:p.keyword = ['#CC7832', 172]
 let s:p.comment = ['#808080', 244]
 let s:p.docComment = ['#629755', 65]
 let s:p.string = ['#A5C261', 101]
-" let s:p.number = ['#6897BB', 103]
 let s:p.number = ['#E5C07B', 103]
 let s:p.delimiter = ['#CC7832', 172]
 let s:p.specialComment = ['#8A653B', 95]
@@ -105,7 +107,6 @@ let s:p.diffChange = ['#303C47', 23]
 let s:p.addStripe = ['#384C38', 66]
 let s:p.stripeWhiteSpace = ['#4C4638', 59]
 let s:p.changeStripe = ['#374752', 60]
-" let s:p.deleteStripe = ['#656E76', 242]
 let s:p.deleteStripe = ['#E06C75', 242]
 let s:p.typo = ['#659C6B', 72]
 let s:p.metaData = ['#BBB529', 142]
@@ -159,38 +160,38 @@ let s:p.UIBlue = ['#3592C4', 67]
 let s:p.UIGreen = ['#499C54', 71]
 let s:p.UIRed = ['#C75450', 131]
 let s:p.UIBrown = ['#93896C', 102]
-let s:p.test = ['#eb4034', 102]
 
 " FIXME: provide correct values as the second element. See https://jonasjacek.github.io/colors/
 " FIXME: this should be specified befor statement/element based colors
 " Base colors
-let s:p.ilya_blue        = ['#5e94aa',1]
-let s:p.ilya_blue_1      = ['#619AB0',1]
-let s:p.ilya_pink        = ['#94558D',1]
-let s:p.ilya_orange      = ['#CC7832', 172]
-let s:p.ilya_yellow      = ['#BBB529', 142]
-let s:p.ilya_purple      = ['#8888C6',1]
-let s:p.ilya_peach       = ['#E5C07B', 103]
-let s:p.ilya_salmon      = ['#E06C75', 242]
-let s:p.ilya_bright_red  = ['#ff6b6b',1]
-let s:p.ilya_bright_blue = ['#61AFEF',1]
-let s:p.ilya_bright_pink = ['#B200B2',1]
-let s:p.ilya_sky_blue    = ['#56b6c2',1]
+let s:p.mdracula_blue        = ['#5e94aa',1]
+let s:p.mdracula_blue_1      = ['#619AB0',1]
+let s:p.mdracula_pink        = ['#94558D',1]
+let s:p.mdracula_orange      = ['#CC7832', 172]
+let s:p.mdracula_yellow      = ['#BBB529', 142]
+let s:p.mdracula_purple      = ['#8888C6',1]
+let s:p.mdracula_peach       = ['#E5C07B', 103]
+let s:p.mdracula_salmon      = ['#E06C75', 242]
+let s:p.mdracula_bright_red  = ['#ff6b6b',1]
+let s:p.mdracula_bright_blue = ['#61AFEF',1]
+let s:p.mdracula_bright_pink = ['#B200B2',1]
+let s:p.mdracula_sky_blue    = ['#56b6c2',1]
+let s:p.mdracula_test        = ['#eb4034', 102]
 
-call s:HL('IlyaBlue', s:p.ilya_blue)
-call s:HL('IlyaBlue1', s:p.ilya_blue)
-call s:HL('IlyaPink', s:p.ilya_pink)
-call s:HL('IlyaOrange', s:p.ilya_orange)
-call s:HL('IlyaYellow', s:p.ilya_yellow)
-call s:HL('IlyaPurple', s:p.ilya_purple)
-call s:HL('IlyaPeach', s:p.ilya_peach)
-call s:HL('IlyaSalmon', s:p.ilya_salmon)
-call s:HL('IlyaBrightRed', s:p.ilya_bright_red)
-call s:HL('IlyaBrightBlue', s:p.ilya_bright_blue)
-call s:HL('IlyaBrightPink', s:p.ilya_bright_pink)
-call s:HL('IlyaSkyBlue', s:p.ilya_sky_blue)
-call s:HL('IlyaTest', s:p.test, s:p.ilya_yellow)
-call s:HL('IlyaShebang', s:p.fg, s:p.null, 'bold')
+call s:HL('MdraculaTest', s:p.mdracula_test, s:p.mdracula_yellow)
+call s:HL('MdraculaBlue', s:p.mdracula_blue)
+call s:HL('MdraculaBlue1', s:p.mdracula_blue)
+call s:HL('MdraculaPink', s:p.mdracula_pink)
+call s:HL('MdraculaOrange', s:p.mdracula_orange)
+call s:HL('MdraculaYellow', s:p.mdracula_yellow)
+call s:HL('MdraculaPurple', s:p.mdracula_purple)
+call s:HL('MdraculaPeach', s:p.mdracula_peach)
+call s:HL('MdraculaSalmon', s:p.mdracula_salmon)
+call s:HL('MdraculaBrightRed', s:p.mdracula_bright_red)
+call s:HL('MdraculaBrightBlue', s:p.mdracula_bright_blue)
+call s:HL('MdraculaBrightPink', s:p.mdracula_bright_pink)
+call s:HL('MdraculaSkyBlue', s:p.mdracula_sky_blue)
+call s:HL('MdraculaShebang', s:p.fg, s:p.null, 'bold')
 
 
 " }}}
@@ -247,7 +248,7 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
   " }}}
   " General Syntax Highlighting: {{{
   " Special characters, e.g. space, tab, 
-  call s:HL('NonText', s:p.muted)
+  call s:HL('NonText', s:p.bg8)
   hi! link SpecialKey NonText
   " Comments
   call s:HL('Comment', s:p.comment)
