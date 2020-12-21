@@ -16,10 +16,49 @@ endfunction "}}}
 call SetDefaultSyntaxHL('g:pymode', 1)
 call SetDefaultSyntaxHL('g:pymode_syntax', g:pymode)
 
+
 " DESC: Disable script loading
 if !g:pymode || !g:pymode_syntax || SetDefaultSyntaxHL('b:current_syntax', 'pymode')
     finish
 endif
+
+
+" Filetype Specific Palette And HL Groups: {{{
+let s:p = {}
+
+let s:p.null = mdracula#palette.null
+let s:p.none = mdracula#palette.null
+
+" FIXME: provide correct values as the second element. See https://jonasjacek.github.io/colors/
+" FIXME: this should be specified befor statement/element based colors
+" Base colors
+let s:p.local_blue        = ['#5e94aa',1]
+let s:p.local_blue_1      = ['#619AB0',1]
+let s:p.local_pink        = ['#94558D',1]
+let s:p.local_orange      = ['#CC7832', 172]
+let s:p.local_yellow      = ['#BBB529', 142]
+let s:p.local_purple      = ['#8888C6',1]
+let s:p.local_peach       = ['#E5C07B', 103]
+let s:p.local_salmon      = ['#E06C75', 242]
+let s:p.local_bright_red  = ['#ff6b6b',1]
+let s:p.local_bright_blue = ['#61AFEF',1]
+let s:p.local_bright_pink = ['#B200B2',1]
+let s:p.local_sky_blue    = ['#56b6c2',1]
+
+call mdracula#HL('LocalBlue', s:p.local_blue)
+call mdracula#HL('LocalBlue1', s:p.local_blue)
+call mdracula#HL('LocalPink', s:p.local_pink)
+call mdracula#HL('LocalOrange', s:p.local_orange)
+call mdracula#HL('LocalYellow', s:p.local_yellow)
+call mdracula#HL('LocalPurple', s:p.local_purple)
+call mdracula#HL('LocalPeach', s:p.local_peach)
+call mdracula#HL('LocalSalmon', s:p.local_salmon)
+call mdracula#HL('LocalBrightRed', s:p.local_bright_red)
+call mdracula#HL('LocalBrightBlue', s:p.local_bright_blue)
+call mdracula#HL('LocalBrightPink', s:p.local_bright_pink)
+call mdracula#HL('LocalSkyBlue', s:p.local_sky_blue)
+
+" }}}
 
 " OPTIONS: {{{
 
@@ -363,9 +402,8 @@ else
     syn sync maxlines=200
 endif
 
-" Highlight {{{
-" =============
-" Use vanilla highlighting modes
+" Highlight: Vanilla HL groups {{{
+" ================================
 hi def link  pythonBrackets             Normal
 hi def link  pythonClassParameters      Normal
 hi def link  pythonExtraOperator        Normal
@@ -394,49 +432,50 @@ hi def link  pythonOctNumber    Number
 hi def link  pythonBinNumber    Number
 hi def link  pythonFloat        Number
 
-hi def link  pythonStatement    MdraculaOrange
-hi def link  pythonLambdaExpr   MdraculaOrange
-hi def link  pythonInclude      MdraculaOrange
-hi def link  pythonConditional  MdraculaOrange
-hi def link  pythonRepeat       MdraculaOrange
-hi def link  pythonException    MdraculaOrange
-hi def link  pythonOperator     MdraculaOrange
-hi def link  pythonBuiltinObj   MdraculaOrange
-
-hi def link  pythonExClass      MdraculaPurple
-hi def link  pythonBuiltinType  MdraculaPurple
-hi def link  pythonBuiltinFunc  MdraculaPurple
-
-hi def link  pythonBuiltinDunder   MdraculaBrightPink
-
-hi def link  pythonClass        MdraculaPeach
-
-" Parameters within function definition
-hi def link  pythonParameters   MdraculaSalmon
-
-hi def link  pythonSelf         MdraculaPink
-
-hi def link  pythonDocstring    MdraculaBlue1
-
-" Function definition
-hi def link  pythonFunction     MdraculaBrightBlue
-
-hi def link  pythonEscape       MdraculaSkyBlue
-hi def link  pythonUniEscape    MdraculaSkyBlue
-hi def link  pythonUniRawEscape MdraculaSkyBlue
-" Something is a little bit off when using methods within string formatting
-hi def link  pythonStrFormatting MdraculaSkyBlue
-hi def link  pythonStrFormat     MdraculaSkyBlue
-hi def link  pythonStrTemplate   MdraculaSkyBlue
-
-hi def link  pythonDecorator    MdraculaYellow
-hi def link  pythonDottedName   MdraculaYellow
-
-hi def link  pythonRun          MdraculaShebang
+hi def link  pythonRun          shebang
 hi def link  pythonDocTest      docComment
 hi def link  pythonDocTest2     docComment
-
 " Unidetified highlight groups
-hi def link  pythonCoding       MdraculaTest
+hi def link  pythonCoding       testColor
+" }}}
+
+" Highlight: Filetype specific HL groups {{{
+hi def link  pythonStatement    LocalOrange
+hi def link  pythonLambdaExpr   LocalOrange
+hi def link  pythonInclude      LocalOrange
+hi def link  pythonConditional  LocalOrange
+hi def link  pythonRepeat       LocalOrange
+hi def link  pythonException    LocalOrange
+hi def link  pythonOperator     LocalOrange
+hi def link  pythonBuiltinObj   LocalOrange
+
+hi def link  pythonExClass      LocalPurple
+hi def link  pythonBuiltinType  LocalPurple
+hi def link  pythonBuiltinFunc  LocalPurple
+
+hi def link  pythonBuiltinDunder   LocalBrightPink
+
+hi def link  pythonClass        LocalPeach
+
+" Parameters within function definition
+hi def link  pythonParameters   LocalSalmon
+
+hi def link  pythonSelf         LocalPink
+
+hi def link  pythonDocstring    LocalBlue1
+
+" Function definition
+hi def link  pythonFunction     LocalBrightBlue
+
+hi def link  pythonEscape       LocalSkyBlue
+hi def link  pythonUniEscape    LocalSkyBlue
+hi def link  pythonUniRawEscape LocalSkyBlue
+" Something is a little bit off when using methods within string formatting
+hi def link  pythonStrFormatting LocalSkyBlue
+hi def link  pythonStrFormat     LocalSkyBlue
+hi def link  pythonStrTemplate   LocalSkyBlue
+
+hi def link  pythonDecorator    LocalYellow
+hi def link  pythonDottedName   LocalYellow
 
 " }}}

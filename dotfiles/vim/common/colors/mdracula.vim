@@ -38,7 +38,7 @@ function s:HL(group, fg, ...)
 endfunction
 
 " expose that function
-function mdracula#Hi(group, fg, ...)
+function mdracula#HL(group, fg, ...)
   if a:0 >= 2
     call s:HL(a:group, a:fg, a:1, a:2)
   elseif a:0 == 1
@@ -55,8 +55,6 @@ let s:p = {}
 
 " Expose the palette
 let mdracula#palette=s:p
-
-
 
 
 " fill it with absolute colors
@@ -161,37 +159,8 @@ let s:p.UIGreen = ['#499C54', 71]
 let s:p.UIRed = ['#C75450', 131]
 let s:p.UIBrown = ['#93896C', 102]
 
-" FIXME: provide correct values as the second element. See https://jonasjacek.github.io/colors/
-" FIXME: this should be specified befor statement/element based colors
-" Base colors
-let s:p.mdracula_blue        = ['#5e94aa',1]
-let s:p.mdracula_blue_1      = ['#619AB0',1]
-let s:p.mdracula_pink        = ['#94558D',1]
-let s:p.mdracula_orange      = ['#CC7832', 172]
-let s:p.mdracula_yellow      = ['#BBB529', 142]
-let s:p.mdracula_purple      = ['#8888C6',1]
-let s:p.mdracula_peach       = ['#E5C07B', 103]
-let s:p.mdracula_salmon      = ['#E06C75', 242]
-let s:p.mdracula_bright_red  = ['#ff6b6b',1]
-let s:p.mdracula_bright_blue = ['#61AFEF',1]
-let s:p.mdracula_bright_pink = ['#B200B2',1]
-let s:p.mdracula_sky_blue    = ['#56b6c2',1]
-let s:p.mdracula_test        = ['#eb4034', 102]
-
-call s:HL('MdraculaTest', s:p.mdracula_test, s:p.mdracula_yellow)
-call s:HL('MdraculaBlue', s:p.mdracula_blue)
-call s:HL('MdraculaBlue1', s:p.mdracula_blue)
-call s:HL('MdraculaPink', s:p.mdracula_pink)
-call s:HL('MdraculaOrange', s:p.mdracula_orange)
-call s:HL('MdraculaYellow', s:p.mdracula_yellow)
-call s:HL('MdraculaPurple', s:p.mdracula_purple)
-call s:HL('MdraculaPeach', s:p.mdracula_peach)
-call s:HL('MdraculaSalmon', s:p.mdracula_salmon)
-call s:HL('MdraculaBrightRed', s:p.mdracula_bright_red)
-call s:HL('MdraculaBrightBlue', s:p.mdracula_bright_blue)
-call s:HL('MdraculaBrightPink', s:p.mdracula_bright_pink)
-call s:HL('MdraculaSkyBlue', s:p.mdracula_sky_blue)
-call s:HL('MdraculaShebang', s:p.fg, s:p.null, 'bold')
+let s:p.test_color_fg        = ['#eb4034', 102]
+let s:p.test_color_bg        = ['#BBB529', 142]
 
 
 " }}}
@@ -211,6 +180,8 @@ call s:HL('WarningSign', s:p.warnStripe, s:p.gutter)
 call s:HL('InfoSign', s:p.infoStripe, s:p.gutter)
 call s:HL('IdentifierUnderCaret', s:p.null, s:p.identifierUnderCaret)
 call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
+call s:HL('sheBang', s:p.fg, s:p.null, 'bold')
+call s:HL('testColor', s:p.test_color_fg, s:p.test_color_bg)
 
 " }}}
 
