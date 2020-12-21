@@ -55,7 +55,8 @@ function! functions#OpenURL()
     let line = getline(".")
     let uri = matchstr(line, '[a-z]*:\/\/[^ >,;:]*')
     if uri != ""
-        let uri = substitute(uri, "'\"", '', '')
+        let uri = substitute(uri, "'", '', '')
+        let uri = substitute(uri, '"', '', '')
         echom "Found " . uri
         let uri = escape(uri, "#?&;|%")
         " Todo: Potentially need to extend bey
