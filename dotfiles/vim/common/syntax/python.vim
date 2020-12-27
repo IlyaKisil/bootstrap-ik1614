@@ -30,8 +30,6 @@ let s:p.null = mdracula#palette.null
 let s:p.none = mdracula#palette.null
 
 " FIXME: provide correct values as the second element. See https://jonasjacek.github.io/colors/
-" FIXME: this should be specified befor statement/element based colors
-" Base colors
 let s:p.local_blue        = ['#5e94aa',1]
 let s:p.local_blue_1      = ['#619AB0',1]
 let s:p.local_pink        = ['#94558D',1]
