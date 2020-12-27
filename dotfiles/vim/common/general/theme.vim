@@ -18,8 +18,10 @@ if (has("termguicolors"))
 endif
 
 colorscheme mdracula
+let g:polyglot_disabled = ['python']
 
 " Theme specific settings
+" TODO: delete this once we are ready with mdracula
 if (g:colors_name == 'gruvbox')
     set background=dark
     " https://github.com/morhetz/gruvbox/wiki/Terminal-specific#1-italics-is-disabled

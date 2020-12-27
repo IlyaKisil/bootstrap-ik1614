@@ -38,7 +38,7 @@ function s:HL(group, fg, ...)
 endfunction
 
 " expose that function
-function mdracula#Hi(group, fg, ...)
+function mdracula#HL(group, fg, ...)
   if a:0 >= 2
     call s:HL(a:group, a:fg, a:1, a:2)
   elseif a:0 == 1
@@ -50,22 +50,26 @@ endfunction
 
 " }}}
 " Palette: {{{
-" setup palette dictionary
+" Setup palette dictionary
 let s:p = {}
 
-" expose the palette
+" Expose the palette
 let mdracula#palette=s:p
 
+
 " fill it with absolute colors
+" Choose analogous colors:
+"   * https://pinetools.com/lighten-color
+"   * https://www.hexcolortool.com
 let s:p.null = ['NONE', 'NONE']
 let s:p.none = ['NONE', 'NONE']
-let s:p.bg = ['#282c31', 235]
-let s:p.fg = ['#A9B7C6', 145]
+let s:p.bg  = ['#282c31', 235]
+let s:p.bg8 = ['#373c43', 238]
+let s:p.fg  = ['#A9B7C6', 145]
 let s:p.cursorLine = ['#2c3238', 236]
 let s:p.wrapGuide = s:p.cursorLine
 let s:p.gutter = s:p.cursorLine
 let s:p.cursorLineNr = ['#A4A3A3', 248]
-" let s:p.muted = ['#606060', 241]
 let s:p.muted = ['#606366', 241]
 let s:p.lineNumber = s:p.muted
 
@@ -90,7 +94,7 @@ let s:p.keyword = ['#CC7832', 172]
 let s:p.comment = ['#808080', 244]
 let s:p.docComment = ['#629755', 65]
 let s:p.string = ['#A5C261', 101]
-let s:p.number = ['#6897BB', 103]
+let s:p.number = ['#E5C07B', 103]
 let s:p.delimiter = ['#CC7832', 172]
 let s:p.specialComment = ['#8A653B', 95]
 let s:p.function = ['#FFC66D', 216]
@@ -101,7 +105,7 @@ let s:p.diffChange = ['#303C47', 23]
 let s:p.addStripe = ['#384C38', 66]
 let s:p.stripeWhiteSpace = ['#4C4638', 59]
 let s:p.changeStripe = ['#374752', 60]
-let s:p.deleteStripe = ['#656E76', 242]
+let s:p.deleteStripe = ['#E06C75', 242]
 let s:p.typo = ['#659C6B', 72]
 let s:p.metaData = ['#BBB529', 142]
 let s:p.macroName = ['#908B25', 100]
@@ -154,7 +158,10 @@ let s:p.UIBlue = ['#3592C4', 67]
 let s:p.UIGreen = ['#499C54', 71]
 let s:p.UIRed = ['#C75450', 131]
 let s:p.UIBrown = ['#93896C', 102]
-let s:p.test = ['#eb4034', 102]
+
+let s:p.test_color_fg        = ['#eb4034', 102]
+let s:p.test_color_bg        = ['#BBB529', 142]
+
 
 " }}}
 " Helper Hi Groups: {{{
@@ -173,10 +180,12 @@ call s:HL('WarningSign', s:p.warnStripe, s:p.gutter)
 call s:HL('InfoSign', s:p.infoStripe, s:p.gutter)
 call s:HL('IdentifierUnderCaret', s:p.null, s:p.identifierUnderCaret)
 call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
+call s:HL('sheBang', s:p.fg, s:p.null, 'bold')
+call s:HL('testColor', s:p.test_color_fg, s:p.test_color_bg)
 
 " }}}
 
-" Vanilla Colorscheme: {{{
+" Vanilla Colorscheme: {{{ ----------------------------------------------------
   " General UI: {{{
 
   set t_Co=256
@@ -210,7 +219,7 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
   " }}}
   " General Syntax Highlighting: {{{
   " Special characters, e.g. space, tab, 
-  call s:HL('NonText', s:p.muted)
+  call s:HL('NonText', s:p.bg8)
   hi! link SpecialKey NonText
   " Comments
   call s:HL('Comment', s:p.comment)
@@ -264,7 +273,10 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
   call s:HL('Folded', s:p.foldedFg, s:p.foldedBg)
   " Column where folds are displayed
   hi! link FoldColumn Folded
-  " Diffs
+
+  " }}}
+  " Diffs {{{
+
   call s:HL('DiffAdd', s:p.null, s:p.diffAdd)
   call s:HL('DiffChange', s:p.null, s:p.diffChange)
   call s:HL('DiffDelete', s:p.null, s:p.diffDelete)
@@ -420,3 +432,88 @@ call s:HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 
   " }}}
 " }}}
+
+" Plugin Specific: {{{ -------------------------------------------------------
+" GitGutter: {{{
+
+" Fill sign column with color instead of showing characters, but for deleted
+" lines use sign.
+hi! link GitGutterAdd           GitAddStripe
+hi! link GitGutterDelete        GitDeleteStripe
+hi! link GitGutterChange        GitChangeStripe
+hi! link GitGutterChangeDelete  GitChangeStripe
+
+" }}}
+" NERDTree: {{{
+
+hi! link NERDTreeDir GruvboxAqua
+hi! link NERDTreeDirSlash GruvboxAqua
+
+hi! link NERDTreeOpenable GruvboxOrange
+hi! link NERDTreeClosable GruvboxOrange
+
+hi! link NERDTreeFile GruvboxFg1
+hi! link NERDTreeExecFile GruvboxYellow
+
+hi! link NERDTreeUp GruvboxGray
+hi! link NERDTreeCWD GruvboxGreen
+hi! link NERDTreeHelp GruvboxFg1
+
+hi! link NERDTreeToggleOn GruvboxGreen
+hi! link NERDTreeToggleOff GruvboxRed
+
+" }}}
+" Sneak: {{{
+
+hi! link Sneak Search
+hi! link SneakLabel Search
+
+" }}}
+" }}}
+
+" Filetype Specific Colorscheme: {{{ -----------------------------------------
+" Markdown: {{{
+call s:HL('markdownH1', s:p.constant, s:p.null, 'italic')
+hi! link markdownH2 markdownH1
+hi! link markdownH3 markdownH1
+hi! link markdownH4 markdownH1
+hi! link markdownH5 markdownH1
+hi! link markdownH6 markdownH1
+hi! link markdownHeadingRule markdownH1
+hi! link markdownHeadingDelimiter markdownH1
+call s:HL('markdownAutomaticLink', s:p.link, s:p.null, 'underline')
+hi! link markdownBlockquote String
+hi! link markdownBoldDelimiter Keyword
+hi! link markdownBold NormalFg
+hi! link markdownItalicDelimiter Keyword
+hi! link markdownItalic NormalFg
+hi! link markdownCode Comment
+hi! link markdownCodeDelimiter markdownCode
+hi! link markdownCodeBlock markdownCode
+call s:HL('markdownLinkText', s:p.link, s:p.null, 'underline')
+hi! link markdownLinkTextDelimiter markdownLinkText
+hi! link markdownUrlDelimiter markdownLinkText
+call s:HL('markdownUrl', s:p.function, s:p.null, 'italic')
+hi! link markdownIdDelimiter Keyword
+hi! link markdownLinkDelimiter Keyword
+hi! link markdownIdDeclaration Keyword
+hi! link markdownLinkDelimiter NormalFg
+hi! link markdownUrlTitleDelimiter Comment
+hi! link markdownRule Comment
+" }}}
+" YAML: {{{
+hi! link yamlDocumentStart NormalFg
+hi! link yamlDocumentEnd NormalFg
+hi! link yamlBlockMappingKey Keyword
+hi! link yamlKeyValueDelimiter NormalFg
+hi! link yamlInteger NormalFg
+hi! link yamlFloat NormalFg
+hi! link yamlBlockCollectionItemStart NormalFg
+call s:HL('yamlAnchor', s:p.tag)
+hi! link yamlAlias yamlAnchor
+hi! link yamlBool NormalFg
+hi! link yamlNodeTag NormalFg
+hi! link yamlNull NormalFg
+" }}}
+" }}}
+

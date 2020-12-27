@@ -7,3 +7,18 @@
 # regardless of any setting above
 [includeIf "gitdir:IlyaKisil/"]
     path = ~/.gitconfig-personal
+
+# We keep this local in case some systems don't have nvim
+# For some reason 'vimdiff' doesn't pickup correct colors
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    tool = nvimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
+

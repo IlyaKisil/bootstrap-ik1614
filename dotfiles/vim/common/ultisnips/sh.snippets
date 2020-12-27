@@ -14,10 +14,10 @@ function __show_help() {
 
 Description:
 
-Usage: ${__SCRIPT_NAME} [-h|--help] [--option=<option_value>]
+Usage: $__SCRIPT_NAME [-h|--help] [--option=<option_value>]
 
 Examples:
-  ${__SCRIPT_NAME} --option=my_value
+  $__SCRIPT_NAME --option=my_value
 
 Options:
   -h|--help
@@ -51,13 +51,13 @@ option_value="default_value"
 
 ### Parse arguments
 for arg in "$@"; do
-  case ${arg} in
+  case "$arg" in
     -h|--help)
       __show_help
       exit
       ;;
     --option=*)
-      option_value="${arg#*=}"
+      option_value="\$\{arg#*=\}"
       ;;
     *)
       # Skip unknown option
@@ -74,9 +74,33 @@ done
 ##########################################
 
 ${1:### !!! DELETE IF SUDO PRIVILEGE IS NOT REQUIRED !!!
-if [[ ${EUID} -ne 0 ]]; then
+if [[ "$EUID" -ne 0 ]]; then
   echoerror "This script must be run as root" >&2
   exit 1
 fi}
+endsnippet
+
+snippet baseminimal "Add shebang and basic options" b
+#!/usr/bin/env bash
+
+set -euo pipefail
+endsnippet
+
+snippet parseargs "Parse key word arguments" b
+for arg in "$@"; do
+  case "$arg" in
+    -h|--help)
+      __show_help
+      exit
+      ;;
+    --${1:option}=*)
+      $1="\$\{arg#*=\}"
+      ;;
+    *)
+      # Skip unknown option
+      ;;
+  esac
+  shift
+done
 endsnippet
 

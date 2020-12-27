@@ -1,22 +1,49 @@
+#! /usr/local/bin/python3
 import os
 from pathlib import Path
 
 
 # TODO: one two three.
+# Todo: one two three.
+# todo: one two three.
 # NonText:  , space ,
 class Foo:
+    pass
+
+
+class Bar(Foo):
     tags: List[str]
 
     def __init__(self: Foo):
-        self.make_sense(whatever=1)
-        iresnti
-        risent
+        self.make_sense(whatever="5")
+        raw_string = r'Hi\nHello'
+        byte_string: bytes = b'newline:\n also newline:\x0a'
+        text_string = u"Cyrillic Я is \u042f. Oops: \u042g UniEscapeError"
+        hello = "hello"
+        multi_line_string = """
+            hello
+            how is it going?
+        """
+        format_string = f'{hello} {hello.capitalize()}'
+        format_string = f'{x!s:{"^10"}}'
+        _int, _float, big_int, scientific = (1, 1.2, 1_000_000, 2e3)
 
-    def make_sense(self, parameter, whatever, *arg, **kwargs):
+        i += 2
+
+    def __repr__(self):
+        return "haha"
+
+    def hello(self, f=5, b="s", b=[], a={}, d=dict(), c=()) -> List[str]:
+        pass
+
+    def make_sense(self, parameter: str, whatever: List[str], *arg, **kwargs):
         self.sense = parameter
+        self.hello()
         try:
-            ilia = 1/0 + 1.2 + 2e3 2eresert
+            2python-code-error
         except Exception:
+            pass
+        finally:
             pass
         if
 
@@ -36,16 +63,14 @@ def bar(x):
     @param x Parameter
 
     Semantic highlighting:
-    Generated spectrum to pick colors for local variables and parameters:
-    Color#1 SC1.1 SC1.2 SC1.3 SC1.4 Color#2 SC2.1 SC2.2 SC2.3 SC2.4 Color#3
-    Color#3 SC3.1 SC3.2 SC3.3 SC3.4 Color#4 SC4.1 SC4.2 SC4.3 SC4.4 Color#5
+    Generated spectrum to pick cirestnierniolors for local variables and parameters:
+
+    >>> [factorial(n) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
     """
     # Some comment
     s = (
-        "Test",
-        2+3,
         {'a': 'b'},
-        f'{x!s:{"^10"}}'
     )
     bar(s[0].lower())
 

@@ -61,6 +61,7 @@ Plug 'https://github.com/lervag/vimtex'
 " ---------- Git
 Plug 'https://github.com/airblade/vim-gitgutter'
 Plug 'https://github.com/tpope/vim-fugitive'                " Git integration
+Plug 'https://github.com/tpope/vim-rhubarb'                 " Open current file/selection on GitHub
 
 
 " ---------- Misc
@@ -72,4 +73,5 @@ Plug 'https://github.com/honza/vim-snippets'
 Plug 'https://github.com/machakann/vim-highlightedyank'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/TaDaa/vimade'                      " Dim inactive buffer
+Plug 'liuchengxu/vim-which-key'
 call plug#end()
