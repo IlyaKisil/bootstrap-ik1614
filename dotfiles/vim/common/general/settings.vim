@@ -95,7 +95,7 @@ set backspace=indent,eol,start
 set clipboard=unnamed
 " Show special characters
 set list
-set listchars=space:.,tab:->
+set listchars=space:.,tab:-->
 " Arrow pointing downwards then curving rightwards (U+2937, UTF-8: E2 A4 B7)
 if has('linebreak')
   let &showbreak='⤷ '
