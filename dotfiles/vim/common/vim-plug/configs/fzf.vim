@@ -7,23 +7,23 @@
 " ############################################
 
 " Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0,'xoffset': 0, 'highlight': 'Todo'} }
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0,'xoffset': 0} }
 
 " Customize fzf colors to match your color scheme
-let g:fzf_colors = {
-            \ 'fg':      ['fg', 'Normal'],
-            \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-            \ 'hl+':     ['fg', 'Statement'],
-            \ 'info':    ['fg', 'PreProc'],
-            \ 'border':  ['fg', 'Ignore'],
-            \ 'prompt':  ['fg', 'Conditional'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['fg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
+" This is set through 'FZF_DEFAULT_OPTS' env variable.
+" For color reference use https://minsw.github.io/fzf-color-picker/
+" let g:fzf_colors = {}
+" let g:fzf_colors['bg'] = ['bg', 'Pmenu']
+" let g:fzf_colors.hl = ['fg', 'Number']
+" let g:fzf_colors['hl+'] = ['fg', 'Number']
+" let g:fzf_colors.info = ['fg', 'Statement']
+" let g:fzf_colors.border = ['fg', 'Statement']
+" let g:fzf_colors.prompt = ['fg', 'Statement']
+" let g:fzf_colors.pointer = ['fg', 'Statement']
+" let g:fzf_colors.marker = ['fg', 'Statement']
+" let g:fzf_colors.spinner = ['fg', 'Statement']
+" let g:fzf_colors.header = ['fg', 'PreProc']
+
 
 function! FzfPreviewIfWide(...)
     " Helper for having horizontal or vertical preview based on window width
@@ -64,7 +64,10 @@ if executable('rg')
                     \ '--follow',
                     \ '--smart-case',
                     \ '--glob "!.git/*"',
-                    \ '--color "auto"',
+                    \ '--glob "!.idea/*"',
+                    \ '--glob "!.*ipynb_checkpoints/*"',
+                    \ '--glob "!*.aux"',
+                    \ '--color "always"',
                     \ ]
         let rg_flags = extend(rg_default_flags, rg_extra_flags)
         let rg_flags_string = join(rg_flags, ' ')

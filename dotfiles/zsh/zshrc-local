@@ -49,7 +49,24 @@ ZSH_PLUGINS=(
 ###----------------------------    CLI TOOLS   -----------------------------###
 if command -v fzf 1>/dev/null 2>&1; then
     ZSH_PLUGINS=(${ZSH_PLUGINS} fzf)
-    export FZF_DEFAULT_OPTS='--height 40% --inline-info --layout=reverse --border'
+    FZF_ORANGE_COLOR="#CC7832"
+    FZF_YELLOW_COLOR="#E5C07B"
+    FZF_OPTS="--height 40% --inline-info --layout=reverse --no-bold --cycle"
+    FZF_COLORS="
+      --color=fg:-1
+      --color=bg:-1
+      --color=fg+:-1
+      --color=bg+:#46484A
+      --color=hl+:${FZF_YELLOW_COLOR}
+      --color=hl:${FZF_YELLOW_COLOR}
+      --color=info:${FZF_ORANGE_COLOR}
+      --color=prompt:${FZF_ORANGE_COLOR}
+      --color=pointer:${FZF_ORANGE_COLOR}
+      --color=border:${FZF_ORANGE_COLOR}
+      --color=spinner:${FZF_ORANGE_COLOR}
+      --color=header:#BBB529
+    "
+    export FZF_DEFAULT_OPTS="${FZF_OPTS} ${FZF_COLORS}"
 
     # Provides nice coloring for preview window with clear
     # highlight of search result. To see other options use
