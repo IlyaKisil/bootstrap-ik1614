@@ -4,6 +4,7 @@ endsnippet
 
 snippet base "Script template with parsing options and help message" b
 #!/usr/bin/env bash
+# vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
 
 set -euo pipefail
 
@@ -69,19 +70,23 @@ done
 ### Define new variables with respect to the parsed arguments
 
 
-##########################################
-#--------          MAIN          --------#
-##########################################
+### And you are ready to go
+function main(){
+  ${2:echo "hello"}
+}
 
 ${1:### !!! DELETE IF SUDO PRIVILEGE IS NOT REQUIRED !!!
 if [[ "$EUID" -ne 0 ]]; then
   echoerror "This script must be run as root" >&2
   exit 1
 fi}
+
+main
 endsnippet
 
 snippet baseminimal "Add shebang and basic options" b
 #!/usr/bin/env bash
+# vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
 
 set -euo pipefail
 endsnippet
