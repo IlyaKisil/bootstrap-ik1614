@@ -20,6 +20,9 @@ let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_ignore_filters = [
             \ 'LaTeX Warning: You have requested document class',
             \ 'LaTeX Warning: You have requested package',
+            \ 'LaTeX Warning: Reference',
+            \ 'LaTeX Font Warning: Font shape',
+            \ 'LaTeX Font Warning: Size substitutions with differences up to',
             \ 'Overfull \\hbox ',
             \ 'I found no \\citation commands',
             \]
