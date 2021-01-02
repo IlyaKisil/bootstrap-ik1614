@@ -53,6 +53,8 @@ endfunction
 " ----------------------------------------------------------------------------
 if executable('rg')
 
+    set grepprg=rg\ --vimgrep
+
     function! GetRgFlags(...)
         " Generate string of flags to be passed to 'ripgrep'
         let rg_extra_flags = get(a:, 1, [])
@@ -108,9 +110,6 @@ if executable('rg')
                     \ )
     endfunction
 
-    set grepprg=rg\ --vimgrep
-    let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags(["--files"])
-
     " Make Ripgrep search ONLY file contents and not filenames
     command! -bang -nargs=* RG
                 \ call fzf#vim#grep(
@@ -135,20 +134,28 @@ if executable('rg')
                 \ FzfOnlyPreview(),
                 \ <bang>0)
 
-    " Slightly modified ':GFile' to show preview either right or down base on
-    " window width
-    command! -bang -nargs=? GFILES
-                \ call fzf#vim#gitfiles(
-                \ <q-args>,
-                \ FzfPreviewIfWide(),
-                \ <bang>0)
 endif
+
+" Slightly modified ':GFile' and ':Files' to show preview either on the right
+" or down below based on window width
+"
+" let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags(["--files"])
+command! -bang -nargs=? GFILES
+            \ call fzf#vim#gitfiles(
+            \ <q-args>,
+            \ FzfPreviewIfWide(),
+            \ <bang>0)
+command! -bang -nargs=? FILES
+            \ call fzf#vim#files(
+            \ <q-args>,
+            \ FzfPreviewIfWide(),
+            \ <bang>0)
 
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
-nnoremap <C-p> :<C-u>GFILES<CR>
-nnoremap <silent><nowait> <leader>ff :<C-u>Files<CR>
+nnoremap <silent><nowait> <C-p>      :<C-u>GFILES<CR>
+nnoremap <silent><nowait> <leader>ff :<C-u>FILES<CR>
 nnoremap <silent><nowait> <leader>fb :<C-u>Buffers<CR>
 nnoremap <silent><nowait> <leader>fs :<C-u>SEARCH<CR>
 nnoremap <silent><nowait> <leader>fr :<C-u>RG<CR>
