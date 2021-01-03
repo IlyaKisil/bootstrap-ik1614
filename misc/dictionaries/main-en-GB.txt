@@ -5,6 +5,9 @@ olga
 danilo
 color
 colors
+setup
+setups
+mdracula
 
 # Commands and tools
 Hashicorp
@@ -16,6 +19,7 @@ doctoc
 vimrc
 dotfiles
 terraform
+iterm
 
 # Acronyms
 tmp
