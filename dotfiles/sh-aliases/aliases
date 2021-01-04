@@ -15,7 +15,7 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
 fi
 
 alias vim='nvim'
-alias vvim='vim'
+alias vvim='\vim'
 alias import-secrets="source $ZSHENV_SECRETS"
 
 alias ..='cd ..'
