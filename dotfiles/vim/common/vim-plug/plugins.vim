@@ -18,7 +18,7 @@ Plug 'https://github.com/ryanoasis/vim-devicons'
 
 
 " ---------- File and content browsers
-Plug 'https://github.com/preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/junegunn/fzf'
 Plug 'https://github.com/junegunn/fzf.vim'
 " Search the file for FIXME, TODO, and XXX (or a custom list) and put them in a handy list for you to browse
@@ -34,6 +34,7 @@ Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
 
 " ---------- Formatting
 Plug 'https://github.com/editorconfig/editorconfig-vim'
+Plug 'https://github.com/junegunn/vim-easy-align'
 
 
 " ---------- Navigation with a file

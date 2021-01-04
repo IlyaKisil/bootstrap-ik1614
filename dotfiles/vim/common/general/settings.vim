@@ -143,5 +143,7 @@ augroup now
     autocmd BufWritePre * :call functions#TrimWhitespace()
     autocmd BufWritePre * :call functions#MakeNonExistingDir(expand('<afile>'), +expand('<abuf>'))
 
+    " Always show help window on the left
+    autocmd FileType help wincmd L
 augroup END
 

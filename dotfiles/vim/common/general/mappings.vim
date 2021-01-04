@@ -10,7 +10,7 @@
 " GENERAL MAPPINGS (not related to plugins)
 " ============================================================================
 let mapleader="\<Space>"
-let maplocalleader="\\"
+let maplocalleader="\,"
 
 " Don't move cursor
 nnoremap <Space> <Nop>
@@ -19,7 +19,7 @@ nnoremap <Space> <Nop>
 nnoremap <C-l> :nohl<CR><C-L>
 
 
-" When you paste over something send that content to "the black hole register"
+" When you paste over something send that content to 'the black hole register'
 vnoremap <leader>p "_dP
 
 
@@ -43,9 +43,9 @@ cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " Loop through quickfix and locations lists
 command! Cnext try | cnext | catch | cfirst | catch | endtry
-command! Cprev try | cprev | catch | clast | catch | endtry
+command! Cprev try | cprev | catch | clast  | catch | endtry
 command! Lnext try | lnext | catch | lfirst | catch | endtry
-command! Lprev try | lprev | catch | llast | catch | endtry
+command! Lprev try | lprev | catch | llast  | catch | endtry
 
 " Can't use <C-p> as it is reserved for 'fzf'
 " Consider using <C-m>, if you reserve <C-k> for pane movement
@@ -60,7 +60,6 @@ map <localleader>n :Lnext<CR>
 
 " Convenience for applying macros
 nnoremap Q @q
-vnoremap Q :norm @q<cr>
 
 " Movements between tabs
 nnoremap <leader>q        :tabclose<CR>
@@ -71,3 +70,27 @@ nnoremap <silent> <S-TAB> :tabprevious<CR>
 " Open URL on the current line in a web browser
 nnoremap <leader>ow :call functions#OpenURL()<CR>
 vnoremap <leader>ow :call functions#OpenURL()<CR>
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Same when moving up and down
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+
+"make Y consistent with C and D
+nnoremap Y y$
+
+" Visual Mode for '*' and '#'. By default it will extend highlighting till the
+" next match.
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>

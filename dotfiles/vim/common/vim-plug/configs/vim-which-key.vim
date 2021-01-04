@@ -15,6 +15,11 @@ let g:which_key_sep = '→'
 let g:which_key_use_floating_win = 0
 let g:which_key_max_size = 0
 
+" Don't show status line etc for 'vim-which-key' buffer
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 
 nnoremap <silent> <leader><leader>           :<c-u>WhichKey       '<Space>'<CR>
 vnoremap <silent> <leader><leader>           :<c-u>WhichKeyVisual '<Space>'<CR>
@@ -23,21 +28,21 @@ vnoremap <silent> <localleader><localleader> :<c-u>WhichKeyVisual ','<CR>
 
 " Create map for leader key
 let g:leader_map =  {}
-let g:leader_map['?'] = [ 'Maps', 'show-keybindings' ]
+let g:leader_map['?'] = ['Maps', 'show-keybindings']
 
 " Group mappings
 
 " f is for 'Fuzzy Search'
 let g:leader_map.f = {
       \ 'name' : '+fzf-find' ,
-      \ 'f': [ 'GFILES',   'Files git'],
-      \ 'a': [ 'FILES',    'All files'],
-      \ 'b': [ 'Buffers',  'Buffers'],
-      \ 's': [ 'SEARCH',   'All files content'],
-      \ 'r': [ 'RG',       'Files content search'],
-      \ 'o': [ 'LINES',    'Open buffers search'],
-      \ 'c': [ 'Commands', 'Commands vim'],
-      \ 'm': [ 'Marks',    'Marks'],
+      \ 'f': ['GFILES',   'Files git'],
+      \ 'a': ['FILES',    'All files'],
+      \ 'b': ['Buffers',  'Buffers'],
+      \ 's': ['SEARCH',   'Search content in all files'],
+      \ 'r': ['RG',       'Ripgrep content search'],
+      \ 'o': ['LINES',    'Open buffers content search'],
+      \ 'c': ['Commands', 'Commands vim'],
+      \ 'm': ['Marks',    'Marks'],
       \ }
 
 " g is for 'GIT'
@@ -70,6 +75,8 @@ let g:leader_map.s = {
 
 let g:leader_map.o = {
       \ 'name' : '+open' ,
+      \ 'l' : ['', 'Location list'],
+      \ 'q' : ['', 'Quickfix list'],
       \ 't' : ['', 'Terminal'],
       \ 'w' : ['functions#OpenURL()', 'Web Browser for current url'],
       \ }

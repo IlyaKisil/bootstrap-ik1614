@@ -11,7 +11,9 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0
 
 " Customize fzf colors to match your color scheme
 " This is set through 'FZF_DEFAULT_OPTS' env variable.
-" For color reference use https://minsw.github.io/fzf-color-picker/
+" For color reference use
+" * https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
+" * https://minsw.github.io/fzf-color-picker/
 " let g:fzf_colors = {}
 " let g:fzf_colors['bg'] = ['bg', 'Pmenu']
 " let g:fzf_colors.hl = ['fg', 'Number']
@@ -145,7 +147,7 @@ command! -bang -nargs=? GFILES
             \ <q-args>,
             \ FzfPreviewIfWide(),
             \ <bang>0)
-command! -bang -nargs=? FILES
+command! -bang -nargs=? -complete=dir FILES
             \ call fzf#vim#files(
             \ <q-args>,
             \ FzfPreviewIfWide(),
