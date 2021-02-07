@@ -16,6 +16,8 @@ fi
 
 alias vim='nvim'
 alias vvim='\vim'
+alias :q='exit'
+alias :wq='exit'
 alias import-secrets="source $ZSHENV_SECRETS"
 
 alias ..='cd ..'
