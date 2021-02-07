@@ -8,6 +8,8 @@ snippet base "Script template with parsing options and help message" b
 
 set -euo pipefail
 
+. import_blockchain_module utils
+
 __SCRIPT_NAME=$(basename ${BASH_SOURCE[0]})
 
 function __show_help() {
@@ -28,23 +30,6 @@ Options:
     Use key value option.
 
 HELP_USAGE
-}
-
-### Utility functions
-function echodebug() {
-  printf "* DEBUG: %s\\n" "$@";
-}
-
-function echoinfo() {
-  printf "* INFO: %s\\n" "$@";
-}
-
-function echowarn() {
-  printf "* WARN: %s\\n" "$@";
-}
-
-function echoerror() {
-   printf "* ERROR: %s\\n" "$@";
 }
 
 ### Default values for variables
@@ -89,6 +74,9 @@ snippet baseminimal "Add shebang and basic options" b
 # vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
 
 set -euo pipefail
+
+. import_blockchain_module utils
+
 endsnippet
 
 snippet parseargs "Parse key word arguments" b
@@ -109,3 +97,20 @@ for arg in "$@"; do
 done
 endsnippet
 
+snippet parseopts "Parse option" b
+while getopts ':h' opt; do
+  case "$opt" in
+    h)
+      __show_help
+      exit 0
+      ;;
+    \?)
+      utils::echo_warn "Invalid option: $OPTARG" 1>&2
+      ;;
+    :)
+      utils::echo_warn "Invalid option: $OPTARG requires an argument" 1>&2
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+endsnippet
