@@ -8,6 +8,9 @@ colors
 setup
 setups
 mdracula
+entrypoint
+entrypoints
+repos
 
 # Commands and tools
 Hashicorp
@@ -20,6 +23,13 @@ vimrc
 dotfiles
 terraform
 iterm
+psql
+postgres
+postgresql
+telnet
+printf
+datadog
+traefik
 
 # Acronyms
 tmp
