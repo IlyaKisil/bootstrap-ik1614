@@ -10,7 +10,7 @@
 " GENERAL MAPPINGS (not related to plugins)
 " ============================================================================
 let mapleader="\<Space>"
-let maplocalleader="\,"
+" let maplocalleader="\,"
 
 " Don't move cursor
 nnoremap <Space> <Nop>
@@ -94,3 +94,7 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" Move selection up and down. This will also respect indentation levels
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
