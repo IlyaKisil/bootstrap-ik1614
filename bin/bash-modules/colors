@@ -19,3 +19,20 @@ colors::detect_color_support() {
     WHITE_COLOR=""
   fi
 }
+
+colors::red() {
+  printf "${RED_COLOR}${@:1}${WHITE_COLOR}"
+}
+
+colors::green() {
+  printf "${GREEN_COLOR}${@:1}${WHITE_COLOR}"
+}
+
+colors::purple() {
+  printf "${PURPLE_COLOR}${@:1}${WHITE_COLOR}"
+}
+
+colors::yellow() {
+  printf "${YELLOW_COLOR}${@:1}${WHITE_COLOR}"
+}
+
