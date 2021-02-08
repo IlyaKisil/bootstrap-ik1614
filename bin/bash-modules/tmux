@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+# vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
+
+source import_ik1614_module utils
+
+
+tmux::create_session_cluster() {
+  # This function creates a new tmux **session** with multiple **windows**
+  # It takes a name for a new **session** followed by a list of
+  # commands to be execute in new tmux **windows**.
+  #
+  # Examples
+  # ========
+  # * Pass list of commands in one line
+  #     tmux::create_session_cluster sandbox "ssh dev" "ssh staging"
+  #
+  # * Pass commands defined as an array
+  #     commands=(
+  #       "ssh dev"
+  #       "ssh staging"
+  #     )
+  #     tmux::create_session_cluster sandbox "${commands[@]}"
+  #
+  # * Pass commands generated within a loop
+  #     commands=()
+  #     commands+=("ssh dev")
+  #     commands+=("ssh staging")
+  #     tmux::create_session_cluster sandbox "${commands[@]}"
+
+  local name="$(tmux::get_new_cluster_name "$1")"
+  local commands=("${@:2}")
+  local c
+
+  tmux::check_running
+
+  tmux new-session -d -x 2000 -y 2000 -s "$name"
+  for c in "${commands[@]}"; do
+    tmux new-window -t "$name" "$c"
+  done
+  tmux switch -t "$name"
+
+  # Kill original window
+  tmux next-window -t "$name"
+  tmux kill-window -t "$name"
+}
+
+
+tmux::create_window_cluster() {
+  # This function creates a new tmux **window** with multiple **panes**
+  # It takes a name for a new **window** followed by a list of
+  # commands to be execute in new tmux **panes**.
+  #
+  # Examples
+  # ========
+  # * Pass list of commands in one line
+  #     tmux::create_window_cluster sandbox "ssh dev" "ssh staging"
+  #
+  # * Pass commands defined as an array
+  #     commands=(
+  #       "ssh dev"
+  #       "ssh staging"
+  #     )
+  #     tmux::create_window_cluster sandbox "${commands[@]}"
+  #
+  # * Pass commands generated within a loop
+  #     commands=()
+  #     commands+=("ssh dev")
+  #     commands+=("ssh staging")
+  #     tmux::create_window_cluster sandbox "${commands[@]}"
+
+  local name="$(tmux::get_new_cluster_name "$1")"
+  local commands=("${@:2}")
+  local command_index
+  local c
+
+  tmux::check_running
+
+  tmux new-window -n "$name"
+
+  for command_index in "${!commands[@]}"; do
+      c="${commands[$command_index]}"
+
+      if ! (( $command_index % 8 )); then
+        tmux split-window -h -p "10" "$c"
+        tmux select-pane -L
+      else
+        tmux select-pane -D
+        tmux split-window -b -p "10" "$c"
+      fi
+  done
+
+  # Kill original pane
+  tmux select-pane -D
+  tmux kill-pane
+  tmux select-layout tiled
+}
+
+
+tmux::get_new_cluster_name() {
+  local name="cluster-$1"
+  local existing_sessions="$(tmux ls | awk -F':' '{print $1}')"
+  local cluster_name="$name"
+  local counter=1
+
+  while grep -Eq "^$cluster_name$" <<< "$existing_sessions"; do
+    cluster_name="$name-$counter"
+    counter=$((counter+1))
+  done
+
+  echo "$cluster_name"
+}
+
+
+tmux::check_running() {
+  utils::check_software tmux
+
+  if [ -z "${TMUX-}" ]; then
+    utils::echo_err "You need to start TMUX first"
+    exit 1
+  fi
+}
+

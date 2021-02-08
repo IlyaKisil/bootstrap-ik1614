@@ -30,7 +30,6 @@ utils::echo_err() {
   >&2 printf "${RED_COLOR:-}* ERROR:${WHITE_COLOR:-} %s\\n" "$@";
 }
 
-
 utils::check_software() {
   local item
 
@@ -52,5 +51,43 @@ utils::get_unused_port() {
 
     [ $? -eq 1 ] && echo "$port" && break;
   done
+}
+
+utils::fzf(){
+  # Simple wrapper for 'fzf' to standardise help messages
+  local target_name="${1}"
+  local all_targets="${2}"
+  local fzf_options="${3:-""}"
+  local target
+
+  utils::check_software fzf
+
+  n_targets="$(echo "${all_targets}" | wc -l)"
+
+  if [[ "$n_targets" -gt 1 ]]; then
+      utils::echo_info "Choose $target_name, followed by [enter]. Use [Ctrl-C] to exit."
+
+      # Check for substring. Although looks ugly, but we need to
+      # make clear indication when multiple items can be selected)
+      if [[ "$fzf_options" == *"--multi"* ]]; then
+          utils::echo_info "TAB and Shift-TAB to mark (unmark) multiple items"
+          utils::echo_info "Once marked you can search for different pattern"
+      fi
+
+      target="$(set -e; echo "$all_targets" | fzf --cycle ${fzf_options})"
+  else
+      target="${all_targets}"
+  fi
+  echo "$target"
+}
+
+utils::fzf_select(){
+  # Allow/Restore ability of piping into 'fzf'
+  utils::fzf "$1" "${2:-$(</dev/stdin)}"
+}
+
+utils::fzf_multi_select(){
+  # Allow/Restore ability of piping into 'fzf'
+  utils::fzf "$1" "${2:-$(</dev/stdin)}" "--multi"
 }
 
