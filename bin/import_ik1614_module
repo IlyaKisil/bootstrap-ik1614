@@ -1,0 +1,16 @@
+# vim: set ft=sh
+
+# Use this to source files in the bash-modules directory
+# This should be on your path and is used like so:
+#
+# source import_ik1614_module __MODULE_NAME__
+#
+# where '__MODULE_NAME__' is a file name in ./bash-modules/*
+#
+# Namespacing is done on the function level within the module, i.e.
+# functions should start with name of the module followed by double
+# colon.
+
+for module in "$@"; do
+  source "$(dirname "${BASH_SOURCE[0]}")/bash-modules/${module}"
+done

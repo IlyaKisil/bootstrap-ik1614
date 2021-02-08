@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
+
+set -euo pipefail
+
+
+#----------------------------------------------------------------------------------------
+# Echos info at different level to stderr, which allows to use them within
+# subshells that supposed to return some values.
+#
+# To get status of the message colorised, use 'colors' module
+#
+#   source import_ik1614_module utils colors
+#   colors::detect_color_support
+#   utils::echo_debug "Whatever"
+#----------------------------------------------------------------------------------------
+utils::echo_debug() {
+  >&2 printf "${PURPLE_COLOR:-}* DEBUG:${WHITE_COLOR:-} %s\\n" "$@";
+}
+
+utils::echo_info() {
+  >&2 printf "${GREEN_COLOR:-}* INFO:${WHITE_COLOR:-} %s\\n" "$@";
+}
+
+utils::echo_warn() {
+  >&2 printf "${YELLOW_COLOR:-}* WARN:${WHITE_COLOR:-} %s\\n" "$@";
+}
+
+utils::echo_err() {
+  >&2 printf "${RED_COLOR:-}* ERROR:${WHITE_COLOR:-} %s\\n" "$@";
+}
+
+
+utils::check_software() {
+  local item
+
+  for item in "$@"; do
+    if ! [[ -x "$(command -v ${item})" ]]; then
+      utils::echo_err "[${item}] not installed"
+      exit 1
+    fi
+  done
+}
+
+utils::get_unused_port() {
+  local port
+
+  utils::check_software telnet
+  for port in $(seq 4444 65000); do
+    echo -ne "\035" \
+      | telnet 127.0.0.1 $port > /dev/null 2>&1
+
+    [ $? -eq 1 ] && echo "$port" && break;
+  done
+}
+
