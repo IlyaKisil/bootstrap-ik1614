@@ -17,43 +17,20 @@ function __show_help() {
 
 Description:
 
-Usage: $__SCRIPT_NAME [-h|--help] [--option=<option_value>]
+Usage: $__SCRIPT_NAME [-h|--help] ARG_1
 
 Examples:
-  $__SCRIPT_NAME --option=my_value
+  $__SCRIPT_NAME
+
+Arguments:
+  ARG_1
 
 Options:
   -h|--help
     Show this message.
 
-  --option=<option_value>
-    Use key value option.
-
 HELP_USAGE
 }
-
-### Default values for variables
-option_value="default_value"
-
-### Parse arguments
-for arg in "$@"; do
-  case "$arg" in
-    -h|--help)
-      __show_help
-      exit
-      ;;
-    --option=*)
-      option_value="\$\{arg#*=\}"
-      ;;
-    *)
-      # Skip unknown option
-      ;;
-  esac
-  shift
-done
-
-### Define new variables with respect to the parsed arguments
-
 
 ### And you are ready to go
 function main(){
@@ -66,7 +43,7 @@ if [[ "$EUID" -ne 0 ]]; then
   exit 1
 fi}
 
-main
+main "${@:-}"
 endsnippet
 
 snippet baseminimal "Add shebang and basic options" b
