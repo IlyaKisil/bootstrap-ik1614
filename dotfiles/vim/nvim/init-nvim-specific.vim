@@ -10,3 +10,8 @@
 " ---------- NeoVim specific settings
 " This is where 'pynvim' should be installed
 let g:python3_host_prog = '$HOME/.pyenv/versions/3.7.6/bin/python'
+
+
+lua require("ik1614.telescope")
+
+nnoremap <leader>oo :lua require('ik1614.telescope').search_dotfiles()<CR>

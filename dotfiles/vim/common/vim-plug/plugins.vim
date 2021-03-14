@@ -31,6 +31,12 @@ Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'https://github.com/neomake/neomake'
 " Plug 'https://github.com/vim-syntastic/syntastic'
 
+" ---------- Navigation, IntelliSense, Completion and Linting
+Plug 'https://github.com/nvim-lua/popup.nvim'
+Plug 'https://github.com/nvim-lua/plenary.nvim'
+Plug 'https://github.com/nvim-telescope/telescope.nvim'
+Plug 'https://github.com/nvim-telescope/telescope-fzy-native.nvim'
+
 
 " ---------- Formatting
 Plug 'https://github.com/editorconfig/editorconfig-vim'

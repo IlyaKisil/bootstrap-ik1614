@@ -12,6 +12,7 @@
     # This is sort of shared between NeoVim and Vim configs
     ~/.config/ultisnips: dotfiles/vim/common/ultisnips
     ~/.config/dictionaries-ik1614: misc/dictionaries
+    ~/.config/nvim/lua: dotfiles/vim/nvim/lua
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.config/nvim/init-local.vim ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.config/nvim/init-local.vim", Initialising init-local.vim]

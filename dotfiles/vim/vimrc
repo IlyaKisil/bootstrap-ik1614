@@ -12,6 +12,11 @@
 
 let s:__configs = []
 
+call add(s:__configs, '/general/settings.vim')
+call add(s:__configs, '/general/mappings.vim')
+call add(s:__configs, '/general/theme.vim')
+call add(s:__configs, '/vim-plug/plugins.vim')
+
 if has("nvim")
     let $__VIM_DOTFILES_HOME = $HOME.'/.config/nvim'
     let __local_configs_path = $__VIM_DOTFILES_HOME.'/init-local.vim'
@@ -22,10 +27,6 @@ else
     let __local_configs_path = $__VIM_DOTFILES_HOME.'/vimrc-local'
 endif
 
-call add(s:__configs, '/general/settings.vim')
-call add(s:__configs, '/general/mappings.vim')
-call add(s:__configs, '/general/theme.vim')
-call add(s:__configs, '/vim-plug/plugins.vim')
 call add(s:__configs, '/vim-plug/configs/vim-airline.vim')
 call add(s:__configs, '/vim-plug/configs/vim-devicons.vim')
 call add(s:__configs, '/vim-plug/configs/nerdtree.vim')
