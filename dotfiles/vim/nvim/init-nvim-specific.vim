@@ -11,7 +11,5 @@
 " This is where 'pynvim' should be installed
 let g:python3_host_prog = '$HOME/.pyenv/versions/3.7.6/bin/python'
 
-
-lua require("ik1614.telescope")
-lua require("ik1614.mappings")
-
+" This 'require' will become new init.vim/init.lua
+lua require("ik1614")
