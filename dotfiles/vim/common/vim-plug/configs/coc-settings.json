@@ -88,5 +88,17 @@
   // List of dictionaries to use when checking files
   "cSpell.dictionaries": [
     "ik1614-main-en-GB"
-  ]
+  ],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
