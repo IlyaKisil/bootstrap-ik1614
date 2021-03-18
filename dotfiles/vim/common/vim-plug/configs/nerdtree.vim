@@ -8,8 +8,8 @@
 
 " (MacOS: if there are problems with displaying vim-devicons, chances are you need to update vim)
 
-map <F3> :NERDTreeToggle<CR>    " toggle nerdtree display
-nmap ,t :NERDTreeFind<CR>       " open nerdtree with the current file selected
+" map <F3> :NERDTreeToggle<CR>    " toggle nerdtree display
+" nmap ,t :NERDTreeFind<CR>       " open nerdtree with the current file selected
 
 let NERDTreeShowHidden=1
 

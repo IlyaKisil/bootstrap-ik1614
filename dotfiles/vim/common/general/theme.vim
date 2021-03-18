@@ -18,7 +18,10 @@ if (has("termguicolors"))
 endif
 
 colorscheme mdracula
-let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = [
+            \ 'python',
+            \ 'sh',
+            \ ]
 
 " Theme specific settings
 " TODO: delete this once we are ready with mdracula
