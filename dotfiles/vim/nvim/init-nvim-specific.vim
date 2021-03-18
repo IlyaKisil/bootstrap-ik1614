@@ -13,5 +13,5 @@ let g:python3_host_prog = '$HOME/.pyenv/versions/3.7.6/bin/python'
 
 
 lua require("ik1614.telescope")
+lua require("ik1614.mappings")
 
-nnoremap <leader>oo :lua require('ik1614.telescope').search_dotfiles()<CR>

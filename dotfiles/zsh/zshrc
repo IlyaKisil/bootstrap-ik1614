@@ -139,7 +139,9 @@ fi
 
 ### Other variables
 if command -v nvim 1>/dev/null 2>&1; then
-    export EDITOR="$(which nvim)"
+    # TODO: Revert once nvim 0.5 is officially released
+    # export EDITOR="$(which nvim)"
+    export EDITOR="$HOME/opt/nvim-osx64-2021-03-13/bin/nvim"
 else
     export EDITOR="$(which vim)"
 fi
