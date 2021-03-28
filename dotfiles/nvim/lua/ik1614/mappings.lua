@@ -1,5 +1,5 @@
 -- Helper function
-function map(mode, lhs, rhs, opts)
+local map = function (mode, lhs, rhs, opts)
     local options = {noremap = true, silent = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
@@ -22,35 +22,6 @@ map('n', '<C-l>', ':nohl<CR><C-L>')
 map('v', '<leader>p', '"_dP')
 
 
--- " Move cursor through long soft-wrapped lines that doesn't break <count>
--- noremap <expr> k (v:count == 0 ? 'gk' : 'k')
--- noremap <expr> j (v:count == 0 ? 'gj' : 'j')
-
-
--- " Use <C-k> to go up within a completion menu. For going down, use default
--- " binding <C-n>, which is convenient with Colemak layout
--- inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
--- cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
--- " inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
--- " cnoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-
-
--- " Loop through quickfix and locations lists
--- command! Cnext try | cnext | catch | cfirst | catch | endtry
--- command! Cprev try | cprev | catch | clast  | catch | endtry
--- command! Lnext try | lnext | catch | lfirst | catch | endtry
--- command! Lprev try | lprev | catch | llast  | catch | endtry
-
--- " Can't use <C-p> as it is reserved for 'fzf'
--- " Consider using <C-m>, if you reserve <C-k> for pane movement
--- map <C-k> :Cprev<CR>
--- map <C-n> :Cnext<CR>
-
--- " Since location list is for current buffer, it kind makes sense to
--- " use local leader for mnemonic, although I'd prefer to have something
--- " that can be constantly pressed (similar to <C-n>)
--- map <localleader>k :Lprev<CR>
--- map <localleader>n :Lnext<CR>
 
 -- " Convenience for applying macros
 map('n', 'Q', '@q')
@@ -78,11 +49,41 @@ map('n', '<C-u>', '<C-u>zz')
 -- "make Y consistent with C and D
 map('n', 'Y', 'y$')
 
-
--- These are also temporary mappings
+-- TODO: convert to lua native mappings
+-- " Move cursor through long soft-wrapped lines that doesn't break <count>
 vim.cmd([[
-
-  nnoremap <leader>oo :lua require('ik1614.telescope').search_dotfiles()<CR>
-  nnoremap <leader>tt :lua require('telescope.builtin').find_files()<CR>
-
+  noremap <expr> k (v:count == 0 ? 'gk' : 'k')
+  noremap <expr> j (v:count == 0 ? 'gj' : 'j')
 ]])
+
+-- " Use <C-k> to go up within a completion menu. For going down, use default
+-- " binding <C-n>, which is convenient with Colemak layout
+vim.cmd([[
+  inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+  cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+]])
+
+
+-- " Loop through quickfix and locations lists
+vim.cmd([[
+  command! Cnext try | cnext | catch | cfirst | catch | endtry
+  command! Cprev try | cprev | catch | clast  | catch | endtry
+  command! Lnext try | lnext | catch | lfirst | catch | endtry
+  command! Lprev try | lprev | catch | llast  | catch | endtry
+]])
+
+-- " Can't use <C-p> as it is reserved for 'fzf'
+-- " Consider using <C-m>, if you reserve <C-k> for pane movement
+vim.cmd([[
+  map <C-k> :Cprev<CR>
+  map <C-n> :Cnext<CR>
+]])
+
+-- " Since location list is for current buffer, it kind makes sense to
+-- " use local leader for mnemonic, although I'd prefer to have something
+-- " that can be constantly pressed (similar to <C-n>)
+vim.cmd([[
+  map <localleader>k :Lprev<CR>
+  map <localleader>n :Lnext<CR>
+]])
+
