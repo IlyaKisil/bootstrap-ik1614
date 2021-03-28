@@ -6,7 +6,11 @@ O = {
         formatter = '',
         autoformat = false,
         isort = false,
-        diagnostics = {virtual_text = true, signs = true, underline = true}
+        diagnostics = {
+            virtual_text = false,
+            signs = true,
+            underline = true
+        }
     },
     -- lua = {formatter = '', autoformat = false, virtual_text = true},
     -- sh = {
@@ -15,12 +19,16 @@ O = {
     --     autoformat = false,
     --     diagnostics = {virtual_text = true, signs = true, underline = true}
     -- },
-    -- tsserver = {
-    --     linter = '',
-    --     formatter = '',
-    --     autoformat = false,
-    --     diagnostics = {virtual_text = true, signs = true, underline = true}
-    -- },
+    tsserver = {
+        linter = '',
+        formatter = '',
+        autoformat = false,
+        diagnostics = {
+            virtual_text = false,
+            signs = true,
+            underline = true
+        }
+    },
     -- css = {formatter = '', autoformat = false, virtual_text = true},
     -- json = {formatter = '', autoformat = false, virtual_text = true}
 }

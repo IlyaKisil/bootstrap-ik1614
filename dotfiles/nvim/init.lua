@@ -9,12 +9,15 @@ require("ik1614.colorscheme")
 require("ik1614.plugins")
 
 
+require("ik1614.nvim-compe")
 
 require("ik1614.telescope")
 require("ik1614.telescope.mappings")
 
 
--- require("ik1614.lsp")
+require("ik1614.lsp")
+require("ik1614.lsp.typescript")
+-- require("ik1614.lsp.python")
 -- require("ik1614.lsp.bash")
 -- require("ik1614.lsp.terraform")
 

@@ -60,9 +60,8 @@ vim.cmd('set smartcase')
 -- Better to keep it less then 'scrolloff'
 vim.o.pumheight = 7
 
--- " FIXME: Sort out autoinsert upon autocompletion
--- " set completeopt=noinsert,noselect,menuone
-vim.cmd('set completeopt=menu,menuone,noinsert,noselect')
+-- FIXME: Sort out autoinsert upon autocompletion
+vim.o.completeopt = "menuone,noinsert,noselect"
 
 
 -- "----------- Splits, Windows, Buffers

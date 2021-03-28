@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    -- use 'glepnir/lspsaga.nvim'
+    use 'glepnir/lspsaga.nvim'
     -- use 'onsails/lspkind-nvim'
     -- use 'kosayoda/nvim-lightbulb'
     -- use 'mfussenegger/nvim-jdtls'
@@ -36,7 +36,7 @@ return require('packer').startup(function(use)
     -- use 'mfussenegger/nvim-dap'
 
     -- Autocomplete
-    -- use 'hrsh7th/nvim-compe'
+    use 'hrsh7th/nvim-compe'
     -- use 'mattn/emmet-vim'
     -- use 'hrsh7th/vim-vsnip'
     -- use 'xabikos/vscode-javascript'
