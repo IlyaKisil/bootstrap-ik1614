@@ -60,7 +60,7 @@ return require('packer').startup(function(use)
     -- use 'ryanoasis/vim-devicons'
 
     -- Status Line and Bufferline
-    -- use 'glepnir/galaxyline.nvim'
+    use 'glepnir/galaxyline.nvim'
     -- use 'romgrk/barbar.nvim'
 
     -- Telescope

@@ -19,7 +19,7 @@ require'compe'.setup {
         vsnip = {kind = "  "},
         nvim_lsp = {kind = "  "},
         -- nvim_lua = {kind = "  "},
-		nvim_lua = false,
+        nvim_lua = false,
         spell = {kind = "  "},
         tags = false,
         -- snippets_nvim = {kind = "  "},
