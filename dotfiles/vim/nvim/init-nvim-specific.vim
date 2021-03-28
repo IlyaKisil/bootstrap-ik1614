@@ -12,4 +12,4 @@
 let g:python3_host_prog = '$HOME/.pyenv/versions/3.7.6/bin/python'
 
 " This 'require' will become new init.vim/init.lua
-lua require("ik1614")
+" lua require("ik1614")

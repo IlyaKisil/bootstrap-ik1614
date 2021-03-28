@@ -13,3 +13,6 @@
 [submodule "dotfiles/zsh/custom/themes/powerlevel10k"]
 	path = dotfiles/zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "dotfiles/nvim/packer.nvim"]
+	path = dotfiles/nvim/packer.nvim
+	url = git@github.com:wbthomason/packer.nvim.git
