@@ -1,4 +1,31 @@
 local gl = require('galaxyline')
+local condition = require('galaxyline.condition')
+local gls = gl.section
+
+local function file_readonly()
+  if vim.bo.filetype == 'help' then return '' end
+  if vim.bo.readonly == true then return '  ' end
+  return ''
+end
+
+local function get_current_file_name()
+  -- local file = vim.api.nvim_exec([[
+  --   if winwidth(0) > 100
+  --     echo expand('%')
+  --   else
+  --     echo pathshorten(expand('%'))
+  --   endif
+  --   ]], true)
+  local file = vim.api.nvim_exec([[
+      echo expand('%')
+    ]], true)
+  if vim.fn.empty(file) == 1 then return '' end
+  if string.len(file_readonly()) ~= 0 then return file .. file_readonly() end
+  if vim.bo.modifiable then
+    if vim.bo.modified then return file .. '  ' end
+  end
+  return file .. ' '
+end
 
 -- TODO: get colors from the official theme
 local colors = {
@@ -20,9 +47,13 @@ local colors = {
     error_red = '#F44747',
     info_yellow = '#FFCC66'
 }
-local condition = require('galaxyline.condition')
-local gls = gl.section
-gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
+
+gl.short_line_list = {
+    'NvimTree',
+    'vista',
+    'dbui',
+    'packer'
+}
 
 gls.left[1] = {
     ViMode = {
@@ -56,8 +87,6 @@ gls.left[1] = {
         highlight = {colors.red, colors.bg}
     }
 }
--- print(vim.fn.getbufvar(0, 'ts'))
--- vim.fn.getbufvar(0, 'ts')
 
 gls.left[2] = {
     GitIcon = {
@@ -104,6 +133,15 @@ gls.left[6] = {
         icon = '  ',
         highlight = {colors.red, colors.bg}
     }
+}
+gls.left[7] = {
+  FileName = {
+    provider = get_current_file_name,
+    condition = buffer_not_empty,
+    highlight = {colors.grey, colors.bg},
+    separator = " ",
+    separator_highlight = {colors.section_bg, colors.bg},
+  }
 }
 
 gls.right[1] = {
@@ -160,15 +198,15 @@ gls.right[6] = {
 --     }
 -- }
 
-gls.right[9] = {
-    BufferType = {
-        provider = 'FileTypeName',
-        condition = condition.hide_in_width,
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
-    }
-}
+-- gls.right[9] = {
+--     BufferType = {
+--         provider = 'FileTypeName',
+--         condition = condition.hide_in_width,
+--         separator = ' ',
+--         separator_highlight = {'NONE', colors.bg},
+--         highlight = {colors.grey, colors.bg}
+--     }
+-- }
 
 gls.right[10] = {
     FileEncode = {
@@ -183,7 +221,7 @@ gls.right[10] = {
 gls.right[11] = {
     Space = {
         provider = function()
-            return ' '
+            return ''
         end,
         separator = ' ',
         separator_highlight = {'NONE', colors.bg},
@@ -201,7 +239,11 @@ gls.short_line_left[1] = {
 }
 
 gls.short_line_left[2] = {
-    SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
+    FileName = {
+        provider = get_current_file_name,
+        condition = condition.buffer_not_empty,
+        highlight = {colors.grey, colors.bg}
+    }
 }
 
 gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}}
