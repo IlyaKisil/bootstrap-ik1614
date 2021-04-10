@@ -147,4 +147,7 @@ return require('packer').startup(function(use)
     -- vim.g.UltiSnipsJumpForwardTrigger="<Tab>"
     -- vim.g.UltiSnipsJumpBackwardTrigger="<S-Tab>"
     -- use 'blackcauldron7/surround.nvim'
+
+    -- Legit plugins
+    use 'https://github.com/christoomey/vim-tmux-navigator'
 end)

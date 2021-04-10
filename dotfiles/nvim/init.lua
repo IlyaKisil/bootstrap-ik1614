@@ -15,6 +15,7 @@ require("ik1614.galaxyline")
 require("ik1614.telescope")
 require("ik1614.telescope.mappings")
 
+require("ik1614.vim-tmux-navigator")
 
 require("ik1614.lsp")
 require("ik1614.lsp.typescript")
