@@ -1,6 +1,5 @@
 O = {
     auto_complete = true,
-    colorscheme = 'mdracula',
     python = {
         linter = '',
         formatter = '',
