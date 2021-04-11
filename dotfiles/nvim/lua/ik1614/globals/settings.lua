@@ -17,8 +17,8 @@ vim.o.termguicolors = true
 
 
 
--- "----------- Indents
- -- Converts tabs to spaces
+-- ----------- Indents
+-- Converts tabs to spaces
 vim.bo.expandtab = true
 
 vim.cmd([[
@@ -113,47 +113,3 @@ vim.cmd('set listchars=space:.,tab:-->')
 -- " Enable folding
 vim.cmd('set foldmethod=indent')
 vim.cmd('set foldlevel=99')
-
-
--- " ---------- Better backup, swap and undos storage for vim default
--- " Directory to place swap files in
--- set directory=$__VIM_DOTFILES_HOME/dirs/tmp
--- if !isdirectory(&directory)
---     call mkdir(&directory, "p")
--- endif
--- " Make backup files and where to put them
--- set backup
--- set backupdir=$__VIM_DOTFILES_HOME/dirs/backups
--- if !isdirectory(&backupdir)
---     call mkdir(&backupdir, "p")
--- endif
--- " Persistent undos - undo after you re-open the file
--- set undofile
--- set undodir=$__VIM_DOTFILES_HOME/dirs/undos
--- if !isdirectory(&undodir)
---     call mkdir(&undodir, "p")
--- endif
--- " Continue where you left off upon reopening vim session
--- set viminfo+=n$__VIM_DOTFILES_HOME/dirs/viminfo
-
-
-
--- augroup now
---     autocmd!
---     autocmd Syntax * call functions#UpdateTodoKeywords(
---                 \ "NOTE",
---                 \ "Note",
---                 \ "note",
---                 \ "Todo",
---                 \ "todo",
---                 \ "Fixme",
---                 \ "fixme",
---                 \ )
-
---     autocmd BufWritePre * :call functions#TrimWhitespace()
---     autocmd BufWritePre * :call functions#MakeNonExistingDir(expand('<afile>'), +expand('<abuf>'))
-
---     " Always show help window on the left
---     autocmd FileType help wincmd L
--- augroup END
-
