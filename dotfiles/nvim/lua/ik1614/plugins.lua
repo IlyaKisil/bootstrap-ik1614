@@ -9,13 +9,20 @@ require('packer').init({display = {auto_clean = false}})
 
 return require('packer').startup(function(use)
     -- Guides to use Lua in NVIM
-    -- use 'nanotee/nvim-lua-guide'
+    -- use 'https://github.com/nanotee/nvim-lua-guide'
     -- use 'norcalli/nvim_utils'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'glepnir/lspsaga.nvim'
     -- use 'kosayoda/nvim-lightbulb'
+    -- use {
+    --   'ojroques/nvim-lspfuzzy',
+    --   requires = {
+    --     {'junegunn/fzf'},
+    --     {'junegunn/fzf.vim'},  -- to enable preview (optional)
+    --   },
+    -- }
 
     -- Debugging
     -- use 'mfussenegger/nvim-dap'
@@ -31,9 +38,10 @@ return require('packer').startup(function(use)
 
     -- Icons
     use 'https://github.com/ryanoasis/vim-devicons'
+    use 'https://github.com/kyazdani42/nvim-web-devicons'
 
     -- Status Line and Bufferline
-    use 'glepnir/galaxyline.nvim'
+    use 'https://github.com/glepnir/galaxyline.nvim'
     -- use 'romgrk/barbar.nvim'
 
     -- Telescope
@@ -41,6 +49,8 @@ return require('packer').startup(function(use)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-media-files.nvim'
+    use 'https://github.com/junegunn/fzf'
+    use 'https://github.com/junegunn/fzf.vim'
 
     -- Explorer
     use 'kyazdani42/nvim-tree.lua'
