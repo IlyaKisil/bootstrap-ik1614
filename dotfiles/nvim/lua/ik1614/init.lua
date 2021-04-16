@@ -16,6 +16,8 @@ require("ik1614.nvim-compe")
 require("ik1614.galaxyline")
 require("ik1614.dashboard-nvim")
 
+require("ik1614.gitsigns")
+
 require("ik1614.telescope")
 require("ik1614.telescope.mappings")
 

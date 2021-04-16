@@ -69,8 +69,7 @@ return require('packer').startup(
     -- use 'sheerun/vim-polyglot'
 
     -- Git
-    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use 'https://github.com/airblade/vim-gitgutter'
+    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
 
