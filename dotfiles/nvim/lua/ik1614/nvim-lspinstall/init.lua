@@ -1,6 +1,7 @@
 -- NOTE: Will need to have a deeper look into this, but currenly everything works
 -- quite smoothely even without that following configuraitons
 --
+-- https://github.com/kabouzeid/nvim-lspinstall/wiki
 --
 -- 1. get the config for this server from nvim-lspconfig and adjust the cmd path.
 --    relative paths are allowed, lspinstall automatically adjusts the cmd and cmd_cwd for us!

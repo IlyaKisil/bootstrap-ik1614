@@ -62,6 +62,7 @@ return require('packer').startup(
     -- Explorer
     use 'kyazdani42/nvim-tree.lua'
 
+    use {"glepnir/dashboard-nvim"}
     -- Color
     -- use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
@@ -69,6 +70,7 @@ return require('packer').startup(
 
     -- Git
     -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use 'https://github.com/airblade/vim-gitgutter'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
 
