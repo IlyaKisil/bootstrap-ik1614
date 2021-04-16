@@ -52,7 +52,7 @@ gl.short_line_list = {
     'NvimTree',
     'vista',
     'dbui',
-    'packer'
+    'packer',
 }
 
 gls.left[1] = {
@@ -110,30 +110,31 @@ gls.left[3] = {
     }
 }
 
-gls.left[4] = {
-    DiffAdd = {
-        provider = 'DiffAdd',
-        condition = condition.hide_in_width,
-        icon = '  ',
-        highlight = {colors.green, colors.bg}
-    }
-}
-gls.left[5] = {
-    DiffModified = {
-        provider = 'DiffModified',
-        condition = condition.hide_in_width,
-        icon = ' 柳',
-        highlight = {colors.blue, colors.bg}
-    }
-}
-gls.left[6] = {
-    DiffRemove = {
-        provider = 'DiffRemove',
-        condition = condition.hide_in_width,
-        icon = '  ',
-        highlight = {colors.red, colors.bg}
-    }
-}
+-- I don't see a point in them
+-- gls.left[4] = {
+--     DiffAdd = {
+--         provider = 'DiffAdd',
+--         condition = condition.hide_in_width,
+--         icon = '  ',
+--         highlight = {colors.green, colors.bg}
+--     }
+-- }
+-- gls.left[5] = {
+--     DiffModified = {
+--         provider = 'DiffModified',
+--         condition = condition.hide_in_width,
+--         icon = ' 柳',
+--         highlight = {colors.blue, colors.bg}
+--     }
+-- }
+-- gls.left[6] = {
+--     DiffRemove = {
+--         provider = 'DiffRemove',
+--         condition = condition.hide_in_width,
+--         icon = '  ',
+--         highlight = {colors.red, colors.bg}
+--     }
+-- }
 gls.left[7] = {
   FileName = {
     provider = get_current_file_name,
@@ -145,36 +146,56 @@ gls.left[7] = {
 }
 
 gls.right[1] = {
-    DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.error_red, colors.bg}}
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '  ',
+    highlight = {colors.error_red, colors.bg}
+  }
 }
-gls.right[2] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}}}
+gls.right[2] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '  ',
+    highlight = {colors.orange, colors.bg}
+  }
+}
 
 gls.right[3] = {
-    DiagnosticHint = {provider = 'DiagnosticHint', icon = '  ', highlight = {colors.vivid_blue, colors.bg}}
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    icon = '  ',
+    highlight = {colors.vivid_blue, colors.bg}
+  }
 }
 
-gls.right[4] = {DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '  ', highlight = {colors.info_yellow, colors.bg}}}
+gls.right[4] = {
+  DiagnosticInfo = {
+    provider = 'DiagnosticInfo',
+    icon = '  ',
+    highlight = {colors.info_yellow, colors.bg}
+  }
+}
 
 gls.right[5] = {
-    ShowLspClient = {
-        provider = 'GetLspClient',
-        condition = function()
-            local tbl = {['dashboard'] = true, [' '] = true}
-            if tbl[vim.bo.filetype] then return false end
-            return true
-        end,
-        icon = ' ',
-        highlight = {colors.grey, colors.bg}
-    }
+  ShowLspClient = {
+    provider = 'GetLspClient',
+    condition = function()
+      local tbl = {['dashboard'] = true, [' '] = true}
+      if tbl[vim.bo.filetype] then return false end
+      return true
+    end,
+    icon = ' ',
+    highlight = {colors.grey, colors.bg}
+  }
 }
 
 gls.right[6] = {
-    LineInfo = {
-        provider = 'LineColumn',
-        separator = '  ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
-    }
+  LineInfo = {
+    provider = 'LineColumn',
+    separator = '  ',
+    separator_highlight = {'NONE', colors.bg},
+    highlight = {colors.grey, colors.bg}
+  }
 }
 
 -- gls.right[7] = {
@@ -229,14 +250,14 @@ gls.right[11] = {
     }
 }
 
-gls.short_line_left[1] = {
-    BufferType = {
-        provider = 'FileTypeName',
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
-    }
-}
+-- gls.short_line_left[1] = {
+--     BufferType = {
+--         provider = 'FileTypeName',
+--         separator = ' ',
+--         separator_highlight = {'NONE', colors.bg},
+--         highlight = {colors.grey, colors.bg}
+--     }
+-- }
 
 gls.short_line_left[2] = {
     FileName = {
@@ -246,4 +267,9 @@ gls.short_line_left[2] = {
     }
 }
 
-gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}}
+gls.short_line_right[1] = {
+  BufferIcon = {
+    provider = 'BufferIcon',
+    highlight = {colors.grey, colors.bg}
+  }
+}
