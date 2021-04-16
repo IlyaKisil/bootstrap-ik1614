@@ -21,8 +21,10 @@ require("ik1614.telescope.mappings")
 require("ik1614.vim-tmux-navigator")
 
 -- LSP
+-- require("ik1614.nvim-lspinstall")
 require("ik1614.lsp")
 require("ik1614.lsp.typescript")
+require("ik1614.lsp.lua")
 -- require("ik1614.lsp.python")
 -- require("ik1614.lsp.bash")
 -- require("ik1614.lsp.terraform")

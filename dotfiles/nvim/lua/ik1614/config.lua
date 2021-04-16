@@ -11,7 +11,11 @@ O = {
             underline = true
         }
     },
-    -- lua = {formatter = '', autoformat = false, virtual_text = true},
+    lua = {
+      formatter = '',
+      autoformat = false,
+      virtual_text = true
+    },
     -- sh = {
     --     linter = '',
     --     formatter = '',
@@ -32,7 +36,7 @@ O = {
     -- json = {formatter = '', autoformat = false, virtual_text = true}
 }
 
--- DATA_PATH = vim.fn.stdpath('data')
--- CACHE_PATH = vim.fn.stdpath('cache')
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
 
 

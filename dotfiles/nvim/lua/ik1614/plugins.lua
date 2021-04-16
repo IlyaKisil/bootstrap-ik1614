@@ -5,15 +5,22 @@ local fn = vim.fn
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
 
 -- require('packer').init({display = {non_interactive = true}})
-require('packer').init({display = {auto_clean = false}})
+-- require('packer').init({display = {auto_clean = false}})
 
-return require('packer').startup(function(use)
+return require('packer').startup(
+  function(use)
+    -- We keep it so that packer won't try to remove itself.
+    -- In reality, we have it as git submodule, that we link to
+    -- a specific directory
+    -- use "wbthomason/packer.nvim"
+
     -- Guides to use Lua in NVIM
     -- use 'https://github.com/nanotee/nvim-lua-guide'
     -- use 'norcalli/nvim_utils'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use {"kabouzeid/nvim-lspinstall"}
     use 'glepnir/lspsaga.nvim'
     -- use 'kosayoda/nvim-lightbulb'
     -- use {
@@ -103,4 +110,5 @@ return require('packer').startup(function(use)
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
 
-end)
+  end
+)
