@@ -1,3 +1,5 @@
+vim.g.mapleader = ' '
+
 -- Helper function
 local map = function (mode, lhs, rhs, opts)
     local options = {noremap = true, silent = true}
@@ -5,85 +7,124 @@ local map = function (mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.g.mapleader = ' '
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- _G.next_complete_item = function()
+--     if vim.fn.pumvisible() == 1 then
+--         return t "<C-n>"
+--     -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
+--     --     return t "<Plug>(vsnip-expand-or-jump)"
+--     elseif check_back_space() then
+--         return t "<C-n>"
+--     else
+--         return vim.fn['compe#complete']()
+--     end
+-- end
+_G.previous_complete_item = function()
+    if vim.fn.pumvisible() == 1 then
+        return t "<C-p>"
+    -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    --     return t "<Plug>(vsnip-jump-prev)"
+    else
+        return t "<C-e>"
+    end
+end
+
+
+-- Mapping for autocompletion
+-- On Colemak, I'm ok to use <C-n> for getting next complete item
+-- NOTE: Mapping for command mode works, but it displays dots :shurg:
+map("i", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+map("s", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+map("c", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+
+
+-- Move within quickfix list
+-- FIXME: resolve clash with LSP diagnostics
+map('n', '<C-n>', ':Cnext<CR>')
+map('n', '<C-e>', ':Cprev<CR>')
+
+
+-- Move within location list
+-- " Since location list is for current buffer, it kind makes sense to
+-- " use local leader for mnemonic, although I'd prefer to have something
+-- " that can be constantly pressed (similar to <C-n>)
+map('n', '<localleader>n', ':Lnext<CR>')
+map('n', '<localleader>e', ':Lprev<CR>')
+
 
 -- Don't move cursor
 map('n', '<Space>', '<NOP>')
+
 
 -- Keep selection after tab adjust
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
+
 -- Map (redraw screen) to also turn off search highlighting until the next search
 map('n', '<C-l>', ':nohl<CR><C-L>')
 
 
--- " When you paste over something send that content to 'the black hole register'
+-- When you paste over something send that content to 'the black hole register'
 map('v', '<leader>p', '"_dP')
 
 
-
--- " Convenience for applying macros
+-- Convenience for applying macros
 map('n', 'Q', '@q')
 
--- " Movements between tabs
+
+-- Movements between tabs
 map('n', '<leader>q', ':tabclose<CR>')
-map('n', '<TAB>',     ':tabnext<CR>')
 map('n', '<S-TAB>',   ':tabprevious<CR>')
+-- <tab> and <C-i> are the codes for for vim/nvim. So if we override, then won't be
+-- able to use jumplist
+-- map('n', '<TAB>',     ':tabnext<CR>')
 
 
--- " Open URL on the current line in a web browser
+-- Open URL on the current line in a web browser
 map('n', '<leader>ow', ':call functions#OpenURL()<CR>')
 map('v', '<leader>ow', ':call functions#OpenURL()<CR>')
 
--- " Search mappings: These will make it so that going to the next one in a
--- " search will center on the line it's found in.
--- FIXME: looks like this is broken
+
+-- Search mappings: These will make it so that going to the next one in a
+-- search will center on the line it's found in.
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
 
--- " Same when moving up and down
+
+-- Same when moving up and down
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 
--- "make Y consistent with C and D
+
+-- Make Y consistent with C and D
 map('n', 'Y', 'y$')
 
+
 -- TODO: convert to lua native mappings
--- " Move cursor through long soft-wrapped lines that doesn't break <count>
+-- Move cursor through long soft-wrapped lines that doesn't break <count>
 vim.cmd([[
   noremap <expr> k (v:count == 0 ? 'gk' : 'k')
   noremap <expr> j (v:count == 0 ? 'gj' : 'j')
 ]])
 
--- " Use <C-k> to go up within a completion menu. For going down, use default
--- " binding <C-n>, which is convenient with Colemak layout
+
+-- Add multiline movements to jumplist, so we can use <C-i> and <C-o>
 vim.cmd([[
-  inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-  cnoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+  nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'gk'
+  nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'gj'
 ]])
 
-
--- " Loop through quickfix and locations lists
-vim.cmd([[
-  command! Cnext try | cnext | catch | cfirst | catch | endtry
-  command! Cprev try | cprev | catch | clast  | catch | endtry
-  command! Lnext try | lnext | catch | lfirst | catch | endtry
-  command! Lprev try | lprev | catch | llast  | catch | endtry
-]])
-
--- " Can't use <C-p> as it is reserved for 'fzf'
--- " Consider using <C-m>, if you reserve <C-k> for pane movement
-vim.cmd([[
-  map <C-k> :Cprev<CR>
-  map <C-n> :Cnext<CR>
-]])
-
--- " Since location list is for current buffer, it kind makes sense to
--- " use local leader for mnemonic, although I'd prefer to have something
--- " that can be constantly pressed (similar to <C-n>)
-vim.cmd([[
-  map <localleader>k :Lprev<CR>
-  map <localleader>n :Lnext<CR>
-]])
 

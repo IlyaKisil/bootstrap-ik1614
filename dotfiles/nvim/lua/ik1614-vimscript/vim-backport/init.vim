@@ -47,3 +47,8 @@ augroup now
 augroup END
 
 
+" NeoVim doesn't support command definition at this moment :cry:
+command! Cnext try | cnext | catch | cfirst | catch | endtry
+command! Cprev try | cprev | catch | clast  | catch | endtry
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+command! Lprev try | lprev | catch | llast  | catch | endtry
