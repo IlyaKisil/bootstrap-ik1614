@@ -16,7 +16,7 @@ fi
 
 # Temporarly switch to NeoVim Nightly build
 # alias vim='nvim'
-alias vim='$HOME/opt/nvim-osx64-2021-03-13/bin/nvim'
+alias vim='$HOME/opt/nvim-osx64-2021-04-17/bin/nvim'
 alias vvim='\vim'
 alias :q='exit'
 alias :wq='exit'
