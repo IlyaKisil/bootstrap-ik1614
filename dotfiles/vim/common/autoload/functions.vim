@@ -69,3 +69,34 @@ function! functions#OpenURL()
         echom "No URI found in line."
     endif
 endfunction
+
+
+function! functions#save_and_exec() abort
+  if &filetype == 'vim'
+    :silent! write
+    :source %
+  elseif &filetype == 'lua'
+    :silent! write
+    :luafile %
+  endif
+  return
+endfunction
+
+
+function! functions#exec_current_line() abort
+  if &ft == 'lua'
+    execute(printf(":lua %s", getline(".")))
+  elseif &ft == 'vim'
+    exe getline(">")
+  endif
+endfunction
+
+
+" Utility for using '*' and '#' for a selected region
+function! functions#visual_selection_search()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
