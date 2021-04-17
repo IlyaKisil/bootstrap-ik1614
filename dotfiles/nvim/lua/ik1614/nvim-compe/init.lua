@@ -1,9 +1,11 @@
+vim.o.completeopt = "menuone,noinsert,noselect"
+
 require'compe'.setup {
     enabled = O.auto_complete,
     autocomplete = true,
     debug = false,
     min_length = 1,
-    preselect = 'enable',
+    preselect = 'disable',  -- FIXME: as I understand, this should disable autoselect from popup menu, but it doesn't
     throttle_time = 80,
     source_timeout = 200,
     incomplete_delay = 400,
@@ -13,20 +15,33 @@ require'compe'.setup {
     documentation = true,
 
     source = {
-        path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "  "},
-        vsnip = {kind = "  "},
-        nvim_lsp = {kind = "  "},
+        path = {
+            kind = "  "
+        },
+        buffer = {
+            kind = "  "
+        },
+        calc = {
+            kind = "  "
+        },
+        vsnip = {
+            kind = "  "
+        },
+        nvim_lsp = {
+            kind = "  "
+        },
         -- nvim_lua = {kind = "  "},
         nvim_lua = false,
-        spell = {kind = "  "},
+        spell = {
+            kind = "  "
+        },
         tags = false,
         -- snippets_nvim = {kind = "  "},
         -- ultisnips = {kind = "  "},
         -- treesitter = {kind = "  "},
-        emoji = {kind = " ﲃ ", filetypes={"markdown"}}
-        -- for emoji press : (idk if that in compe tho)
+        emoji = {
+            kind = " ﲃ ", filetypes={"markdown"
+        }}
     }
 }
 
@@ -69,31 +84,31 @@ local check_back_space = function()
     end
 end
 
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif vim.fn.call("vsnip#available", {1}) == 1 then
-        return t "<Plug>(vsnip-expand-or-jump)"
-    elseif check_back_space() then
-        return t "<Tab>"
-    else
-        return vim.fn['compe#complete']()
-    end
-end
+--- Move to prev/next item in completion menuone
+--- Jump to prev/next snippet's placeholder
+-- _G.tab_complete = function()
+--     if vim.fn.pumvisible() == 1 then
+--         return t "<C-n>"
+--     -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
+--     --     return t "<Plug>(vsnip-expand-or-jump)"
+--     elseif check_back_space() then
+--         return t "<C-n>"
+--     else
+--         return vim.fn['compe#complete']()
+--     end
+-- end
 _G.s_tab_complete = function()
     if vim.fn.pumvisible() == 1 then
         return t "<C-p>"
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-        return t "<Plug>(vsnip-jump-prev)"
+    -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    --     return t "<Plug>(vsnip-jump-prev)"
     else
-        return t "<S-Tab>"
+        return t "<C-e>"
     end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+-- On Colemak, I'm ok to use <C-n>
+-- vim.api.nvim_set_keymap("i", "<C-n>", "v:lua.tab_complete()", {expr = true})
+-- vim.api.nvim_set_keymap("s", "<C-n>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<C-e>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<C-e>", "v:lua.s_tab_complete()", {expr = true})
