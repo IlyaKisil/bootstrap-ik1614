@@ -69,7 +69,12 @@ return require('packer').startup(
     -- use 'sheerun/vim-polyglot'
 
     -- Git
-    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = {'nvim-lua/plenary.nvim'},
+      -- FIXME: Doesn't work :cry:
+      -- config = [[require('ik1614.gitsigns')]],
+    }
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
 
@@ -99,7 +104,6 @@ return require('packer').startup(
     --     end
     -- }
 
-    -- use 'mhinz/vim-startify'
     -- use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
 
@@ -111,5 +115,26 @@ return require('packer').startup(
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
 
+    -- Work
+    use {
+      'https://github.com/saltstack/salt-vim',
+      -- FIXME: Doesn't work :cry:
+      -- ft = {
+      --   'sls',
+      --   'j2',
+      --   'jinja',
+      --   'jinja2',
+      -- }
+    }
+    use {
+      'https://github.com/Glench/Vim-Jinja2-Syntax',
+      -- FIXME: Doesn't work :cry:
+      -- ft = {
+      --   'sls',
+      --   'j2',
+      --   'jinja',
+      --   'jinja2',
+      -- }
+    }
   end
 )
