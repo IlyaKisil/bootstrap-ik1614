@@ -6,7 +6,7 @@
     # ~/.config/nvim/autoload: dotfiles/vim/common/autoload
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
     # ~/.config/nvim/ftdetect: dotfiles/vim/common/ftdetect
-    # ~/.config/nvim/colors: dotfiles/vim/common/colors
+    ~/.config/nvim/colors: dotfiles/nvim/colors
     # ~/.config/nvim/syntax: dotfiles/vim/common/syntax
     # ~/.config/ultisnips: dotfiles/vim/common/ultisnips
     ~/.config/dictionaries-ik1614: misc/dictionaries

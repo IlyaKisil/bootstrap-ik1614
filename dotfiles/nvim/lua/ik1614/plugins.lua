@@ -116,6 +116,7 @@ return require('packer').startup(
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
 
     -- Work
+    -- use {'https://github.com/sheerun/vim-polyglot'} -- TODO: need to reduce footprint in favour of Treesitter
     use {
       'https://github.com/saltstack/salt-vim',
       -- FIXME: Doesn't work :cry:
