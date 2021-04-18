@@ -20,6 +20,7 @@ require("ik1614.gitsigns")
 
 require("ik1614.telescope")
 require("ik1614.telescope.mappings")
+require("ik1614.treesitter")
 
 require("ik1614.vim-tmux-navigator")
 

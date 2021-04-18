@@ -126,6 +126,7 @@ map('n', '<C-u>', '<C-u>zz')
 -- Make Y consistent with C and D
 map('n', 'Y', 'y$')
 
+map('n', '<leader>t', ':TSHighlightCapturesUnderCursor<CR>')
 
 -- TODO: convert to lua native mappings
 -- Move cursor through long soft-wrapped lines that doesn't break <count>

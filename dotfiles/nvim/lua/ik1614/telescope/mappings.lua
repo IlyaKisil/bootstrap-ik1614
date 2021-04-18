@@ -31,5 +31,5 @@ local map = function(key, f, options, buffer)
 end
 
 
-map('<leader>oo', 'find_files')
-map('<leader>tt', 'search_dotfiles')
+-- map('<leader>oo', 'find_files')
+-- map('<leader>tt', 'search_dotfiles')
