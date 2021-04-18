@@ -1,5 +1,8 @@
 vim.g.mapleader = ' '
 
+vim.g.completion_confirm_key = ""
+local npairs = require('nvim-autopairs')
+
 -- Helper function
 local map = function (mode, lhs, rhs, opts)
     local options = {noremap = true, silent = true}
@@ -7,7 +10,7 @@ local map = function (mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local t = function(str)
+local escape_replace = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
@@ -20,34 +23,57 @@ local check_back_space = function()
     end
 end
 
--- _G.next_complete_item = function()
---     if vim.fn.pumvisible() == 1 then
---         return t "<C-n>"
---     -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
---     --     return t "<Plug>(vsnip-expand-or-jump)"
---     elseif check_back_space() then
---         return t "<C-n>"
---     else
---         return vim.fn['compe#complete']()
---     end
--- end
+_G.next_complete_item = function()
+    if vim.fn.pumvisible() == 1 then
+        return escape_replace "<C-n>"
+    -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    --     return escape_replace "<Plug>(vsnip-expand-or-jump)"
+    elseif check_back_space() then
+        return escape_replace "<C-n>"
+    else
+        return vim.fn['compe#complete']()
+    end
+end
+
 _G.previous_complete_item = function()
     if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
+        return escape_replace "<C-p>"
     -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    --     return t "<Plug>(vsnip-jump-prev)"
+    --     return escape_replace "<Plug>(vsnip-jump-prev)"
     else
-        return t "<C-e>"
+        return escape_replace "<C-e>"
     end
+end
+
+_G.completion_confirm = function()
+  if vim.fn.pumvisible() ~= 0  then
+    if vim.fn.complete_info()["selected"] ~= -1 then
+      return vim.fn["compe#confirm"](npairs.esc("<c-r>"))
+    else
+      return npairs.esc("<cr>")
+    end
+  else
+    return npairs.autopairs_cr()
+  end
+end
+
+_G.trigger_completion = function()
+  return vim.fn["compe#complete"]()
 end
 
 
 -- Mapping for autocompletion
--- On Colemak, I'm ok to use <C-n> for getting next complete item
 -- NOTE: Mapping for command mode works, but it displays dots :shurg:
+map("i", "<CR>", "v:lua.completion_confirm()", {expr = true, noremap = true})
+map("i", "<C-n>", "v:lua.next_complete_item()", {expr = true})
+map("s", "<C-n>", "v:lua.next_complete_item()", {expr = true})
+map("c", "<C-n>", "v:lua.next_complete_item()", {expr = true})
 map("i", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 map("s", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 map("c", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+
+map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
+
 
 
 -- Move within quickfix list

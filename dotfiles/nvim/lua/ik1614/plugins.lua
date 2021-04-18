@@ -78,6 +78,8 @@ return require('packer').startup(
     }
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
+    -- For PR review etc
+    -- use {'https://github.com/pwntester/octo.nvim'}
 
     -- Preview/query JSON files
     -- use 'gennaro-tedesco/nvim-jqx'
@@ -138,5 +140,10 @@ return require('packer').startup(
       --   'jinja2',
       -- }
     }
+
+    use {
+      "windwp/nvim-autopairs"
+    }
+
   end
 )
