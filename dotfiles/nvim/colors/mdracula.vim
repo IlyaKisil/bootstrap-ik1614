@@ -172,6 +172,7 @@ call functions#HL('MdraculaBrightRed', s:p.mdracula_bright_red)
 call functions#HL('MdraculaFunction', s:p.mdracula_bright_blue)
 call functions#HL('MdraculaBrightPink', s:p.mdracula_bright_pink)
 call functions#HL('MdraculaSkyBlue', s:p.mdracula_sky_blue)
+call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
 
 " }}}
 
@@ -426,15 +427,15 @@ hi! link SneakLabel Search
 
 " Filetype Specific Colorscheme: {{{ -----------------------------------------
 " Markdown: {{{
-call functions#HL('markdownH1', s:p.constant, s:p.null, 'italic')
-hi! link markdownH2 markdownH1
-hi! link markdownH3 markdownH1
-hi! link markdownH4 markdownH1
-hi! link markdownH5 markdownH1
-hi! link markdownH6 markdownH1
-hi! link markdownHeadingRule markdownH1
-hi! link markdownHeadingDelimiter markdownH1
-call functions#HL('markdownAutomaticLink', s:p.link, s:p.null, 'underline')
+hi! link markdownH1               MdraculaType
+hi! link markdownH2               MdraculaType
+hi! link markdownH3               MdraculaType
+hi! link markdownH4               MdraculaType
+hi! link markdownH5               MdraculaType
+hi! link markdownH6               MdraculaType
+hi! link markdownHeadingRule      MdraculaType
+hi! link markdownHeadingDelimiter MdraculaType
+hi! link markdownAutomaticLink MdraculaURL
 hi! link markdownBlockquote String
 hi! link markdownBoldDelimiter Keyword
 hi! link markdownBold NormalFg
@@ -443,10 +444,10 @@ hi! link markdownItalic NormalFg
 hi! link markdownCode Comment
 hi! link markdownCodeDelimiter markdownCode
 hi! link markdownCodeBlock markdownCode
-call functions#HL('markdownLinkText', s:p.link, s:p.null, 'underline')
-hi! link markdownLinkTextDelimiter markdownLinkText
-hi! link markdownUrlDelimiter markdownLinkText
-call functions#HL('markdownUrl', s:p.function, s:p.null, 'italic')
+hi! link markdownLinkText MdraculaURL
+hi! link markdownLinkTextDelimiter MdraculaURL
+hi! link markdownUrlDelimiter MdraculaURL
+hi! link markdownUrl MdraculaURL
 hi! link markdownIdDelimiter Keyword
 hi! link markdownLinkDelimiter Keyword
 hi! link markdownIdDeclaration Keyword
@@ -527,12 +528,12 @@ hi! link TSEmphasis       MdraculaTestColor
 hi! link TSUnderline      MdraculaTestColor
 hi! link TSStrike         MdraculaTestColor
 hi! link TSMath           MdraculaTestColor
-hi! link TSTextReference  MdraculaTestColor
+hi! link TSTextReference  MdraculaURL
 hi! link TSEnviroment     MdraculaTestColor
 hi! link TSEnviromentName MdraculaTestColor
 hi! link TSTitle          MdraculaTestColor
-hi! link TSLiteral        MdraculaTestColor
-hi! link TSURI            MdraculaTestColor
+hi! link TSLiteral        String
+hi! link TSURI            MdraculaURL
 
 hi! link TSNote    Todo      " E.g. 'NOTE' in a comment
 hi! link TSWarning Todo      " E.g. 'TODO' in a comment
