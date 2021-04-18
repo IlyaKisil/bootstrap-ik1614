@@ -100,3 +100,29 @@ function! functions#visual_selection_search()
   let @@ = temp
 endfunction
 
+
+" Utility for creating highlight groups
+function! functions#HL(group, fg, ...)
+  " arguments: group, fg, bg, style
+  if a:0 >= 1
+    let bg=a:1
+  else
+    let bg=g:ik1614_color_palette.null
+  endif
+  if a:0 >= 2 && strlen(a:2)
+    let style=a:2
+  else
+    let style='NONE'
+  endif
+  let hiList = [
+    \ 'hi', a:group,
+    \ 'ctermfg=' . a:fg[1],
+    \ 'guifg=' . a:fg[0],
+    \ 'ctermbg=' . bg[1],
+    \ 'guibg=' . bg[0],
+    \ 'cterm=' . style,
+    \ 'gui=' . style
+    \ ]
+  execute join(hiList)
+endfunction
+
