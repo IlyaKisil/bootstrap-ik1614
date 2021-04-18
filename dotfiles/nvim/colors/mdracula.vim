@@ -123,18 +123,18 @@ let s:p.UIGreen = ['#499C54', 71]
 let s:p.UIRed = ['#C75450', 131]
 let s:p.UIBrown = ['#93896C', 102]
 
-let s:p.local_blue        = ['#5e94aa',1]
-let s:p.local_blue_1      = ['#619AB0',1]
-let s:p.local_pink        = ['#94558D',1]
-let s:p.local_orange      = ['#CC7832', 172]
-let s:p.local_yellow      = ['#BBB529', 142]
-let s:p.local_purple      = ['#8888C6',1]
-let s:p.local_peach       = ['#E5C07B', 103]
-let s:p.local_salmon      = ['#E06C75', 242]
-let s:p.local_bright_red  = ['#ff6b6b',1]
-let s:p.local_bright_blue = ['#61AFEF',1]
-let s:p.local_bright_pink = ['#B200B2',1]
-let s:p.local_sky_blue    = ['#56b6c2',1]
+let s:p.mdracula_blue        = ['#5e94aa',1]
+let s:p.mdracula_blue_1      = ['#619AB0',1]
+let s:p.mdracula_pink        = ['#94558D',1]
+let s:p.mdracula_orange      = ['#CC7832', 172]
+let s:p.mdracula_yellow      = ['#BBB529', 142]
+let s:p.mdracula_purple      = ['#8888C6',1]
+let s:p.mdracula_peach       = ['#E5C07B', 103]
+let s:p.mdracula_salmon      = ['#E06C75', 242]
+let s:p.mdracula_bright_red  = ['#ff6b6b',1]
+let s:p.mdracula_bright_blue = ['#61AFEF',1]
+let s:p.mdracula_bright_pink = ['#B200B2',1]
+let s:p.mdracula_sky_blue    = ['#56b6c2',1]
 
 let s:p.test_color_fg        = ['#eb4034', 102]
 let s:p.test_color_bg        = ['#BBB529', 142]
@@ -158,20 +158,20 @@ call functions#HL('InfoSign', s:p.infoStripe, s:p.gutter)
 call functions#HL('IdentifierUnderCaret', s:p.null, s:p.identifierUnderCaret)
 call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
-call functions#HL('testColor', s:p.test_color_fg, s:p.test_color_bg)
+call functions#HL('MdraculaTestColor', s:p.test_color_fg, s:p.test_color_bg)
 
-call functions#HL('LocalBlue', s:p.local_blue)
-call functions#HL('LocalBlue1', s:p.local_blue)
-call functions#HL('LocalPink', s:p.local_pink)
-call functions#HL('LocalOrange', s:p.local_orange)
-call functions#HL('LocalYellow', s:p.local_yellow)
-call functions#HL('LocalPurple', s:p.local_purple)
-call functions#HL('LocalPeach', s:p.local_peach)
-call functions#HL('LocalSalmon', s:p.local_salmon)
-call functions#HL('LocalBrightRed', s:p.local_bright_red)
-call functions#HL('LocalBrightBlue', s:p.local_bright_blue)
-call functions#HL('LocalBrightPink', s:p.local_bright_pink)
-call functions#HL('LocalSkyBlue', s:p.local_sky_blue)
+call functions#HL('MdraculaBlue', s:p.mdracula_blue)
+call functions#HL('MdraculaBlue1', s:p.mdracula_blue)
+call functions#HL('MdraculaPink', s:p.mdracula_pink)
+call functions#HL('MdraculaKeyword', s:p.mdracula_orange)
+call functions#HL('MdraculaYellow', s:p.mdracula_yellow)
+call functions#HL('MdraculaBuiltin', s:p.mdracula_purple)
+call functions#HL('MdraculaType', s:p.mdracula_peach)
+call functions#HL('MdraculaFunctionParameter', s:p.mdracula_salmon)
+call functions#HL('MdraculaBrightRed', s:p.mdracula_bright_red)
+call functions#HL('MdraculaFunction', s:p.mdracula_bright_blue)
+call functions#HL('MdraculaBrightPink', s:p.mdracula_bright_pink)
+call functions#HL('MdraculaSkyBlue', s:p.mdracula_sky_blue)
 
 " }}}
 
@@ -391,7 +391,6 @@ call functions#HL('LocalSkyBlue', s:p.local_sky_blue)
 
 " Plugin Specific: {{{ -------------------------------------------------------
 " GitGutter: {{{
-
 " Fill sign column with color instead of showing characters, but for deleted
 " lines use sign.
 hi! link GitGutterAdd           GitAddStripe
@@ -401,7 +400,6 @@ hi! link GitGutterChangeDelete  GitChangeStripe
 
 " }}}
 " NERDTree: {{{
-
 hi! link NERDTreeDir GruvboxAqua
 hi! link NERDTreeDirSlash GruvboxAqua
 
@@ -420,7 +418,6 @@ hi! link NERDTreeToggleOff GruvboxRed
 
 " }}}
 " Sneak: {{{
-
 hi! link Sneak Search
 hi! link SneakLabel Search
 
@@ -456,6 +453,7 @@ hi! link markdownIdDeclaration Keyword
 hi! link markdownLinkDelimiter NormalFg
 hi! link markdownUrlTitleDelimiter Comment
 hi! link markdownRule Comment
+
 " }}}
 " YAML: {{{
 hi! link yamlDocumentStart NormalFg
@@ -470,71 +468,71 @@ hi! link yamlAlias yamlAnchor
 hi! link yamlBool NormalFg
 hi! link yamlNodeTag NormalFg
 hi! link yamlNull NormalFg
+
 " }}}
 " TreeSitter: {{{
-
 hi! link TSPunctDelimiter Normal
 hi! link TSPunctBracket   Normal
 hi! link TSPunctSpecial   Normal
 
 " Constants
 hi! link TSConstant     Normal          " Probably will need to change
-hi! link TSConstBuiltin LocalPurple
-hi! link TSConstMacro   testColor
+hi! link TSConstBuiltin MdraculaBuiltin
+hi! link TSConstMacro   MdraculaTestColor
 hi! link TSString       String
 hi! link TSStringRegex  String          " Probably will need to change
-hi! link TSStringEscape LocalSkyBluek
+hi! link TSStringEscape MdraculaSkyBlue
 hi! link TSCharacter    String
 hi! link TSNumber       Number
-hi! link TSBoolean      LocalOrange
+hi! link TSBoolean      MdraculaKeyword
 hi! link TSFloat        Number
 
 " Functions
-hi! link TSFunction           LocalBrightBlue
-hi! link TSFuncBuiltin        LocalPurple      " Consider making the same as TSFunction
-hi! link TSFuncMacro          testColor        " Not sure what this is
-hi! link TSParameter          LocalSalmon
-hi! link TSParameterReference testColor        " Doesn't look like this is working :cry:
+hi! link TSFunction           MdraculaFunction
+hi! link TSFuncBuiltin        MdraculaBuiltin      " Consider making the same as TSFunction
+hi! link TSFuncMacro          MdraculaTestColor        " Not sure what this is
+hi! link TSParameter          MdraculaFunctionParameter
+hi! link TSParameterReference MdraculaTestColor        " Doesn't look like this is working :cry:
 hi! link TSMethod             Normal
 hi! link TSField              Normal
 hi! link TSProperty           Normal
-hi! link TSConstructor        LocalBrightBlue  " Not sure about this one
-hi! link TSAnnotation         LocalYellow
-hi! link TSAttribute          testColor
-hi! link TSNamespace          testColor
-hi! link TSSymbol             testColor
+hi! link TSConstructor        MdraculaFunction  " Not sure about this one
+hi! link TSAnnotation         MdraculaYellow
+hi! link TSAttribute          MdraculaTestColor
+hi! link TSNamespace          MdraculaTestColor
+hi! link TSSymbol             MdraculaTestColor
 
 "  Keywords
-hi! link TSConditional     LocalOrange
-hi! link TSRepeat          LocalOrange
-hi! link TSLabel           testColor
+hi! link TSConditional     MdraculaKeyword
+hi! link TSRepeat          MdraculaKeyword
+hi! link TSLabel           MdraculaTestColor
 hi! link TSOperator        Normal
-hi! link TSKeyword         LocalOrange
-hi! link TSKeywordFunction testColor
-hi! link TSKeywordOperator LocalOrange    " E.g. 'for', 'or' 'not' (in Python)
-hi! link TSException       testColor
+hi! link TSKeyword         MdraculaKeyword
+hi! link TSKeywordFunction MdraculaTestColor
+hi! link TSKeywordOperator MdraculaKeyword    " E.g. 'for', 'or' 'not' (in Python)
+hi! link TSException       MdraculaTestColor
 
-hi! link TSType        LocalPeach "LocalPurple
-hi! link TSTypeBuiltin LocalPeach "LocalPurple
-hi! link TSInclude     LocalOrange
+hi! link TSType        MdraculaType "MdraculaBuiltin
+hi! link TSTypeBuiltin MdraculaType "MdraculaBuiltin
+hi! link TSInclude     MdraculaKeyword
 
 " Variable
-hi! link TSVariable        Normal    " Could use 'LocalSalmon ' if this was appied only to variables passed to a functions
-hi! link TSVariableBuiltin LocalPink
+hi! link TSVariable        Normal    " Could use 'MdraculaFunctionParameter ' if this was appied only to variables passed to a functions
+hi! link TSVariableBuiltin MdraculaPink
 
 " Text
-hi! link TSText           testColor
-hi! link TSStrong         testColor
-hi! link TSEmphasis       testColor
-hi! link TSUnderline      testColor
-hi! link TSStrike         testColor
-hi! link TSMath           testColor
-hi! link TSTextReference  testColor
-hi! link TSEnviroment     testColor
-hi! link TSEnviromentName testColor
-hi! link TSTitle          testColor
-hi! link TSLiteral        testColor
-hi! link TSURI            testColor
+hi! link TSText           MdraculaTestColor
+hi! link TSStrong         MdraculaTestColor
+hi! link TSEmphasis       MdraculaTestColor
+hi! link TSUnderline      MdraculaTestColor
+hi! link TSStrike         MdraculaTestColor
+hi! link TSMath           MdraculaTestColor
+hi! link TSTextReference  MdraculaTestColor
+hi! link TSEnviroment     MdraculaTestColor
+hi! link TSEnviromentName MdraculaTestColor
+hi! link TSTitle          MdraculaTestColor
+hi! link TSLiteral        MdraculaTestColor
+hi! link TSURI            MdraculaTestColor
 
 hi! link TSNote    Todo      " E.g. 'NOTE' in a comment
 hi! link TSWarning Todo      " E.g. 'TODO' in a comment
@@ -542,9 +540,9 @@ hi! link TSDanger  Todo      " E.g. fixme in a comment
 hi! link TSError   CodeError
 
 " " Tags
-hi! link TSTag          LocalPeach  " E.g. HTML tags like div, body
+hi! link TSTag          MdraculaType  " E.g. HTML tags like div, body
 hi! link TSTagDelimiter Normal      " E.g. Brackets for HTML tags
-hi! link TSStructure    testColor
+hi! link TSStructure    MdraculaTestColor
 
 
 
