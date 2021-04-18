@@ -508,7 +508,7 @@ hi! link TSRepeat          MdraculaKeyword
 hi! link TSLabel           MdraculaTestColor
 hi! link TSOperator        Normal
 hi! link TSKeyword         MdraculaKeyword
-hi! link TSKeywordFunction MdraculaTestColor
+hi! link TSKeywordFunction MdraculaKeyword
 hi! link TSKeywordOperator MdraculaKeyword    " E.g. 'for', 'or' 'not' (in Python)
 hi! link TSException       MdraculaTestColor
 
