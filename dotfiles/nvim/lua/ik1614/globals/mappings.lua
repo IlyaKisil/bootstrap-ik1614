@@ -63,14 +63,16 @@ end
 
 
 -- Mapping for autocompletion
--- NOTE: Mapping for command mode works, but it displays dots :shurg:
 map("i", "<CR>", "v:lua.completion_confirm()", {expr = true, noremap = true})
 map("i", "<C-n>", "v:lua.next_complete_item()", {expr = true})
 map("s", "<C-n>", "v:lua.next_complete_item()", {expr = true})
-map("c", "<C-n>", "v:lua.next_complete_item()", {expr = true})
 map("i", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 map("s", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
-map("c", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+-- NOTE: works, but it displays dots :shurg:.
+-- map("c", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
+vim.cmd([[
+  cnoremap <C-e> <C-p>
+]])
 
 map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
@@ -78,7 +80,7 @@ map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
 -- Move within quickfix list
 -- FIXME: resolve clash with LSP diagnostics
-map('n', '<C-n>', ':Cnext<CR>')
+map('n', '<C-m>', ':Cnext<CR>')
 map('n', '<C-e>', ':Cprev<CR>')
 
 
