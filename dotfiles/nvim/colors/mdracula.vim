@@ -506,7 +506,7 @@ hi! link TSSymbol             MdraculaTestColor
 "  Keywords
 hi! link TSConditional     MdraculaKeyword
 hi! link TSRepeat          MdraculaKeyword
-hi! link TSLabel           MdraculaTestColor
+hi! link TSLabel           MdraculaKeyword " Used in JSON for example
 hi! link TSOperator        Normal
 hi! link TSKeyword         MdraculaKeyword
 hi! link TSKeywordFunction MdraculaKeyword
