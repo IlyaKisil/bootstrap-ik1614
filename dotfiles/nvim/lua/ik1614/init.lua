@@ -13,6 +13,7 @@ require("ik1614.plugins")
 
 -- Plugin configs
 require("ik1614.nvim-compe")
+require("ik1614.vim-vimsnip")
 require("ik1614.galaxyline")
 require("ik1614.dashboard-nvim")
 

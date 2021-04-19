@@ -36,6 +36,9 @@ return require('packer').startup(
 
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
+    use {'https://github.com/hrsh7th/vim-vsnip'}
+    -- use 'SirVer/ultisnips'
+    -- use 'honza/vim-snippets'
     -- use 'golang/vscode-go'
 
     -- Treesitter
@@ -106,9 +109,6 @@ return require('packer').startup(
     --         vim.fn['firenvim#install'](1)
     --     end
     -- }
-
-    -- use 'SirVer/ultisnips'
-    -- use 'honza/vim-snippets'
 
     -- Legit plugins
     use 'https://github.com/christoomey/vim-tmux-navigator'
