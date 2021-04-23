@@ -53,6 +53,8 @@ if command -v fzf 1>/dev/null 2>&1; then
     FZF_YELLOW_COLOR="#E5C07B"
     FZF_GRAY_COLOR="#46484A"
     FZF_OPTS="--height 40% --inline-info --layout=reverse --no-bold --cycle"
+    FZF_BINDINGS='--bind=ctrl-e:up,ctrl-n:down' # Good for Colemak layout
+
     # https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
     FZF_COLORS="
       --color=fg:-1
@@ -70,7 +72,7 @@ if command -v fzf 1>/dev/null 2>&1; then
       --color=border:-1
       --color=gutter:-1
     "
-    export FZF_DEFAULT_OPTS="${FZF_OPTS} ${FZF_COLORS}"
+    export FZF_DEFAULT_OPTS="${FZF_OPTS} ${FZF_BINDINGS} ${FZF_COLORS}"
 
     # Provides nice coloring for preview window with clear
     # highlight of search result. To see other options use
