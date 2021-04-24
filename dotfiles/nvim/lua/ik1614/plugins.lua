@@ -64,13 +64,12 @@ return require('packer').startup(
     use 'https://github.com/junegunn/fzf.vim'
 
     -- Explorer
-    use 'kyazdani42/nvim-tree.lua'
+    -- use {'kyazdani42/nvim-tree.lua'} -- NOTE: Somehow it removes 'netrw#Explore', So I can't use 'GBrowse'
+    -- use {"glepnir/dashboard-nvim"}
 
-    use {"glepnir/dashboard-nvim"}
     -- Color
-    -- use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'norcalli/nvim-colorizer.lua'
-    -- use 'sheerun/vim-polyglot'
+    -- use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
     -- Git
     use {
@@ -80,7 +79,10 @@ return require('packer').startup(
       -- config = [[require('ik1614.gitsigns')]],
     }
     use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
+    use {
+      'ruifm/gitlinker.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+    }
     -- For PR review etc
     -- use {'https://github.com/pwntester/octo.nvim'}
 
