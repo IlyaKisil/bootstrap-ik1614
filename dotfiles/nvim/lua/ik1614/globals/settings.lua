@@ -11,6 +11,16 @@ vim.cmd('set nocompatible')
 -- Allow plugins by file type (required for plugins!)
 vim.cmd('filetype plugin indent on')
 
+-- NOTE: For some reason 'nvim' doesn't respect/sources 'ftdetect' :shrug:
+-- Maybe this was handled by some other plugin???
+vim.cmd([[
+    augroup filetypedetect
+      for f in split(glob('~/.config/nvim/ftdetect/*.vim'), '\n')
+        exe 'source' f
+      endfor
+    augroup END
+]])
+
 -- Support for 256 colors
 vim.o.t_Co = "256"
 vim.o.termguicolors = true
@@ -113,3 +123,8 @@ vim.cmd('set listchars=space:.,tab:-->')
 -- " Enable folding
 vim.cmd('set foldmethod=indent')
 vim.cmd('set foldlevel=99')
+-- Use treesitter for folding
+vim.cmd([[
+  set foldmethod=expr
+  set foldexpr=nvim_treesitter#foldexpr()
+]])
