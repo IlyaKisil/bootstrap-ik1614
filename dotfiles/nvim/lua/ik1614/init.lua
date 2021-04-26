@@ -15,7 +15,7 @@ require("ik1614.plugins")
 require("ik1614.nvim-compe")
 require("ik1614.vim-vimsnip")
 require("ik1614.galaxyline")
--- -- require("ik1614.dashboard-nvim")
+require("ik1614.dashboard-nvim")
 
 require("ik1614.gitsigns")
 require("ik1614.gitlinker")

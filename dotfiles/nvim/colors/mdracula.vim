@@ -41,9 +41,12 @@ let s:p.cursor = ['#BBBBBB', 250]
 let s:p.identifierUnderCaret = ['#344134', 237]
 let s:p.identifierUnderCaretWrite = ['#40332B', 58]
 let s:p.selection = ['#214283', 24]
-let s:p.errorMsg = ['#CC666E', 174]
-let s:p.error = ['#BC3F3C', 131]
-let s:p.warning = ['#A9B7C6', 145]
+" let s:p.error = ['#BC3F3C', 131]
+let s:p.error = ['#CC666E', 174]
+let s:p.errorMsg = s:p.error
+let s:p.warning = ['#BE9117', 136]
+let s:p.info = ['#A4A3A3', 248]
+let s:p.hint = ['#606366', 241]
 let s:p.link = ['#287BDE', 32]
 let s:p.stdOutput = ['#BBBBBB', 250]
 let s:p.matchBraceFg = ['#FFEF28', 220]
@@ -91,6 +94,7 @@ let s:p.entity = ['#6D9CBE', 109]
 let s:p.htmlAttribute = ['#BABABA', 250]
 let s:p.htmlString = ['#A5C261', 143]
 let s:p.tsObject = ['#507874', 66]
+" let s:p.statusLine = ['#2c3238', 236]
 let s:p.statusLine = ['#3C3F41', 237]
 let s:p.statusLineFg = ['#BBBBBB', 250]
 let s:p.statusLineNC = ['#787878', 243]
@@ -150,11 +154,13 @@ call functions#HL('GitChangeStripe', s:p.changeStripe, s:p.changeStripe)
 call functions#HL('GitDeleteStripe', s:p.deleteStripe, s:p.gutter)
 call functions#HL('CodeError', s:p.null, s:p.codeError)
 call functions#HL('CodeWarning', s:p.null, s:p.codeWarning)
-call functions#HL('CodeInfo', s:p.null, s:p.infoStripe)
+" call functions#HL('CodeInfo', s:p.null, s:p.hintBg)
+call functions#HL('CodeInfo', s:p.hintFg, s:p.hintBg)
 call functions#HL('CodeHint', s:p.hintFg, s:p.hintBg)
-call functions#HL('ErrorSign', s:p.errorStripe, s:p.gutter)
-call functions#HL('WarningSign', s:p.warnStripe, s:p.gutter)
-call functions#HL('InfoSign', s:p.infoStripe, s:p.gutter)
+call functions#HL('ErrorSign', s:p.error, s:p.gutter)
+call functions#HL('WarningSign', s:p.warning, s:p.gutter)
+call functions#HL('InfoSign', s:p.info, s:p.gutter)
+call functions#HL('HintSign', s:p.hint, s:p.gutter)
 call functions#HL('IdentifierUnderCaret', s:p.null, s:p.identifierUnderCaret)
 call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
@@ -387,6 +393,25 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   call functions#HL('RedrawDebugComposed', s:p.fg, s:p.search)
   call functions#HL('RedrawDebugRecompose', s:p.fg, s:p.codeError)
 
+  " Builtin LSP
+  " Inline messages
+  hi! link LspDiagnosticsDefaultError       CodeInfo
+  hi! link LspDiagnosticsDefaultWarning     CodeInfo
+  hi! link LspDiagnosticsDefaultInformation CodeInfo
+  hi! link LspDiagnosticsDefaultHint        CodeInfo
+
+  " Gutter signs
+  hi! link LspDiagnosticsSignError       ErrorSign
+  hi! link LspDiagnosticsSignWarning     WarningSign
+  hi! link LspDiagnosticsSignInformation InfoSign
+  hi! link LspDiagnosticsSignHint        HintSign
+
+  " Not really sure what these do :shrug:
+  hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+  hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
+  hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+
+
   " }}}
 " }}}
 
@@ -501,7 +526,7 @@ hi! link TSConstructor        MdraculaFunction  " Not sure about this one
 hi! link TSAnnotation         MdraculaYellow
 hi! link TSAttribute          MdraculaTestColor
 hi! link TSNamespace          MdraculaTestColor
-hi! link TSSymbol             MdraculaTestColor
+hi! link TSSymbol             String " Found it in Ruby, but still not sure about color
 
 "  Keywords
 hi! link TSConditional     MdraculaKeyword
@@ -540,12 +565,10 @@ hi! link TSWarning Todo      " E.g. 'TODO' in a comment
 hi! link TSDanger  Todo      " E.g. fixme in a comment
 hi! link TSError   CodeError
 
-" " Tags
+" Tags
 hi! link TSTag          MdraculaType  " E.g. HTML tags like div, body
 hi! link TSTagDelimiter Normal      " E.g. Brackets for HTML tags
 hi! link TSStructure    MdraculaTestColor
-
-
 
 " }}}
 " }}}

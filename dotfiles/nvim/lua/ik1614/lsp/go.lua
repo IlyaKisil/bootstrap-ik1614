@@ -48,6 +48,7 @@ end
 vim.cmd([[
     augroup ik1614_organize_imports
       autocmd BufWritePre *.go execute('lua require("ik1614.lsp.go").organize_imports(1000)')
+      autocmd BufWritePre *.go execute('lua vim.lsp.buf.formatting_sync(nil, 1000)')
     augroup END
 ]])
 

@@ -65,11 +65,11 @@ return require('packer').startup(
 
     -- Explorer
     -- use {'kyazdani42/nvim-tree.lua'} -- NOTE: Somehow it removes 'netrw#Explore', So I can't use 'GBrowse'
-    -- use {"glepnir/dashboard-nvim"}
+    use {"glepnir/dashboard-nvim"}
 
     -- Color
     use 'norcalli/nvim-colorizer.lua'
-    -- use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
+    use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
     -- Git
     use {
@@ -121,7 +121,6 @@ return require('packer').startup(
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
 
     -- Work
-    -- use {'https://github.com/sheerun/vim-polyglot'} -- TODO: need to reduce footprint in favour of Treesitter
     use {
       'https://github.com/saltstack/salt-vim',
       -- FIXME: Doesn't work :cry:
@@ -147,5 +146,9 @@ return require('packer').startup(
       "windwp/nvim-autopairs"
     }
 
+    -- FIXME: Doesn't work straight away :shrug:
+    use {
+      "AndrewRadev/splitjoin.vim"
+    }
   end
 )

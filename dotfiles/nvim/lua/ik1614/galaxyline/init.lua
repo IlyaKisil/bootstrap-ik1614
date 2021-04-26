@@ -29,7 +29,7 @@ end
 
 -- TODO: get colors from the official theme
 local colors = {
-    bg = '#2E2E2E',
+    bg = GET_COLOR('statusLine'),
     yellow = '#DCDCAA',
     dark_yellow = '#D7BA7D',
     cyan = '#4EC9B0',
@@ -41,11 +41,12 @@ local colors = {
     magenta = '#D16D9E',
     grey = '#858585',
     blue = '#569CD6',
-    vivid_blue = '#4FC1FF',
     light_blue = '#9CDCFE',
     red = '#D16969',
-    error_red = '#F44747',
-    info_yellow = '#FFCC66'
+    error = GET_COLOR('error'),
+    warn = GET_COLOR('warning'),
+    info = GET_COLOR('info'),
+    hint = GET_COLOR('hint'),
 }
 
 gl.short_line_list = {
@@ -148,31 +149,35 @@ gls.left[7] = {
 gls.right[1] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.error_red, colors.bg}
+    -- icon = '  ',
+    icon = ' E ',
+    highlight = {colors.error, colors.bg}
   }
 }
 gls.right[2] = {
   DiagnosticWarn = {
     provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.orange, colors.bg}
+    -- icon = '  ',
+    icon = ' W ',
+    highlight = {colors.warn, colors.bg}
   }
 }
 
 gls.right[3] = {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '  ',
-    highlight = {colors.vivid_blue, colors.bg}
+  DiagnosticInfo = {
+    provider = 'DiagnosticInfo',
+    -- icon = '  ',
+    icon = ' I ',
+    highlight = {colors.info_yellow, colors.bg}
   }
 }
 
 gls.right[4] = {
-  DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = '  ',
-    highlight = {colors.info_yellow, colors.bg}
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    -- icon = '  ',
+    icon = ' H ',
+    highlight = {colors.hint, colors.bg}
   }
 }
 
