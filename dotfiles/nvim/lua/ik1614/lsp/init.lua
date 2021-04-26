@@ -55,6 +55,39 @@ vim.cmd('nnoremap <silent> <C-b> <cmd>lua require(\'lspsaga.action\').smart_scro
 
 vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Enable underline, use default values
+    underline = true,
+
+    -- Turn on sings in gutter
+    signs = true,
+
+    -- Disable a feature
+    update_in_insert = false,
+
+    -- Use a function to dynamically turn virtual_text off
+    -- and on, using buffer local variables. Example of setting it up
+    --   vim.api.nvim_buf_set_var(
+    --     0,
+    --     'virtual_text',
+    --     {
+    --       spacing = 4,
+    --       prefix = '~',
+    --     }
+    --   )
+    virtual_text = function(bufnr, client_id)
+      local ok, result = pcall(vim.api.nvim_buf_get_var, bufnr, 'virtual_text')
+      -- No buffer local variable set, so just enable by default
+      if not ok then
+        return false
+      end
+
+      return result
+    end,
+  }
+)
+
 local function documentHighlight(client, bufnr)
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
@@ -91,8 +124,4 @@ function lsp_config.tsserver_on_attach(client, bufnr)
     client.resolved_capabilities.document_formatting = false
 end
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local servers = {"pyright", "tsserver"}
--- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 return lsp_config
