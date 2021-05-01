@@ -68,8 +68,6 @@ map("i", "<C-n>", "v:lua.next_complete_item()", {expr = true})
 map("s", "<C-n>", "v:lua.next_complete_item()", {expr = true})
 map("i", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 map("s", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
--- NOTE: works, but it displays dots :shurg:.
--- map("c", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 vim.cmd([[
   cnoremap <C-e> <C-p>
 ]])
@@ -90,6 +88,29 @@ map('n', '<C-e>', ':Cprev<CR>')
 -- " that can be constantly pressed (similar to <C-n>)
 map('n', '<localleader>n', ':Lnext<CR>')
 map('n', '<localleader>e', ':Lprev<CR>')
+
+-- Mappings for LSP
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+-- map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+map('n', 'gr', ':Lspsaga lsp_finder<CR>')
+-- vim.cmd('nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>')
+
+map('n', '<leader>sa', ':Lspsaga code_action<CR>') -- Menmonic: Show action
+map('v', '<leader>sa', ':<C-U>Lspsaga range_code_action<CR>') -- Menmonic: Show action
+
+map('n', '<leader>sd', ':Lspsaga hover_doc<CR>') -- Menmonic: Show documentation
+map('n', '<leader>ss', ':Lspsaga signature_help<CR>') -- Menmonic: Show signature
+-- vim.cmd('nnoremap <silent> <leader>ss <cmd>lua vim.lsp.buf.signature_help()<CR>')
+
+map('n', '<leader>rn', ':Lspsaga rename<CR>') -- Menmonic: ReName
+
+vim.cmd('nnoremap <silent> <C-e> :Lspsaga diagnostic_jump_prev<CR>')
+vim.cmd('nnoremap <silent> <C-n> :Lspsaga diagnostic_jump_next<CR>')
+
+-- scroll up and down hover doc or scroll in definition preview
+-- vim.cmd('nnoremap <silent> <C-j> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
+-- vim.cmd('nnoremap <silent> <C-k> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>')
 
 
 -- Don't move cursor
