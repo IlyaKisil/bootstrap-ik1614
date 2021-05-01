@@ -28,6 +28,9 @@ require("ik1614.nvim-autopairs")
 
 require("ik1614.vim-tmux-navigator")
 
+require("ik1614.lspsaga")
+require("ik1614.nvim-colorizer")
+
 -- LSP
 -- require("ik1614.nvim-lspinstall")
 require("ik1614.lsp")
