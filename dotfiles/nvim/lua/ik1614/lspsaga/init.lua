@@ -7,15 +7,10 @@ local default_quit_keys = {
     '<S-Right>',
     '<S-Left>',
 }
-local default_quit_keys
-
-vim.cmd([[
-    nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-    nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-]])
 
 saga.init_lsp_saga {
     use_saga_diagnostic_sign = false,
+    max_preview_lines = 20,
     error_sign = '',
     warn_sign = '',
     hint_sign = '',
@@ -24,6 +19,7 @@ saga.init_lsp_saga {
     definition_preview_icon = '',
     finder_definition_icon = '',
     finder_reference_icon = '',
+    rename_prompt_prefix = '➤',
     code_action_icon = ' ',
     -- Sign appears in a gutter
     code_action_prompt = {
@@ -34,19 +30,19 @@ saga.init_lsp_saga {
     },
     rename_action_keys = {
         quit = default_quit_keys,
-        exec = '<CR>'  -- quit can be a table
+        exec = '<CR>'
     },
     code_action_keys = {
         quit = default_quit_keys,
-        exec = '<CR>',scroll_down = '<C-f>'
+        exec = '<CR>',
     },
     finder_action_keys = {
         quit = default_quit_keys,
         open = {'o', '<CR>'},
         vsplit = 'v',
         split = 's',
-        scroll_down = '<C-f>'
+        -- FIXME: doesn't work :shrug:
+        scroll_down = '<C-f>',
+        scroll_up = '<C-k>',
     },
 }
-
--- filetype=lspsagafinder

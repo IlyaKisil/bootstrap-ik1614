@@ -78,7 +78,7 @@ map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
 -- Move within quickfix list
 -- FIXME: resolve clash with LSP diagnostics
-map('n', '<C-m>', ':Cnext<CR>')
+map('n', '<C-n>', ':Cnext<CR>')
 map('n', '<C-e>', ':Cprev<CR>')
 
 
@@ -99,17 +99,20 @@ map('n', 'gr', ':Lspsaga lsp_finder<CR>')
 map('n', '<leader>sa', ':Lspsaga code_action<CR>') -- Menmonic: Show action
 map('v', '<leader>sa', ':<C-U>Lspsaga range_code_action<CR>') -- Menmonic: Show action
 
-map('n', '<leader>sd', ':Lspsaga hover_doc<CR>') -- Menmonic: Show documentation
+map('n', 'K', ':Lspsaga hover_doc<CR>')
 map('n', '<leader>ss', ':Lspsaga signature_help<CR>') -- Menmonic: Show signature
--- vim.cmd('nnoremap <silent> <leader>ss <cmd>lua vim.lsp.buf.signature_help()<CR>')
 
 map('n', '<leader>rn', ':Lspsaga rename<CR>') -- Menmonic: ReName
 
-vim.cmd('nnoremap <silent> <C-e> :Lspsaga diagnostic_jump_prev<CR>')
-vim.cmd('nnoremap <silent> <C-n> :Lspsaga diagnostic_jump_next<CR>')
+map('n', 'ge', ':Lspsaga diagnostic_jump_prev<CR>')
+map('n', 'gn', ':Lspsaga diagnostic_jump_next<CR>')
+
+-- Workaround for moving within suggested actions and reference finder
+vim.cmd('autocmd FileType lspsagafinder,LspSagaCodeAction :nnoremap <buffer> <C-n> j')
+vim.cmd('autocmd FileType lspsagafinder,LspSagaCodeAction :nnoremap <buffer> <C-e> k')
 
 -- scroll up and down hover doc or scroll in definition preview
--- vim.cmd('nnoremap <silent> <C-j> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
+-- vim.cmd('nnoremap <silent> <C-f> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
 -- vim.cmd('nnoremap <silent> <C-k> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>')
 
 

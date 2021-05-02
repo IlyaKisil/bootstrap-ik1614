@@ -166,8 +166,13 @@ call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCare
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
 call functions#HL('MdraculaTestColor', s:p.test_color_fg, s:p.test_color_bg)
 
+call functions#HL('MdraculaNormal',    s:p.fg, s:p.bg)
+call functions#HL('MdraculaNormalFg',  s:p.fg)
+call functions#HL('MdraculaPopupMenu', s:p.none, s:p.menu)
+call functions#HL('MdraculaPopupMenuKeyword', s:p.mdracula_orange, s:p.menu)
+call functions#HL('MdraculaSelection', s:p.none, s:p.menuSel)
+
 call functions#HL('MdraculaBlue', s:p.mdracula_blue)
-call functions#HL('MdraculaBlue1', s:p.mdracula_blue)
 call functions#HL('MdraculaPink', s:p.mdracula_pink)
 call functions#HL('MdraculaKeyword', s:p.mdracula_orange)
 call functions#HL('MdraculaYellow', s:p.mdracula_yellow)
@@ -179,6 +184,8 @@ call functions#HL('MdraculaFunction', s:p.mdracula_bright_blue)
 call functions#HL('MdraculaBrightPink', s:p.mdracula_bright_pink)
 call functions#HL('MdraculaSkyBlue', s:p.mdracula_sky_blue)
 call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
+call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
+
 
 " }}}
 
@@ -188,9 +195,11 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   set background=dark
 
   " Normal text
-  call functions#HL('Normal', s:p.fg, s:p.bg)
+  hi! link Normal MdraculaNormal
+
   " Selection in Visual mode
-  call functions#HL('Visual', s:p.null, s:p.selection)
+  " call functions#HL('Visual', s:p.null, s:p.selection)
+  hi! link Visual MdraculaSelection
   hi! link VisualNOS Visual
   " Screen line that the cursor is
   call functions#HL('CursorLine',   s:p.none, s:p.cursorLine)
@@ -209,8 +218,8 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   endif
   " Directory names, special names in listing
   hi! link Directory NormalFg
-  " :shrug:
-  hi! link QuickFixLine NormalFg
+  " Current line within a quickfix selection
+  hi! link QuickFixLine MdraculaSelection
 
   " }}}
   " General Syntax Highlighting: {{{
@@ -307,13 +316,13 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   " Completion Menu: {{{
   if version >= 700
     " NOTE: I think this is specific to VIM
-    call functions#HL('Pmenu', s:p.menuFg, s:p.menu)
-    call functions#HL('PmenuSel', s:p.menuFg, s:p.menuSel)
-    call functions#HL('PmenuSbar', s:p.menu, s:p.menu)
+    hi! link Pmenu    MdraculaPopupMenu
+    hi! link PmenuSel MdraculaSelection
+    hi! link PmenuSbar MdraculaPopupMenu
     call functions#HL('PmenuThumb', s:p.menuSBar, s:p.menuSBar)
   endif
   " Current match in wildmenu completion. FIXME: This could break
-  hi! link WildMenu PmenuSel
+  hi! link WildMenu MdraculaSelection
 
   " }}}
   " Spelling: {{{
@@ -378,11 +387,10 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   " else
   "   hi CursorLine guifg=white
   " endif
-  hi! link NormalFloat Pmenu
+  hi! link NormalFloat MdraculaPopupMenu
   hi! link NormalNC NormalFg
   hi! link MsgArea NormalFg
   hi! link MsgSeparator StatusLine
-  hi! link QuickFixLine NormalFg
   hi! link Substitute Search
   " TermCursor
   " TermCursorNC
@@ -406,16 +414,67 @@ call functions#HL('MdraculaURL', s:p.link, s:p.null, 'underline')
   hi! link LspDiagnosticsSignInformation InfoSign
   hi! link LspDiagnosticsSignHint        HintSign
 
-  " Not really sure what these do :shrug:
-  hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-  hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
-  hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-
+  " References for symbol under the cursor. This is also related to Lspsaga
+  hi! link LspReferenceText  MdraculaLSPReference
+  hi! link LspReferenceWrite MdraculaLSPReference
+  hi! link LspReferenceRead  MdraculaLSPReference
 
   " }}}
 " }}}
 
 " Plugin Specific: {{{ -------------------------------------------------------
+" nvim-compe: {{{"
+hi! link CompeDocumentation MdraculaPopupMenu
+
+" }}}
+
+" Lspsaga: {{{"
+" augroup LspsagaNonsense
+"   autocmd!
+"   autocmd FileType lspsagafinder,LspSagaCodeAction,lspsaga hi! link Normal MdraculaPopupMenu
+"   autocmd WinLeave,BufLeave * if &filetype == "lspsagafinder" | hi! link Normal MdraculaNormal | endif
+" augroup END
+
+hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
+hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
+hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
+hi! link DefinitionCount           MdraculaPopupMenuKeyword
+hi! link DefinitionIcon            MdraculaPopupMenuKeyword
+hi! link ReferencesIcon            MdraculaPopupMenuKeyword
+hi! link ReferencesCount           MdraculaPopupMenuKeyword
+hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
+
+hi! link LspSagaFinderSelection MdraculaSelection
+
+hi! link TargetWord                    MdraculaNormalFg
+hi! link TargetFileName                MdraculaNormalFg
+hi! link ProviderTruncateLine          MdraculaNormalFg
+hi! link LspSagaShTruncateLine         MdraculaNormalFg
+hi! link LspSagaDocTruncateLine        MdraculaNormalFg
+hi! link LineDiagTuncateLine           MdraculaNormalFg
+hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
+hi! link LspSagaCodeActionContent      MdraculaNormalFg
+
+hi! link LspFloatWinNormal          MdraculaPopupMenu
+hi! link FloatWinNormal             MdraculaPopupMenu
+hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
+hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
+hi! link LspSagaAutoPreview         MdraculaPopupMenu
+hi! link LspLinesDiagBorder         MdraculaPopupMenu
+hi! link FloatBorder                MdraculaPopupMenu
+hi! link LspFloatWinBorder          MdraculaPopupMenu
+hi! link LspSagaHoverBorder         MdraculaPopupMenu
+hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
+hi! link LspSagaRenameBorder        MdraculaPopupMenu
+
+hi! link SagaShadow             MdraculaTestColor
+hi! link DiagnosticTruncateLine MdraculaTestColor
+hi! link DiagnosticError        MdraculaTestColor
+hi! link DiagnosticWarning      MdraculaTestColor
+hi! link DiagnosticInformation  MdraculaTestColor
+hi! link DiagnosticHint         MdraculaTestColor
+
+" }}}
 " GitGutter: {{{
 " Fill sign column with color instead of showing characters, but for deleted
 " lines use sign.
