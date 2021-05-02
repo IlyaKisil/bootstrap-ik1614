@@ -1,0 +1,9 @@
+# vim: ft=yaml softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
+
+default_context:
+    full_name: "Ilya Kisil"
+    author_name: "Ilya Kisil"
+    email: "ilyakisil@gmail.com"
+    github_username: "IlyaKisil"
+cookiecutters_dir: "~/.cookiecutters/"
+
