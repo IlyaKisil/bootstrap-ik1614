@@ -167,10 +167,11 @@ call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
 call functions#HL('MdraculaTestColor', s:p.test_color_fg, s:p.test_color_bg)
 
 call functions#HL('MdraculaNormal',    s:p.fg, s:p.bg)
+call functions#HL('MdraculaVisual',    s:p.none, s:p.selection)
 call functions#HL('MdraculaNormalFg',  s:p.fg)
 call functions#HL('MdraculaPopupMenu', s:p.none, s:p.menu)
 call functions#HL('MdraculaPopupMenuKeyword', s:p.mdracula_orange, s:p.menu)
-call functions#HL('MdraculaSelection', s:p.none, s:p.menuSel)
+call functions#HL('MdraculaPopupMenuSelection', s:p.none, s:p.menuSel)
 
 call functions#HL('MdraculaBlue', s:p.mdracula_blue)
 call functions#HL('MdraculaPink', s:p.mdracula_pink)
@@ -199,7 +200,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
 
   " Selection in Visual mode
   " call functions#HL('Visual', s:p.null, s:p.selection)
-  hi! link Visual MdraculaSelection
+  hi! link Visual MdraculaVisual
   hi! link VisualNOS Visual
   " Screen line that the cursor is
   call functions#HL('CursorLine',   s:p.none, s:p.cursorLine)
@@ -219,7 +220,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   " Directory names, special names in listing
   hi! link Directory NormalFg
   " Current line within a quickfix selection
-  hi! link QuickFixLine MdraculaSelection
+  hi! link QuickFixLine MdraculaPopupMenuSelection
 
   " }}}
   " General Syntax Highlighting: {{{
@@ -317,12 +318,12 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   if version >= 700
     " NOTE: I think this is specific to VIM
     hi! link Pmenu    MdraculaPopupMenu
-    hi! link PmenuSel MdraculaSelection
+    hi! link PmenuSel MdraculaPopupMenuSelection
     hi! link PmenuSbar MdraculaPopupMenu
     call functions#HL('PmenuThumb', s:p.menuSBar, s:p.menuSBar)
   endif
   " Current match in wildmenu completion. FIXME: This could break
-  hi! link WildMenu MdraculaSelection
+  hi! link WildMenu MdraculaPopupMenuSelection
 
   " }}}
   " Spelling: {{{
@@ -444,7 +445,7 @@ hi! link ReferencesIcon            MdraculaPopupMenuKeyword
 hi! link ReferencesCount           MdraculaPopupMenuKeyword
 hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
 
-hi! link LspSagaFinderSelection MdraculaSelection
+hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
 
 hi! link TargetWord                    MdraculaNormalFg
 hi! link TargetFileName                MdraculaNormalFg

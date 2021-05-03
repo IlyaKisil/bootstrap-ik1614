@@ -10,6 +10,7 @@
     ~/.config/nvim/colors: dotfiles/nvim/colors
     # ~/.config/nvim/syntax: dotfiles/vim/common/syntax
     # ~/.config/ultisnips: dotfiles/vim/common/ultisnips
+    ~/.config/nvim/after/queries: dotfiles/nvim/treesitter-queries
     ~/.config/dictionaries-ik1614: misc/dictionaries
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
