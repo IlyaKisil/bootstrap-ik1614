@@ -1,0 +1,62 @@
+{
+  "build": {
+    "body": "build(${1:}): ",
+    "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)",
+    "prefix": "build"
+  },
+  "chore": {
+    "body": "chore(${1:}): ",
+    "description": "Other changes that don't modify src or test files",
+    "prefix": "chore"
+  },
+  "ci": {
+    "body": "ci(${1:}): ",
+    "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle)",
+    "prefix": "ci"
+  },
+  "docs": {
+    "body": "docs(${1:}): ",
+    "description": "Documentation only changes",
+    "prefix": "docs"
+  },
+  "feat": {
+    "body": "feat(${1:}): ",
+    "description": "A new feature",
+    "prefix": "feat"
+  },
+  "improvement": {
+    "body": "improvement(${1:}): ",
+    "description": "An improvement to a current feature",
+    "prefix": "improvement"
+  },
+  "perf": {
+    "body": "perf(${1:}): ",
+    "description": "A code change that improves performance",
+    "prefix": "perf"
+  },
+  "refactor": {
+    "body": "refactor(${1:}): ",
+    "description": "A code change that neither fixes a bug nor adds a feature",
+    "prefix": "refactor"
+  },
+  "revert": {
+    "body": "revert(${1:}): ",
+    "description": "Reverts a previous commit",
+    "prefix": "revert"
+  },
+  "style": {
+    "body": "style(${1:}): ",
+    "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)",
+    "prefix": "style"
+  },
+  "test": {
+    "body": "test(${1:}): ",
+    "description": "Adding missing tests or correcting existing tests",
+    "prefix": "test"
+  },
+  "wip": {
+    "body": "WIP(${1:}): ",
+    "description": "Work in progress",
+    "prefix": "wip"
+  }
+}
