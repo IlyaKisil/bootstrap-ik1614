@@ -155,7 +155,7 @@ map('n', '<leader>x', ':call functions#exec_current_line()<CR>')
 -- By default it will extend highlighting till the next match.
 -- Doesn't work very smooth
 map('v', '*', ':call functions#visual_selection_search()<CR>//<C-R><c-o>')
-map('v', 'x', ':call functions#visual_selection_search()<CR>??<C-R><c-o>')
+map('v', '#', ':call functions#visual_selection_search()<CR>??<C-R><c-o>')
 
 
 -- Move selection up and down. This will also respect indentation levels
