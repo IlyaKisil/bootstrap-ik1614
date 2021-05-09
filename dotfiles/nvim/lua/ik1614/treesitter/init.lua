@@ -34,7 +34,7 @@ require'nvim-treesitter.configs'.setup {
     -- use_languagetree = false,
     disable = {
       "json", -- breaks for environment.template
-      "yaml",
+      "yaml", -- There is something weird with it as well
     },
   },
   indent = {
