@@ -22,7 +22,7 @@ return require('packer').startup(
     use 'neovim/nvim-lspconfig'
     use {"kabouzeid/nvim-lspinstall"}
     use 'glepnir/lspsaga.nvim'
-    -- use 'kosayoda/nvim-lightbulb'
+    -- use 'https://github.com/folke/lsp-trouble.nvim'
     -- use {
     --   'ojroques/nvim-lspfuzzy',
     --   requires = {
@@ -37,7 +37,7 @@ return require('packer').startup(
     -- Autocomplete
     use 'hrsh7th/nvim-compe'
     use {'https://github.com/hrsh7th/vim-vsnip'}
-    -- use 'SirVer/ultisnips'
+    use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
     -- use 'golang/vscode-go'
 
@@ -92,11 +92,9 @@ return require('packer').startup(
     -- Registers
     -- use 'gennaro-tedesco/nvim-peekup'
 
-    -- Navigation
-    -- use 'unblevable/quick-scope'
-
     -- General Plugins
     -- use 'liuchengxu/vim-which-key'
+    -- use 'https://github.com/folke/which-key.nvim'
     -- use 'kevinhwang91/nvim-bqf' -- Seems good but will need time to set it up
     -- use 'liuchengxu/vista.vim'
     -- use 'monaqa/dial.nvim'

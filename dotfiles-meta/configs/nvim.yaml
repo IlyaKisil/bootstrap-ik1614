@@ -9,7 +9,7 @@
     ~/.config/nvim/ftdetect: dotfiles/vim/common/ftdetect
     ~/.config/nvim/colors: dotfiles/nvim/colors
     # ~/.config/nvim/syntax: dotfiles/vim/common/syntax
-    # ~/.config/ultisnips: dotfiles/vim/common/ultisnips
+    ~/.config/nvim/ultisnips: dotfiles/vim/common/ultisnips
     ~/.config/nvim/after/queries: dotfiles/nvim/treesitter-queries
     ~/.config/dictionaries-ik1614: misc/dictionaries
 - shell:

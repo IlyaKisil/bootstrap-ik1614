@@ -23,9 +23,9 @@ require'compe'.setup {
     calc = {
       kind = "  "
     },
-    vsnip = {
-      kind = "  "
-    },
+    -- vsnip = {
+    --   kind = "  "
+    -- },
     nvim_lsp = {
       kind = "  "
     },
@@ -36,7 +36,9 @@ require'compe'.setup {
     },
     tags = false,
     -- snippets_nvim = {kind = "  "},
-    -- ultisnips = {kind = "  "},
+    ultisnips = {
+      kind = "  "
+    },
     -- treesitter = {kind = "  "},
     emoji = {
       kind = " ﲃ ", filetypes={"markdown" }
