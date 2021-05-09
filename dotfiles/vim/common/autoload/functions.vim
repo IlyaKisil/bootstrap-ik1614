@@ -126,3 +126,17 @@ function! functions#HL(group, fg, ...)
   execute join(hiList)
 endfunction
 
+" Utility to show highlight group under the cursor
+function! functions#ShowSyntaxGroupUnderCursor()
+  if !exists("*synstack")
+    echo "Nothing found"
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Utility to show highlight group under the cursor
+function! functions#ShowHLGroupUnderCursor()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
