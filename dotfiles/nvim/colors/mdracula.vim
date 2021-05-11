@@ -174,7 +174,8 @@ call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCare
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
 call functions#HL('MdraculaTestColor', s:p.test_color_fg, s:p.test_color_bg)
 
-call functions#HL('MdraculaNormal',           s:p.fg, s:p.bg)
+" call functions#HL('MdraculaNormal',           s:p.fg, s:p.bg)
+call functions#HL('MdraculaNormal',           s:p.fg,)
 call functions#HL('MdraculaNormalInactive',   s:p.fg, s:p.bg_inactive)
 call functions#HL('MdraculaVisual',           s:p.none, s:p.selection)
 call functions#HL('MdraculaNormalFg',         s:p.fg)
