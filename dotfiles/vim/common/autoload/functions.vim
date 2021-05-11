@@ -140,3 +140,9 @@ function! functions#ShowHLGroupUnderCursor()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
+
+" Utility to change highlight group of active/inactive windows
+function! functions#HandleWinEnter()
+  setlocal winhighlight=Normal:MdraculaNormal,NormalNC:MdraculaNormalInactive
+endfunction
+

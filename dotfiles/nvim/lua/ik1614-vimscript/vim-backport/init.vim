@@ -22,12 +22,7 @@ endif
 " Continue where you left off upon reopening vim session
 set viminfo+=n$__NVIM_HOME/dirs/viminfo
 
-augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=400 }
-augroup END
-
-augroup now
+augroup ik1614_now
     autocmd!
     autocmd Syntax * call functions#UpdateTodoKeywords(
                 \ "NOTE",
@@ -44,8 +39,14 @@ augroup now
 
     " Always show help window on the left
     autocmd FileType help wincmd L
-augroup END
 
+    " Change highlight group of active/inactive windows
+    " https://caleb89taylor.medium.com/customizing-individual-neovim-windows-4a08f2d02b4e
+    autocmd WinEnter * call functions#HandleWinEnter()
+
+    " Highlight yank
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=400 }
+augroup END
 
 " NeoVim doesn't support command definition at this moment :cry:
 command! Cnext try | cnext | catch | cfirst | catch | endtry

@@ -30,7 +30,15 @@ let s:p.none = ['NONE', 'NONE']
 let s:p.bg  = ['#282c31', 235]
 let s:p.bg8 = ['#373c43', 238]
 let s:p.fg  = ['#A9B7C6', 145]
-let s:p.cursorLine = ['#2c3238', 236]
+" let s:p.cursorLine = ['#2c3238', 236] " Original
+" let s:p.cursorLine = ['#2B333B', 236] " Not too bad but still close to ther original
+" let s:p.cursorLine = ['#2F3740', 236] " Not too bad)
+let s:p.cursorLine = ['#2D353D', 236] " Not too bad)
+
+" Used for inactive window. In this way whole window will be of the same color,
+" i.e, background, cursor line, color column and gutter
+let s:p.bg_inactive  = s:p.cursorLine
+
 let s:p.wrapGuide = s:p.cursorLine
 let s:p.gutter = s:p.cursorLine
 let s:p.cursorLineNr = ['#A4A3A3', 248]
@@ -166,10 +174,11 @@ call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCare
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
 call functions#HL('MdraculaTestColor', s:p.test_color_fg, s:p.test_color_bg)
 
-call functions#HL('MdraculaNormal',    s:p.fg, s:p.bg)
-call functions#HL('MdraculaVisual',    s:p.none, s:p.selection)
-call functions#HL('MdraculaNormalFg',  s:p.fg)
-call functions#HL('MdraculaPopupMenu', s:p.none, s:p.menu)
+call functions#HL('MdraculaNormal',           s:p.fg, s:p.bg)
+call functions#HL('MdraculaNormalInactive',   s:p.fg, s:p.bg_inactive)
+call functions#HL('MdraculaVisual',           s:p.none, s:p.selection)
+call functions#HL('MdraculaNormalFg',         s:p.fg)
+call functions#HL('MdraculaPopupMenu',        s:p.none, s:p.menu)
 call functions#HL('MdraculaPopupMenuKeyword', s:p.mdracula_orange, s:p.menu)
 call functions#HL('MdraculaPopupMenuSelection', s:p.none, s:p.menuSel)
 
@@ -199,7 +208,6 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   hi! link Normal MdraculaNormal
 
   " Selection in Visual mode
-  " call functions#HL('Visual', s:p.null, s:p.selection)
   hi! link Visual MdraculaVisual
   hi! link VisualNOS Visual
   " Screen line that the cursor is
@@ -344,7 +352,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   " TODO: Fix background of current search value
   call functions#HL('IncSearch', s:p.null, s:p.incSearch)
   " The column separating vertically split windows
-  call functions#HL('VertSplit', s:p.muted)
+  call functions#HL('VertSplit', s:p.muted, s:p.bg_inactive)
 
   " }}}
   " SHRUG: {{{
