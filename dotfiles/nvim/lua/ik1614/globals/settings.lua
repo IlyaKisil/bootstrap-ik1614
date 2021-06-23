@@ -28,10 +28,8 @@ vim.o.termguicolors = true
 
 
 -- ----------- Indents
--- Converts tabs to spaces
-vim.bo.expandtab = true
-
 vim.cmd([[
+  set expandtab
   set tabstop=4
   set softtabstop=4
   set shiftwidth=4
