@@ -65,6 +65,7 @@ plugins=(
   colored-man-pages
   safe-paste
   vi-mode
+  fzf-tab
 )
 
 
