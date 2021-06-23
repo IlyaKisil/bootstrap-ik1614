@@ -78,6 +78,18 @@ if command -v fzf 1>/dev/null 2>&1; then
     # highlight of search result. To see other options use
     # bat --list-themes | fzf --preview="bat --theme={} --color=always --highlight-line 5:10 /path/to/file
     export BAT_THEME="Nord"
+
+    # Custom preview for different commands. Example: cd **<TAB>
+    # https://pragmaticpineapple.com/four-useful-fzf-tricks-for-your-terminal/#4-preview-files-before-selecting-them
+    _fzf_comprun() {
+      local command=$1
+      shift
+
+      case "$command" in
+        cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
+        *)  fzf "$@" ;;
+      esac
+    }
 fi
 
 
