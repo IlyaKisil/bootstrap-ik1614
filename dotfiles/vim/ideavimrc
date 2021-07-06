@@ -1,8 +1,3 @@
-" source ~/.config/nvim/init.vim
-source ~/.config/nvim/general/settings.vim
-source ~/.config/nvim/general/mappings.vim
-
-
 " ---------------------------------------------------------------------------------------
 " General settings
 " ---------------------------------------------------------------------------------------
@@ -10,7 +5,25 @@ set showmode
 
 " Enable native IJ insertion in Vim
 set clipboard+=ideaput
+" Copy to system wide clipboard
+set clipboard+=unnamed
 
+set number
+set relativenumber
+
+" Incremental search
+set incsearch
+" Highlighted search results
+set hlsearch
+" Use case insensitive search
+set ignorecase
+" Except when using capital letters
+set smartcase
+
+" When scrolling, keep cursor N lines away from screen border
+" Better to keep greater then 'pumheight'
+set scrolloff=8
+set sidescroll=10
 
 " ---------------------------------------------------------------------------------------
 " Plugins
@@ -47,6 +60,49 @@ set ideamarks
 "
 " Need to keep bindings like in VIM as much as possible
 " ---------------------------------------------------------------------------------------
+let mapleader="\<Space>"
+
+" Don't move cursor
+nnoremap <Space> <Nop>
+
+" Map (redraw screen) to also turn off search highlighting until the next search
+nnoremap <C-l> :nohl<CR><C-L>
+
+" When you paste over something send that content to 'the black hole register'
+vnoremap <leader>p "_dP
+
+" Keep selection after tab adjust
+vnoremap < <gv
+vnoremap > >gv
+
+" Convenience for applying macros
+nnoremap Q @q
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Same when moving up and down and jumping within locations list
+noremap <C-d> <C-d>zz
+noremap <C-u> <C-u>zz
+noremap <C-o> <C-o>zz
+noremap <C-i> <C-i>zz
+
+"make Y consistent with C and D
+nnoremap Y y$
+
+" Move selection up and down. This will also respect indentation levels
+" NOTE: Doesn't work nice :cry:
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Add multiline movements to jumplist, so we can use <C-i> and <C-o>
+" NOTE: Doesn't work :cry:
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'gk'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'gj'
+
+
 """ NAVIGATION COMMANDS:
 map <S-Right> :action NextSplitter<CR>
 map <S-Left>  :action PrevSplitter<CR>
@@ -60,6 +116,9 @@ nnoremap gk :action GotoPreviousError<cr>
 nnoremap <C-n> :action ActivateProblemsViewToolWindow<cr>
 nnoremap <C-k> :action ActivateProblemsViewToolWindow<cr>
 
+" Add multiline movements to jumplist, so we can use <C-i> and <C-o>
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'gk'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'gj'
 
 """ FIND COMMANDS: '<leader>f ...' (try to keep similar to 'fzf' bindings)
 " Find Files. Equivalent to ':GFiles', ':Files'

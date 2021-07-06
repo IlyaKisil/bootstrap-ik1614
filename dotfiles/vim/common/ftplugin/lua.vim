@@ -6,10 +6,8 @@
 " ### UNLESS CHANGES WILL BECOME PERMANENT ###
 " ############################################
 
-
-" ---------- NeoVim specific settings
-" This is where 'pynvim' should be installed
-let g:python3_host_prog = '$HOME/.pyenv/versions/3.7.6/bin/python'
-
-" This 'require' will become new init.vim/init.lua
-" lua require("ik1614")
+setlocal expandtab
+setlocal autoindent
+setlocal softtabstop=2
+setlocal tabstop=2
+setlocal shiftwidth=2

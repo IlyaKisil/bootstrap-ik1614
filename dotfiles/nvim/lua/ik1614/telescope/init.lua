@@ -1,9 +1,21 @@
+if not pcall(require, 'telescope') then
+  return
+end
+
+local reloader = function()
+    RELOAD('plenary')
+    RELOAD('popup')
+    RELOAD('telescope')
+end
+
+reloader()
+
 local actions = require('telescope.actions')
 
 require('telescope').setup {
     defaults = {
         file_sorter = require('telescope.sorters').get_fzy_sorter,
-        prompt_prefix = '🔍 ',
+        prompt_prefix = '> ',
         prompt_position = "top",
         sorting_strategy = "ascending",
         scroll_strategy = "cycle",
@@ -50,14 +62,14 @@ require('telescope').setup {
 -- require('telescope').load_extension('fzy_native')
 
 local M = {}
-M.search_dotfiles = function()
+function M.search_dotfiles()
     require("telescope.builtin").find_files({
         prompt_title = "< dotfiles >",
         cwd = "$HOME/GitHub/IlyaKisil/bootstrap-ik1614/dotfiles/",
     })
 end
 
-M.git_branches = function()
+function M.git_branches()
     require("telescope.builtin").git_branches({
         attach_mappings = function(_, map)
             map('i', '<c-d>', actions.git_delete_branch)
@@ -67,4 +79,14 @@ M.git_branches = function()
     })
 end
 
-return M
+return setmetatable({}, {
+  __index = function(_, k)
+    reloader()
+
+    if M[k] then
+      return M[k]
+    else
+      return require('telescope.builtin')[k]
+    end
+  end
+})

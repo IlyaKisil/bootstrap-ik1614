@@ -1,18 +1,17 @@
 - link:
-    ~/.config/nvim/init.vim: dotfiles/vim/vimrc
-    ~/.config/nvim/init-nvim-specific.vim: dotfiles/vim/nvim/init-nvim-specific.vim
-    ~/.config/nvim/general: dotfiles/vim/common/general
-    ~/.config/nvim/autoload: dotfiles/vim/common/autoload
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim: dotfiles/nvim/packer.nvim
+    ~/.local/share/nvim/snippets: dotfiles/nvim/snippets
+    ~/.config/nvim/init.vim: dotfiles/nvim/init.vim
+    ~/.config/nvim/lua: dotfiles/nvim/lua
+    # ~/.config/nvim/general: dotfiles/vim/common/general
+    # ~/.config/nvim/autoload: dotfiles/vim/common/autoload
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
     ~/.config/nvim/ftdetect: dotfiles/vim/common/ftdetect
-    ~/.config/nvim/colors: dotfiles/vim/common/colors
-    ~/.config/nvim/syntax: dotfiles/vim/common/syntax
-    ~/.config/nvim/vim-plug: dotfiles/vim/common/vim-plug
-    ~/.config/nvim/coc-settings.json: dotfiles/vim/common/vim-plug/configs/coc-settings.json
-    # This is sort of shared between NeoVim and Vim configs
-    ~/.config/ultisnips: dotfiles/vim/common/ultisnips
+    ~/.config/nvim/colors: dotfiles/nvim/colors
+    # ~/.config/nvim/syntax: dotfiles/vim/common/syntax
+    ~/.config/nvim/ultisnips: dotfiles/vim/common/ultisnips
+    ~/.config/nvim/after/queries: dotfiles/nvim/treesitter-queries
     ~/.config/dictionaries-ik1614: misc/dictionaries
-    ~/.config/nvim/lua: dotfiles/vim/nvim/lua
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
-    - ["[ -f ~/.config/nvim/init-local.vim ] && echo '=> Already exists, skipping' || cp dotfiles/vim/vimrc-local ~/.config/nvim/init-local.vim", Initialising init-local.vim]
+    - ["[ -f ~/.config/nvim/init-local.lua ] && echo '=> Already exists, skipping' || cp dotfiles/nvim/init-local.lua ~/.config/nvim/init-local.lua", Initialising init-local.lua]
