@@ -22,7 +22,7 @@ vim.cmd([[
 ]])
 
 -- Support for 256 colors
-vim.o.t_Co = "256"
+-- vim.o.t_Co = "256" -- This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
 vim.o.termguicolors = true
 
 

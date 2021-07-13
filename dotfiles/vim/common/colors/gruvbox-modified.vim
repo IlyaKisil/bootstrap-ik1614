@@ -441,7 +441,7 @@ call s:HL('GruvboxOrangeSign', s:orange, s:sign_column, s:invert_signs)
 " Vanilla colorscheme ---------------------------------------------------------
 " General UI: {{{
 
-set t_Co=256
+" set t_Co=256  " This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
 set background=dark
 
 " Normal text
