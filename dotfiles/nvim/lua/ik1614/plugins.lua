@@ -95,7 +95,7 @@ return require('packer').startup(
     -- General Plugins
     -- use 'liuchengxu/vim-which-key'
     -- use 'https://github.com/folke/which-key.nvim'
-    -- use 'kevinhwang91/nvim-bqf' -- Seems good but will need time to set it up
+    use 'kevinhwang91/nvim-bqf' -- Seems good but will need time to set it up
     -- use 'liuchengxu/vista.vim'
     -- use 'monaqa/dial.nvim'
     -- use 'andymass/vim-matchup'
