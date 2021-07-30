@@ -195,3 +195,15 @@ vim.cmd([[
 ]])
 
 
+-- Undo break points. When you type a very long line but then realise that you
+-- want to undo something, these mappings will undo text until certain special
+-- characters at a time
+map('i', ',', ',<C-g>u')
+map('i', '.', '.<C-g>u')
+map('i', '!', '!<C-g>u')
+map('i', '?', '?<C-g>u')
+map('i', '"', '"<C-g>u')
+map('i', '$', '$<C-g>u')
+map('i', '[', '[<C-g>u')
+map('i', ':', ':<C-g>u')
+map('i', ';', ';<C-g>u')
