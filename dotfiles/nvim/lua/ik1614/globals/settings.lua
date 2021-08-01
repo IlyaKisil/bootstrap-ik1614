@@ -7,7 +7,7 @@
 vim.cmd('syntax enable')
 vim.o.fileencoding = "utf-8"
 
-vim.cmd('set nocompatible')
+-- vim.cmd('set nocompatible')  -- Nvim is always 'nocompatible'
 -- Allow plugins by file type (required for plugins!)
 vim.cmd('filetype plugin indent on')
 
@@ -23,106 +23,103 @@ vim.cmd([[
 
 -- Support for 256 colors
 -- vim.o.t_Co = "256" -- This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
-vim.o.termguicolors = true
+vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
 
 
 
 -- ----------- Indents
-vim.cmd([[
-  set expandtab
-  set tabstop=4
-  set softtabstop=4
-  set shiftwidth=4
-  set autoindent
-]])
+vim.opt.expandtab = true -- always use spaces instead of tabs
+vim.opt.autoindent     = true                              -- maintain indent of current line
+vim.opt.tabstop       = 2                       -- spaces per tab
+vim.opt.softtabstop = 4 -- use 'shiftwidth' for tab/bs at end of line
+vim.opt.shiftwidth    = 2                       -- spaces per tab (when shifting)
 
 
 -- ----------- Wrapping
 -- Don't wrap lines by default
 vim.wo.wrap = false
 
--- "----------- Line num and position
-vim.wo.number = true
-vim.wo.cursorline = true
+-- ----------- Line num and position
+vim.opt.number         = true -- show line numbers in gutter
+vim.opt.cursorline     = true                              -- highlight current line
 vim.wo.signcolumn = "yes"
-vim.wo.relativenumber = true
-vim.cmd('set colorcolumn=90')
+vim.opt.relativenumber = true -- show relative numbers in gutter
+vim.opt.colorcolumn = '90'
 
--- When scrolling, keep cursor N lines away from screen border
--- Better to keep greater then 'pumheight'
-vim.o.scrolloff = 8
-vim.o.sidescroll = 10
+vim.opt.scrolloff = 8  -- When scrolling, keep cursor N lines away from screen border. Better to keep greater then 'pumheight'
+vim.opt.sidescroll = 10  -- Same as 'scrolloff'
 
 
 -- ---------- Search and native auto-completion
--- Incremental search
-vim.cmd('set incsearch')
--- Highlighted search results
-vim.cmd('set hlsearch')
--- Use case insensitive search
-vim.cmd('set ignorecase')
--- Except when using capital letters
-vim.cmd('set smartcase')
+vim.opt.incsearch = true -- Incremental search
+vim.opt.hlsearch = true -- highlight all matches on previous search pattern
+vim.opt.ignorecase = true -- ignore case in search patterns
+vim.opt.smartcase = true -- Except when using capital letters
 
--- Determines the maximum number of items to show in the popup menu (auto-completion)
--- Better to keep it less then 'scrolloff'
-vim.o.pumheight = 7
+
+vim.o.pumheight = 7 -- Determines the maximum number of items to show in the popup menu (auto-completion). Better to keep it less then 'scrolloff'
 
 -- FIXME: Sort out autoinsert upon autocompletion
-vim.o.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt    = 'menuone'                         -- show menu even if there is only one candidate (for nvim-compe)
+vim.opt.completeopt    = vim.opt.completeopt + 'noselect'  -- don't automatically select canditate (for nvim-compe);w
+-- vim.o.completeopt = "menuone,noinsert,noselect"
 
 
--- "----------- Splits, Windows, Buffers
--- " Open vsplit and split on the right and below respectively
-vim.o.splitbelow = true
-vim.o.splitright = true
+-- ----------- Splits, Windows, Buffers
+vim.opt.splitbelow    = true                    -- open horizontal splits below current window
+vim.opt.splitright    = true                    -- open vertical splits to the right of the current window
 
--- " Allow switching to another buffer without saving current one
-vim.o.hidden = true
+vim.opt.hidden         = true                              -- allows you to hide buffers with unsaved changes without being prompted
 
--- " Reload files changed outside vim
+-- Reload files changed outside vim
 vim.cmd('set autoread')
 vim.cmd('set autowrite')
 
 
--- "----------- Command line/mode
--- " Always show status bar
-vim.cmd('set ls=2')
--- " Give more space for displaying messages he
-vim.o.cmdheight = 2
+-- ----------- Command line/mode
+-- vim.cmd('set ls=2')
+vim.opt.laststatus     = 2                                 -- always show status line
+vim.o.cmdheight = 1  -- height of the command mode
 
--- " Show partial commands in the last line of the screen
+-- Show partial commands in the last line of the screen
 vim.cmd('set showcmd')
--- " Better command-line completion
-vim.cmd('set wildmenu')
+vim.opt.wildmenu    = true -- Better command-line completion. show options as list when switching buffers etc
 
 
--- "----------- Misc
-vim.o.mouse = "a"
+-- ----------- Misc
+vim.opt.mouse = "a"
 
--- " don't bother updating screen during macro playback
-vim.cmd('set lazyredraw')
--- " Allow backspacing over autoindent, line breaks and start of insert action
-vim.cmd('set backspace=indent,eol,start')
+vim.opt.lazyredraw = true -- don't bother updating screen during macro playback
+
+vim.opt.backspace      = 'indent,start,eol' -- allow unrestricted backspacing in insert mode, e.g. linebreaks, autoindent etc.
 
 -- Copy to system wide clipboard
 -- vim.o.clipboard = "unnamed"
 vim.o.clipboard = "unnamedplus"
 
--- " Show special characters
-vim.cmd('set list')
-vim.cmd('set listchars=space:.,tab:-->')
+-- Show special characters
+vim.opt.list           = true                              -- show whitespace
+vim.opt.listchars      = {
+  nbsp                 = '⦸',                              -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
+  extends              = '»',                              -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+  precedes             = '«',                              -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+  tab                  = '-->',
+  space                = '.',
+}
 
--- " Arrow pointing downwards then curving rightwards (U+2937, UTF-8: E2 A4 B7)
--- if has('linebreak')
---   let &showbreak='⤷ '
--- endif
+-- Enable folding
+vim.opt.foldmethod     = 'indent'
+vim.opt.foldlevelstart = 99                                -- start unfolded
+-- Use treesitter for folding. FIXME: doesn't work currently :cry:
+-- vim.opt.foldmethod     = 'expr'
+-- vim.opt.foldtext       = 'nvim_treesitter#foldexpr()'
 
--- " Enable folding
-vim.cmd('set foldmethod=indent')
-vim.cmd('set foldlevel=99')
--- Use treesitter for folding
-vim.cmd([[
-  set foldmethod=expr
-  set foldexpr=nvim_treesitter#foldexpr()
-]])
+-- Disable `netrw` completely
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+--
+vim.opt.fillchars = {
+  diff = ' ', -- Don't display symbols for deleted lines in the diff mode
+  eob  = ' ', -- Don't display end of buffer symbol
+}
