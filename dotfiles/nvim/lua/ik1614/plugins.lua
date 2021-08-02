@@ -1,18 +1,29 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
+-- local execute = vim.api.nvim_command
+-- local fn = vim.fn
+-- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- if fn.empty(fn.glob(install_path)) > 0 then
+--   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+--   execute 'packadd packer.nvim'
+-- end
 
 -- Auto compile when there are changes in plugins.lua
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
+vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile profile=true'
 
 -- require('packer').init({display = {non_interactive = true}})
--- require('packer').init({display = {auto_clean = false}})
+require('packer').init(
+  {
+    profile = {
+      enable = true,
+    }
+  }
+)
 
 return require('packer').startup(
   function(use)
     -- We keep it so that packer won't try to remove itself.
     -- In reality, we have it as git submodule, that we link to
     -- a specific directory
-    -- use "wbthomason/packer.nvim"
+    use "wbthomason/packer.nvim"
 
     -- Guides to use Lua in NVIM
     -- use 'https://github.com/nanotee/nvim-lua-guide'
@@ -78,13 +89,22 @@ return require('packer').startup(
       -- FIXME: Doesn't work :cry:
       -- config = [[require('ik1614.gitsigns')]],
     }
-    use 'tpope/vim-fugitive'
+    use 'sindrets/diffview.nvim'
+    use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
+    -- use 'https://github.com/TimUntersberger/neogit'
     use {
       'ruifm/gitlinker.nvim',
       requires = 'nvim-lua/plenary.nvim',
     }
-    -- For PR review etc
-    -- use {'https://github.com/pwntester/octo.nvim'}
+    -- For PR review etc. FIXME: some problems with 'gh auth'. I'm logged in just fine
+    -- (using 'GITHUB_TOKEN' env variable) and can do everything in CLI but this plugin
+    -- asks to do auth :shrug:
+    use {
+      'pwntester/octo.nvim',
+      config=function()
+        require"octo".setup({})
+      end
+    }
 
     -- Preview/query JSON files
     -- use 'gennaro-tedesco/nvim-jqx'
