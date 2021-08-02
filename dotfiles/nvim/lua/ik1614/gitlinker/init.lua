@@ -18,16 +18,16 @@ require"gitlinker".setup({
     action_callback = copy_and_open_in_browser,
 
     -- print the url after performing the action
-    print_url = true,
-
-    -- mapping to call url generation
-    -- TODO: extract this from some global mapping variable.
-    mappings = "<leader>go"
+    print_url = false,
   },
   callbacks = {
     ["IlyaKisil.github.com"] = function(url_data)
+      -- FIXME: For some reason this doesn't work all the time :shrug:
       url_data.host = "github.com"
       return gitlinker.hosts.get_github_type_url(url_data)
     end,
-  }
+  },
+  -- mapping to call url generation
+  -- TODO: extract this from some global mapping variable.
+  mappings = "<leader>go"
 })
