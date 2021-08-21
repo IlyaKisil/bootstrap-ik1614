@@ -4,6 +4,7 @@ let s:__configs = []
 
 call add(s:__configs, 'fzf')
 call add(s:__configs, 'vim-fugitive')
+call add(s:__configs, 'vimtex')
 
 " All custom things that need to be converted from the VimScript
 call add(s:__configs, 'vim-backport')

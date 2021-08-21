@@ -168,5 +168,9 @@ return require('packer').startup(
     use {
       "AndrewRadev/splitjoin.vim"
     }
+
+    use {
+      "https://github.com/lervag/vimtex"
+    }
   end
 )

@@ -476,9 +476,18 @@ hi! link LspFloatWinBorder          MdraculaPopupMenu
 hi! link LspSagaHoverBorder         MdraculaPopupMenu
 hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
 hi! link LspSagaRenameBorder        MdraculaPopupMenu
+" hi! link LspSagaLspFinderBorder        MdraculaPopupMenu
+" hi! link LspSagaDiagnosticBorder        MdraculaPopupMenu
+" hi! link LspSagaDiagnosticHeader        MdraculaPopupMenu
+" hi! link LspSagaDiagnosticTruncateLine MdraculaPopupMenu
+
+" call functions#HL('MdraculaPopupMenuu',        s:p.menu, s:p.menu)
+" hi! link LspSagaRenameBorder        MdraculaPopupMenuu
+" " highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
+
+
 
 hi! link SagaShadow             MdraculaTestColor
-hi! link DiagnosticTruncateLine MdraculaTestColor
 hi! link DiagnosticError        MdraculaTestColor
 hi! link DiagnosticWarning      MdraculaTestColor
 hi! link DiagnosticInformation  MdraculaTestColor
@@ -585,7 +594,7 @@ hi! link TSFloat        Number
 " Functions
 hi! link TSFunction           MdraculaFunction
 hi! link TSFuncBuiltin        MdraculaBuiltin      " Consider making the same as TSFunction
-hi! link TSFuncMacro          MdraculaTestColor        " Not sure what this is
+hi! link TSFuncMacro          MdraculaBuiltin      " Used in Latex for backslash commands
 hi! link TSParameter          MdraculaFunctionParameter
 hi! link TSParameterReference MdraculaTestColor        " Doesn't look like this is working :cry:
 hi! link TSMethod             Normal
@@ -616,16 +625,16 @@ hi! link TSVariable        Normal    " Could use 'MdraculaFunctionParameter ' if
 hi! link TSVariableBuiltin MdraculaPink
 
 " Text
-hi! link TSText           MdraculaTestColor
-hi! link TSStrong         MdraculaTestColor
-hi! link TSEmphasis       MdraculaTestColor
-hi! link TSUnderline      MdraculaTestColor
-hi! link TSStrike         MdraculaTestColor
-hi! link TSMath           MdraculaTestColor
+" hi! link TSText           MdraculaTestColor
+" hi! link TSStrong         MdraculaTestColor
+" hi! link TSEmphasis       MdraculaTestColor
+" hi! link TSUnderline      MdraculaTestColor
+" hi! link TSStrike         MdraculaTestColor
+" hi! link TSMath           MdraculaTestColor  " Used in Latex in a form of inline equation
 hi! link TSTextReference  MdraculaURL
 hi! link TSEnviroment     MdraculaTestColor
 hi! link TSEnviromentName MdraculaTestColor
-hi! link TSTitle          MdraculaTestColor
+hi! link TSTitle          MdraculaKeyword " Seen this in Latex as the second argument to then environment commands
 hi! link TSLiteral        String
 hi! link TSURI            MdraculaURL
 

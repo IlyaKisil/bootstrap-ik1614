@@ -40,6 +40,7 @@ require("ik1614.lsp.lua")
 require("ik1614.lsp.python")
 require("ik1614.lsp.go")
 require("ik1614.lsp.bash")
+require("ik1614.lsp.latex")
 -- require("ik1614.lsp.terraform")
 
 
