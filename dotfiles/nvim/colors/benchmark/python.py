@@ -2,8 +2,11 @@
 import os
 from pathlib import Path
 
+HERE = "bla"
 
 # TODO: one two three.
+# NOTE: hello
+# FIXME: hello
 # Todo: one two three.
 # todo: one two three.
 # NonText:  , space ,
@@ -45,7 +48,9 @@ class Bar(Foo):
             pass
         finally:
             pass
-        if
+        if self.sense == 2:
+            yield 5
+
 
         for i in range():
             print(hello)

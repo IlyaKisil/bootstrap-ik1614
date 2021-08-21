@@ -6,7 +6,7 @@
 " ### UNLESS CHANGES WILL BECOME PERMANENT ###
 " ############################################
 
-set t_Co=256
+" set t_Co=256  " This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
 
 " Support for true color
 if (has("nvim"))

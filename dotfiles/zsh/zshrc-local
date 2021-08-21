@@ -53,6 +53,8 @@ if command -v fzf 1>/dev/null 2>&1; then
     FZF_YELLOW_COLOR="#E5C07B"
     FZF_GRAY_COLOR="#46484A"
     FZF_OPTS="--height 40% --inline-info --layout=reverse --no-bold --cycle"
+    FZF_BINDINGS='--bind=ctrl-e:up,ctrl-n:down' # Good for Colemak layout
+
     # https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
     FZF_COLORS="
       --color=fg:-1
@@ -70,12 +72,24 @@ if command -v fzf 1>/dev/null 2>&1; then
       --color=border:-1
       --color=gutter:-1
     "
-    export FZF_DEFAULT_OPTS="${FZF_OPTS} ${FZF_COLORS}"
+    export FZF_DEFAULT_OPTS="${FZF_OPTS} ${FZF_BINDINGS} ${FZF_COLORS}"
 
     # Provides nice coloring for preview window with clear
     # highlight of search result. To see other options use
     # bat --list-themes | fzf --preview="bat --theme={} --color=always --highlight-line 5:10 /path/to/file
     export BAT_THEME="Nord"
+
+    # Custom preview for different commands. Example: cd **<TAB>
+    # https://pragmaticpineapple.com/four-useful-fzf-tricks-for-your-terminal/#4-preview-files-before-selecting-them
+    _fzf_comprun() {
+      local command=$1
+      shift
+
+      case "$command" in
+        cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
+        *)  fzf "$@" ;;
+      esac
+    }
 fi
 
 
@@ -101,23 +115,6 @@ NODE_VERSION="13.10.1"
 NODE_BIN="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin"
 
 
-### Conda specific configuration (adaptation of contents which is managed by 'conda init')
-### Uncomment and correctly define 'ANACONDA_HOME'
-## >>> conda initialize >>>
-#ANACONDA_HOME=/path/to/anaconda
-#ANACONDA_BIN="${ANACONDA_HOME}/bin"
-#__conda_setup="$('$ANACONDA_HOME/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-#if [[ $? -eq 0 ]]; then
-#    eval "${__conda_setup}"
-#else
-#    if [[ -f "${ANACONDA_HOME}/etc/profile.d/conda.sh" ]]; then
-#        . "${ANACONDA_HOME}/etc/profile.d/conda.sh"
-#    fi
-#fi
-#unset __conda_setup
-## <<< conda initialize <<<
-
-
 ### Configuration for Pyenv
 PYENV_ROOT="${HOME}/.pyenv"
 PYENV_BIN="${PYENV_ROOT}/bin"
@@ -126,13 +123,13 @@ PYENV_SHIMS="${PYENV_ROOT}/shims"
 PYENV_INIT=""
 
 
+### Configuration for Rust
+RUST_BIN="${HOME}/.cargo/bin"
+RUSTUP_HOME="${HOME}/.rustup"
+CARGO_HOME="${HOME}/.cargo"
+
 
 ###------------------------------    SECRETS   --------------------------------###
 # Home for defining secrets. Use in conjunction with 'add-secret-environment-variable.sh'
 # and 'load-secret-environment-variable.sh'
 export ZSHENV_SECRETS=${HOME}/.zshenv-secrets
-
-# Variables used by 'sync-settings' in ATOM. Uncomment and define these if in use
-#export GITHUB_TOKEN=""  # Personal access token to GitHub which has the gist scope
-#export GIST_ID=""       # Last part of url (after username) related to private gist with Atom dotfiles
-

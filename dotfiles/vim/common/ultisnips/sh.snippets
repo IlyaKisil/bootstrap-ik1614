@@ -2,6 +2,10 @@ snippet here "Get the full path to location of current script" b
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 endsnippet
 
+snippet now "Get current time" b
+NOW="$(date +"%Y-%m-%dT%H:%M:%S")"
+endsnippet
+
 snippet base "Script template with parsing options and help message" b
 #!/usr/bin/env bash
 # vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
@@ -10,7 +14,7 @@ set -euo pipefail
 
 . import_blockchain_module utils
 
-__SCRIPT_NAME=$(basename ${BASH_SOURCE[0]})
+__SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
 
 function __show_help() {
   cat << HELP_USAGE

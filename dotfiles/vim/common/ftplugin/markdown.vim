@@ -22,3 +22,6 @@ setlocal linebreak
 " Wrap text when exceeding window width (in case it is < textwidth)
 setlocal wrap
 
+setlocal softtabstop=2
+setlocal tabstop=2
+setlocal shiftwidth=2

@@ -1,0 +1,4 @@
+-- ###########################################################
+-- ###    Specific configurations for the local machine    ###
+-- ### This file is sourced by the ~/.config/nvim/init.lua ###
+-- ###########################################################

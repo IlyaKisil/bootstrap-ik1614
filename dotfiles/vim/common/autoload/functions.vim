@@ -69,3 +69,80 @@ function! functions#OpenURL()
         echom "No URI found in line."
     endif
 endfunction
+
+
+function! functions#save_and_exec() abort
+  if &filetype == 'vim'
+    :silent! write
+    :source %
+  elseif &filetype == 'lua'
+    :silent! write
+    :luafile %
+  endif
+  return
+endfunction
+
+
+function! functions#exec_current_line() abort
+  if &ft == 'lua'
+    execute(printf(":lua %s", getline(".")))
+  elseif &ft == 'vim'
+    exe getline(">")
+  endif
+endfunction
+
+
+" Utility for using '*' and '#' for a selected region
+function! functions#visual_selection_search()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+
+" Utility for creating highlight groups
+function! functions#HL(group, fg, ...)
+  " arguments: group, fg, bg, style
+  if a:0 >= 1
+    let bg=a:1
+  else
+    let bg=g:ik1614_color_palette.null
+  endif
+  if a:0 >= 2 && strlen(a:2)
+    let style=a:2
+  else
+    let style='NONE'
+  endif
+  let hiList = [
+    \ 'hi', a:group,
+    \ 'ctermfg=' . a:fg[1],
+    \ 'guifg=' . a:fg[0],
+    \ 'ctermbg=' . bg[1],
+    \ 'guibg=' . bg[0],
+    \ 'cterm=' . style,
+    \ 'gui=' . style
+    \ ]
+  execute join(hiList)
+endfunction
+
+" Utility to show highlight group under the cursor
+function! functions#ShowSyntaxGroupUnderCursor()
+  if !exists("*synstack")
+    echo "Nothing found"
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Utility to show highlight group under the cursor
+function! functions#ShowHLGroupUnderCursor()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+
+" Utility to change highlight group of active/inactive windows
+function! functions#HandleWinEnter()
+  setlocal winhighlight=Normal:MdraculaNormal,NormalNC:MdraculaNormalInactive
+endfunction
+
