@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"fmt"
 	"log"
@@ -35,6 +34,7 @@ func main() {
 	var b, c int = 1, 2
 	fmt.Println(b, c)
 	// foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
+	foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
 
 	var d = true
 	fmt.Println(d)
