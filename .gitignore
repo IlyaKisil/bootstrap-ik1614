@@ -1144,3 +1144,4 @@ $RECYCLE.BIN/
 tmp/
 test_[0-9]*
 !misc/jet-brains/editor-color-scheme-one-dark-custom.jar
+*.brewfile.lock.json
