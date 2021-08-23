@@ -24,6 +24,8 @@ cask "notion", require_sha: true
 cask "openvpn", require_sha: true
 # Collaboration platform for API development
 cask "postman", require_sha: true
+# PDF reader and note-taking application (helps with Vimtex view-sync)
+cask "skim", require_sha: true
 # Video chat, voice call and instant messaging application
 cask "skype", require_sha: true
 # Team communication and collaboration software
