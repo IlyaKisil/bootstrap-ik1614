@@ -39,6 +39,7 @@ ZSH_PLUGINS=(
     # zsh-autosuggestions  # Don't really like it. Better to use 'fzf'
     # gcloud               # Relies on google-sdk being in certain locations, e.g. $HOME
     docker
+    docker-compose
 )
 
 # This is tailored specifically for the p10k prompt scheme
@@ -111,7 +112,7 @@ LOCAL_BIN="${HOME}/.local/bin"
 # Change 'NVM_DIR' and 'NODE_VERSION' as required
 # Note: when 'NODE_VERSION' is set we don't use NVM as it slows down opening a new shell
 NVM_DIR="$HOME/.nvm"
-NODE_VERSION="13.10.1"
+NODE_VERSION="16.7.0"
 NODE_BIN="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin"
 
 

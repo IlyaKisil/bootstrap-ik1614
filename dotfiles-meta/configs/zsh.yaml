@@ -5,7 +5,9 @@
     ~/.p10k.zsh: dotfiles/zsh/p10k.zsh
 - shell:
     - ["git submodule update --init --depth 1 --remote dotfiles/zsh/oh-my-zsh", Initiliasing oh-my-zsh]
+    - ["git submodule update --init --depth 1 --remote dotfiles/zsh/custom/plugins/fzf-tab", Initiliasing plugin fzf-tab]
     - ["git submodule update --init --depth 1 --remote dotfiles/zsh/custom/plugins/zsh-autosuggestions", Initiliasing plugin zsh-autosuggestions]
     - ["git submodule update --init --depth 1 --remote dotfiles/zsh/custom/themes/powerlevel10k", Initiliasing theme powerlevel10k]
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.zshrc-local ] && echo '=> Already exists, skipping' || cp dotfiles/zsh/zshrc-local ~/.zshrc-local", Initialising .zshrc-local]
+    - ["touch ~/.zshenv-secrets", Initialising .zshenv-secrets]
