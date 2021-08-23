@@ -7,27 +7,27 @@ cask_args appdir: "~/Applications"
 brew "mas"
 
 # Application launcher and productivity software
-cask "alfred"
+cask "alfred", require_sha: true
 # Two-factor authentication software
-cask "authy"
+cask "authy", require_sha: true
 # Client for the Dropbox cloud storage service
-cask "dropbox"
+cask "dropbox", require_sha: true
 # Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
+cask "iterm2", require_sha: true
 # Web browser
-cask "google-chrome"
+cask "google-chrome", require_sha: true
 # JetBrains tools manager
-cask "jetbrains-toolbox"
+cask "jetbrains-toolbox", require_sha: true
 # Music streaming service
-cask "notion"
+cask "notion", require_sha: true
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
-cask "openvpn"
+cask "openvpn", require_sha: true
 # Collaboration platform for API development
-cask "postman"
+cask "postman", require_sha: true
 # Video chat, voice call and instant messaging application
-cask "skype"
+cask "skype", require_sha: true
 # Team communication and collaboration software
-cask "slack"
+cask "slack", require_sha: true
 # Move and resize windows with ease
 cask "spectacle", require_sha: true
 # Music streaming service
@@ -35,9 +35,9 @@ cask "spotify"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
 # Flash tool for ZSA keyboards
-cask "zsa-wally"
+cask "zsa-wally", require_sha: true
 # Video communication and virtual meeting platform
-cask "zoom"
+cask "zoom", require_sha: true
 
 # mas "Pocket", id: ....
 # mas "WireGuard", id: ....
