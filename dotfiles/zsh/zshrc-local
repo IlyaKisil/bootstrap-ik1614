@@ -131,6 +131,15 @@ CARGO_HOME="${HOME}/.cargo"
 
 
 ###------------------------------    SECRETS   --------------------------------###
-# Home for defining secrets. Use in conjunction with 'add-secret-environment-variable.sh'
-# and 'load-secret-environment-variable.sh'
+# Home for defining secrets that are not used very often. Use in conjunction
+# with 'add-secret-environment-variable.sh' and 'load-secret-environment-variable.sh'
+# and then 'import-secrets' alias that will source directory below.
 export ZSHENV_SECRETS=${HOME}/.zshenv-secrets
+
+
+# List of names for commonly used secrets that should be exposed as env variables. Every
+# such variale should be added to the keychain with 'add-secret-environment-variable.sh'
+# and will be loaded in the '.zshrc' for every shell.
+COMMON_SECRETS=(
+  "GITHUB_TOKEN"
+)

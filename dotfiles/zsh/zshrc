@@ -153,6 +153,12 @@ else
     export EDITOR="$(which vim)"
 fi
 
+### Dynamically fetch commonly used secrets from the keychain.
+for secret_env_var in "${COMMON_SECRETS[@]}"; do
+  declare ${secret_env_var}="$(load-secret-environment-variable.sh "${secret_env_var}" &)"
+  export ${secret_env_var}
+done
+
 
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
