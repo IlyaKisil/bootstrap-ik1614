@@ -55,4 +55,5 @@ brew "tmux"
 brew "tree"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
+# Hack Nerd Font (Hack)
 cask "font-hack-nerd-font"

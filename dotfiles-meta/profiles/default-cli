@@ -1,7 +1,8 @@
 bin
 git
+jetbrains
+nvim
 sh-aliases
 ssh
 tmux
-vim
 zsh
