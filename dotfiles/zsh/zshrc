@@ -159,6 +159,8 @@ for secret_env_var in "${COMMON_SECRETS[@]}"; do
   export ${secret_env_var}
 done
 
+### Don't polute history with the following command patterns
+export HISTORY_IGNORE="(git (s|l|add *|co *|push|pull)|vim(| .)|la|ls|docker ps|* (-h|--help)|man *)"
 
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
