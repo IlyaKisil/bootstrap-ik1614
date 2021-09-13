@@ -104,7 +104,6 @@ export LD_LIBRARY_PATH=${CUDA_LIB64_HOME:=""}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PA
 export LD_LIBRARY_PATH=${CUDA_CUPTI_LIB64_HOME:=""}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Configurations for python
-export PATH=${ANACONDA_BIN:=""}${PATH:+:${PATH}}
 export PATH=${LOCAL_BIN:=""}${PATH:+:${PATH}}
 export PATH=${PYENV_BIN:=""}${PATH:+:${PATH}}
 
@@ -130,10 +129,18 @@ fi
 
 ### Node specific configs
 if [[ -z ${NODE_VERSION:=""} ]]; then
-    # This considerably slows down opening a new shell
+    # This considerably slows down opening a new shell, so we need it only for
+    # the initial installation of node
+
     export NVM_DIR
+
+    # Assumes that we simply clonned NVM
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+    # Assumes NVM was installed with 'brew'
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 else
     # This will work after initial node setup of via NVM
     export PATH=${NODE_BIN:=""}${PATH:+:${PATH}}
@@ -146,6 +153,14 @@ else
     export EDITOR="$(which vim)"
 fi
 
+### Dynamically fetch commonly used secrets from the keychain.
+for secret_env_var in "${COMMON_SECRETS[@]}"; do
+  declare ${secret_env_var}="$(load-secret-environment-variable.sh "${secret_env_var}" &)"
+  export ${secret_env_var}
+done
+
+### Don't polute history with the following command patterns
+export HISTORY_IGNORE="(git (s|l|add *|co *|push|pull)|vim(| .)|la|ls|docker ps|* (-h|--help)|man *)"
 
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh

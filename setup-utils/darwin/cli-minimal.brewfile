@@ -1,0 +1,59 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+# set arguments for all 'brew install --cask' commands
+cask_args appdir: "~/Applications", require_sha: true
+
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Python code formatter
+brew "black"
+# Utility that creates projects from templates
+brew "cookiecutter"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# YAML Parser
+brew "libyaml"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
+# Python dependency management tool
+brew "pipenv"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Command-line YAML and XML processor that wraps jq
+brew "python-yq"
+# Python version management
+brew "pyenv"
+# Reattach process (e.g., tmux) to background
+brew "reattach-to-user-namespace"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# User interface to the TELNET protocol
+brew "telnet"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
+# Hack Nerd Font (Hack)
+cask "font-hack-nerd-font"

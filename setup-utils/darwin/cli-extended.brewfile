@@ -1,0 +1,105 @@
+tap "hashicorp/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+# set arguments for all 'brew install --cask' commands
+cask_args appdir: "~/Applications", require_sha: true
+
+#########################################################################################
+# Cloud
+#########################################################################################
+# GitHub command-line tool
+brew "gh"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "google-cloud-sdk"
+
+#########################################################################################
+# SRE and DevOps
+#########################################################################################
+#--- Hashicorp.
+#--- Install from 'hashicorp/tap' instead of 'homebrew/core' when possible.
+#--- But there might be caveats with dependencies. For more info see
+#--- https://github.com/hashicorp/homebrew-tap#why-doesnt-hashicorp-maintain-formulae-in-the-homebrew-core-main-tap
+# Tool for service discovery, monitoring and configuration
+brew "hashicorp/tap/consul"
+# Generic template rendering and notifications with Consul
+brew "hashicorp/tap/consul-template"
+# Tool for creating identical machine images for multiple platforms
+brew "hashicorp/tap/packer"
+# Terraform Language Server
+brew "hashicorp/tap/terraform-ls"
+# Distributed, Highly Available, Datacenter-Aware Scheduler
+brew "hashicorp/tap/nomad"
+# Secures, stores, and tightly controls access to secrets
+brew "hashicorp/tap/vault"
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+# Development environment
+cask "vagrant"
+
+#--- Virtualisation
+# App to build and share containerized applications and microservices
+cask "docker"
+# Tool for exploring each layer in a docker image
+brew "dive"
+# Free and open-source hosted hypervisor for x86 virtualization
+cask "virtualbox"
+
+#--- Networking
+# Like cURL, but for gRPC
+brew "grpcurl"
+# Calculate various network masks, etc. from a given IP address
+brew "ipcalc"
+# CLI wrapper for basic network utilities on macOS - ip command
+brew "iproute2mac"
+# SSL tunneling program
+brew "stunnel"
+# Internet file retriever
+brew "wget"
+
+
+#########################################################################################
+# Datastores
+#########################################################################################
+# Open-source distributed event streaming platform
+brew "kafka"
+# Apache Kafka C/C++ library
+brew "librdkafka"
+# Generic command-line non-JVM Apache Kafka producer and consumer
+brew "kafkacat"
+# Open source relational database management system
+brew "mysql"
+# Object-relational database system
+brew "postgresql"
+# Persistent key-value database, with built-in net interface
+brew "redis"
+
+
+#########################################################################################
+# Languages
+#########################################################################################
+# Package manager for the Lua programming language
+brew "luarocks"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Manage multiple Node.js versions
+brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk@11"
+# Highly capable, feature-rich programming language
+brew "perl"
+# Rust toolchain installer
+brew "rustup-init"
+# Full TeX Live distribution without GUI applications
+# cask "mactex-no-gui" # Tasks quite long to install :rage:. Use 'brew install --cask mactex-no-gui'
+
+
+#########################################################################################
+# Misc
+#########################################################################################
+# Record and share terminal sessions
+brew "asciinema"
+# Download YouTube videos from the command-line
+brew "youtube-dl"
+

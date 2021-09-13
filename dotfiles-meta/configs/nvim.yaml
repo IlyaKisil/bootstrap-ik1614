@@ -1,10 +1,9 @@
 - link:
-    ~/.local/share/nvim/site/pack/packer/start/packer.nvim: dotfiles/nvim/packer.nvim
     ~/.local/share/nvim/snippets: dotfiles/nvim/snippets
     ~/.config/nvim/init.vim: dotfiles/nvim/init.vim
     ~/.config/nvim/lua: dotfiles/nvim/lua
     # ~/.config/nvim/general: dotfiles/vim/common/general
-    # ~/.config/nvim/autoload: dotfiles/vim/common/autoload
+    ~/.config/nvim/autoload: dotfiles/vim/common/autoload
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
     ~/.config/nvim/ftdetect: dotfiles/vim/common/ftdetect
     ~/.config/nvim/colors: dotfiles/nvim/colors

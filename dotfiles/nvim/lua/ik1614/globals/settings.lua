@@ -30,7 +30,7 @@ vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in te
 -- ----------- Indents
 vim.opt.expandtab = true -- always use spaces instead of tabs
 vim.opt.autoindent     = true                              -- maintain indent of current line
-vim.opt.tabstop       = 2                       -- spaces per tab
+vim.opt.tabstop       = 4                       -- spaces per tab
 vim.opt.softtabstop = 4 -- use 'shiftwidth' for tab/bs at end of line
 vim.opt.shiftwidth    = 2                       -- spaces per tab (when shifting)
 
