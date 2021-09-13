@@ -107,6 +107,7 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'gj'
 map <S-Right> :action NextSplitter<CR>
 map <S-Left>  :action PrevSplitter<CR>
 map <C-S-L>   :action SplitVertically<CR>
+map <C-S-H>   :action SplitVertically<CR>
 
 map <TAB>   :action NextTab<CR>
 map <S-TAB> :action PreviousTab<CR>
