@@ -11,13 +11,16 @@
     iu = true
 [user]
     name = Ilya Kisil
-[push]
-    default = current
 [core]
     # excludesfile = ~/.gitignore-global
     editor = $EDITOR
+[init]
+    # Name of a branch for every 'git init'
+    defaultBranch = master
+[push]
+    default = current
 [pull]
-	rebase = false
+    rebase = false
 [merge]
     log = true
     tool = vimdiff
