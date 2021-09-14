@@ -28,7 +28,7 @@ require("ik1614.nvim-autopairs")
 
 require("ik1614.vim-tmux-navigator")
 
-require("ik1614.lspsaga")
+-- require("ik1614.lspsaga")
 require("ik1614.nvim-colorizer")
 require("ik1614.nvim-bqf")
 

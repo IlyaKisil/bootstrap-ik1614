@@ -33,7 +33,7 @@ return require('packer').startup(
     -- LSP
     use 'neovim/nvim-lspconfig'
     use {"kabouzeid/nvim-lspinstall"}
-    use 'glepnir/lspsaga.nvim'
+    -- use 'glepnir/lspsaga.nvim'
     -- use 'https://github.com/folke/lsp-trouble.nvim'
     -- use {
     --   'ojroques/nvim-lspfuzzy',

@@ -445,37 +445,37 @@ hi! link CompeDocumentation MdraculaPopupMenu
 "   autocmd WinLeave,BufLeave * if &filetype == "lspsagafinder" | hi! link Normal MdraculaNormal | endif
 " augroup END
 
-hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
-hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
-hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
-hi! link DefinitionCount           MdraculaPopupMenuKeyword
-hi! link DefinitionIcon            MdraculaPopupMenuKeyword
-hi! link ReferencesIcon            MdraculaPopupMenuKeyword
-hi! link ReferencesCount           MdraculaPopupMenuKeyword
-hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
+" hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
+" hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
+" hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
+" hi! link DefinitionCount           MdraculaPopupMenuKeyword
+" hi! link DefinitionIcon            MdraculaPopupMenuKeyword
+" hi! link ReferencesIcon            MdraculaPopupMenuKeyword
+" hi! link ReferencesCount           MdraculaPopupMenuKeyword
+" hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
 
-hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
+" hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
 
-hi! link TargetWord                    MdraculaNormalFg
-hi! link TargetFileName                MdraculaNormalFg
-hi! link ProviderTruncateLine          MdraculaNormalFg
-hi! link LspSagaShTruncateLine         MdraculaNormalFg
-hi! link LspSagaDocTruncateLine        MdraculaNormalFg
-hi! link LineDiagTuncateLine           MdraculaNormalFg
-hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
-hi! link LspSagaCodeActionContent      MdraculaNormalFg
+" hi! link TargetWord                    MdraculaNormalFg
+" hi! link TargetFileName                MdraculaNormalFg
+" hi! link ProviderTruncateLine          MdraculaNormalFg
+" hi! link LspSagaShTruncateLine         MdraculaNormalFg
+" hi! link LspSagaDocTruncateLine        MdraculaNormalFg
+" hi! link LineDiagTuncateLine           MdraculaNormalFg
+" hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
+" hi! link LspSagaCodeActionContent      MdraculaNormalFg
 
-hi! link LspFloatWinNormal          MdraculaPopupMenu
-hi! link FloatWinNormal             MdraculaPopupMenu
-hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
-hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
-hi! link LspSagaAutoPreview         MdraculaPopupMenu
-hi! link LspLinesDiagBorder         MdraculaPopupMenu
-hi! link FloatBorder                MdraculaPopupMenu
-hi! link LspFloatWinBorder          MdraculaPopupMenu
-hi! link LspSagaHoverBorder         MdraculaPopupMenu
-hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
-hi! link LspSagaRenameBorder        MdraculaPopupMenu
+" hi! link LspFloatWinNormal          MdraculaPopupMenu
+" hi! link FloatWinNormal             MdraculaPopupMenu
+" hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
+" hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
+" hi! link LspSagaAutoPreview         MdraculaPopupMenu
+" hi! link LspLinesDiagBorder         MdraculaPopupMenu
+" hi! link FloatBorder                MdraculaPopupMenu
+" hi! link LspFloatWinBorder          MdraculaPopupMenu
+" hi! link LspSagaHoverBorder         MdraculaPopupMenu
+" hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
+" hi! link LspSagaRenameBorder        MdraculaPopupMenu
 " hi! link LspSagaLspFinderBorder        MdraculaPopupMenu
 " hi! link LspSagaDiagnosticBorder        MdraculaPopupMenu
 " hi! link LspSagaDiagnosticHeader        MdraculaPopupMenu
@@ -483,15 +483,13 @@ hi! link LspSagaRenameBorder        MdraculaPopupMenu
 
 " call functions#HL('MdraculaPopupMenuu',        s:p.menu, s:p.menu)
 " hi! link LspSagaRenameBorder        MdraculaPopupMenuu
-" " highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
+" highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
 
-
-
-hi! link SagaShadow             MdraculaTestColor
-hi! link DiagnosticError        MdraculaTestColor
-hi! link DiagnosticWarning      MdraculaTestColor
-hi! link DiagnosticInformation  MdraculaTestColor
-hi! link DiagnosticHint         MdraculaTestColor
+" hi! link SagaShadow             MdraculaTestColor
+" hi! link DiagnosticError        MdraculaTestColor
+" hi! link DiagnosticWarning      MdraculaTestColor
+" hi! link DiagnosticInformation  MdraculaTestColor
+" hi! link DiagnosticHint         MdraculaTestColor
 
 " }}}
 " GitGutter: {{{

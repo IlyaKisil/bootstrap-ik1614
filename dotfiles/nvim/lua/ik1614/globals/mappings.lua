@@ -71,6 +71,12 @@ map("s", "<C-e>", "v:lua.previous_complete_item()", {expr = true})
 vim.cmd([[
   cnoremap <C-e> <C-p>
 ]])
+-- Yes, this is bad, but for not so much with programmable keyboard where these
+-- are one the home row
+vim.cmd([[
+  cnoremap <UP> <C-p>
+  cnoremap <DOWN> <C-n>
+]])
 
 map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
@@ -78,8 +84,11 @@ map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
 -- Move within quickfix list
 -- FIXME: resolve clash with LSP diagnostics
-map('n', '<C-n>', ':Cnext<CR>')
-map('n', '<C-e>', ':Cprev<CR>')
+-- map('n', '<leader>n', ':Cnext<CR>')
+-- map('n', '<leader>e', ':Cprev<CR>')
+-- map('n', '<leader>qn', ':Cnext<CR>')
+-- map('n', '<leader>qe', ':Cprev<CR>')
+-- map('n', '<leader>qq', ':toggle quickfix list<CR>')
 
 
 -- Move within location list
@@ -89,31 +98,6 @@ map('n', '<C-e>', ':Cprev<CR>')
 map('n', '<localleader>n', ':Lnext<CR>')
 map('n', '<localleader>e', ':Lprev<CR>')
 
--- Mappings for LSP
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
--- map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-map('n', 'gr', ':Lspsaga lsp_finder<CR>')
--- vim.cmd('nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>')
-
-map('n', '<leader>sa', ':Lspsaga code_action<CR>') -- Menmonic: Show action
-map('v', '<leader>sa', ':<C-U>Lspsaga range_code_action<CR>') -- Menmonic: Show action
-
-map('n', 'K', ':Lspsaga hover_doc<CR>')
-map('n', '<leader>ss', ':Lspsaga signature_help<CR>') -- Menmonic: Show signature
-
-map('n', '<leader>rn', ':Lspsaga rename<CR>') -- Menmonic: ReName
-
-map('n', 'ge', ':Lspsaga diagnostic_jump_prev<CR>')
-map('n', 'gn', ':Lspsaga diagnostic_jump_next<CR>')
-
--- Workaround for moving within suggested actions and reference finder
-vim.cmd('autocmd FileType lspsagafinder,LspSagaCodeAction :nnoremap <buffer> <C-n> j')
-vim.cmd('autocmd FileType lspsagafinder,LspSagaCodeAction :nnoremap <buffer> <C-e> k')
-
--- scroll up and down hover doc or scroll in definition preview
--- vim.cmd('nnoremap <silent> <C-f> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(1)<CR>')
--- vim.cmd('nnoremap <silent> <C-k> <cmd>lua require(\'lspsaga.action\').smart_scroll_with_saga(-1)<CR>')
 
 
 -- Don't move cursor
