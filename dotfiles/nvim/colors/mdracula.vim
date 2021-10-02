@@ -438,6 +438,10 @@ hi! link CompeDocumentation MdraculaPopupMenu
 
 " }}}
 
+" nvim-bfq: {{{"
+hi! link BqfPreviewCursor QuickFixLine
+" }}}
+
 " Lspsaga: {{{"
 " augroup LspsagaNonsense
 "   autocmd!
