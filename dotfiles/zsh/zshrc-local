@@ -54,7 +54,7 @@ if command -v fzf 1>/dev/null 2>&1; then
     FZF_YELLOW_COLOR="#E5C07B"
     FZF_GRAY_COLOR="#46484A"
     FZF_OPTS="--height 40% --inline-info --layout=reverse --no-bold --cycle"
-    FZF_BINDINGS='--bind=ctrl-e:up,ctrl-n:down,ctrl-a:toggle-all' # Good for Colemak layout
+    FZF_BINDINGS='--bind=ctrl-e:up,ctrl-n:down,ctrl-o:toggle-all' # Good for Colemak layout
 
     # https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
     FZF_COLORS="
