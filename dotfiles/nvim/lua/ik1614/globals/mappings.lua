@@ -191,3 +191,7 @@ map('i', '$', '$<C-g>u')
 map('i', '[', '[<C-g>u')
 map('i', ':', ':<C-g>u')
 map('i', ';', ';<C-g>u')
+
+-- Don't send add '{' and '}' to jump list
+map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
+map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
