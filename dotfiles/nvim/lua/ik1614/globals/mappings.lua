@@ -72,11 +72,12 @@ vim.cmd([[
   cnoremap <C-e> <C-p>
 ]])
 -- Yes, this is bad, but for not so much with programmable keyboard where these
--- are one the home row
-vim.cmd([[
-  cnoremap <UP> <C-p>
-  cnoremap <DOWN> <C-n>
-]])
+-- are one the home row.
+-- NOTE: This breaks pattern match for command history
+-- vim.cmd([[
+--   cnoremap <UP> <C-p>
+--   cnoremap <DOWN> <C-n>
+-- ]])
 
 map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
