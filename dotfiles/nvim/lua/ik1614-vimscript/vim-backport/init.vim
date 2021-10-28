@@ -58,3 +58,8 @@ command! Lprev try | lprev | catch | llast  | catch | endtry
 
 " vimscript
 command! DiffviewFile execute("DiffviewOpen -- " . expand("%")) | DiffviewToggleFiles
+
+
+
+" Allows to first grep for something, and then use Telescope as the secondary filter
+command! -nargs=? Tgrep lua require 'telescope.builtin'.grep_string({ search = vim.fn.input("Grep For > ")})

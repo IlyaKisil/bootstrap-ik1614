@@ -442,6 +442,13 @@ hi! link CompeDocumentation MdraculaPopupMenu
 hi! link BqfPreviewCursor QuickFixLine
 " }}}
 
+" navigator: {{{"
+" This is to match color of borders, not sure where it comes from
+hi! link GHTextViewDark CursorLine
+hi! link GHListDark CursorLine
+hi! link GHListHl MdraculaPopupMenuSelection
+
+" }}}
 " Lspsaga: {{{"
 " augroup LspsagaNonsense
 "   autocmd!
