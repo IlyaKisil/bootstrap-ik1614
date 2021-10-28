@@ -1,50 +1,161 @@
+/*
+ * Go highlight sample
+ */
+//go:build (linux || windows) && arm
+// +build linux,arm windows,arm
+
+// Package main
 package main
 
-import (
-	"fmt"
-	"log"
+import "fmt"
+import alias "fmt"
+
+//go:generate go tool yacc -o gopher.go -p parser gopher.y
+
+/*
+Semantic highlighting:
+Generated spectrum to pick colors for local variables and parameters:
+ Color#1 SC1.1 SC1.2 SC1.3 SC1.4 Color#2 SC2.1 SC2.2 SC2.3 SC2.4 Color#3
+ Color#3 SC3.1 SC3.2 SC3.3 SC3.4 Color#4 SC4.1 SC4.2 SC4.3 SC4.4 Color#5
+*/
+
+type (
+	PublicInterface interface {
+		PublicFunc() int
+		privateFunc() int
+	}
+
+	privateInterface interface {
+		PublicFunc() int
+		privateFunc() int
+	}
+
+	PublicStruct struct {
+		PublicField  int
+		privateField int
+	}
+
+	privateStruct struct {
+		PublicField  int
+		privateField int
+	}
+
+	demoInt int
+
+	T struct {
+		FirstName string `json:"first_name" arbitrary text`
+	}
 )
 
-func increment(a int) int {
-	return a + 1
+const (
+	PublicConst  = 1
+	privateConst = 2
+)
+
+var (
+	PublicVar  = 1
+	privateVar = 2
+)
+
+// PublicFunc does the thing
+func PublicFunc() int {
+	localVar := PublicVar
+	return localVar
 }
 
-type Foo struct {
-	Name       string
-	Ports      []int
-	Enabled    bool
-	iaersontia bool
+// privateFunc does the thing
+func privateFunc() (int, int) {
+	LocalVar := privateVar
+	return LocalVar, PublicVar
 }
 
-func olga(ilya string) {
-	foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
-	fmt.Println(foo)
+func (ps PublicStruct) PublicFunc() int {
+	return ps.privateField
+}
+
+func (ps privateStruct) privateFunc() int {
+	return ps.PublicField
+}
+
+func _(pi PublicInterface) {
+}
+
+func _(pi privateInterface) {
+}
+
+func variableFunc(demo1 int, demo2 demoInt) {
+	demo1 = 3
+	a := PublicStruct{}
+	a.PublicFunc()
+	b := privateStruct{}
+	b.privateFunc()
+	demo2 = 4
+	if demo1, demo2 := privateFunc(); demo1 != 3 {
+		_ = demo1
+		_ = demo2
+		return
+	}
+demoLabel:
+	for demo1 := range []int{1, 2, 3, 4} {
+		_ = demo1
+		continue demoLabel
+	}
+
+	switch {
+	case 1 == 2:
+		demo1, demo2 := privateFunc()
+		_ = demo1
+		_ = demo2
+	default:
+		_ = demo1
+	}
+
+	f := func() int {
+		return 1
+	}
+	f()
+	PublicFunc()
+	variableFunc(1, 2)
+	_ = demo1
+	_ = demo2
+	println("builtin function")
 }
 
 func main() {
+	const LocalConst = 1
+	const localConst = 2
+	fmt.Println("demo\n\xA")
+	alias.Println("demo")
+	variableFunc(1, 2)
+	var d, c *int = nil, nil
+	_, _ = c, d
+	_, _ = true, false
+}
 
-	foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
-	risentinsi
-	fmt.Println(foo)
+var ExportedVariableFunction = func() {}
+var packageLocalVariableFunction = func() {}
 
-	var a = "initial"
-	fmt.Println(a)
-	log.Fatal()
+type typeWithCall struct {
+	PublicFieldCall  func()
+	privateFieldCall func()
+}
 
-	var b, c int = 1, 2
-	fmt.Println(b, c)
-	// foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
-	foo := Foo{Name: "gopher", Ports: []int{80, 443}, Enabled: true}
+func calls(t typeWithCall) {
+	var localVariableFunction = func() {}
 
-	var d = true
-	fmt.Println(d)
-	fmt.Println()
+	ExportedVariableFunction()
+	packageLocalVariableFunction()
+	localVariableFunction()
+	t.PublicFieldCall()
+	t.privateFieldCall()
+}
 
-	var e int
-	fmt.Println(e)
+func _() {
+	var err error
+	a, err := 1, nil
+	println(a, err)
 
-	olga("hello")
-
-	f := "apple"
-	fmt.Println(f)
+	for a := 0; a < 10; a++ {
+		println(a)
+	}
 }
