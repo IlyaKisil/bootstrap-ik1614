@@ -31,6 +31,7 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim'
+    use "tami5/sqlite.lua"
 
     -- Guides to use Lua in NVIM
     -- use 'https://github.com/nanotee/nvim-lua-guide'
@@ -87,6 +88,20 @@ return require('packer').startup(
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'nvim-telescope/telescope-media-files.nvim'
+    use 'nvim-telescope/telescope-symbols.nvim'
+
+    use {
+      "AckslD/nvim-neoclip.lua",
+      requires = {
+        {'tami5/sqlite.lua', module = 'sqlite'}
+      },
+    }
+    use {
+      'nvim-telescope/telescope-smart-history.nvim',
+      requires = {
+        {'tami5/sqlite.lua'}
+      },
+    }
 
     use 'https://github.com/junegunn/fzf'
     use 'https://github.com/junegunn/fzf.vim'

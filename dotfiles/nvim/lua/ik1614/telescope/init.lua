@@ -26,11 +26,16 @@ require('telescope').setup {
             prompt_position = "top",
             mirror = true,
         },
+        -- path_display = { smart = true },  -- Would be cool to toogle it on the fly
         sorting_strategy = "ascending", -- keep the first result next to prompt
         mappings = {
             i = {
                 ["<C-a>"] = actions.smart_add_to_qflist + actions.open_qflist,
-                ["<C-s>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                ["<C-s>"] = actions.smart_send_to_qflist,
+                ["<C-?>"] = actions.which_key,
+                -- Everything is backwards, since we cycle through history
+                ["<C-e>"] = actions.cycle_history_next,
+                ["<C-n>"] = actions.cycle_history_prev,
             },
             n = {
                 ["<C-a>"] = actions.smart_add_to_qflist + actions.open_qflist,
@@ -38,13 +43,16 @@ require('telescope').setup {
             },
         },
     },
-    path_display = { shorten = 5 }, -- Doesn't seem to be working :shrug:
     pickers = {
         live_grep = {
           only_sort_text = true, -- don't include the filename in the search results
         }
 
     },
+    -- history = {
+    --   path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+    --   limit = 100,
+    -- },
     extensions = {
         fzf = {
             fuzzy = true,                    -- false will only do exact matching
@@ -55,6 +63,8 @@ require('telescope').setup {
     }
 }
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('neoclip')
+-- require('telescope').load_extension('smart_history')
 
 
 local M = {}

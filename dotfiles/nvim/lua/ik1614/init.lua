@@ -31,6 +31,7 @@ require("ik1614.vim-tmux-navigator")
 require("ik1614.nvim-colorizer")
 require("ik1614.nvim-bqf")
 require("ik1614.fzf-lua")
+require("ik1614.nvim-neoclip")
 
 -- LSP
 -- require("ik1614.lspsaga")
