@@ -172,7 +172,7 @@ return require('packer').startup(
     --   end,
     -- })
 
-    use 'https://github.com/christoomey/vim-tmux-navigator'
+    use 'https://github.com/christoomey/vim-tmux-navigator' -- Can be replaced with https://github.com/numToStr/Navigator.nvim
 
     use 'https://github.com/tpope/vim-surround'
     use 'https://github.com/tpope/vim-commentary'

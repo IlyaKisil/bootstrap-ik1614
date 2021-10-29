@@ -3,7 +3,7 @@ require("fzf-lua").setup({
         fullscreen = true,
         preview = {
             scrollbar = false,
-            horizontal     = 'right:50%',
+            horizontal = 'right:50%',
             vertical = 'down:50%',
         },
     },
