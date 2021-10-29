@@ -1,4 +1,3 @@
--- TODO figure out why this don't work
 vim.fn.sign_define(
     "LspDiagnosticsSignError",
     {
@@ -101,30 +100,30 @@ local lsp_config = {}
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
 
-    local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    -- local opts = { noremap = true, silent = true }
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    -- Mnemonic: show aciton
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>sa', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- -- Mnemonic: show aciton
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>sa', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
-    -- Show errors/diagnostics
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sd', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    -- -- Show errors/diagnostics
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sd', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-    -- Show symbols
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ss', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+    -- -- Show symbols
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ss', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
 
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)

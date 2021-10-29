@@ -85,8 +85,10 @@ map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
 -- Move within quickfix list
 -- FIXME: resolve clash with LSP diagnostics
--- map('n', '<leader>n', ':Cnext<CR>')
--- map('n', '<leader>e', ':Cprev<CR>')
+map('n', '<C-n>', ':Cnext<CR>')
+map('n', '<C-e>', ':Cprev<CR>')
+-- map('n', '<leader>n',  ':Cnext<CR>')
+-- map('n', '<leader>e',  ':Cprev<CR>')
 -- map('n', '<leader>qn', ':Cnext<CR>')
 -- map('n', '<leader>qe', ':Cprev<CR>')
 -- map('n', '<leader>qq', ':toggle quickfix list<CR>')
@@ -196,3 +198,36 @@ map('i', ';', ';<C-g>u')
 -- Don't send add '{' and '}' to jump list
 map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
+
+
+map('n', '<leader>tt', ':Telescope<CR>')
+map('n', '<leader>tq', ':Telescope quickfix<CR>')
+map('n', '<leader>tr', ':Telescope resume<CR>')
+
+-----------------------------------------------------------------------------------------
+-- LSP
+-----------------------------------------------------------------------------------------
+-- Mnemonic: G -> Go To ...
+map('n', '<leader>gr', ':Telescope lsp_references<CR>')
+map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
+map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
+map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
+map('n', '<leader>ge', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+map('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+
+-- Mnemonic: S -> Show ...
+map('n', '<leader>sa', ':Telescope lsp_code_actions<CR>')
+map('v', '<leader>sa', ':Telescope lsp_range_code_actions<CR>')
+map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
+-- map('n', '<leader>sS', ':Telescope lsp_workspace_symbols query=') -- Works only with query
+map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
+map('n', '<leader>sd', ':Telescope lsp_document_diagnostics<CR>')
+map('n', '<leader>sD', ':Telescope lsp_workspace_diagnostics line_width=120<CR>')
+map('n', '<leader>sl', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+
+
+map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>')
+map('n', '<C-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+
+

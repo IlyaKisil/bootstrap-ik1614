@@ -2,6 +2,8 @@ if not pcall(require, 'telescope') then
   return
 end
 
+-- This is a fancy way of setting up Telescope specific mappings.
+-- It also allows to transparenly reference custom functions along with the builtins
 local map = function(key, f, options, buffer)
   local mode = "n"
   local rhs = string.format(
@@ -29,7 +31,3 @@ local map = function(key, f, options, buffer)
     vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
   end
 end
-
-
--- map('<leader>oo', 'find_files')
--- map('<leader>tt', 'search_dotfiles')
