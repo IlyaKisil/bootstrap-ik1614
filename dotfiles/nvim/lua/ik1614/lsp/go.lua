@@ -1,7 +1,7 @@
 -- :LspInstall go
 
 require'lspconfig'.gopls.setup{
-  cmd = {DATA_PATH .. "/lspinstall/go/gopls"},
+  cmd = {DATA_PATH .. "/lsp_servers/go/gopls"},
   on_attach = require'ik1614.lsp'.common_on_attach,
   settings = {
     gopls = {

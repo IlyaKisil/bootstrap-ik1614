@@ -1,3 +1,4 @@
+-- NOTE: Currently I use it only to hookup LSP, although I have my own thing as well.
 local navigator = require('navigator')
 
 navigator.setup({
@@ -10,19 +11,20 @@ navigator.setup({
     lsp_installer = true,
     lsp = {
         diagnostic_virtual_text = false,
-        code_lens = true,
-        diagnostic_scroll_bar_sign = nil,
+        code_lens = false,
+        diagnostic_scrollbar_sign = nil,
     },
     icons = {
+        icons = false,
         diagnostic_err = 'E',
         diagnostic_warn = 'W',
         diagnostic_info = 'I',
         diagnostic_hint = 'H',
     },
-    default_mapping = true,
+    default_mapping = false,
     keymaps = {
-      {key = "gr", func = "references()"},
-      {key = "<c-k>", func = "signature_help()"},
+      -- {key = "gr", func = "references()"},
+      -- {key = "<c-k>", func = "signature_help()"},
       -- {key = "g0", func = "document_symbol()"},
       -- {key = "gW", func = "workspace_symbol()"},
       -- {key = "<c-]>", func = "definition()"},
@@ -31,7 +33,7 @@ navigator.setup({
       -- {key = "gT", func = "require('navigator.treesitter').buf_ts()"},
       -- {key = "<Leader>gT", func = "require('navigator.treesitter').bufs_ts()"},
       -- {key = "K", func = "hover({ popup_opts = { border = single, max_width = 80 }})"},
-      {key = "<leader>sa", mode = "n", func = "require('navigator.codeAction').code_action()"},
+      -- {key = "<leader>sa", mode = "n", func = "require('navigator.codeAction').code_action()"},
       -- {key = "<Space>cA", mode = "v", func = "range_code_action()"},
       -- {key = "<Leader>re", func = "rename()"},
       -- {key = "<Space>rn", func = "require('navigator.rename').rename()"},

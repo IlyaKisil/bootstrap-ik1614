@@ -1,8 +1,8 @@
 -- npm i -g pyright
--- LspInstall python
+-- LspInstall pyright
 
 require'lspconfig'.pyright.setup {
-    cmd = {DATA_PATH .. "/lspinstall/python/node_modules/.bin/pyright-langserver", "--stdio"},
+    cmd = {DATA_PATH .. "/lsp_servers/python/node_modules/.bin/pyright-langserver", "--stdio"},
     on_attach = require'ik1614.lsp'.common_on_attach,
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

@@ -35,9 +35,9 @@ require("ik1614.nvim-neoclip")
 
 -- LSP
 -- require("ik1614.lspsaga")
-require("ik1614.navigator")
 
 require("ik1614.nvim-lsp-installer")
+require("ik1614.navigator")
 -- require("ik1614.lsp")
 -- require("ik1614.lsp.typescript")
 -- require("ik1614.lsp.lua")
