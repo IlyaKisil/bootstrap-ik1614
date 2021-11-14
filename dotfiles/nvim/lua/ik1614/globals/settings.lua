@@ -123,3 +123,9 @@ vim.opt.fillchars = {
   diff = ' ', -- Don't display symbols for deleted lines in the diff mode
   eob  = ' ', -- Don't display end of buffer symbol
 }
+
+
+-- Go to last location when opening a buffer and center it
+vim.cmd([[
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"zz" | endif
+]])

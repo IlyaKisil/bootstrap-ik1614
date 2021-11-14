@@ -2,7 +2,7 @@
 -- :LspInstall typescript
 
 require'lspconfig'.tsserver.setup {
-    cmd = {DATA_PATH .. "/lspinstall/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
+    cmd = {DATA_PATH .. "/lsp_servers/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
     -- on_attach = require'ik1614.lsp'.tsserver_on_attach,
     -- This makes sure tsserver is not used for formatting (I prefer prettier)
     on_attach = require'ik1614.lsp'.common_on_attach,

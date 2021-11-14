@@ -157,18 +157,28 @@ let s:p.test_color_bg        = ['#BBB529', 142]
 
 call functions#HL('docComment', s:p.docComment, s:p.null, 'italic')
 call functions#HL('NormalFg', s:p.fg)
+
 call functions#HL('GitAddStripe', s:p.addStripe, s:p.addStripe)
 call functions#HL('GitChangeStripe', s:p.changeStripe, s:p.changeStripe)
 call functions#HL('GitDeleteStripe', s:p.deleteStripe, s:p.gutter)
+
 call functions#HL('CodeError', s:p.null, s:p.codeError)
 call functions#HL('CodeWarning', s:p.null, s:p.codeWarning)
 " call functions#HL('CodeInfo', s:p.null, s:p.hintBg)
 call functions#HL('CodeInfo', s:p.hintFg, s:p.hintBg)
 call functions#HL('CodeHint', s:p.hintFg, s:p.hintBg)
+
 call functions#HL('ErrorSign', s:p.error, s:p.gutter)
 call functions#HL('WarningSign', s:p.warning, s:p.gutter)
 call functions#HL('InfoSign', s:p.info, s:p.gutter)
 call functions#HL('HintSign', s:p.hint, s:p.gutter)
+
+call functions#HL('ErrorMessage',   s:p.error)
+call functions#HL('WarningMessage', s:p.warning)
+call functions#HL('InfoMessage',    s:p.info)
+call functions#HL('HintMessage',    s:p.hint)
+call functions#HL('StdOutMessage',  s:p.stdOutput)
+
 call functions#HL('IdentifierUnderCaret', s:p.null, s:p.identifierUnderCaret)
 call functions#HL('IdentifierUnderCaretWrite', s:p.null, s:p.identifierUnderCaretWrite)
 call functions#HL('sheBang', s:p.fg, s:p.null, 'bold')
@@ -310,11 +320,10 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
 
   " }}}
   " Prompt: {{{
-  call functions#HL('ErrorMsg', s:p.errorMsg)
-  " Warning messages
-  call functions#HL('WarningMsg', s:p.warning)
+  hi! link ErrorMsg   ErrorMessage
+  hi! link WarningMsg WarningMessage
   " Current mode message: -- INSERT --
-  call functions#HL('ModeMsg', s:p.stdOutput)
+  hi! link ModeMsg StdOutMessage
   " More prompt: -- More --
   hi! link MoreMsg NormalFg
   " 'Press enter' prompt and yes/no questions
@@ -413,10 +422,10 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
 
   " Builtin LSP
   " Inline messages
-  hi! link LspDiagnosticsDefaultError       CodeInfo
-  hi! link LspDiagnosticsDefaultWarning     CodeInfo
-  hi! link LspDiagnosticsDefaultInformation CodeInfo
-  hi! link LspDiagnosticsDefaultHint        CodeInfo
+  hi! link LspDiagnosticsDefaultError       ErrorMessage
+  hi! link LspDiagnosticsDefaultWarning     WarningMessage
+  hi! link LspDiagnosticsDefaultInformation InfoMessage
+  hi! link LspDiagnosticsDefaultHint        HintMessage
 
   " Gutter signs
   hi! link LspDiagnosticsSignError       ErrorSign
@@ -438,6 +447,17 @@ hi! link CompeDocumentation MdraculaPopupMenu
 
 " }}}
 
+" nvim-bfq: {{{"
+hi! link BqfPreviewCursor QuickFixLine
+" }}}
+
+" navigator: {{{"
+" This is to match color of borders, not sure where it comes from
+hi! link GHTextViewDark CursorLine
+hi! link GHListDark CursorLine
+hi! link GHListHl MdraculaPopupMenuSelection
+
+" }}}
 " Lspsaga: {{{"
 " augroup LspsagaNonsense
 "   autocmd!
@@ -445,37 +465,37 @@ hi! link CompeDocumentation MdraculaPopupMenu
 "   autocmd WinLeave,BufLeave * if &filetype == "lspsagafinder" | hi! link Normal MdraculaNormal | endif
 " augroup END
 
-hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
-hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
-hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
-hi! link DefinitionCount           MdraculaPopupMenuKeyword
-hi! link DefinitionIcon            MdraculaPopupMenuKeyword
-hi! link ReferencesIcon            MdraculaPopupMenuKeyword
-hi! link ReferencesCount           MdraculaPopupMenuKeyword
-hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
+" hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
+" hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
+" hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
+" hi! link DefinitionCount           MdraculaPopupMenuKeyword
+" hi! link DefinitionIcon            MdraculaPopupMenuKeyword
+" hi! link ReferencesIcon            MdraculaPopupMenuKeyword
+" hi! link ReferencesCount           MdraculaPopupMenuKeyword
+" hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
 
-hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
+" hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
 
-hi! link TargetWord                    MdraculaNormalFg
-hi! link TargetFileName                MdraculaNormalFg
-hi! link ProviderTruncateLine          MdraculaNormalFg
-hi! link LspSagaShTruncateLine         MdraculaNormalFg
-hi! link LspSagaDocTruncateLine        MdraculaNormalFg
-hi! link LineDiagTuncateLine           MdraculaNormalFg
-hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
-hi! link LspSagaCodeActionContent      MdraculaNormalFg
+" hi! link TargetWord                    MdraculaNormalFg
+" hi! link TargetFileName                MdraculaNormalFg
+" hi! link ProviderTruncateLine          MdraculaNormalFg
+" hi! link LspSagaShTruncateLine         MdraculaNormalFg
+" hi! link LspSagaDocTruncateLine        MdraculaNormalFg
+" hi! link LineDiagTuncateLine           MdraculaNormalFg
+" hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
+" hi! link LspSagaCodeActionContent      MdraculaNormalFg
 
-hi! link LspFloatWinNormal          MdraculaPopupMenu
-hi! link FloatWinNormal             MdraculaPopupMenu
-hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
-hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
-hi! link LspSagaAutoPreview         MdraculaPopupMenu
-hi! link LspLinesDiagBorder         MdraculaPopupMenu
-hi! link FloatBorder                MdraculaPopupMenu
-hi! link LspFloatWinBorder          MdraculaPopupMenu
-hi! link LspSagaHoverBorder         MdraculaPopupMenu
-hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
-hi! link LspSagaRenameBorder        MdraculaPopupMenu
+" hi! link LspFloatWinNormal          MdraculaPopupMenu
+" hi! link FloatWinNormal             MdraculaPopupMenu
+" hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
+" hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
+" hi! link LspSagaAutoPreview         MdraculaPopupMenu
+" hi! link LspLinesDiagBorder         MdraculaPopupMenu
+" hi! link FloatBorder                MdraculaPopupMenu
+" hi! link LspFloatWinBorder          MdraculaPopupMenu
+" hi! link LspSagaHoverBorder         MdraculaPopupMenu
+" hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
+" hi! link LspSagaRenameBorder        MdraculaPopupMenu
 " hi! link LspSagaLspFinderBorder        MdraculaPopupMenu
 " hi! link LspSagaDiagnosticBorder        MdraculaPopupMenu
 " hi! link LspSagaDiagnosticHeader        MdraculaPopupMenu
@@ -483,15 +503,13 @@ hi! link LspSagaRenameBorder        MdraculaPopupMenu
 
 " call functions#HL('MdraculaPopupMenuu',        s:p.menu, s:p.menu)
 " hi! link LspSagaRenameBorder        MdraculaPopupMenuu
-" " highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
+" highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
 
-
-
-hi! link SagaShadow             MdraculaTestColor
-hi! link DiagnosticError        MdraculaTestColor
-hi! link DiagnosticWarning      MdraculaTestColor
-hi! link DiagnosticInformation  MdraculaTestColor
-hi! link DiagnosticHint         MdraculaTestColor
+" hi! link SagaShadow             MdraculaTestColor
+" hi! link DiagnosticError        MdraculaTestColor
+" hi! link DiagnosticWarning      MdraculaTestColor
+" hi! link DiagnosticInformation  MdraculaTestColor
+" hi! link DiagnosticHint         MdraculaTestColor
 
 " }}}
 " GitGutter: {{{

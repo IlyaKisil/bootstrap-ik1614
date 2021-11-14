@@ -13,53 +13,59 @@ reloader()
 local actions = require('telescope.actions')
 
 require('telescope').setup {
-    -- defaults = {
-    --     file_sorter = require('telescope.sorters').get_fzy_sorter,
-    --     prompt_prefix = '> ',
-    --     prompt_position = "top",
-    --     sorting_strategy = "ascending",
-    --     scroll_strategy = "cycle",
-    --     winblend = 0,
-    --     width = 1,
-    --     results_width = 1,
-    --     color_devicons = true,
+    defaults = {
+        layout_strategy = 'vertical',
+        layout_config = {
+            preview_height = 0.60,
+            preview_cutoff = 20,
+            -- I find this to be a bettre option to span the whole window
+            height = {padding = 0 },
+            width = {padding = 0 },
+            -- height = 100000,
+            -- width = 100000,
+            prompt_position = "top",
+            mirror = true,
+        },
+        -- path_display = { smart = true },  -- Would be cool to toogle it on the fly
+        sorting_strategy = "ascending", -- keep the first result next to prompt
+        mappings = {
+            i = {
+                ["<C-a>"] = actions.smart_add_to_qflist + actions.open_qflist,
+                ["<C-s>"] = actions.smart_send_to_qflist,
+                ["<C-?>"] = actions.which_key,
+                -- Everything is backwards, since we cycle through history
+                ["<C-e>"] = actions.cycle_history_next,
+                ["<C-n>"] = actions.cycle_history_prev,
+            },
+            n = {
+                ["<C-a>"] = actions.smart_add_to_qflist + actions.open_qflist,
+                ["<C-s>"] = actions.smart_send_to_qflist + actions.open_qflist,
+            },
+        },
+    },
+    pickers = {
+        live_grep = {
+          only_sort_text = true, -- don't include the filename in the search results
+        }
 
-    --     file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
-    --     grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-    --     qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
-    --     layout_strategy = "flex",
-    --     layout_defaults = {
-    --         horizontal = {
-    --             width_padding = 4,
-    --             height_padding = 2,
-    --             mirror = false,
-    --         },
-    --         vertical = {
-    --             width_padding = 4,
-    --             height_padding = 2,
-    --             mirror = false,
-    --         },
-    --     },
-
-    --     mappings = {
-    --         i = {
-    --             ["<C-q>"] = actions.send_to_qflist,
-    --             ["<C-m>"] = actions.move_selection_previous,
-    --             ["<C-k>"] = actions.move_selection_previous,
-    --             ["<CR>"] = actions.select_default + actions.center,
-    --             -- ["<esc>"] = actions.close,
-    --         },
-    --     }
+    },
+    -- history = {
+    --   path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+    --   limit = 100,
     -- },
     extensions = {
-        fzy_native = {
-            override_generic_sorter = false,
-            override_file_sorter = true,
+        fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
         }
     }
 }
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('neoclip')
+-- require('telescope').load_extension('smart_history')
 
--- require('telescope').load_extension('fzy_native')
 
 local M = {}
 function M.search_dotfiles()
@@ -69,24 +75,14 @@ function M.search_dotfiles()
     })
 end
 
-function M.git_branches()
-    require("telescope.builtin").git_branches({
-        attach_mappings = function(_, map)
-            map('i', '<c-d>', actions.git_delete_branch)
-            map('n', '<c-d>', actions.git_delete_branch)
-            return true
-        end
-    })
-end
-
 return setmetatable({}, {
-  __index = function(_, k)
-    reloader()
+    __index = function(_, k)
+        reloader()
 
-    if M[k] then
-      return M[k]
-    else
-      return require('telescope.builtin')[k]
+        if M[k] then
+            return M[k]
+        else
+            return require('telescope.builtin')[k]
+        end
     end
-  end
 })

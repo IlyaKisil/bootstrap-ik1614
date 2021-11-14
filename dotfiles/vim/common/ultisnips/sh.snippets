@@ -95,3 +95,27 @@ while getopts ':h' opt; do
 done
 shift $((OPTIND -1))
 endsnippet
+
+snippet help "Boilerplate for help message" b
+__SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+
+function __show_help() {
+  cat << HELP_USAGE
+
+Description:
+
+Usage: $__SCRIPT_NAME [-h|--help] ARG_1
+
+Examples:
+  $__SCRIPT_NAME
+
+Arguments:
+  ARG_1
+
+Options:
+  -h|--help
+    Show this message.
+
+HELP_USAGE
+}
+endsnippet
