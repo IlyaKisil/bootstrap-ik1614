@@ -33,19 +33,5 @@ require("ik1614.nvim-bqf")
 require("ik1614.fzf-lua")
 require("ik1614.nvim-neoclip")
 
--- LSP
--- require("ik1614.lspsaga")
-
-require("ik1614.nvim-lsp-installer")
-require("ik1614.navigator")
--- require("ik1614.lsp")
--- require("ik1614.lsp.typescript")
--- require("ik1614.lsp.lua")
--- require("ik1614.lsp.python")
--- require("ik1614.lsp.go")
--- require("ik1614.lsp.bash")
--- require("ik1614.lsp.latex")
--- require("ik1614.lsp.terraform")
-
 
 vim.cmd('luafile ~/.config/nvim/init-local.lua')

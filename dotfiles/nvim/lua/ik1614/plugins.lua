@@ -69,11 +69,38 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
     -------------------------------------------------------------------------------------
-    use 'neovim/nvim-lspconfig'
-    use {"williamboman/nvim-lsp-installer"}
-    use {'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
-    -- use 'glepnir/lspsaga.nvim'
+    use({
+      "neovim/nvim-lspconfig",
+      opt = true,
+      event = "BufReadPre",
+      wants = {
+        "nvim-lsp-ts-utils",
+        "null-ls.nvim",
+        "lua-dev.nvim",
+        -- "cmp-nvim-lsp",
+        "nvim-lsp-installer",
+      },
+      config = function()
+        require("ik1614.lsp")
+      end,
+      requires = {
+        "jose-elias-alvarez/nvim-lsp-ts-utils",
+        "jose-elias-alvarez/null-ls.nvim",
+        "folke/lua-dev.nvim",
+        "williamboman/nvim-lsp-installer",
+        {
+          "RRethy/vim-illuminate",
+          event = "CursorHold",
+          module = "illuminate",
+          config = function()
+            vim.g.Illuminate_delay = 1000
+          end,
+        }
+      },
+    })
+
     -- use 'https://github.com/folke/lsp-trouble.nvim'
+
     use {
       "ThePrimeagen/refactoring.nvim",
       requires = {
