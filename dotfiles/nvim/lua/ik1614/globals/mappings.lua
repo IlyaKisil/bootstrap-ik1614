@@ -210,6 +210,7 @@ map('n', '<leader>tr', ':Telescope resume<CR>')
 -- Mnemonic: G -> Go To ...
 map('n', '<leader>gr', ':Telescope lsp_references<CR>')
 map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
+-- map('n', '<leader>gd', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
 map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
 map('n', '<leader>ge', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')

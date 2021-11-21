@@ -433,7 +433,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   hi! link LspDiagnosticsSignInformation InfoSign
   hi! link LspDiagnosticsSignHint        HintSign
 
-  " References for symbol under the cursor. This is also related to Lspsaga
+  " References for symbol under the cursor
   hi! link LspReferenceText  MdraculaLSPReference
   hi! link LspReferenceWrite MdraculaLSPReference
   hi! link LspReferenceRead  MdraculaLSPReference
@@ -451,67 +451,6 @@ hi! link CompeDocumentation MdraculaPopupMenu
 hi! link BqfPreviewCursor QuickFixLine
 " }}}
 
-" navigator: {{{"
-" This is to match color of borders, not sure where it comes from
-hi! link GHTextViewDark CursorLine
-hi! link GHListDark CursorLine
-hi! link GHListHl MdraculaPopupMenuSelection
-
-" }}}
-" Lspsaga: {{{"
-" augroup LspsagaNonsense
-"   autocmd!
-"   autocmd FileType lspsagafinder,LspSagaCodeAction,lspsaga hi! link Normal MdraculaPopupMenu
-"   autocmd WinLeave,BufLeave * if &filetype == "lspsagafinder" | hi! link Normal MdraculaNormal | endif
-" augroup END
-
-" hi! link LspSagaBorderTitle        MdraculaPopupMenuKeyword
-" hi! link LspSagaCodeActionTitle    MdraculaPopupMenuKeyword
-" hi! link DefinitionPreviewTitle    MdraculaPopupMenuKeyword
-" hi! link DefinitionCount           MdraculaPopupMenuKeyword
-" hi! link DefinitionIcon            MdraculaPopupMenuKeyword
-" hi! link ReferencesIcon            MdraculaPopupMenuKeyword
-" hi! link ReferencesCount           MdraculaPopupMenuKeyword
-" hi! link LspSagaRenamePromptPrefix MdraculaPopupMenuKeyword
-
-" hi! link LspSagaFinderSelection MdraculaPopupMenuSelection
-
-" hi! link TargetWord                    MdraculaNormalFg
-" hi! link TargetFileName                MdraculaNormalFg
-" hi! link ProviderTruncateLine          MdraculaNormalFg
-" hi! link LspSagaShTruncateLine         MdraculaNormalFg
-" hi! link LspSagaDocTruncateLine        MdraculaNormalFg
-" hi! link LineDiagTuncateLine           MdraculaNormalFg
-" hi! link LspSagaCodeActionTruncateLine MdraculaNormalFg
-" hi! link LspSagaCodeActionContent      MdraculaNormalFg
-
-" hi! link LspFloatWinNormal          MdraculaPopupMenu
-" hi! link FloatWinNormal             MdraculaPopupMenu
-" hi! link LspSagaDefPreviewBorder    MdraculaPopupMenu
-" hi! link LspSagaSignatureHelpBorder MdraculaPopupMenu
-" hi! link LspSagaAutoPreview         MdraculaPopupMenu
-" hi! link LspLinesDiagBorder         MdraculaPopupMenu
-" hi! link FloatBorder                MdraculaPopupMenu
-" hi! link LspFloatWinBorder          MdraculaPopupMenu
-" hi! link LspSagaHoverBorder         MdraculaPopupMenu
-" hi! link LspSagaCodeActionBorder    MdraculaPopupMenu
-" hi! link LspSagaRenameBorder        MdraculaPopupMenu
-" hi! link LspSagaLspFinderBorder        MdraculaPopupMenu
-" hi! link LspSagaDiagnosticBorder        MdraculaPopupMenu
-" hi! link LspSagaDiagnosticHeader        MdraculaPopupMenu
-" hi! link LspSagaDiagnosticTruncateLine MdraculaPopupMenu
-
-" call functions#HL('MdraculaPopupMenuu',        s:p.menu, s:p.menu)
-" hi! link LspSagaRenameBorder        MdraculaPopupMenuu
-" highlight default LspSagaRenameBorder guifg=#3bb6c4 guibg=NONE
-
-" hi! link SagaShadow             MdraculaTestColor
-" hi! link DiagnosticError        MdraculaTestColor
-" hi! link DiagnosticWarning      MdraculaTestColor
-" hi! link DiagnosticInformation  MdraculaTestColor
-" hi! link DiagnosticHint         MdraculaTestColor
-
-" }}}
 " GitGutter: {{{
 " Fill sign column with color instead of showing characters, but for deleted
 " lines use sign.
