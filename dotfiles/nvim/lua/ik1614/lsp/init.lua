@@ -30,6 +30,8 @@ local servers = {
   gopls = {},
   html = {},
   jsonls = {},
+  tsserver = {},
+  vimls = {},
 
   pyright = {
     before_init = function(_, config)
@@ -44,29 +46,25 @@ local servers = {
     end,
   },
 
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = {
-            'vim'
-          },
-          disable = {
-            "trailing-space",
-          },
-        }
-      }
-    }
-  },
-  tsserver = {},
-  vimls = {},
+  -- sumneko_lua = {
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         globals = {
+  --           'vim'
+  --         },
+  --         disable = {
+  --           "trailing-space",
+  --         },
+  --       }
+  --     }
+  --   }
+  -- },
 }
 
+-- require("lua-dev").setup() -- Not sure that this works :shrug:
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-
-require("lua-dev").setup() -- Not sure that this works :shrug:
-
 local options = {
   on_attach = on_attach,
   capabilities = capabilities,
