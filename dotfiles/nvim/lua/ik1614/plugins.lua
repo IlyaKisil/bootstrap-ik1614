@@ -41,7 +41,6 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- Autocomplete
     -------------------------------------------------------------------------------------
-    use 'hrsh7th/nvim-compe'
     use {'https://github.com/hrsh7th/vim-vsnip'}
     use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
@@ -77,7 +76,7 @@ return require('packer').startup(
         "nvim-lsp-ts-utils",
         "null-ls.nvim",
         "lua-dev.nvim",
-        -- "cmp-nvim-lsp",
+        "cmp-nvim-lsp",
         "nvim-lsp-installer",
       },
       config = function()
@@ -88,17 +87,38 @@ return require('packer').startup(
         "jose-elias-alvarez/null-ls.nvim",
         "folke/lua-dev.nvim",
         "williamboman/nvim-lsp-installer",
-        {
-          "RRethy/vim-illuminate",
-          event = "CursorHold",
-          module = "illuminate",
-          config = function()
-            vim.g.Illuminate_delay = 1000
-          end,
-        }
       },
     })
 
+    use({
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      opt = true,
+      config = function()
+        require("ik1614.nvim-cmp")
+      end,
+      wants = { "LuaSnip" },
+      requires = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        {
+          "windwp/nvim-autopairs",
+          config = function()
+            require('nvim-autopairs').setup()
+          end,
+        },
+      },
+    })
+
+    use({
+      "RRethy/vim-illuminate",
+      event = "CursorHold",
+      module = "illuminate",
+      config = function()
+        vim.g.Illuminate_delay = 1000
+      end,
+    })
     -- use 'https://github.com/folke/lsp-trouble.nvim'
 
     use {

@@ -7,7 +7,7 @@ require("ik1614.lsp.kind").setup()
 local function on_attach(client, bufnr)
   require("ik1614.lsp.formatting").setup(client, bufnr)
   -- require("ik1614.lsp.keys").setup(client, bufnr)
-  require("ik1614.lsp.completion").setup(client, bufnr)
+  -- require("ik1614.lsp.completion").setup(client, bufnr)
   require("ik1614.lsp.highlighting").setup(client)
 
   -- TypeScript specific stuff
@@ -62,23 +62,14 @@ local servers = {
   vimls = {},
 }
 
--- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- -- Enable snippets integration (OLD)
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = {
---     'documentation',
---     'detail',
---     'additionalTextEdits',
---   }
--- }
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 
 require("lua-dev").setup() -- Not sure that this works :shrug:
 
 local options = {
   on_attach = on_attach,
-  -- capabilities = capabilities,
+  capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },

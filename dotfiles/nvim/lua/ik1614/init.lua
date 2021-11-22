@@ -12,7 +12,6 @@ require("ik1614.plugins")
 
 
 -- Plugin configs
-require("ik1614.nvim-compe")
 require("ik1614.vim-vimsnip")
 require("ik1614.galaxyline")
 require("ik1614.dashboard-nvim")
@@ -23,8 +22,6 @@ require("ik1614.gitlinker")
 require("ik1614.telescope")
 require("ik1614.telescope.mappings")
 require("ik1614.treesitter")
-
-require("ik1614.nvim-autopairs")
 
 require("ik1614.vim-tmux-navigator")
 
