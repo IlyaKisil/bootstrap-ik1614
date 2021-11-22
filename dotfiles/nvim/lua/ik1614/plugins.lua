@@ -45,7 +45,13 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- Style and visual sugar
     -------------------------------------------------------------------------------------
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use({
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      config = function()
+        require("ik1614.treesitter")
+      end,
+    })
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
@@ -53,10 +59,20 @@ return require('packer').startup(
     use 'https://github.com/ryanoasis/vim-devicons'
     use 'https://github.com/kyazdani42/nvim-web-devicons'
 
-    use 'https://github.com/glepnir/galaxyline.nvim'
+    use({
+      'https://github.com/glepnir/galaxyline.nvim',
+      config = function()
+        require("ik1614.galaxyline")
+      end,
+    })
 
     -- Color
-    use 'norcalli/nvim-colorizer.lua'
+    use({
+      'norcalli/nvim-colorizer.lua',
+      config = function()
+        require("ik1614.nvim-colorizer")
+      end,
+    })
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
 
@@ -125,7 +141,13 @@ return require('packer').startup(
 
     use {
       'nvim-telescope/telescope.nvim',
-      requires = { {'nvim-lua/plenary.nvim'} }
+      requires = {
+        'nvim-lua/plenary.nvim'
+      },
+      config = function()
+        require("ik1614.telescope")
+        require("ik1614.telescope.mappings")
+      end,
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'nvim-telescope/telescope-media-files.nvim'
@@ -136,6 +158,9 @@ return require('packer').startup(
       requires = {
         {'tami5/sqlite.lua', module = 'sqlite'}
       },
+      config = function()
+        require("ik1614.nvim-neoclip")
+      end,
     }
     use {
       'nvim-telescope/telescope-smart-history.nvim',
@@ -153,7 +178,12 @@ return require('packer').startup(
     --   },
     -- }
 
-    use 'kevinhwang91/nvim-bqf'
+    use({
+      'kevinhwang91/nvim-bqf',
+      config = function()
+        require("ik1614.nvim-bqf")
+      end,
+    })
 
     -- use {'kyazdani42/nvim-tree.lua'} -- NOTE: Somehow it removes 'netrw#Explore', So I can't use 'GBrowse'
     -- use {"glepnir/dashboard-nvim"}
@@ -171,8 +201,9 @@ return require('packer').startup(
     use {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
-      -- FIXME: Doesn't work :cry:
-      -- config = [[require('ik1614.gitsigns')]],
+      config = function()
+        require("ik1614.gitsigns")
+      end,
     }
     use 'sindrets/diffview.nvim'
     use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
@@ -180,6 +211,9 @@ return require('packer').startup(
     use {
       'ruifm/gitlinker.nvim',
       requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require("ik1614.gitlinker")
+      end,
     }
     -- For PR review etc. FIXME: some problems with 'gh auth'. I'm logged in just fine
     -- (using 'GITHUB_TOKEN' env variable) and can do everything in CLI but this plugin
@@ -228,7 +262,12 @@ return require('packer').startup(
     --   end,
     -- })
 
-    use 'https://github.com/christoomey/vim-tmux-navigator' -- Can be replaced with https://github.com/numToStr/Navigator.nvim
+    use({
+      'https://github.com/christoomey/vim-tmux-navigator', -- Can be replaced with https://github.com/numToStr/Navigator.nvim
+      config = function()
+        require("ik1614.vim-tmux-navigator")
+      end,
+    })
 
     use 'https://github.com/tpope/vim-surround'
     use 'https://github.com/tpope/vim-commentary'
