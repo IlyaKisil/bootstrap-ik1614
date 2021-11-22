@@ -14,7 +14,6 @@ require("ik1614.plugins")
 -- Plugin configs
 require("ik1614.vim-vimsnip")
 require("ik1614.galaxyline")
-require("ik1614.dashboard-nvim")
 
 require("ik1614.gitsigns")
 require("ik1614.gitlinker")
@@ -27,7 +26,6 @@ require("ik1614.vim-tmux-navigator")
 
 require("ik1614.nvim-colorizer")
 require("ik1614.nvim-bqf")
-require("ik1614.fzf-lua")
 require("ik1614.nvim-neoclip")
 
 

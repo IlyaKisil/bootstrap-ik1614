@@ -33,15 +33,10 @@ return require('packer').startup(
     use 'nvim-lua/plenary.nvim'
     use "tami5/sqlite.lua"
 
-    -- Guides to use Lua in NVIM
-    -- use 'https://github.com/nanotee/nvim-lua-guide'
-    -- use 'norcalli/nvim_utils'
-
 
     -------------------------------------------------------------------------------------
     -- Autocomplete
     -------------------------------------------------------------------------------------
-    use {'https://github.com/hrsh7th/vim-vsnip'}
     use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
     -- use 'golang/vscode-go'
@@ -97,7 +92,6 @@ return require('packer').startup(
       config = function()
         require("ik1614.nvim-cmp")
       end,
-      wants = { "LuaSnip" },
       requires = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
@@ -152,17 +146,17 @@ return require('packer').startup(
 
     use 'https://github.com/junegunn/fzf'
     use 'https://github.com/junegunn/fzf.vim'
-    use {'ibhagwan/fzf-lua',
-      requires = {
-        'vijaymarupudi/nvim-fzf',
-        'kyazdani42/nvim-web-devicons'
-      },
-    }
+    -- use {'ibhagwan/fzf-lua',
+    --   requires = {
+    --     'vijaymarupudi/nvim-fzf',
+    --     'kyazdani42/nvim-web-devicons'
+    --   },
+    -- }
 
     use 'kevinhwang91/nvim-bqf'
 
     -- use {'kyazdani42/nvim-tree.lua'} -- NOTE: Somehow it removes 'netrw#Explore', So I can't use 'GBrowse'
-    use {"glepnir/dashboard-nvim"}
+    -- use {"glepnir/dashboard-nvim"}
 
 
     -------------------------------------------------------------------------------------
@@ -190,12 +184,12 @@ return require('packer').startup(
     -- For PR review etc. FIXME: some problems with 'gh auth'. I'm logged in just fine
     -- (using 'GITHUB_TOKEN' env variable) and can do everything in CLI but this plugin
     -- asks to do auth :shrug:
-    use {
-      'pwntester/octo.nvim',
-      config=function()
-        require"octo".setup({})
-      end
-    }
+    -- use {
+    --   'pwntester/octo.nvim',
+    --   config=function()
+    --     require"octo".setup({})
+    --   end
+    -- }
 
 
     -------------------------------------------------------------------------------------
@@ -244,32 +238,9 @@ return require('packer').startup(
     -- Work
     use {
       'https://github.com/saltstack/salt-vim',
-      -- FIXME: Doesn't work :cry:
-      -- ft = {
-      --   'sls',
-      --   'j2',
-      --   'jinja',
-      --   'jinja2',
-      -- }
     }
     use {
       'https://github.com/Glench/Vim-Jinja2-Syntax',
-      -- FIXME: Doesn't work :cry:
-      -- ft = {
-      --   'sls',
-      --   'j2',
-      --   'jinja',
-      --   'jinja2',
-      -- }
-    }
-
-    use {
-      "windwp/nvim-autopairs"
-    }
-
-    -- FIXME: Doesn't work straight away :shrug:
-    use {
-      "AndrewRadev/splitjoin.vim"
     }
 
     use {
