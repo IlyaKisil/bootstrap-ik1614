@@ -112,6 +112,7 @@ return require('packer').startup(
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
+        "quangnguyen30192/cmp-nvim-ultisnips",
         {
           "windwp/nvim-autopairs",
           config = function()
