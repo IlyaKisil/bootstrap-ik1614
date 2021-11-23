@@ -2,6 +2,11 @@ snippet here "Get the full path to location of current script" b
 HERE = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 endsnippet
 
+snippet now "Get current time in ISO8601 format" b
+NOW = $(shell date +%Y-%m-%dT%H:%M:%S)
+endsnippet
+
+
 snippet base "Boilerplate for any new Makefile" b
 #########################################################################################
 # This Makefile is self-documented
