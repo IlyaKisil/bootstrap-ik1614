@@ -2,6 +2,15 @@ snippet here "Get the full path to location of current script" b
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 endsnippet
 
+snippet repo-home "Get absolute path for current git repo" b
+GIT_REPO_HOME="$(git rev-parse --show-toplevel)"
+endsnippet
+
+
+snippet codebase "Get name of git repo" b
+CODEBASE="$(basename $(git remote get-url origin) .git)"
+endsnippet
+
 snippet now "Get current time" b
 NOW="$(date +"%Y-%m-%dT%H:%M:%S")"
 endsnippet

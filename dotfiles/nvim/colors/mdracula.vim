@@ -167,6 +167,7 @@ call functions#HL('CodeWarning', s:p.null, s:p.codeWarning)
 " call functions#HL('CodeInfo', s:p.null, s:p.hintBg)
 call functions#HL('CodeInfo', s:p.hintFg, s:p.hintBg)
 call functions#HL('CodeHint', s:p.hintFg, s:p.hintBg)
+call functions#HL('CodeGhost', s:p.lineNumber)
 
 call functions#HL('ErrorSign', s:p.error, s:p.gutter)
 call functions#HL('WarningSign', s:p.warning, s:p.gutter)

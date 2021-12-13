@@ -7,7 +7,7 @@ require("ik1614.lsp.kind").setup()
 local function on_attach(client, bufnr)
   require("ik1614.lsp.formatting").setup(client, bufnr)
   -- require("ik1614.lsp.keys").setup(client, bufnr)
-  require("ik1614.lsp.completion").setup(client, bufnr)
+  -- require("ik1614.lsp.completion").setup(client, bufnr)  -- Not sure why but this breaks LSP completion
   require("ik1614.lsp.highlighting").setup(client)
 
   -- TypeScript specific stuff
@@ -30,6 +30,8 @@ local servers = {
   gopls = {},
   html = {},
   jsonls = {},
+  tsserver = {},
+  vimls = {},
 
   pyright = {
     before_init = function(_, config)
@@ -44,41 +46,26 @@ local servers = {
     end,
   },
 
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = {
-            'vim'
-          },
-          disable = {
-            "trailing-space",
-          },
-        }
-      }
-    }
-  },
-  tsserver = {},
-  vimls = {},
+  -- sumneko_lua = {
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         globals = {
+  --           'vim'
+  --         },
+  --         disable = {
+  --           "trailing-space",
+  --         },
+  --       }
+  --     }
+  --   }
+  -- },
 }
 
--- local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- -- Enable snippets integration (OLD)
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.resolveSupport = {
---   properties = {
---     'documentation',
---     'detail',
---     'additionalTextEdits',
---   }
--- }
-
-require("lua-dev").setup() -- Not sure that this works :shrug:
-
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local options = {
   on_attach = on_attach,
-  -- capabilities = capabilities,
+  capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
