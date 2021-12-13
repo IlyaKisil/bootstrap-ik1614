@@ -44,8 +44,9 @@ cmp.setup({
   },
   experimental = {
     ghost_text = {
-      hl_group = "LineNr",
-      -- hl_group = "Comment",
+      hl_group = "CodeGhost",
+      -- hl_group = "LineNr",
+      -- hl_group = "Comment", -- This make it hard to type comments :rofl:
     },
   },
 })

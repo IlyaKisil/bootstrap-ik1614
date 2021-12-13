@@ -1,7 +1,6 @@
 vim.g.mapleader = ' '
 
 vim.g.completion_confirm_key = ""
--- local npairs = require('nvim-autopairs')
 
 -- Helper function
 local map = function (mode, lhs, rhs, opts)
@@ -9,57 +8,6 @@ local map = function (mode, lhs, rhs, opts)
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
-local escape_replace = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
-
--- _G.next_complete_item = function()
---     if vim.fn.pumvisible() == 1 then
---         return escape_replace "<C-n>"
---     -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
---     --     return escape_replace "<Plug>(vsnip-expand-or-jump)"
---     elseif check_back_space() then
---         return escape_replace "<C-n>"
---     else
---         return vim.fn['compe#complete']()
---     end
--- end
-
--- _G.previous_complete_item = function()
---     if vim.fn.pumvisible() == 1 then
---         return escape_replace "<C-p>"
---     -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
---     --     return escape_replace "<Plug>(vsnip-jump-prev)"
---     else
---         return escape_replace "<C-e>"
---     end
--- end
-
--- _G.completion_confirm = function()
---   if vim.fn.pumvisible() ~= 0  then
---     if vim.fn.complete_info()["selected"] ~= -1 then
---       return vim.fn["compe#confirm"](npairs.esc("<c-r>"))
---     else
---       return npairs.esc("<cr>")
---     end
---   else
---     return npairs.autopairs_cr()
---   end
--- end
-
--- _G.trigger_completion = function()
---   return vim.fn["compe#complete"]()
--- end
 
 
 -- Mapping for autocompletion
@@ -78,8 +26,6 @@ vim.cmd([[
 --   cnoremap <UP> <C-p>
 --   cnoremap <DOWN> <C-n>
 -- ]])
-
-map("i", "<C-Space>", "v:lua.trigger_completion()", {expr = true})
 
 
 
@@ -164,8 +110,6 @@ map('n', '<C-u>', '<C-u>zz')
 
 -- Make Y consistent with C and D
 map('n', 'Y', 'y$')
-
-map('n', '<leader>t', ':TSHighlightCapturesUnderCursor<CR>')
 
 -- TODO: convert to lua native mappings
 -- Move cursor through long soft-wrapped lines that doesn't break <count>

@@ -7,7 +7,7 @@ require("ik1614.lsp.kind").setup()
 local function on_attach(client, bufnr)
   require("ik1614.lsp.formatting").setup(client, bufnr)
   -- require("ik1614.lsp.keys").setup(client, bufnr)
-  -- require("ik1614.lsp.completion").setup(client, bufnr)
+  -- require("ik1614.lsp.completion").setup(client, bufnr)  -- Not sure why but this breaks LSP completion
   require("ik1614.lsp.highlighting").setup(client)
 
   -- TypeScript specific stuff
@@ -61,8 +61,6 @@ local servers = {
   --   }
   -- },
 }
-
--- require("lua-dev").setup() -- Not sure that this works :shrug:
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local options = {

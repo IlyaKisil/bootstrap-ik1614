@@ -86,7 +86,6 @@ return require('packer').startup(
       wants = {
         "nvim-lsp-ts-utils",
         "null-ls.nvim",
-        "lua-dev.nvim",
         "cmp-nvim-lsp",
         "nvim-lsp-installer",
       },
@@ -96,7 +95,6 @@ return require('packer').startup(
       requires = {
         "jose-elias-alvarez/nvim-lsp-ts-utils",
         "jose-elias-alvarez/null-ls.nvim",
-        "folke/lua-dev.nvim",
         "williamboman/nvim-lsp-installer",
       },
     })
