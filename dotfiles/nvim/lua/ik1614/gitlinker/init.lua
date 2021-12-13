@@ -8,7 +8,7 @@ local function copy_and_open_in_browser(url)
   gitlinker.actions.open_in_browser(url)
 end
 
-require"gitlinker".setup({
+gitlinker.setup({
   opts = {
     remote = nil, -- force the use of a specific remote
     -- adds current line nr in the url for normal mode
@@ -21,8 +21,11 @@ require"gitlinker".setup({
     print_url = false,
   },
   callbacks = {
-    ["IlyaKisil.github.com"] = function(url_data)
-      -- FIXME: For some reason this doesn't work all the time :shrug:
+    ["github.com"] = function(url_data)
+      -- NOTE: This is to cover different cases like 'IlyaKisil.github.com -> github.com'
+      -- which I have for different SSH keys based on the repo owner (see 'ssh config').
+      -- For some reason, simply adding 'IlyaKisil.github.com' to a table with callbacks
+      -- doesn't work, potentially because keys are actually lua regex :shrug:
       url_data.host = "github.com"
       return gitlinker.hosts.get_github_type_url(url_data)
     end,
