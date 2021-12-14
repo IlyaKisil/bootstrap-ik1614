@@ -144,9 +144,16 @@ map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
 
+-- Mnemonic: T -> Telescope ...
 map('n', '<leader>tt', ':Telescope<CR>')
 map('n', '<leader>tq', ':Telescope quickfix<CR>')
 map('n', '<leader>tr', ':Telescope resume<CR>')
+map('n', '<leader>tn', ':Telescope neoclip<CR>')
+
+-- Mnemonic: O -> Open ...
+map('n', '<leader>od', ':GdiffInTab<CR>')
+map('n', '<leader>ob', ':NvimTreeFindFile<CR>zz')
+map('n', '<leader>ot', ':TodoTelescope<CR>')
 
 -----------------------------------------------------------------------------------------
 -- LSP

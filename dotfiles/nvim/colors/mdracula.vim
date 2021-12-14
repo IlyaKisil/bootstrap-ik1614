@@ -461,22 +461,8 @@ hi! link GitGutterChange        GitChangeStripe
 hi! link GitGutterChangeDelete  GitChangeStripe
 
 " }}}
-" NERDTree: {{{
-hi! link NERDTreeDir GruvboxAqua
-hi! link NERDTreeDirSlash GruvboxAqua
-
-hi! link NERDTreeOpenable GruvboxOrange
-hi! link NERDTreeClosable GruvboxOrange
-
-hi! link NERDTreeFile GruvboxFg1
-hi! link NERDTreeExecFile GruvboxYellow
-
-hi! link NERDTreeUp GruvboxGray
-hi! link NERDTreeCWD GruvboxGreen
-hi! link NERDTreeHelp GruvboxFg1
-
-hi! link NERDTreeToggleOn GruvboxGreen
-hi! link NERDTreeToggleOff GruvboxRed
+" nvim-tree: {{{
+hi! link NvimTreeCursorLine PmenuSel
 
 " }}}
 " Sneak: {{{

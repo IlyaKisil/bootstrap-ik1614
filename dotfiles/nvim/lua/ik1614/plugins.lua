@@ -184,8 +184,19 @@ return require('packer').startup(
       end,
     })
 
-    -- use {'kyazdani42/nvim-tree.lua'} -- NOTE: Somehow it removes 'netrw#Explore', So I can't use 'GBrowse'
-    -- use {"glepnir/dashboard-nvim"}
+    use({
+      'kyazdani42/nvim-tree.lua',
+      config = function()
+        require("ik1614.nvim-tree")
+      end,
+    })
+
+    use({
+      'https://github.com/folke/todo-comments.nvim',
+      config = function()
+        require("ik1614.todo-comments")
+      end,
+    })
 
 
     -------------------------------------------------------------------------------------
