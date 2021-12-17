@@ -37,6 +37,27 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- Autocomplete
     -------------------------------------------------------------------------------------
+    use({
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      opt = true,
+      config = function()
+        require("ik1614.nvim-cmp")
+      end,
+      requires = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        {
+          "windwp/nvim-autopairs",
+          config = function()
+            require('nvim-autopairs').setup()
+          end,
+        },
+      },
+    })
+
     use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
     -- use 'golang/vscode-go'
@@ -96,27 +117,6 @@ return require('packer').startup(
         "jose-elias-alvarez/nvim-lsp-ts-utils",
         "jose-elias-alvarez/null-ls.nvim",
         "williamboman/nvim-lsp-installer",
-      },
-    })
-
-    use({
-      "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      opt = true,
-      config = function()
-        require("ik1614.nvim-cmp")
-      end,
-      requires = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "quangnguyen30192/cmp-nvim-ultisnips",
-        {
-          "windwp/nvim-autopairs",
-          config = function()
-            require('nvim-autopairs').setup()
-          end,
-        },
       },
     })
 
@@ -235,6 +235,26 @@ return require('packer').startup(
     --   end
     -- }
 
+    -------------------------------------------------------------------------------------
+    -- Language specific
+    -------------------------------------------------------------------------------------
+    use {
+      'https://github.com/fatih/vim-go',
+      run = ':GoUpdateBinaries',
+      config = function()
+        require("ik1614.vim-go")
+      end,
+    }
+    use {
+      'https://github.com/saltstack/salt-vim',
+    }
+    use {
+      'https://github.com/Glench/Vim-Jinja2-Syntax',
+    }
+
+    use {
+      "https://github.com/lervag/vimtex"
+    }
 
     -------------------------------------------------------------------------------------
     -- General Plugins
@@ -283,17 +303,5 @@ return require('packer').startup(
     use 'https://github.com/tpope/vim-commentary'
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
-
-    -- Work
-    use {
-      'https://github.com/saltstack/salt-vim',
-    }
-    use {
-      'https://github.com/Glench/Vim-Jinja2-Syntax',
-    }
-
-    use {
-      "https://github.com/lervag/vimtex"
-    }
   end
 )
