@@ -6,6 +6,16 @@ HERE = "bla"
 
 # TODO: one two three.
 # NOTE: hello
+# HACK:
+# WARN:
+# PERF: hellow
+# INFO(ilya): olga dima
+# INFO(Ilya): hahah
+# INFO(anna): hahah
+# TIP(anna): hahah
+# INFO(ilya): hahah
+# INFO(ilya): hahah
+# FIXME  (ilya): hello
 # FIXME: hello
 # Todo: one two three.
 # todo: one two three.
