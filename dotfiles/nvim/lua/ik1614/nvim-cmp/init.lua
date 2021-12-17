@@ -29,7 +29,7 @@ cmp.setup({
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "buffer" },
+    { name = "buffer", keyword_length = 5 },
     { name = "path" },
     -- { name = 'vsnip' }, -- For vsnip users.
     -- { name = 'luasnip' }, -- For luasnip users.
@@ -43,10 +43,10 @@ cmp.setup({
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   experimental = {
-    ghost_text = {
-      hl_group = "CodeGhost",
-      -- hl_group = "LineNr",
-      -- hl_group = "Comment", -- This make it hard to type comments :rofl:
-    },
+    -- ghost_text = {
+    --   hl_group = "CodeGhost",
+    --   -- hl_group = "LineNr",
+    --   -- hl_group = "Comment", -- This make it hard to type comments :rofl:
+    -- },
   },
 })
