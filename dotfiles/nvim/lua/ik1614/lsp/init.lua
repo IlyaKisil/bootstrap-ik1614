@@ -2,6 +2,7 @@ local utils = require("ik1614.utils")
 local lsp_util = require("lspconfig/util")
 
 require("ik1614.lsp.diagnostics")
+require("ik1614.lsp.code-action")
 require("ik1614.lsp.kind").setup()
 
 local function on_attach(client, bufnr)
