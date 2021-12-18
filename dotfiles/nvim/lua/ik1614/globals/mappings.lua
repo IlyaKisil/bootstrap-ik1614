@@ -173,8 +173,8 @@ map('v', '<leader>sa', ':Telescope lsp_range_code_actions<CR>')
 map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
 -- map('n', '<leader>sS', ':Telescope lsp_workspace_symbols query=') -- Works only with query
 map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
-map('n', '<leader>sd', ':Telescope lsp_document_diagnostics<CR>')
-map('n', '<leader>sD', ':Telescope lsp_workspace_diagnostics line_width=120<CR>')
+map('n', '<leader>sd', ':Telescope diagnostics bufnr=0<CR>')
+map('n', '<leader>sD', ':Telescope diagnostics line_width=120<CR>')
 map('n', '<leader>sl', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
 
