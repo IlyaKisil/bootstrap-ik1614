@@ -423,21 +423,34 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
 
   " Builtin LSP
   " Inline messages
-  hi! link LspDiagnosticsDefaultError       ErrorMessage
-  hi! link LspDiagnosticsDefaultWarning     WarningMessage
-  hi! link LspDiagnosticsDefaultInformation InfoMessage
-  hi! link LspDiagnosticsDefaultHint        HintMessage
+  hi! link DiagnosticError       ErrorMessage
+  hi! link DiagnosticWarn        WarningMessage
+  hi! link DiagnosticInfo        InfoMessage
+  hi! link DiagnosticHint        HintMessage
+
+  " Floating windows, e.g. inline diagnostics
+  hi! link DiagnosticFloatingError       ErrorMessage
+  hi! link DiagnosticFloatingWarn        WarningMessage
+  hi! link DiagnosticFloatingInfo        InfoMessage
+  hi! link DiagnosticFloatingHint        HintMessage
 
   " Gutter signs
-  hi! link LspDiagnosticsSignError       ErrorSign
-  hi! link LspDiagnosticsSignWarning     WarningSign
-  hi! link LspDiagnosticsSignInformation InfoSign
-  hi! link LspDiagnosticsSignHint        HintSign
+  hi! link DiagnosticSignError       ErrorSign
+  hi! link DiagnosticSignWarn        WarningSign
+  hi! link DiagnosticSignInfo        InfoSign
+  hi! link DiagnosticSignHint        HintSign
 
   " References for symbol under the cursor
   hi! link LspReferenceText  MdraculaLSPReference
   hi! link LspReferenceWrite MdraculaLSPReference
   hi! link LspReferenceRead  MdraculaLSPReference
+
+  " TODO: not ture about the below :shrug:
+  hi! link LspCodeLens MdraculaTestColor
+  hi! link LspCodeLensSeparator MdraculaTestColor
+  hi! link LspSignatureActiveParameter MdraculaTestColor
+  hi! link LspProgressUpdate MdraculaTestColor
+  hi! link LspRequest MdraculaTestColor
 
   " }}}
 " }}}
