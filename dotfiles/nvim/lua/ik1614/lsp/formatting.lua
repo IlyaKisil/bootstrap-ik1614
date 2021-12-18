@@ -70,9 +70,9 @@ function M.setup(client, buf)
   if client.resolved_capabilities.document_formatting then
     vim.cmd([[
     augroup LspFormat
-    autocmd! * <buffer>
-    autocmd BufWritePre <buffer> lua require("ik1614.lsp.formatting").format()
-    autocmd BufWritePre *.go execute('lua require("ik1614.lsp.formatting").organize_go_imports(1000)')
+      autocmd! * <buffer>
+      autocmd BufWritePre <buffer> lua require("ik1614.lsp.formatting").format()
+      autocmd BufWritePre *.go execute('lua require("ik1614.lsp.formatting").organize_go_imports(1000)')
     augroup END
     ]])
   end

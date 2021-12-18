@@ -27,7 +27,7 @@ local servers = {
 
   cssls = {},
   dockerls = {},
-  gopls = {},
+  -- gopls = {},
   html = {},
   jsonls = {},
   tsserver = {},
@@ -70,5 +70,5 @@ local options = {
     debounce_text_changes = 150,
   },
 }
--- require("ik1614.lsp.null-ls").setup(options) -- TODO: better understand how this works etc
+require("ik1614.lsp.null-ls").setup(options) -- TODO: better understand how this works etc
 require("ik1614.lsp.install").setup(servers, options)
