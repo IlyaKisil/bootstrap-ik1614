@@ -39,6 +39,7 @@ augroup ik1614_now
 
     " Always show help window on the left
     autocmd FileType help wincmd L
+    autocmd FileType help nmap <buffer> q :q<CR>
 
     " Change highlight group of active/inactive windows
     " https://caleb89taylor.medium.com/customizing-individual-neovim-windows-4a08f2d02b4e

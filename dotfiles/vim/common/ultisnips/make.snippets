@@ -6,6 +6,23 @@ snippet now "Get current time in ISO8601 format" b
 NOW = $(shell date +%Y-%m-%dT%H:%M:%S)
 endsnippet
 
+snippet toc "Create target for updating readme with 'doctoc'" b
+.PHONY: update-readme-toc
+
+define README_TOC_TITLE
+Table of Contents
+-----------------
+Generated with [DocToc](https://github.com/thlorenz/doctoc)
+
+Last Update: $(shell date +%Y-%m-%d)
+endef
+export README_TOC_TITLE
+## Update table of contents only for staged 'README.md' known to git. Requires 'doctoc' to be installed
+update-readme-toc:
+	git diff --name-only --cached \
+		| grep README.md \
+		| xargs -I FILE sh -c '{ doctoc --github --title "$${README_TOC_TITLE}" FILE && git add FILE; }'
+endsnippet
 
 snippet base "Boilerplate for any new Makefile" b
 #########################################################################################

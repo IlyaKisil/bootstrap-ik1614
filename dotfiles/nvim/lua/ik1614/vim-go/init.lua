@@ -31,5 +31,6 @@ augroup ik1614_go
     autocmd FileType go nmap <buffer> <leader>rv <Plug>(go-run-vertical)
     autocmd FileType go nmap <buffer> <leader>rt <Plug>(go-test)
     autocmd FileType go nmap <buffer> <leader>rT <Plug>(go-test-func)
+    autocmd FileType godoc nmap <buffer> q :q<CR>
 augroup END
 ]])
