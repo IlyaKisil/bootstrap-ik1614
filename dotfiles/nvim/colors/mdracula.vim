@@ -432,7 +432,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   hi! link DiagnosticFloatingError       ErrorMessage
   hi! link DiagnosticFloatingWarn        WarningMessage
   hi! link DiagnosticFloatingInfo        InfoMessage
-  hi! link DiagnosticFloatingHint        HintMessage
+  hi! link DiagnosticFloatingHint        InfoMessage
 
   " Gutter signs
   hi! link DiagnosticSignError       ErrorSign
@@ -476,6 +476,16 @@ hi! link GitGutterChangeDelete  GitChangeStripe
 " }}}
 " nvim-tree: {{{
 hi! link NvimTreeCursorLine PmenuSel
+hi! link NvimTreeGitDirty   MdraculaBlue
+hi! link NvimTreeGitStaged  MdraculaBlue
+hi! link NvimTreeGitRenamed MdraculaBlue
+hi! link NvimTreeGitNew     MdraculaBlue
+
+hi! link NvimTreeExecFile     NormalFg
+" hi! link NvimTreeSpecialFile  NormalFg
+hi! link NvimTreeImageFile    NormalFg
+hi! link NvimTreeMarkdownFile NormalFg
+
 
 " }}}
 " Sneak: {{{
