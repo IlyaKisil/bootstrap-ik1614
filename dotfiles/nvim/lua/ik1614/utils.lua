@@ -79,7 +79,8 @@ end
 function M.log(msg, hl, name)
   name = name or "ik1614"
   hl = hl or "Todo"
-  vim.api.nvim_echo({ { name .. ": ", hl }, { msg } }, true, {})
+  time = os.date("%X")
+  vim.api.nvim_echo({ { name .. " " .. time .. ": ", hl }, { msg } }, true, {})
 end
 
 function M.error(msg, name)
