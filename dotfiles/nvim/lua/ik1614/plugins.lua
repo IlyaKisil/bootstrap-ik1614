@@ -135,7 +135,10 @@ return require('packer').startup(
       requires = {
         {"nvim-lua/plenary.nvim"},
         {"nvim-treesitter/nvim-treesitter"}
-      }
+      },
+      config = function()
+        require("ik1614.refactoring")
+      end,
     }
 
     use {

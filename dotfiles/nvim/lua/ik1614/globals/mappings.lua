@@ -179,7 +179,6 @@ map('n', '<leader>sl', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 
 
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+map('v', '<leader>rf', '<esc><cmd>lua require("ik1614.refactoring").refactors()<CR>', {expr=false})
 map('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<C-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-
-
