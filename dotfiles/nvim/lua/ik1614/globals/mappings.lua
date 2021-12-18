@@ -164,8 +164,8 @@ map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
 -- map('n', '<leader>gd', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
 map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
 map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
-map('n', '<leader>ge', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-map('n', '<leader>gn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+map('n', '<leader>ge', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+map('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 -- Mnemonic: S -> Show ...
 map('n', '<leader>sa', ':Telescope lsp_code_actions<CR>')
@@ -175,7 +175,7 @@ map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
 map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
 map('n', '<leader>sd', ':Telescope diagnostics bufnr=0<CR>')
 map('n', '<leader>sD', ':Telescope diagnostics line_width=120<CR>')
-map('n', '<leader>sl', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+map('n', '<leader>sl', ':lua vim.diagnostic.open_float()<CR>')
 
 
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
