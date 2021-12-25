@@ -68,9 +68,12 @@ if executable('rg')
                     \ '--follow',
                     \ '--smart-case',
                     \ '--glob "!.git/*"',
+                    \ '--glob "!.*terraform/*"',
+                    \ '--glob "!.*terraform.*"',
                     \ '--glob "!.idea/*"',
                     \ '--glob "!.*ipynb_checkpoints/*"',
                     \ '--glob "!*.aux"',
+                    \ '--glob "!CODEOWNERS"',
                     \ '--color "always"',
                     \ ]
         let rg_flags = extend(rg_default_flags, rg_extra_flags)
