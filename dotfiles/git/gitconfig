@@ -14,6 +14,33 @@
 [core]
     # excludesfile = ~/.gitignore-global
     editor = $EDITOR
+    pager = delta
+
+[diff]
+    colorMoved = default
+
+[delta]
+    navigate = true
+    side-by-side = true
+    features = decorations
+
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    ; hunk-header-line-number-style = "#067a00"
+    ; hunk-header-style = file line-number syntax
+    hunk-header-style = file
+    line-numbers = true
+
+[delta "interactive"]
+    keep-plus-minus-markers = false
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
 [init]
     # Name of a branch for every 'git init'
     defaultBranch = master
