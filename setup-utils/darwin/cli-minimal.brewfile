@@ -15,6 +15,8 @@ brew "cookiecutter"
 brew "curl"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GNU Pretty Good Privacy (PGP) package
@@ -25,6 +27,8 @@ brew "htop"
 brew "jq"
 # YAML Parser
 brew "libyaml"
+# CLI search and replace | Space Age seD -> https://github.com/ms-jpq/sad
+brew "ms-jpq/sad/sad"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Pinentry for GPG on Mac

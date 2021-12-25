@@ -96,6 +96,12 @@ return require('packer').startup(
     })
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
+    -- use({
+    --   'stevearc/dressing.nvim',
+    --   config = function()
+    --     require("ik1614.dressing")
+    --   end,
+    -- })
 
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
@@ -142,6 +148,16 @@ return require('packer').startup(
     }
 
     use {
+      "ray-x/sad.nvim",
+      requires = {
+        {"ray-x/guihua.lua"},
+      },
+      config = function()
+        require("ik1614.sad")
+      end,
+    }
+
+    use {
       'nvim-telescope/telescope.nvim',
       requires = {
         'nvim-lua/plenary.nvim'
@@ -154,6 +170,7 @@ return require('packer').startup(
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
+    -- use 'https://github.com/fhill2/telescope-ultisnips.nvim'
 
     use {
       "AckslD/nvim-neoclip.lua",
@@ -306,5 +323,24 @@ return require('packer').startup(
     use 'https://github.com/tpope/vim-commentary'
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
+
+    -------------------------------------------------------------------------------------
+    -- Plugins to try out at some point
+    -------------------------------------------------------------------------------------
+    -- https://github.com/mfussenegger/nvim-lint
+    -- https://github.com/ThePrimeagen/harpoon
+    -- https://github.com/folke/persistence.nvim
+    -- https://github.com/nvim-pack/nvim-spectre
+    -- https://github.com/akinsho/toggleterm.nvim
+    --
+    -------------------------------------------------------------------------------------
+    -- Interesting colorschemes when/if I get bored of my current setup
+    -------------------------------------------------------------------------------------
+    -- use({
+    --   'rebelot/kanagawa.nvim',
+    --   config = function()
+    --     require("ik1614.kanagawa")
+    --   end,
+    -- })
   end
 )
