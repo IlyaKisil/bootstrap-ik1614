@@ -30,10 +30,13 @@
     file-style = omit
     hunk-header-decoration-style = blue box
     hunk-header-file-style = red
-    ; hunk-header-line-number-style = "#067a00"
-    ; hunk-header-style = file line-number syntax
     hunk-header-style = file
     line-numbers = true
+    minus-emph-style     = syntax "#E06C75"
+    minus-non-emph-style = syntax "#374752"
+    plus-non-emph-style  = syntax "#374752"
+    # Style for git moved lines
+    map-styles = "bold purple => syntax '#3A3A3A', bold cyan => syntax '#3A3A3A'"
 
 [delta "interactive"]
     keep-plus-minus-markers = false
