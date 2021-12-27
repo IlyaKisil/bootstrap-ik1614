@@ -409,7 +409,7 @@ call functions#HL('MdraculaLSPReference', s:p.null, s:p.menu)
   " endif
   hi! link NormalFloat MdraculaPopupMenu
   hi! link NormalNC NormalFg
-  hi! link MsgArea NormalFg
+  hi! link MsgArea SignColumn
   hi! link MsgSeparator StatusLine
   hi! link Substitute Search
   " TermCursor
