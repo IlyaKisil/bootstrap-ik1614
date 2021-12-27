@@ -190,12 +190,15 @@ return require('packer').startup(
 
     use 'https://github.com/junegunn/fzf'
     use 'https://github.com/junegunn/fzf.vim'
-    -- use {'ibhagwan/fzf-lua',
-    --   requires = {
-    --     'vijaymarupudi/nvim-fzf',
-    --     'kyazdani42/nvim-web-devicons'
-    --   },
-    -- }
+    use {'ibhagwan/fzf-lua',
+      requires = {
+        'vijaymarupudi/nvim-fzf',
+        'kyazdani42/nvim-web-devicons'
+      },
+      config = function()
+        require("ik1614.fzf-lua")
+      end,
+    }
 
     use({
       'kevinhwang91/nvim-bqf',
