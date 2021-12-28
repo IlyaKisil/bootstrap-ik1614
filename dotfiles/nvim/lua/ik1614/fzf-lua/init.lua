@@ -1,6 +1,9 @@
+local fzf = require("fzf-lua")
 local actions = require "fzf-lua.actions"
 
-require'fzf-lua'.setup {
+local M = {}
+
+fzf.setup {
   global_resume      = true,
   global_resume_query = true,
   winopts = {
@@ -14,7 +17,7 @@ require'fzf-lua'.setup {
       layout         = 'flex',      -- horizontal|vertical|flex
       flip_columns   = 120,         -- #cols to switch to horizontal on flex
       -- Only valid with the builtin previewer:
-      title          = true,            -- preview border title (file/buf)?
+      title          = true,
       scrollbar      = false,
     },
     on_create = function()
@@ -62,7 +65,7 @@ require'fzf-lua'.setup {
       cmd             = "man -c %s | col -bx",
     },
     builtin = {
-      syntax          = true,         -- preview syntax highlight?
+      syntax          = true,
       syntax_limit_l  = 0,            -- syntax limit (lines), 0=nolimit
       syntax_limit_b  = 1024*1024,    -- syntax limit (bytes), 0=nolimit
     },
@@ -142,9 +145,9 @@ require'fzf-lua'.setup {
     },
   },
   grep = {
-    multiprocess      = true,           -- run command in a separate process
-    git_icons         = false,           -- show git icons?
-    file_icons        = false,           -- show file icons?
+    multiprocess      = true,
+    git_icons         = false,
+    file_icons        = false,
     -- executed command priority is 'cmd' (if exists)
     -- otherwise auto-detect prioritizes `rg` over `grep`
     -- default options are controlled by 'rg|grep_opts'
@@ -153,7 +156,13 @@ require'fzf-lua'.setup {
     grep_opts         = "--binary-files=without-match --line-number --recursive --color=auto --perl-regexp",
     -- 'live_grep_glob' options:
     glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
-    glob_separator    = "%s%-%-"    -- query separator pattern (lua): ' --'
+    glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
+    fzf_opts = {
+      -- don't include filename into live search, tiebreak by line no.
+      ['--delimiter'] = vim.fn.shellescape('[:]'),
+      ["--nth"]  = '2..',
+      ["--tiebreak"]  = 'index',
+    },
   },
   args = { -- TODO: figure out what this does :shrug:
     files_only        = true,
@@ -164,11 +173,13 @@ require'fzf-lua'.setup {
   },
   oldfiles = {
     cwd_only          = true,
+    git_icons         = false,
+    file_icons        = false,
   },
   buffers = {
-    file_icons        = false,         -- show file icons?
-    color_icons       = true,         -- colorize file|git icons
-    sort_lastused     = true,         -- sort buffers() by last used
+    git_icons         = false,
+    file_icons        = false,
+    sort_lastused     = true,
     actions = {
       -- ["default"]     = actions.buf_edit,
       -- ["ctrl-s"]      = actions.buf_split,
@@ -182,12 +193,13 @@ require'fzf-lua'.setup {
     }
   },
   lines = {
-    previewer         = "builtin",    -- set to 'false' to disable
+    previewer         = "builtin",
+    git_icons         = false,
+    file_icons        = false,
     show_unlisted     = false,        -- exclude 'help' buffers
     no_term_buffers   = true,         -- exclude 'term' buffers
     fzf_opts = {
-      -- do not include bufnr in fuzzy matching
-      -- tiebreak by line no.
+      -- do not include bufnr in fuzzy matching. tiebreak by line no.
       ['--delimiter'] = vim.fn.shellescape(']'),
       ["--nth"]       = '2..',
       ["--tiebreak"]  = 'index',
@@ -200,7 +212,7 @@ require'fzf-lua'.setup {
     }
   },
   blines = {
-    previewer         = "builtin",    -- set to 'false' to disable
+    previewer         = "builtin",
     show_unlisted     = true,         -- include 'help' buffers
     no_term_buffers   = false,        -- include 'term' buffers
     fzf_opts = {
@@ -251,3 +263,70 @@ require'fzf-lua'.setup {
   -- padding can help kitty term users with
   -- double-width icon rendering
 }
+
+-----------------------------------------------------------------------------------------
+-- Convenience functions, since I don't want to pass parameters to the
+-- underlying functions where I define mappings for them :shrug:
+function M.lsp_references()
+  return fzf.lsp_references({
+    jump_to_single_result = true,
+  })
+end
+
+function M.lsp_definitions()
+  return fzf.lsp_definitions({
+    jump_to_single_result = true,
+  })
+end
+
+function M.lsp_typedefs()
+  return fzf.lsp_typedefs({
+    jump_to_single_result = true,
+  })
+end
+
+function M.lsp_implementations()
+  return fzf.lsp_implementations({
+    jump_to_single_result = true,
+  })
+end
+
+function M.lsp_code_actions()
+  return fzf.lsp_code_actions({
+    sync = true
+  })
+end
+
+function M.lsp_document_symbols()
+  return fzf.lsp_document_symbols({
+    jump_to_single_result = true,
+    fzf_cli_args = "--with-nth 2.."
+  })
+end
+
+function M.lsp_live_workspace_symbols()
+  return fzf.lsp_live_workspace_symbols({
+    jump_to_single_result = true,
+    fzf_cli_args = "--nth 2..",
+  })
+end
+
+function M.lsp_document_diagnostics()
+  return fzf.lsp_document_diagnostics({
+    sync = true,
+    fzf_cli_args = "--with-nth 2.."
+  })
+end
+
+function M.lsp_workspace_diagnostics()
+  return fzf.lsp_workspace_diagnostics({})
+end
+
+function M.grep()
+  return fzf.grep({
+    fzf_cli_args = "--nth 2..",
+    search = "",
+  })
+end
+
+return M

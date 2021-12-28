@@ -83,7 +83,8 @@ map('n', '<leader>ow', ':call functions#OpenURL()<CR>')
 map('v', '<leader>ow', ':call functions#OpenURL()<CR>')
 
 -- Execute current line (vim/lua scripts)
-map('n', '<leader>x', ':call functions#exec_current_line()<CR>')
+-- map('n', '<leader>x', ':call functions#exec_current_line()<CR>')
+map('n', '<leader>x', ':w<CR>:luafile %<CR>')
 
 -- By default it will extend highlighting till the next match.
 -- Doesn't work very smooth
@@ -145,36 +146,69 @@ map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
 
 -- Mnemonic: T -> Telescope ...
-map('n', '<leader>tt', ':Telescope<CR>')
-map('n', '<leader>tq', ':Telescope quickfix<CR>')
-map('n', '<leader>tr', ':Telescope resume<CR>')
-map('n', '<leader>tn', ':Telescope neoclip<CR>')
+-- map('n', '<leader>tt', ':Telescope<CR>')
+-- map('n', '<leader>tq', ':Telescope quickfix<CR>')
+-- map('n', '<leader>tr', ':Telescope resume<CR>')
+-- map('n', '<leader>tn', ':Telescope neoclip<CR>')
 
 -- Mnemonic: O -> Open ...
 map('n', '<leader>od', ':GdiffInTab<CR>')
 map('n', '<leader>ob', ':NvimTreeFindFile<CR>zz')
 map('n', '<leader>ot', ':TodoTelescope<CR>')
 
+-- Mnemonic: F -> Find/FZF ...
+map('n', "<C-p>",      ":<C-u>FzfLua git_files<CR>")
+map('n', "<leader>ff", ":<C-u>FzfLua files<CR>")
+map('n', "<leader>fb", ":<C-u>FzfLua buffers<CR>")
+map('n', "<leader>fs", ":<C-u>SEARCH<CR>")
+-- map('n', "<leader>fp", ':lua require("ik1614.fzf-lua").grep()<CR>')
+map('n', "<leader>fp", ':<C-u>FzfLua grep_project<CR>')
+map('n', "<leader>fg", ':<C-u>FzfLua grep_cword<CR>')
+map('v', "<leader>fg", ':<C-u>FzfLua grep_visual<CR>')
+map('n', "<leader>fl", ':<C-u>FzfLua grep_curbuf<CR>')
+map('n', "<leader>fh", ':<C-u>FzfLua command_history<CR>')
+map('n', "<leader>fr", ':<C-u>FzfLua resume<CR>')
+map('n', "<leader>fq", ':<C-u>FzfLua quickfix<CR>')
+map('n', '<leader>fn', ':Telescope neoclip<CR>')
+
 -----------------------------------------------------------------------------------------
 -- LSP
 -----------------------------------------------------------------------------------------
 -- Mnemonic: G -> Go To ...
-map('n', '<leader>gr', ':Telescope lsp_references<CR>')
-map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
+-- map('n', '<leader>gr', ':Telescope lsp_references<CR>')
+map('n', '<leader>gr', ':lua require("ik1614.fzf-lua").lsp_references()<CR>')
+
+-- map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
 -- map('n', '<leader>gd', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
-map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
+map('n', '<leader>gd', ':lua require("ik1614.fzf-lua").lsp_definitions()<CR>')
+
+-- map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
+map('n', '<leader>gD', ':lua require("ik1614.fzf-lua").lsp_typedefs()<CR>')
+
+-- map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
+map('n', '<leader>gi', ':lua require("ik1614.fzf-lua").lsp_implementations()<CR>')
+
 map('n', '<leader>ge', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 map('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 -- Mnemonic: S -> Show ...
-map('n', '<leader>sa', ':Telescope lsp_code_actions<CR>')
+-- map('n', '<leader>sa', ':Telescope lsp_code_actions<CR>')
+map('n', '<leader>sa', ':lua require("ik1614.fzf-lua").lsp_code_actions()<CR>')
 map('v', '<leader>sa', ':Telescope lsp_range_code_actions<CR>')
-map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
+
+-- map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
+map('n', '<leader>ss', ':lua require("ik1614.fzf-lua").lsp_document_symbols()<CR>')
+
 -- map('n', '<leader>sS', ':Telescope lsp_workspace_symbols query=') -- Works only with query
-map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
-map('n', '<leader>sd', ':Telescope diagnostics bufnr=0<CR>')
-map('n', '<leader>sD', ':Telescope diagnostics line_width=120<CR>')
+-- map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
+map('n', '<leader>sS', ':lua require("ik1614.fzf-lua").lsp_live_workspace_symbols()<CR>')
+
+-- map('n', '<leader>sd', ':Telescope diagnostics bufnr=0<CR>')
+map('n', '<leader>sd', ':lua require("ik1614.fzf-lua").lsp_document_diagnostics()<CR>')
+
+-- map('n', '<leader>sD', ':Telescope diagnostics line_width=120<CR>')
+map('n', '<leader>sD', ':lua require("ik1614.fzf-lua").lsp_workspace_diagnostics()<CR>')
+
 map('n', '<leader>sl', ':lua vim.diagnostic.open_float()<CR>')
 
 
