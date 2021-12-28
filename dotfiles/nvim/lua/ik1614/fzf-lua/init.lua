@@ -40,6 +40,12 @@ fzf.setup {
       ["<C-u>"]     = "preview-page-up",
       ["<C-z>"]     = "preview-page-reset",
     },
+    fzf = {
+      -- Most of the bindings are defined at the shell level, but it doesn't work
+      -- for the following within 'fzf-lua' for some reason :shrug:
+      ["ctrl-u"]     = "preview-half-page-up",
+      ["ctrl-d"]     = "preview-half-page-down",
+    },
   },
   ---------------------------------------------------------------------------------------
   -- PREVIEWERS SETUP
@@ -138,10 +144,10 @@ fzf.setup {
       },
     },
     icons = {
-      ["M"] = { icon = "★", color = "blue" },
-      ["D"] = { icon = "✗", color = "red" },
-      ["A"] = { icon = "+", color = "green" },
-      ["?"] = { icon = "?", color = "red" },
+      ["M"] = { icon = "M", color = "blue" },
+      ["D"] = { icon = "D", color = "red" },
+      ["A"] = { icon = "A", color = "green" },
+      ["?"] = { icon = "?", color = "magenta" },
     },
   },
   grep = {
