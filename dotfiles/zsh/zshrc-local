@@ -77,10 +77,10 @@ if command -v fzf 1>/dev/null 2>&1; then
     # https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
     FZF_COLORS="
       --color=fg:-1
-      --color=bg:-1
       --color=fg+:-1
+      --color=bg:-1
       --color=bg+:${FZF_GRAY_COLOR}
-      --color=preview-bg:${FZF_GRAY_COLOR}
+      --color=preview-bg:-1
       --color=hl+:${FZF_YELLOW_COLOR}
       --color=hl:${FZF_YELLOW_COLOR}
       --color=info:${FZF_ORANGE_COLOR}
@@ -106,6 +106,8 @@ if command -v fzf 1>/dev/null 2>&1; then
 
       case "$command" in
         cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
+        # export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+        # ssh)          fzf "$@" --preview 'dig {}' ;;
         *)  fzf "$@" ;;
       esac
     }
