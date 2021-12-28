@@ -2,11 +2,17 @@ snippet here "Get the full path to the directory a Python file is contained in" 
 HERE = os.path.dirname(os.path.realpath(__file__))
 endsnippet
 
-snippet main b
+snippet main "main" b
 def main():
     pass
 
 
 if __name__ == '__main__':
     main()
+endsnippet
+
+snippet ssp "spacer" Ab
+print("* DEBUG: ${1/./-/g}${VISUAL/./-/g} | `!v expand('%:t')`:`!v line('.')` | ${1/"/\\\"/g}${VISUAL/"/\\\"/g}")
+print("* DEBUG:", $1${VISUAL})  # NO_COMMIT
+print("* DEBUG: ${1/./-/g}${VISUAL/./-/g} | `!v expand('%:t')`:`!v line('.')` | ${1/./-/g}${VISUAL/./-/g}")
 endsnippet

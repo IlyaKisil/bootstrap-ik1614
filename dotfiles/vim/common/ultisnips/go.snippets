@@ -1,0 +1,12 @@
+snippet here "Get the full path to the directory a Go file is contained in" b
+HERE, err := filepath.Abs(filepath.Dir(os.Args[0]))
+if err != nil {
+	log.Fatal(err)
+}
+endsnippet
+
+snippet ssp "spacer" Ab
+fmt.Println("* DEBUG: ${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/"/\\\"/g}${VISUAL/"/\\\"/g}")
+fmt.Println("* DEBUG:", $1${VISUAL})  // NO_COMMIT
+fmt.Println("* DEBUG: ${1/./-/g}${VISUAL/./-/g} ┃ `!v expand('%:t')`:`!v line('.')` ┃ ${1/./-/g}${VISUAL/./-/g}")
+endsnippet

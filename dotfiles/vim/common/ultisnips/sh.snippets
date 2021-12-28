@@ -15,6 +15,12 @@ snippet now "Get current time" b
 NOW="$(date +"%Y-%m-%dT%H:%M:%S")"
 endsnippet
 
+snippet ssp "spacer" Ab
+echo '* DEBUG: ${1/./-/g}${VISUAL/./-/g} | `!v expand('%:t')`:`!v line('.')` | ${1/"/\\\"/g}${VISUAL/"/\\\"/g}'
+echo "* DEBUG: $1${VISUAL}"  # NO_COMMIT
+echo '* DEBUG: ${1/./-/g}${VISUAL/./-/g} | `!v expand('%:t')`:`!v line('.')` | ${1/./-/g}${VISUAL/./-/g}'
+endsnippet
+
 snippet base "Script template with parsing options and help message" b
 #!/usr/bin/env bash
 # vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
