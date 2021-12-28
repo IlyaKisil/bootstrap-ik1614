@@ -14,14 +14,25 @@
 [core]
     # excludesfile = ~/.gitignore-global
     editor = $EDITOR
-    pager = delta
+    # https://github.com/wfxr/forgit/issues/121#issuecomment-725811214
+    # https://github.com/dandavison/delta/issues/368#issuecomment-751668990
+    pager = "{                                                                      \
+        DEFAULT_WIDTH='120'                                                         \
+        COLUMNS=$(tput cols);                                                       \
+        if [ $COLUMNS -ge $DEFAULT_WIDTH ] && [ -z $FZF_PREVIEW_COLUMNS ]; then     \
+            delta --side-by-side -w $COLUMNS;                                       \
+        elif [ $COLUMNS -ge $DEFAULT_WIDTH ] && [ ! -z $FZF_PREVIEW_COLUMNS ]; then \
+            delta --side-by-side -w $FZF_PREVIEW_COLUMNS;                           \
+        else                                                                        \
+            delta;                                                                  \
+        fi                                                                          \
+    }"
 
 [diff]
     colorMoved = default
 
 [delta]
     navigate = true
-    side-by-side = true
     features = decorations
 
 [delta "decorations"]
