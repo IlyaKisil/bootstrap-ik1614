@@ -221,6 +221,14 @@ return require('packer').startup(
       end,
     })
 
+    use({
+      "folke/which-key.nvim",
+      config = function()
+        require("ik1614.which-key")
+      end,
+      event = "BufWinEnter",
+    })
+
 
     -------------------------------------------------------------------------------------
     -- Debugging

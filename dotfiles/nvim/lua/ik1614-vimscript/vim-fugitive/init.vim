@@ -8,9 +8,7 @@
 
 " Open Diff agains the last commit in a new tab
 command! GdiffInTab tabedit %|Gvdiff HEAD
-nnoremap <leader>od :GdiffInTab<CR>
 
 " Open main page of git integration in a new tab. Also need to close empty
 " window that appears above (using defaut vim mappings)
 command! GitInTab tabedit 'vim-fugitive'| Git | wincmd k | wincmd q
-nnoremap <leader>gg :GitInTab<CR>

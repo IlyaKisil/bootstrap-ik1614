@@ -2,6 +2,14 @@ local M = {}
 
 M.functions = {}
 
+function M.plugin_installed(name)
+  if not pcall(require, name) then
+    M.warn("Plugin ["  .. name .. "] is not installed")
+    return
+  end
+  return true
+end
+
 function M.execute(id)
   local func = M.functions[id]
   if not func then

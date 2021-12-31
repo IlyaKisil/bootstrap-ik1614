@@ -320,7 +320,7 @@ end
 function M.lsp_document_diagnostics()
   return fzf.lsp_document_diagnostics({
     sync = true,
-    fzf_cli_args = "--with-nth 2.."
+    -- fzf_cli_args = "--with-nth 2.." -- FIXME: this also hides severity :cry:
   })
 end
 
@@ -332,6 +332,16 @@ function M.grep()
   return fzf.grep({
     fzf_cli_args = "--nth 2..",
     search = "",
+  })
+end
+
+function M.git_status()
+  return fzf.git_status({
+    winopts = {
+      preview = {
+        layout='vertical',
+      },
+    },
   })
 end
 

@@ -461,6 +461,11 @@ hi! link CompeDocumentation MdraculaPopupMenu
 
 " }}}
 
+" which-key: {{{"
+hi! link WhichKeyFloat CursorLine
+
+" }}}
+
 " nvim-bfq: {{{"
 hi! link BqfPreviewCursor QuickFixLine
 " }}}
