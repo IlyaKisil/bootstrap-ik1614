@@ -7,7 +7,7 @@
 " ############################################
 
 " Open Diff agains the last commit in a new tab
-command! GdiffInTab tabedit %|Gvdiff HEAD
+" command! GdiffInTab tabedit %|Gvdiff HEAD
 
 " Open main page of git integration in a new tab. Also need to close empty
 " window that appears above (using defaut vim mappings)

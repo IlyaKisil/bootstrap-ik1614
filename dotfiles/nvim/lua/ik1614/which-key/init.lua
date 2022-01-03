@@ -69,10 +69,12 @@ local n_leader = {
   g = {
     name = "Git",
     g = {':GitInTab<CR>', "Git in tab"},
-    s = {':lua require("ik1614.fzf-lua").git_status()<CR>', "Status"},
-    c = {':<C-u>FzfLua git_bcommits<CR>', "Buffer commits"},
+    i = {':DiffviewOpen<CR>', "Git in tab"},
+    d = {':DiffviewFile<CR>', "Diff for current buffer"},
+    c = {':DiffviewFileHistory<CR>', "Commits for current buffer"},
     C = {':<C-u>FzfLua git_commits<CR>', "Commits"},
     l = {':<C-u>FzfLua git_branches<CR>', "Log of a branches"},
+    s = {':lua require("ik1614.fzf-lua").git_status()<CR>', "Status"},
     o = "Open in web", -- TODO: currently this is defined in the 'gitlinker' config
     h = { name = "+hunk" },
   },
@@ -119,7 +121,6 @@ local n_leader = {
   o = {
     name = "Open",
     b = {':NvimTreeFindFile<CR>zz', "File browser"},
-    d = {':GdiffInTab<CR>', "Git diff"},
     t = {':TodoTelescope<CR>', "Todo"},
     w = {':call functions#OpenURL()<CR>', "Web browser"},
   },
@@ -149,6 +150,9 @@ local v_leader = {
   f = {
     name = "Find (fzf)",
     g = {':<C-u>FzfLua grep_visual<CR>', 'Grep selection'},
+  },
+  g = {
+    o = "Open selection in web", -- TODO: currently this is defined in the 'gitlinker' config
   },
   o = {
     name = "Open",

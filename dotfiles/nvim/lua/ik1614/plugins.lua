@@ -246,7 +246,13 @@ return require('packer').startup(
         require("ik1614.gitsigns")
       end,
     }
-    use 'sindrets/diffview.nvim'
+    use {
+      'sindrets/diffview.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require("ik1614.diffview")
+      end,
+    }
     use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
     -- use 'https://github.com/TimUntersberger/neogit'
     use {
