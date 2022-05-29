@@ -125,6 +125,8 @@ vim.opt.fillchars = {
 }
 
 
+vim.o.timeoutlen = 1000
+
 -- Go to last location when opening a buffer and center it
 vim.cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"zz" | endif

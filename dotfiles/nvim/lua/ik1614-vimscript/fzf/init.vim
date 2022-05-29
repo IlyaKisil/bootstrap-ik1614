@@ -8,6 +8,11 @@
 
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0,'xoffset': 0} }
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_git_status_preview_command =
+  \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | delta || " .
+  \ "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | delta || " .
+  \ g:fzf_preview_command
 
 " Customize fzf colors to match your color scheme
 " This is set through 'FZF_DEFAULT_OPTS' env variable.
@@ -67,14 +72,14 @@ if executable('rg')
                     \ '--hidden',
                     \ '--follow',
                     \ '--smart-case',
+                    \ '--color "always"',
                     \ '--glob "!.git/*"',
-                    \ '--glob "!.*terraform/*"',
-                    \ '--glob "!.*terraform.*"',
                     \ '--glob "!.idea/*"',
                     \ '--glob "!.*ipynb_checkpoints/*"',
                     \ '--glob "!*.aux"',
+                    \ '--glob "!.*terraform/*"',
+                    \ '--glob "!.*terraform.*"',
                     \ '--glob "!CODEOWNERS"',
-                    \ '--color "always"',
                     \ ]
         let rg_flags = extend(rg_default_flags, rg_extra_flags)
         let rg_flags_string = join(rg_flags, ' ')
@@ -144,8 +149,13 @@ endif
 " Slightly modified ':GFile' and ':Files' to show preview either on the right
 " or down below based on window width
 "
-" let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags(["--files"])
-command! -bang -nargs=? GFILES
+" let g:ilya = [
+"     \ '--files',
+"     \ '--no-ignore',
+"     \ '--color=never',
+"     \ ]
+" let $FZF_DEFAULT_COMMAND = 'rg '.GetRgFlags(g:ilya)
+command! -bang -nargs=? -complete=dir GFILES
             \ call fzf#vim#gitfiles(
             \ <q-args>,
             \ FzfPreviewIfWide(),
@@ -159,10 +169,10 @@ command! -bang -nargs=? -complete=dir FILES
 " ----------------------------------------------------------------------------
 " Mappings
 " ----------------------------------------------------------------------------
-nnoremap <silent><nowait> <C-p>      :<C-u>GFILES<CR>
-nnoremap <silent><nowait> <leader>ff :<C-u>FILES<CR>
-nnoremap <silent><nowait> <leader>fb :<C-u>Buffers<CR>
-nnoremap <silent><nowait> <leader>fs :<C-u>SEARCH<CR>
-nnoremap <silent><nowait> <leader>fr :<C-u>RG<CR>
-nnoremap <silent><nowait> <leader>fl :<C-u>LINES<CR>
-nnoremap <silent><nowait> <leader>fc :<C-u>Commands<CR>
+" nnoremap <silent><nowait> <C-p>      :<C-u>GFILES<CR>
+" nnoremap <silent><nowait> <leader>ff :<C-u>FILES<CR>
+" nnoremap <silent><nowait> <leader>fb :<C-u>Buffers<CR>
+" nnoremap <silent><nowait> <leader>fs :<C-u>SEARCH<CR>
+" nnoremap <silent><nowait> <leader>fr :<C-u>RG<CR>
+" nnoremap <silent><nowait> <leader>fl :<C-u>LINES<CR>
+" nnoremap <silent><nowait> <leader>fc :<C-u>Commands<CR>

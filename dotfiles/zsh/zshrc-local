@@ -50,19 +50,37 @@ ZSH_PLUGINS=(
 ###----------------------------    CLI TOOLS   -----------------------------###
 if command -v fzf 1>/dev/null 2>&1; then
     ZSH_PLUGINS=(${ZSH_PLUGINS} fzf)
+
     FZF_ORANGE_COLOR="#CC7832"
     FZF_YELLOW_COLOR="#E5C07B"
     FZF_GRAY_COLOR="#46484A"
-    FZF_OPTS="--height 40% --inline-info --layout=reverse --no-bold --cycle"
-    FZF_BINDINGS='--bind=ctrl-e:up,ctrl-n:down,ctrl-o:toggle-all' # Good for Colemak layout
+
+    FZF_OPTS="
+      --height 40%
+      --inline-info
+      --layout=reverse
+      --no-bold
+      --cycle
+    "
+
+    # For list of things see 'AVAILABLE ACTIONS' in 'man fzf'
+    FZF_BINDINGS='
+      --bind=ctrl-e:up
+      --bind=ctrl-n:down
+      --bind=ctrl-o:toggle-all
+      --bind=ctrl-d:preview-half-page-down
+      --bind=ctrl-u:preview-half-page-up
+      --bind=ctrl-p:toggle-preview
+      --bind=ctrl-l:clear-query
+    '
 
     # https://github.com/junegunn/fzf/blob/master/README-VIM.md#explanation-of-gfzf_colors
     FZF_COLORS="
       --color=fg:-1
-      --color=bg:-1
       --color=fg+:-1
+      --color=bg:-1
       --color=bg+:${FZF_GRAY_COLOR}
-      --color=preview-bg:${FZF_GRAY_COLOR}
+      --color=preview-bg:-1
       --color=hl+:${FZF_YELLOW_COLOR}
       --color=hl:${FZF_YELLOW_COLOR}
       --color=info:${FZF_ORANGE_COLOR}
@@ -88,6 +106,8 @@ if command -v fzf 1>/dev/null 2>&1; then
 
       case "$command" in
         cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
+        # export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+        # ssh)          fzf "$@" --preview 'dig {}' ;;
         *)  fzf "$@" ;;
       esac
     }

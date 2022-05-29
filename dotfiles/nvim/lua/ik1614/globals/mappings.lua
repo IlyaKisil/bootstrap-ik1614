@@ -19,14 +19,6 @@ end
 vim.cmd([[
   cnoremap <C-e> <C-p>
 ]])
--- Yes, this is bad, but for not so much with programmable keyboard where these
--- are one the home row.
--- NOTE: This breaks pattern match for command history
--- vim.cmd([[
---   cnoremap <UP> <C-p>
---   cnoremap <DOWN> <C-n>
--- ]])
-
 
 
 -- Move within quickfix list
@@ -76,14 +68,6 @@ map('n', '<S-TAB>',   ':tabprevious<CR>')
 -- <tab> and <C-i> are the codes for for vim/nvim. So if we override, then won't be
 -- able to use jumplist
 -- map('n', '<TAB>',     ':tabnext<CR>')
-
-
--- Open URL on the current line in a web browser
-map('n', '<leader>ow', ':call functions#OpenURL()<CR>')
-map('v', '<leader>ow', ':call functions#OpenURL()<CR>')
-
--- Execute current line (vim/lua scripts)
-map('n', '<leader>x', ':call functions#exec_current_line()<CR>')
 
 -- By default it will extend highlighting till the next match.
 -- Doesn't work very smooth
@@ -143,42 +127,7 @@ map('i', ';', ';<C-g>u')
 map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
+map('n', "<C-p>",      ":<C-u>FzfLua git_files<CR>")
 
--- Mnemonic: T -> Telescope ...
-map('n', '<leader>tt', ':Telescope<CR>')
-map('n', '<leader>tq', ':Telescope quickfix<CR>')
-map('n', '<leader>tr', ':Telescope resume<CR>')
-map('n', '<leader>tn', ':Telescope neoclip<CR>')
-
--- Mnemonic: O -> Open ...
-map('n', '<leader>od', ':GdiffInTab<CR>')
-map('n', '<leader>ob', ':NvimTreeFindFile<CR>zz')
-map('n', '<leader>ot', ':TodoTelescope<CR>')
-
------------------------------------------------------------------------------------------
--- LSP
------------------------------------------------------------------------------------------
--- Mnemonic: G -> Go To ...
-map('n', '<leader>gr', ':Telescope lsp_references<CR>')
-map('n', '<leader>gd', ':Telescope lsp_definitions<CR>')
--- map('n', '<leader>gd', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
-map('n', '<leader>gD', ':Telescope lsp_type_definitions<CR>')
-map('n', '<leader>gi', ':Telescope lsp_implementations<CR>')
-map('n', '<leader>ge', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-map('n', '<leader>gn', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-
--- Mnemonic: S -> Show ...
-map('n', '<leader>sa', ':Telescope lsp_code_actions<CR>')
-map('v', '<leader>sa', ':Telescope lsp_range_code_actions<CR>')
-map('n', '<leader>ss', ':Telescope lsp_document_symbols<CR>')
--- map('n', '<leader>sS', ':Telescope lsp_workspace_symbols query=') -- Works only with query
-map('n', '<leader>sS', ':Telescope lsp_dynamic_workspace_symbols<CR>')
-map('n', '<leader>sd', ':Telescope diagnostics bufnr=0<CR>')
-map('n', '<leader>sD', ':Telescope diagnostics line_width=120<CR>')
-map('n', '<leader>sl', ':lua vim.diagnostic.open_float()<CR>')
-
-
-map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-map('v', '<leader>rf', '<esc><cmd>lua require("ik1614.refactoring").refactors()<CR>', {expr=false})
 map('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>')
 map('n', '<C-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
