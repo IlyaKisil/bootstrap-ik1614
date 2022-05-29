@@ -8,6 +8,11 @@
 
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 1, 'height': 1,'yoffset':0,'xoffset': 0} }
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_git_status_preview_command =
+  \ "[[ $(git diff --cached -- {-1}) != \"\" ]] && git diff --cached --color=always -- {-1} | delta || " .
+  \ "[[ $(git diff -- {-1}) != \"\" ]] && git diff --color=always -- {-1} | delta || " .
+  \ g:fzf_preview_command
 
 " Customize fzf colors to match your color scheme
 " This is set through 'FZF_DEFAULT_OPTS' env variable.
