@@ -31,7 +31,7 @@ snippet base "Boilerplate for any new Makefile" b
 #########################################################################################
 .DEFAULT_GOAL := help
 
-SHELL = /bin/bash
+SHELL = /bin/bash -o errexit -o nounset -o pipefail
 HERE  = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 ifeq ($(shell uname), Darwin)
