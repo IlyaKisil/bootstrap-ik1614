@@ -35,6 +35,7 @@ require'nvim-treesitter.configs'.setup {
     disable = {
       "json", -- breaks for environment.template
       "yaml", -- There is something weird with it as well
+      "hcl",
     },
   },
   indent = {
