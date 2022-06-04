@@ -5,6 +5,8 @@ set -euo pipefail
 
 source import_ik1614_module utils colors tmux
 
+colors::detect_color_support
+
 __SCRIPT_NAME=$(basename ${BASH_SOURCE[0]})
 
 function __show_help() {
@@ -31,6 +33,7 @@ Options:
 HELP_USAGE
 }
 
+
 while getopts ':h' opt; do
   case "$opt" in
     h)
@@ -55,8 +58,6 @@ function main(){
   local commands
   local container_id
 
-  colors::detect_color_support
-
   selected_container_ids="$(
     set -e
     docker ps --format 'table {{.Names}}\t{{.Command}}\t{{.Image}}\t{{.Size}}' \
@@ -65,6 +66,8 @@ function main(){
       | utils::fzf_multi_select "container" \
       | awk '{print $1}'
   )"
+
+  utils::check_empty_selection "$selected_container_ids"
 
   commands=()
   for container_id in ${selected_container_ids[@]}; do

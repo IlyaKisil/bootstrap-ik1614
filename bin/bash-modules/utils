@@ -91,3 +91,29 @@ utils::fzf_multi_select(){
   utils::fzf "$1" "${2:-$(</dev/stdin)}" "--multi"
 }
 
+# To be used with fzf utils.
+# Oftentimes we select stuff with 'fzf' within a subshell. This makes is harder
+# to be exit code agnostic and to exit quickly when nothing was selected, e.g.
+# when user pressed 'Ctrl-C'.
+utils::check_empty_selection(){
+  local selection="$1"
+
+  if [[ -z "$selection" ]]; then
+    utils::echo_err "Nothing was selected. Exiting."
+    exit 1
+  else
+    utils::echo_info "Selected [${selection}]"
+  fi
+}
+
+utils::get_confirmation_to_proceed(){
+  local prompt_message="${1:-Do you want to proceed?}"
+  local proceed
+
+  utils::echo_info "${prompt_message} (y/N)"
+  read proceed
+  if [[ "$(tr "[:upper:]" "[:lower:]" <<< "$proceed")" != 'y' ]]; then
+    utils::echo_err "No action taken. Exiting."
+    exit 1
+  fi
+}
