@@ -19,7 +19,7 @@ endef
 export README_TOC_TITLE
 ## Update table of contents only for staged 'README.md' known to git. Requires 'doctoc' to be installed
 update-readme-toc:
-	git diff --name-only --cached \
+	@git diff --name-only --cached \
 		| grep README.md \
 		| xargs -I FILE sh -c '{ doctoc --github --title "$${README_TOC_TITLE}" FILE && git add FILE; }'
 endsnippet

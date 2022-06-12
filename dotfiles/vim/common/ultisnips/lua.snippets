@@ -1,0 +1,15 @@
+snippet plugin-setup "Add boiler plate for settinup a plugin" b
+local utils = require("ik1614.utils")
+local plugin_name = "${1:}"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+plugin.setup({})
+
+-- Custom function based on the plugin
+local M = {}
+return M
+endsnippet
