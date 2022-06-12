@@ -84,23 +84,33 @@ function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-function M.log(msg, hl, name)
+function M.log(level, msg, name)
   name = name or "ik1614"
-  hl = hl or "Todo"
   time = os.date("%X")
-  vim.api.nvim_echo({ { name .. " " .. time .. ": ", hl }, { msg } }, true, {})
+  hl_map = {
+    WARN  = "WarningMessage",
+    ERROR = "ErrorMessage",
+    INFO  = "InfoMessage",
+    DEBUG = "HintMessage",
+  }
+  hl = hl_map[level]
+  vim.api.nvim_echo({ { name .. " " .. time .. " " .. level .. ": ", hl }, { msg } }, true, {})
 end
 
 function M.error(msg, name)
-  M.log(msg, "ErrorMessage", name)
+  M.log("ERROR", msg, name)
 end
 
 function M.warn(msg, name)
-  M.log(msg, "WarningMessage", name)
+  M.log("WARN", msg, name)
 end
 
 function M.info(msg, name)
-  M.log(msg, "InfoMessage", name)
+  M.log("INFO", msg, name)
+end
+
+function M.debug(msg, name)
+  M.log("DEBUG", msg, name)
 end
 
 function M.find_cmd(cmd, prefixes, start_from, stop_at)
@@ -158,4 +168,34 @@ function M.toggle(option, silent)
     end
   end
 end
+
+-- Merge two tables without mutation
+function M.table_merge(t1, t2)
+  local result = {}
+
+  for _, v in ipairs(t1) do
+    table.insert(result, v)
+  end
+
+  for _, v in ipairs(t2) do
+    table.insert(result, v)
+  end
+
+  return result
+end
+
+function M.table_to_string(t, separator)
+  local result = ""
+
+  for _, v in pairs(t) do
+      result = result .. separator .. v
+  end
+
+  -- Remove first hanging separtor
+  result = result:sub(2)
+
+  return result
+end
+
+
 return M
