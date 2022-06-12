@@ -302,8 +302,6 @@ return require('packer').startup(
     -- Registers
     -- use 'gennaro-tedesco/nvim-peekup'
 
-    -- use 'liuchengxu/vim-which-key'
-    -- use 'https://github.com/folke/which-key.nvim'
     -- use 'liuchengxu/vista.vim'
     -- use 'monaqa/dial.nvim'
     -- use 'andymass/vim-matchup'
@@ -336,10 +334,17 @@ return require('packer').startup(
       end,
     })
 
-    use 'https://github.com/tpope/vim-surround'
+    -- use "https://github.com/tpope/vim-surround"
     use 'https://github.com/tpope/vim-commentary'
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
+    use({
+      'https://github.com/echasnovski/mini.nvim',
+      branch = 'stable',
+      config = function()
+        require('ik1614.mini')
+      end,
+    })
 
     -------------------------------------------------------------------------------------
     -- Plugins to try out at some point
