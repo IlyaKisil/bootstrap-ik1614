@@ -39,8 +39,10 @@ cmp.setup({
   formatting = {
     format = require("ik1614.lsp.kind").cmp_format(),
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    },
   },
   experimental = {
     -- ghost_text = {
