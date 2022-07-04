@@ -29,4 +29,18 @@ plugin.setup({
 
 -- Custom function based on the plugin
 local M = {}
+
+-- NOTE: This isn't really needed. Instead of using ',' and ';' you can just keep using
+-- 'f' or 'F'. For example, instead of 'fo,,,' the same can be done with 'fofff'
+function M.repeat_in_oposite_direction()
+  local state = {}
+  for k, v in pairs(MiniJump.state) do
+    state[k] = v
+  end
+  MiniJump.smart_jump(not MiniJump.state.backward)
+  MiniJump.state = state
+end
+
+vim.api.nvim_set_keymap('n', ',', [[:<C-u>lua require("ik1614.mini.jump").repeat_in_oposite_direction()<CR>]], { noremap = true })
+
 return M
