@@ -4,7 +4,7 @@
 -- Also, when it pushes new yanks it removes old ones. :shrug:
 require('neoclip').setup({
     history = 1000,
-    enable_persistant_history = true,
+    enable_persistent_history = true,
     db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
     filter = nil,
     preview = true,
@@ -14,17 +14,25 @@ require('neoclip').setup({
         set_reg = false,
     },
     keys = {
-        i = {
-            select = '<CR>',  -- NOTE: note sure what this does
-            paste = '<C-p>',
-            paste_behind = '<C-k>',
-            custom = {},
+        telescope = {
+            i = {
+                select = '<CR>',  -- NOTE: note sure what this does
+                paste = '<C-p>',
+                paste_behind = '<C-k>',
+                custom = {},
+            },
+            n = {
+                select = '<CR>',
+                paste = 'p',
+                paste_behind = 'P',
+                custom = {},
+            },
         },
-        n = {
-            select = '<CR>',
-            paste = 'p',
-            paste_behind = 'P',
-            custom = {},
+        fzf = {
+          select = 'default',
+          paste = 'ctrl-p',
+          paste_behind = 'ctrl-k',
+          custom = {},
         },
     },
 })
