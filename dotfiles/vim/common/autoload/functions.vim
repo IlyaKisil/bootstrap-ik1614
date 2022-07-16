@@ -143,6 +143,6 @@ endfun
 
 " Utility to change highlight group of active/inactive windows
 function! functions#HandleWinEnter()
-  setlocal winhighlight=Normal:MdraculaNormal,NormalNC:MdraculaNormalInactive
+  setlocal winhighlight=Normal:MdraculaNormal,NormalNC:IlyaInactiveBuffer
 endfunction
 

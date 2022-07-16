@@ -87,6 +87,13 @@ return require('packer').startup(
       end,
     })
 
+    -- use({
+    --   'https://github.com/folke/twilight.nvim',
+    --   config = function()
+    --     require("ik1614.twilight")
+    --   end,
+    -- })
+
     -- Color
     use({
       'norcalli/nvim-colorizer.lua',
@@ -102,6 +109,11 @@ return require('packer').startup(
     --     require("ik1614.dressing")
     --   end,
     -- })
+
+    -- Colorschemes
+    use({'https://github.com/navarasu/onedark.nvim',})
+    use({'https://github.com/ellisonleao/gruvbox.nvim',})
+    use({'https://github.com/folke/tokyonight.nvim',})
 
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
