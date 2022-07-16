@@ -126,14 +126,14 @@ return require('packer').startup(
       },
     })
 
-    use({
-      "RRethy/vim-illuminate",
-      event = "CursorHold",
-      module = "illuminate",
-      config = function()
-        vim.g.Illuminate_delay = 1000
-      end,
-    })
+    -- use({
+    --   "RRethy/vim-illuminate",
+    --   event = "CursorHold",
+    --   module = "illuminate",
+    --   config = function()
+    --     vim.g.Illuminate_delay = 1000
+    --   end,
+    -- })
     -- use 'https://github.com/folke/lsp-trouble.nvim'
 
     use {

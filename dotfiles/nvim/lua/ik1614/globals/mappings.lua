@@ -67,6 +67,7 @@ map('n', '<leader>q', ':tabclose<CR>')
 map('n', '<S-TAB>',   ':tabprevious<CR>')
 -- <tab> and <C-i> are the codes for for vim/nvim. So if we override, then won't be
 -- able to use jumplist
+-- TODO: Neovim 0.7 added support to distiguish between them. So need to dig in
 -- map('n', '<TAB>',     ':tabnext<CR>')
 
 -- By default it will extend highlighting till the next match.
