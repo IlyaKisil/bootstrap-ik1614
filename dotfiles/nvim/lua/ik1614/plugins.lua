@@ -121,7 +121,10 @@ return require('packer').startup(
     use({
       "neovim/nvim-lspconfig",
       opt = true,
-      event = "BufReadPre",
+      -- NOTE: I have a feeling that this has some odd side effects on the
+      -- first file opened. Some files won't get highlinghted, e.g. *.py, other
+      -- would be just deleted and in read only mode, e.g. *.go.
+      -- event = "BufReadPre",
       wants = {
         "nvim-lsp-ts-utils",
         "null-ls.nvim",
