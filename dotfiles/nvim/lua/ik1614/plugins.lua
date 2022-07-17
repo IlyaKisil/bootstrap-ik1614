@@ -80,10 +80,18 @@ return require('packer').startup(
     use 'https://github.com/ryanoasis/vim-devicons'
     use 'https://github.com/kyazdani42/nvim-web-devicons'
 
+    -- use({
+    --   'https://github.com/glepnir/galaxyline.nvim',
+    --   config = function()
+    --     require("ik1614.galaxyline")
+    --   end,
+    -- })
+
     use({
-      'https://github.com/glepnir/galaxyline.nvim',
+      'https://github.com/nvim-lualine/lualine.nvim',
+      requires = {'kyazdani42/nvim-web-devicons', opt = true},
       config = function()
-        require("ik1614.galaxyline")
+        require("ik1614.lualine")
       end,
     })
 

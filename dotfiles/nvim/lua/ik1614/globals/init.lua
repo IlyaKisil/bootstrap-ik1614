@@ -8,10 +8,10 @@ P = function(v)
   return v
 end
 
-GET_COLOR = function (color_name)
-  local color = vim.api.nvim_get_var('ik1614_color_palette')[color_name][1]
-  return color
-end
+-- GET_COLOR = function (color_name)
+--   local color = vim.api.nvim_get_var('ik1614_color_palette')[color_name][1]
+--   return color
+-- end
 
 
 -- Utility to hot reload/require stuff
