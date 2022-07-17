@@ -119,9 +119,9 @@ return require('packer').startup(
     -- })
 
     -- Colorschemes
-    use({'https://github.com/navarasu/onedark.nvim',})
-    use({'https://github.com/ellisonleao/gruvbox.nvim',})
-    use({'https://github.com/folke/tokyonight.nvim',})
+    use({'https://github.com/navarasu/onedark.nvim'})
+    -- use({'https://github.com/ellisonleao/gruvbox.nvim'})
+    -- use({'https://github.com/folke/tokyonight.nvim'})
 
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
