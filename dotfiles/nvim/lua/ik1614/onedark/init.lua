@@ -64,6 +64,10 @@ plugin.setup({
     GitSignsDelete = {bg = colors.bg1},
     GitSignsChange = {bg = colors.bg1},
 
+    -- This is for fugitive
+    gitcommitSummary  = {fg = colors.fg},
+    gitcommitOverflow = {fg = colors.red},
+
     -- This is to make active buffer more visible. Used as a part of autocommand
     IlyaInactiveBuffer = {bg = colors.bg1},
   },
