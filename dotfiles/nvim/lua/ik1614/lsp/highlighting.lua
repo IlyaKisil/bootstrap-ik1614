@@ -1,6 +1,6 @@
 return {
   setup = function(client) -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
       -- NOTE(ilya): Sometimes shadows yank highlight area. Typically this happens if you
       -- need to yank the same thing again without cursor being moved :shrug:
       vim.cmd [[
