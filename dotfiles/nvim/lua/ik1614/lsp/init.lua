@@ -28,7 +28,7 @@ local servers = {
 
   cssls = {},
   dockerls = {},
-  -- gopls = {},
+  gopls = {},
   html = {},
   jsonls = {},
   tsserver = {},

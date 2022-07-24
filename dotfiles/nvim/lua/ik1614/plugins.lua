@@ -39,8 +39,8 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     use({
       "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
-      opt = true,
+      -- event = "InsertEnter",  # TODO: understand how this 'opt/event' work etc
+      -- opt = true,
       config = function()
         require("ik1614.nvim-cmp")
       end,
@@ -128,7 +128,7 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     use({
       "neovim/nvim-lspconfig",
-      opt = true,
+      -- opt = true, # TODO: understand how this 'opt/event' work etc
       -- NOTE: I have a feeling that this has some odd side effects on the
       -- first file opened. Some files won't get highlinghted, e.g. *.py, other
       -- would be just deleted and in read only mode, e.g. *.go.
@@ -298,13 +298,13 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- Language specific
     -------------------------------------------------------------------------------------
-    use {
-      'https://github.com/fatih/vim-go',
-      run = ':GoUpdateBinaries',
-      config = function()
-        require("ik1614.vim-go")
-      end,
-    }
+    -- use {
+    --   'https://github.com/fatih/vim-go',
+    --   run = ':GoUpdateBinaries',
+    --   config = function()
+    --     require("ik1614.vim-go")
+    --   end,
+    -- }
     use {
       'https://github.com/saltstack/salt-vim',
     }
