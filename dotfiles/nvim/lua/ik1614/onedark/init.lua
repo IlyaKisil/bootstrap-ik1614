@@ -53,7 +53,8 @@ plugin.setup({
     Todo = {fg = '#A35F96'},
 
     -- Make the same as CursorLine
-    VertSplit      = {bg = colors.bg1, fg = colors.bg1},
+    VertSplit      = {bg = colors.bg1},
+    -- VertSplit      = {bg = colors.bg1, fg = colors.bg1},
     LineNr         = {bg = colors.bg1},
     SignColumn     = {bg = colors.bg1},
     ColorColumn    = {bg = colors.bg1},
@@ -63,6 +64,11 @@ plugin.setup({
     GitSignsChange = {bg = colors.bg1},
     GitSignsDelete = {bg = colors.bg1},
     GitSignsChange = {bg = colors.bg1},
+
+    DiagnosticError = {bg = colors.bg1},
+    DiagnosticWarn  = {bg = colors.bg1},
+    DiagnosticInfo  = {bg = colors.bg1},
+    DiagnosticHint  = {bg = colors.bg1},
 
     -- This is for fugitive
     gitcommitSummary  = {fg = colors.fg},
