@@ -8,3 +8,8 @@
 
 [user]
     email = ilyakisil@gmail.com
+    signingkey = A6B9AB5B2EF5AA9A2131EADDF232CF0D71FECA79
+[commit]
+    gpgsign = true
+[gpg]
+    program = gpg
