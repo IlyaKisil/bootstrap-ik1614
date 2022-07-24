@@ -80,12 +80,27 @@ return require('packer').startup(
     use 'https://github.com/ryanoasis/vim-devicons'
     use 'https://github.com/kyazdani42/nvim-web-devicons'
 
+    -- use({
+    --   'https://github.com/glepnir/galaxyline.nvim',
+    --   config = function()
+    --     require("ik1614.galaxyline")
+    --   end,
+    -- })
+
     use({
-      'https://github.com/glepnir/galaxyline.nvim',
+      'https://github.com/nvim-lualine/lualine.nvim',
+      requires = {'kyazdani42/nvim-web-devicons', opt = true},
       config = function()
-        require("ik1614.galaxyline")
+        require("ik1614.lualine")
       end,
     })
+
+    -- use({
+    --   'https://github.com/folke/twilight.nvim',
+    --   config = function()
+    --     require("ik1614.twilight")
+    --   end,
+    -- })
 
     -- Color
     use({
@@ -103,13 +118,21 @@ return require('packer').startup(
     --   end,
     -- })
 
+    -- Colorschemes
+    use({'https://github.com/navarasu/onedark.nvim'})
+    -- use({'https://github.com/ellisonleao/gruvbox.nvim'})
+    -- use({'https://github.com/folke/tokyonight.nvim'})
+
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
     -------------------------------------------------------------------------------------
     use({
       "neovim/nvim-lspconfig",
       opt = true,
-      event = "BufReadPre",
+      -- NOTE: I have a feeling that this has some odd side effects on the
+      -- first file opened. Some files won't get highlinghted, e.g. *.py, other
+      -- would be just deleted and in read only mode, e.g. *.go.
+      -- event = "BufReadPre",
       wants = {
         "nvim-lsp-ts-utils",
         "null-ls.nvim",
