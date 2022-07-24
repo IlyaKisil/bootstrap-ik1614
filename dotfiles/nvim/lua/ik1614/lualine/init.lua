@@ -52,7 +52,6 @@ plugin.setup({
       {'b:gitsigns_head'}, -- Reuse, branch info from 'gitsigns'
       -- 'diff',
       {'diff', source = diff_source}, -- Reuse diff infom from 'gitsigns'
-      'diagnostics',
     },
     lualine_c = {
       {
@@ -66,6 +65,7 @@ plugin.setup({
       -- 'filetype',
     },
     lualine_y = {
+      'diagnostics',
       'filetype',
       -- 'progress',
     },
