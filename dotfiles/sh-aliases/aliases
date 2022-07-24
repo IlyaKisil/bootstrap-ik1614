@@ -10,6 +10,8 @@
 #if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 if [[ "${OSTYPE}" == "darwin"* ]]; then
     # Toggle hidden files
+    # NOTE: Looks like there is a built-in shortcut 'CMD + Shift + . ', i.e. 'CMD + >' to do this as well
+    alias show='defaults write com.apple.finder AppleShowAllFiles YES;killall Finder /System/Library/CoreServices/Finder.app'
     alias hide='defaults write com.apple.finder AppleShowAllFiles NO;killall Finder /System/Library/CoreServices/Finder.app'
 fi
 
