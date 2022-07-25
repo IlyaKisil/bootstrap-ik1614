@@ -18,6 +18,8 @@ cask "iterm2", require_sha: true
 cask "google-chrome", require_sha: true
 # JetBrains tools manager
 cask "jetbrains-toolbox", require_sha: true
+# GPU-based terminal emulator
+cask "kitty", require_sha: true
 # Music streaming service
 cask "notion", require_sha: true
 # SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension

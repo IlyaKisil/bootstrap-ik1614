@@ -31,6 +31,8 @@ brew "jq"
 brew "libyaml"
 # CLI search and replace | Space Age seD -> https://github.com/ms-jpq/sad
 brew "ms-jpq/sad/sad"
+# Text-based UI library
+brew "ncurses"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Pinentry for GPG on Mac
