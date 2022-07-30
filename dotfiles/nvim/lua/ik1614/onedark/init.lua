@@ -68,7 +68,7 @@ plugin.setup({
     DiagnosticError = {bg = colors.bg1},
     DiagnosticWarn  = {bg = colors.bg1},
     DiagnosticInfo  = {bg = colors.bg1},
-    DiagnosticHint  = {bg = colors.bg1},
+    DiagnosticHint  = {bg = colors.bg1, fg = "$grey"},
 
     -- This is for fugitive
     gitcommitSummary  = {fg = colors.fg},

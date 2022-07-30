@@ -70,6 +70,27 @@ plugin.setup({
     },
     lualine_y = {
       'diagnostics',
+      -- {
+      --   -- This only helps with LSP clients that take some time to initialise
+      --   -- Requires: https://github.com/arkav/lualine-lsp-progress
+      --   'lsp_progress',
+      --   timer = {
+      --     progress_enddelay = 1000,
+      --     spinner = 100,
+      --     lsp_client_name_enddelay = -1,  -- Always show LSP client name
+      --   },
+      --   display_components = { { 'title', 'percentage', 'message' }, 'spinner',  'lsp_client_name'},
+      --   spinner_symbols = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+      --   separators = {
+      --     component = ' ',
+      --     progress = ' | ',
+      --     percentage      = { pre = '',  post = '%% ' },
+      --     title           = { pre = '',  post = ': ' },
+      --     lsp_client_name = { pre = '',  post = '' },
+      --     spinner         = { pre = '',  post = '' },
+      --     message         = { pre = '(', post =')', commenced = 'In Progress', completed = 'Completed', },
+      --   },
+      -- },
       'filetype',
       -- 'progress',
     },

@@ -149,6 +149,9 @@ return require('packer').startup(
       },
     })
 
+    -- use({'https://github.com/nvim-lua/lsp-status.nvim'})
+    -- use({'https://github.com/arkav/lualine-lsp-progress'})
+
     -- use({
     --   "RRethy/vim-illuminate",
     --   event = "CursorHold",
