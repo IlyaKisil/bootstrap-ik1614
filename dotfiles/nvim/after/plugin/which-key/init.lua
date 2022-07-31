@@ -160,7 +160,7 @@ local v_leader = {
   },
   r = {
     name = "Run/Refactor",
-    f = {'<esc><cmd>lua require("ik1614.refactoring").refactors()<CR>', "Refactor selection"},
+    f = {'<esc><cmd>lua require("ik1614.functions")["refactoring"]:refactors()<CR>', "Refactor selection"},
   },
   s = {
     name = "Show",
