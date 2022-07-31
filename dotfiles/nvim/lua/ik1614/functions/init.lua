@@ -10,7 +10,7 @@
 
 local M = {
   fzf = require("ik1614.functions.fzf-lua"),
-  refactoring = require("ik1614.functions.refactoring")
+  refactoring = require("ik1614.functions.refactoring"),
 }
 
 
