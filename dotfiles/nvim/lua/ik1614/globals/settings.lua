@@ -59,10 +59,11 @@ vim.opt.smartcase = true -- Except when using capital letters
 
 vim.o.pumheight = 7 -- Determines the maximum number of items to show in the popup menu (auto-completion). Better to keep it less then 'scrolloff'
 
--- FIXME: Sort out autoinsert upon autocompletion
-vim.opt.completeopt    = 'menuone'                         -- show menu even if there is only one candidate (for nvim-compe)
-vim.opt.completeopt    = vim.opt.completeopt + 'noselect'  -- don't automatically select canditate (for nvim-compe);w
--- vim.o.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = {
+  "menu",
+  "menuone",  -- show menu even if there is only one candidate (for nvim-compe)
+  "noselect", -- don't automatically select canditate (for nvim-compe)
+}
 
 
 -- ----------- Splits, Windows, Buffers

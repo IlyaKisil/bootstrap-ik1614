@@ -1,8 +1,13 @@
-vim.o.completeopt = "menuone,noselect"
+local utils = require("ik1614.utils")
+local plugin_name = "cmp"
 
-local cmp = require("cmp")
+if not utils.plugin_installed(plugin_name) then
+  return
+end
 
-cmp.setup({
+local plugin = require(plugin_name)
+
+plugin.setup({
   snippet = {
     expand = function(args)
       -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
@@ -12,19 +17,19 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Once again scropplin is a bit backwards
-    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<C-e>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    -- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    -- ["<C-e>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    -- ["<C-e>"] = cmp.mapping.close(),
-    ["<C-q>"] = cmp.mapping.close(),
-    ["<C-a>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({
+    ["<C-u>"] = plugin.mapping.scroll_docs(-4), -- Once again scropplin is a bit backwards
+    ["<C-d>"] = plugin.mapping.scroll_docs(4),
+    ["<C-Space>"] = plugin.mapping.complete(),
+    ["<C-n>"] = plugin.mapping.select_next_item({ behavior = plugin.SelectBehavior.Select }),
+    ["<C-e>"] = plugin.mapping.select_prev_item({ behavior = plugin.SelectBehavior.Select }),
+    -- ["<C-n>"] = plugin.mapping.select_next_item({ behavior = plugin.SelectBehavior.Insert }),
+    -- ["<C-e>"] = plugin.mapping.select_prev_item({ behavior = plugin.SelectBehavior.Insert }),
+    -- ["<C-e>"] = plugin.mapping.close(),
+    ["<C-q>"] = plugin.mapping.close(),
+    ["<C-a>"] = plugin.mapping.abort(),
+    ["<CR>"] = plugin.mapping.confirm({
       select = true,
-      -- behavior = cmp.ConfirmBehavior.Replace,
+      -- behavior = plugin.ConfirmBehavior.Replace,
     }),
   },
   sources = {

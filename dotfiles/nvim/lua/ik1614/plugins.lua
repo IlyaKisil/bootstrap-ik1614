@@ -41,9 +41,6 @@ return require('packer').startup(
       "hrsh7th/nvim-cmp",
       -- event = "InsertEnter",  # TODO: understand how this 'opt/event' work etc
       -- opt = true,
-      config = function()
-        require("ik1614.nvim-cmp")
-      end,
       requires = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
