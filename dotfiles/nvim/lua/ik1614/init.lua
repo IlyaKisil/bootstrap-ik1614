@@ -28,6 +28,4 @@ require('ik1614.config')
 -- Hookup plugins
 require("ik1614.plugins")
 
-require("ik1614.globals.colorscheme")
-
 vim.cmd('luafile ~/.config/nvim/init-local.lua')

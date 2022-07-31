@@ -63,9 +63,6 @@ return require('packer').startup(
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      config = function()
-        require("ik1614.treesitter")
-      end,
     })
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
@@ -77,17 +74,11 @@ return require('packer').startup(
     use({
       'https://github.com/nvim-lualine/lualine.nvim',
       requires = {'kyazdani42/nvim-web-devicons', opt = true},
-      config = function()
-        require("ik1614.lualine")
-      end,
     })
 
     -- Color
     use({
       'norcalli/nvim-colorizer.lua',
-      config = function()
-        require("ik1614.nvim-colorizer")
-      end,
     })
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
@@ -129,9 +120,6 @@ return require('packer').startup(
         {"nvim-lua/plenary.nvim"},
         {"nvim-treesitter/nvim-treesitter"}
       },
-      config = function()
-        require("ik1614.refactoring")
-      end,
     }
 
     use {
@@ -139,9 +127,6 @@ return require('packer').startup(
       requires = {
         {"ray-x/guihua.lua"},
       },
-      config = function()
-        require("ik1614.sad")
-      end,
     }
 
     use {
@@ -164,9 +149,6 @@ return require('packer').startup(
       requires = {
         {'tami5/sqlite.lua', module = 'sqlite'}
       },
-      config = function()
-        require("ik1614.nvim-neoclip")
-      end,
     }
     use {
       'nvim-telescope/telescope-smart-history.nvim',
@@ -184,31 +166,19 @@ return require('packer').startup(
 
     use({
       'kevinhwang91/nvim-bqf',
-      config = function()
-        require("ik1614.nvim-bqf")
-      end,
     })
 
     use({
       'kyazdani42/nvim-tree.lua',
-      config = function()
-        require("ik1614.nvim-tree")
-      end,
     })
 
     use({
       'https://github.com/folke/todo-comments.nvim',
-      config = function()
-        require("ik1614.todo-comments")
-      end,
     })
 
     use({
       "folke/which-key.nvim",
-      config = function()
-        require("ik1614.which-key")
-      end,
-      event = "BufWinEnter",
+      -- event = "BufWinEnter",
     })
 
 
@@ -224,25 +194,16 @@ return require('packer').startup(
     use {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
-      config = function()
-        require("ik1614.gitsigns")
-      end,
     }
     use {
       'sindrets/diffview.nvim',
       requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require("ik1614.diffview")
-      end,
     }
     use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
     -- use 'https://github.com/TimUntersberger/neogit'
     use {
       'ruifm/gitlinker.nvim',
       requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require("ik1614.gitlinker")
-      end,
     }
 
     -------------------------------------------------------------------------------------
@@ -265,9 +226,6 @@ return require('packer').startup(
 
     use({
       'https://github.com/christoomey/vim-tmux-navigator', -- Can be replaced with https://github.com/numToStr/Navigator.nvim
-      config = function()
-        require("ik1614.vim-tmux-navigator")
-      end,
     })
 
     use 'https://github.com/tpope/vim-commentary'
@@ -276,9 +234,6 @@ return require('packer').startup(
     use({
       'https://github.com/echasnovski/mini.nvim',
       branch = 'stable',
-      config = function()
-        require('ik1614.mini')
-      end,
     })
   end
 )

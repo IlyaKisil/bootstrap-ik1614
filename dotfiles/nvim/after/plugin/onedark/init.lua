@@ -88,7 +88,3 @@ plugin.setup({
 })
 
 plugin.load()
-
--- Custom function based on the plugin
-local M = {}
-return M
