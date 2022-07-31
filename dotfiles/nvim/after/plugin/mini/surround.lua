@@ -73,8 +73,3 @@ end
 
 -- Make special mapping for "add surrounding for line"
 vim.api.nvim_set_keymap('n', 'yss', 'ys_', { noremap = false })
-
--- Custom function based on the plugin
-local M = {}
-return M
-
