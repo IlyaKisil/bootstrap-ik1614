@@ -41,9 +41,6 @@ return require('packer').startup(
       "hrsh7th/nvim-cmp",
       -- event = "InsertEnter",  # TODO: understand how this 'opt/event' work etc
       -- opt = true,
-      config = function()
-        require("ik1614.nvim-cmp")
-      end,
       requires = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
@@ -51,9 +48,6 @@ return require('packer').startup(
         "quangnguyen30192/cmp-nvim-ultisnips",
         {
           "windwp/nvim-autopairs",
-          config = function()
-            require('nvim-autopairs').setup()
-          end,
         },
       },
     })
@@ -69,9 +63,6 @@ return require('packer').startup(
     use({
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      config = function()
-        require("ik1614.treesitter")
-      end,
     })
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
@@ -80,48 +71,19 @@ return require('packer').startup(
     use 'https://github.com/ryanoasis/vim-devicons'
     use 'https://github.com/kyazdani42/nvim-web-devicons'
 
-    -- use({
-    --   'https://github.com/glepnir/galaxyline.nvim',
-    --   config = function()
-    --     require("ik1614.galaxyline")
-    --   end,
-    -- })
-
     use({
       'https://github.com/nvim-lualine/lualine.nvim',
       requires = {'kyazdani42/nvim-web-devicons', opt = true},
-      config = function()
-        require("ik1614.lualine")
-      end,
     })
-
-    -- use({
-    --   'https://github.com/folke/twilight.nvim',
-    --   config = function()
-    --     require("ik1614.twilight")
-    --   end,
-    -- })
 
     -- Color
     use({
       'norcalli/nvim-colorizer.lua',
-      config = function()
-        require("ik1614.nvim-colorizer")
-      end,
     })
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
-    -- use({
-    --   'stevearc/dressing.nvim',
-    --   config = function()
-    --     require("ik1614.dressing")
-    --   end,
-    -- })
-
     -- Colorschemes
     use({'https://github.com/navarasu/onedark.nvim'})
-    -- use({'https://github.com/ellisonleao/gruvbox.nvim'})
-    -- use({'https://github.com/folke/tokyonight.nvim'})
 
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
@@ -152,25 +114,12 @@ return require('packer').startup(
     -- use({'https://github.com/nvim-lua/lsp-status.nvim'})
     -- use({'https://github.com/arkav/lualine-lsp-progress'})
 
-    -- use({
-    --   "RRethy/vim-illuminate",
-    --   event = "CursorHold",
-    --   module = "illuminate",
-    --   config = function()
-    --     vim.g.Illuminate_delay = 1000
-    --   end,
-    -- })
-    -- use 'https://github.com/folke/lsp-trouble.nvim'
-
     use {
       "ThePrimeagen/refactoring.nvim",
       requires = {
         {"nvim-lua/plenary.nvim"},
         {"nvim-treesitter/nvim-treesitter"}
       },
-      config = function()
-        require("ik1614.refactoring")
-      end,
     }
 
     use {
@@ -178,9 +127,6 @@ return require('packer').startup(
       requires = {
         {"ray-x/guihua.lua"},
       },
-      config = function()
-        require("ik1614.sad")
-      end,
     }
 
     use {
@@ -203,9 +149,6 @@ return require('packer').startup(
       requires = {
         {'tami5/sqlite.lua', module = 'sqlite'}
       },
-      config = function()
-        require("ik1614.nvim-neoclip")
-      end,
     }
     use {
       'nvim-telescope/telescope-smart-history.nvim',
@@ -214,45 +157,28 @@ return require('packer').startup(
       },
     }
 
-    use 'https://github.com/junegunn/fzf'     -- TODO: deprecate in favour of 'fzf-lua'
-    use 'https://github.com/junegunn/fzf.vim' -- TODO: deprecate in favour of 'fzf-lua'
     use {'ibhagwan/fzf-lua',
       requires = {
         'vijaymarupudi/nvim-fzf',
         'kyazdani42/nvim-web-devicons'
       },
-      config = function()
-        require("ik1614.fzf-lua")
-      end,
     }
 
     use({
       'kevinhwang91/nvim-bqf',
-      config = function()
-        require("ik1614.nvim-bqf")
-      end,
     })
 
     use({
       'kyazdani42/nvim-tree.lua',
-      config = function()
-        require("ik1614.nvim-tree")
-      end,
     })
 
     use({
       'https://github.com/folke/todo-comments.nvim',
-      config = function()
-        require("ik1614.todo-comments")
-      end,
     })
 
     use({
       "folke/which-key.nvim",
-      config = function()
-        require("ik1614.which-key")
-      end,
-      event = "BufWinEnter",
+      -- event = "BufWinEnter",
     })
 
 
@@ -268,46 +194,21 @@ return require('packer').startup(
     use {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
-      config = function()
-        require("ik1614.gitsigns")
-      end,
     }
     use {
       'sindrets/diffview.nvim',
       requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require("ik1614.diffview")
-      end,
     }
     use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
     -- use 'https://github.com/TimUntersberger/neogit'
     use {
       'ruifm/gitlinker.nvim',
       requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require("ik1614.gitlinker")
-      end,
     }
-    -- For PR review etc. FIXME: some problems with 'gh auth'. I'm logged in just fine
-    -- (using 'GITHUB_TOKEN' env variable) and can do everything in CLI but this plugin
-    -- asks to do auth :shrug:
-    -- use {
-    --   'pwntester/octo.nvim',
-    --   config=function()
-    --     require"octo".setup({})
-    --   end
-    -- }
 
     -------------------------------------------------------------------------------------
     -- Language specific
     -------------------------------------------------------------------------------------
-    -- use {
-    --   'https://github.com/fatih/vim-go',
-    --   run = ':GoUpdateBinaries',
-    --   config = function()
-    --     require("ik1614.vim-go")
-    --   end,
-    -- }
     use {
       'https://github.com/saltstack/salt-vim',
     }
@@ -322,73 +223,16 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- General Plugins
     -------------------------------------------------------------------------------------
-    -- Preview/query JSON files
-    -- use 'gennaro-tedesco/nvim-jqx'
-
-    -- Registers
-    -- use 'gennaro-tedesco/nvim-peekup'
-
-    -- use 'liuchengxu/vista.vim'
-    -- use 'monaqa/dial.nvim'
-    -- use 'andymass/vim-matchup'
-    -- use 'MattesGroeger/vim-bookmarks'
-    -- use 'kshenoy/vim-signature'
-
-    -- Will need to double check
-    -- use {
-    --     'glacambre/firenvim',
-    --     run = function()
-    --         vim.fn['firenvim#install'](1)
-    --     end
-    -- }
-
-    -- Documentation Generator
-    -- use({
-    --   "kkoomen/vim-doge",
-    --   config = function()
-    --     vim.g.doge_enable_mappings = false
-    --   end,
-    --   run = function()
-    --     vim.fn["doge#install"]()
-    --   end,
-    -- })
-
     use({
-      'https://github.com/christoomey/vim-tmux-navigator', -- Can be replaced with https://github.com/numToStr/Navigator.nvim
-      config = function()
-        require("ik1614.vim-tmux-navigator")
-      end,
+      'https://github.com/numToStr/Navigator.nvim',
     })
 
-    -- use "https://github.com/tpope/vim-surround"
     use 'https://github.com/tpope/vim-commentary'
     -- use 'terrortylor/nvim-comment'  -- Alternative in pure Lua
     -- use 'b3nj5m1n/kommentary'       -- Similar in pure Lua
     use({
       'https://github.com/echasnovski/mini.nvim',
       branch = 'stable',
-      config = function()
-        require('ik1614.mini')
-      end,
     })
-
-    -------------------------------------------------------------------------------------
-    -- Plugins to try out at some point
-    -------------------------------------------------------------------------------------
-    -- https://github.com/mfussenegger/nvim-lint
-    -- https://github.com/ThePrimeagen/harpoon
-    -- https://github.com/folke/persistence.nvim
-    -- https://github.com/nvim-pack/nvim-spectre
-    -- https://github.com/akinsho/toggleterm.nvim
-    --
-    -------------------------------------------------------------------------------------
-    -- Interesting colorschemes when/if I get bored of my current setup
-    -------------------------------------------------------------------------------------
-    -- use({
-    --   'rebelot/kanagawa.nvim',
-    --   config = function()
-    --     require("ik1614.kanagawa")
-    --   end,
-    -- })
   end
 )

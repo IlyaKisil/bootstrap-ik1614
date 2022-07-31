@@ -198,4 +198,16 @@ function M.table_to_string(t, separator)
 end
 
 
+-- NOTE: This isn't really needed. Instead of using ',' and ';' you can just
+-- keep using 'f' or 'F' with the 'mini.jump' plugin. For example, instead of
+-- 'fo,,,' the same can be done with 'fofff'
+function M.repeat_jump_in_oposite_direction()
+  local state = {}
+  for k, v in pairs(MiniJump.state) do
+    state[k] = v
+  end
+  MiniJump.smart_jump(not MiniJump.state.backward)
+  MiniJump.state = state
+end
+
 return M
