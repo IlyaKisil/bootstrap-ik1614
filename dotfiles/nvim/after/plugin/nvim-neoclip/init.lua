@@ -1,11 +1,20 @@
+local utils = require("ik1614.utils")
+local plugin_name = "neoclip"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+
 -- FIXME: For some reason this still doesn't work :cry:
 -- On exit from, it pushes yanks from a current session to the DB.
 -- But it doesn't load them upon new session :shrug:
 -- Also, when it pushes new yanks it removes old ones. :shrug:
-require('neoclip').setup({
+plugin.setup({
     history = 1000,
     enable_persistent_history = true,
-    db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+    db_path = DATA_PATH .. "/databases/neoclip.sqlite3",
     filter = nil,
     preview = true,
     default_register = '"',

@@ -1,13 +1,13 @@
 local utils = require("ik1614.utils")
-local plugin = "which-key"
+local plugin_name = "which-key"
 
-if not utils.plugin_installed(plugin) then
+if not utils.plugin_installed(plugin_name) then
     return
 end
 
-local wk = require(plugin)
+local plugin = require(plugin_name)
 
-wk.setup(
+plugin.setup(
   {
     -- plugins = {
     --   marks = true, -- shows a list of your marks on ' and `
@@ -167,8 +167,8 @@ local v_leader = {
     a = {':Telescope lsp_range_code_actions<CR>', "Code action for selection"},
   },
 }
-wk.register(n_leader, { prefix = "<leader>", mode = "n" })
-wk.register(v_leader, { prefix = "<leader>", mode = "v" })
+plugin.register(n_leader, { prefix = "<leader>", mode = "n" })
+plugin.register(v_leader, { prefix = "<leader>", mode = "v" })
 
 -- When we don't want to wait for auto pop-up :shrug:
 vim.api.nvim_set_keymap('n', '<Leader>?', ":WhichKey '' n<CR>", { noremap = true, silent = true })

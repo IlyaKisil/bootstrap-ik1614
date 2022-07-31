@@ -1,6 +1,14 @@
+local utils = require("ik1614.utils")
+local plugin_name = "diffview"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
 local cb = require('diffview.config').diffview_callback
 
-require('diffview').setup {
+local plugin = require(plugin_name)
+plugin.setup({
   use_icons = true,         -- Requires nvim-web-devicons
   file_panel = {
     win_config = {
@@ -81,4 +89,4 @@ require('diffview').setup {
       ["q"]     = cb("close"),
     },
   },
-}
+})

@@ -1,19 +1,29 @@
-local DEFAULT_OPTIONS = {
-  RGB      = true;    -- #RGB hex codes
-  RRGGBB   = true;    -- #RRGGBB hex codes
-  names    = false;   -- "Name" codes like Blue
-  RRGGBBAA = false;   -- #RRGGBBAA hex codes
-  rgb_fn   = false;   -- CSS rgb() and rgba() functions
-  hsl_fn   = false;   -- CSS hsl() and hsla() functions
-  css      = false;   -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-  css_fn   = false;   -- Enable all CSS *functions*: rgb_fn, hsl_fn
+local utils = require("ik1614.utils")
+local plugin_name = "colorizer"
 
-  -- Available modes: foreground, background
-  mode = 'background'; -- Set the display mode.
-}
+if not utils.plugin_installed(plugin_name) then
+  return
+end
 
-require 'colorizer'.setup({
-  '*'
+local plugin = require(plugin_name)
+
+plugin.setup(
+  {
+    -- filetypes
+    '*'
   },
-  DEFAULT_OPTIONS
+  {
+    -- Default options
+    RGB      = true;    -- #RGB hex codes
+    RRGGBB   = true;    -- #RRGGBB hex codes
+    names    = false;   -- "Name" codes like Blue
+    RRGGBBAA = false;   -- #RRGGBBAA hex codes
+    rgb_fn   = false;   -- CSS rgb() and rgba() functions
+    hsl_fn   = false;   -- CSS hsl() and hsla() functions
+    css      = false;   -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+    css_fn   = false;   -- Enable all CSS *functions*: rgb_fn, hsl_fn
+
+    -- Available modes: foreground, background
+    mode = 'background'; -- Set the display mode.
+  }
 )

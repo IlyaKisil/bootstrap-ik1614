@@ -1,4 +1,12 @@
-require("todo-comments").setup {
+local utils = require("ik1614.utils")
+local plugin_name = "todo-comments"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+plugin.setup({
   signs = false,
   -- sign_priority = 8,
   keywords = {
@@ -60,4 +68,4 @@ require("todo-comments").setup {
     -- NOTE: 1) don't replace the (KEYWORDS) placeholder. 2) '\w' doesn't work for some reason :shrug:
     pattern = [[\b(KEYWORDS)[a-zA-Z\(\)\s]*:]], -- ripgrep regex
   },
-}
+})

@@ -1,4 +1,12 @@
-require('bqf').setup({
+local utils = require("ik1614.utils")
+local plugin_name = "bqf"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+plugin.setup({
     auto_enable = true,
     preview = {
         auto_preview = false,  -- Having it on by default is a little bit disorienting

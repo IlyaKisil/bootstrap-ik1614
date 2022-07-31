@@ -1,4 +1,12 @@
-require('gitsigns').setup {
+local utils = require("ik1614.utils")
+local plugin_name = "gitsigns"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
+plugin.setup({
   signs = {
     -- NOTE: somehow it picks up correct colors from 'mdracula'. I think it just uses
     -- custom HL groups, e.g. 'GitChangeStripe'. Although not sure why :shrug:
@@ -22,4 +30,4 @@ require('gitsigns').setup {
   sign_priority = 6,
   update_debounce = 200,
   status_formatter = nil, -- Use default
-}
+})

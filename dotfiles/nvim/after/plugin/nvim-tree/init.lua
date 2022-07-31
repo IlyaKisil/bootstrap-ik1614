@@ -1,26 +1,18 @@
+local utils = require("ik1614.utils")
+local plugin_name = "nvim-tree"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
 -- NOTE: These should be set before calling require'nvim-tree' or calling setup. They
 -- are being migrated to the setup function bit by bit
 --
 vim.g.nvim_tree_refresh_wait = 1000
 
--- " Dictionary of buffer option names mapped to a list of option values that
--- " indicates to the window picker that the buffer's window should not be
--- " selectable.
--- let g:nvim_tree_window_picker_exclude = {
-  --   \   'filetype': [
-  --   \     'notify',
-  --   \     'packer',
-  --   \     'qf'
-  --   \   ],
-  --   \   'buftype': [
-  --   \     'terminal'
-  --   \   ]
-  --   \ }
 
-
-
--- following options are documented in `:help nvim-tree.OPTION_NAME`
-require'nvim-tree'.setup {
+local plugin = require(plugin_name)
+plugin.setup({
   disable_netrw       = true,
   hijack_netrw        = true,
   open_on_setup       = false,
@@ -135,4 +127,4 @@ require'nvim-tree'.setup {
     cmd = "trash",
     require_confirm = true
   }
-}
+})

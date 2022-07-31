@@ -1,14 +1,21 @@
-local gitlinker = require 'gitlinker'
+local utils = require("ik1614.utils")
+local plugin_name = "gitlinker"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+local plugin = require(plugin_name)
 
 --- copies the url to clipboard and opens the url in your default browser
 --
 -- @param url the url string
 local function copy_and_open_in_browser(url)
-  gitlinker.actions.copy_to_clipboard(url)
-  gitlinker.actions.open_in_browser(url)
+  plugin.actions.copy_to_clipboard(url)
+  plugin.actions.open_in_browser(url)
 end
 
-gitlinker.setup({
+plugin.setup({
   opts = {
     remote = nil, -- force the use of a specific remote
     -- adds current line nr in the url for normal mode
@@ -27,7 +34,7 @@ gitlinker.setup({
       -- For some reason, simply adding 'IlyaKisil.github.com' to a table with callbacks
       -- doesn't work, potentially because keys are actually lua regex :shrug:
       url_data.host = "github.com"
-      return gitlinker.hosts.get_github_type_url(url_data)
+      return plugin.hosts.get_github_type_url(url_data)
     end,
   },
   -- mapping to call url generation
