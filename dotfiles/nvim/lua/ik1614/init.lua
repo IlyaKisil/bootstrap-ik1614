@@ -14,16 +14,17 @@ Notes to people reading my configuration (including myself in a future :rofl:)
   * If plugin is written in Vimscript, then the corresponding config files should be with
     '.vim' extension.
 
+./lua/ik1614/functions/*
+  * This is where all custom functions live. This includes when I need to build something
+    using some functionality from the installed plugins.
 --]]
 
 
 -- Setup globals that I expect to be always available.
+-- Basically this is config for (N)vim without batteries. Well for 99% of cases :wink:
 require('ik1614.globals')
 require('ik1614.globals.settings')
 require("ik1614.globals.mappings")
-
--- Setup config variables for plugins
-require('ik1614.config')
 
 -- Hookup plugins
 require("ik1614.plugins")

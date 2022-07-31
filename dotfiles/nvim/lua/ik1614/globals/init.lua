@@ -8,11 +8,6 @@ P = function(v)
   return v
 end
 
--- GET_COLOR = function (color_name)
---   local color = vim.api.nvim_get_var('ik1614_color_palette')[color_name][1]
---   return color
--- end
-
 
 -- Utility to hot reload/require stuff
 if pcall(require, 'plenary') then
@@ -23,3 +18,8 @@ if pcall(require, 'plenary') then
     return require(name)
   end
 end
+
+
+-- NOTE: not sure about this, but :shrug:
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
