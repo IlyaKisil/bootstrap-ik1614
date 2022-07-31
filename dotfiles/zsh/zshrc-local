@@ -149,6 +149,9 @@ RUST_BIN="${HOME}/.cargo/bin"
 RUSTUP_HOME="${HOME}/.rustup"
 CARGO_HOME="${HOME}/.cargo"
 
+### Confuguration for Go
+GOPATH="${HOME}/go"
+GO_BIN="${GOPATH}/bin"
 
 ###------------------------------    SECRETS   --------------------------------###
 # Home for defining secrets that are not used very often. Use in conjunction

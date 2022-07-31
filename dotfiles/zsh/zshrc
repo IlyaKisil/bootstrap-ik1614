@@ -97,6 +97,7 @@ export PATH=${USER_BIN:=""}${PATH:+:${PATH}}
 export PATH=${MYSQL_BIN:=""}${PATH:+:${PATH}}
 export PATH=${LATEX_BIN:=""}${PATH:+:${PATH}}
 export PATH=${RUST_BIN:=""}${PATH:+:${PATH}}
+export PATH=${GO_BIN:=""}${PATH:+:${PATH}}
 
 # Configurations for 'CUDA'
 export PATH=${CUDA_BIN:=""}${PATH:+:${PATH}}
@@ -107,6 +108,7 @@ export LD_LIBRARY_PATH=${CUDA_CUPTI_LIB64_HOME:=""}${LD_LIBRARY_PATH:+:${LD_LIBR
 export PATH=${LOCAL_BIN:=""}${PATH:+:${PATH}}
 export PATH=${PYENV_BIN:=""}${PATH:+:${PATH}}
 
+export GOPATH
 
 ### Python specific configs
 # pipenv
