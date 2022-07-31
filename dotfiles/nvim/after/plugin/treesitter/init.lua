@@ -1,3 +1,14 @@
+local utils = require("ik1614.utils")
+local plugin_name = "nvim-treesitter"
+
+if not utils.plugin_installed(plugin_name) then
+  return
+end
+
+-- local plugin = require(plugin_name)
+-- plugin.setup({})
+
+
 require'nvim-treesitter.configs'.setup {
   -- ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
