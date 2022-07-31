@@ -8,93 +8,6 @@ end
 local plugin = require(plugin_name)
 local actions = require "fzf-lua.actions"
 
-local M = {}
-
-local function get_ignore_glob(type)
-  local ignore = {
-    ".cache",
-    ".coverage",
-    ".env",
-    ".git",
-    ".idea",
-    ".ipynb_checkpoints",
-    ".pytest_cache",
-    ".terraform",
-    ".terraform.lock.hcl",
-    ".venv",
-    "__pycache__",
-    "CODEOWNERS",
-    "cache",
-    "node_modules",
-    "package-lock.json",
-  }
-
-  local glob = utils.table_to_string(ignore, ",")
-
-  if type == "rg" then
-    return "--glob '!{" .. glob .. "}'"
-  end
-
-  if type == "fd" then
-    return "--exclude '{" .. glob .. "}'"
-  end
-
-  utils.warn("Unknown type of filter [" .. type .. " ]. Exclusion string is not generated")
-  return ""
-end
-
-local function get_rg_opts_grep(extra_opts)
-  local extra_opts = extra_opts or {}
-
-  local default_opts = {
-    "--column",
-    "--line-number",
-    "--no-heading",
-    "--color=always",
-    "--smart-case",
-    "--max-columns=512",
-    get_ignore_glob("rg"),
-  }
-
-  local opts = utils.table_merge(default_opts, extra_opts)
-
-  return utils.table_to_string(opts, " ")
-end
-
-local function get_rg_opts_files(extra_opts)
-  local extra_opts = extra_opts or {}
-
-  local default_opts = {
-    "--color=never",
-    "--files",
-    "--hidden",
-    "--follow",
-    "--no-ignore",
-    get_ignore_glob("rg"),
-  }
-
-  local opts = utils.table_merge(default_opts, extra_opts)
-
-  return utils.table_to_string(opts, " ")
-end
-local function get_fd_opts_files(extra_opts)
-  local extra_opts = extra_opts or {}
-
-  local default_opts = {
-    "--color=never",
-    "--type=file",
-    "--hidden",
-    "--follow",
-    "--no-ignore",
-    get_ignore_glob("fd"),
-  }
-
-  local opts = utils.table_merge(default_opts, extra_opts)
-
-  return utils.table_to_string(opts, " ")
-end
-
-
 plugin.setup {
   global_resume      = true,
   global_resume_query = true,
@@ -179,8 +92,8 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd = "rg " .. get_rg_opts_files(),
-    rg_opts           = get_rg_opts_files(),
-    fd_opts           = get_fd_opts_files(),
+    rg_opts           = require("ik1614.functions")["fzf"]:get_rg_opts_files(),
+    fd_opts           = require("ik1614.functions")["fzf"]:get_fd_opts_files(),
     actions = {
       -- set bind to 'false' to disable an action
       -- ["default"]     = actions.file_edit_or_qf,
@@ -244,7 +157,7 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd            = "rg --vimgrep",
-    rg_opts           = get_rg_opts_grep(),
+    rg_opts           = require("ik1614.functions")["fzf"]:get_rg_opts_grep(),
     glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
     glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
     fzf_opts = {
@@ -353,88 +266,3 @@ plugin.setup {
   -- padding can help kitty term users with
   -- double-width icon rendering
 }
-
------------------------------------------------------------------------------------------
--- Convenience functions, since I don't want to pass parameters to the
--- underlying functions where I define mappings for them :shrug:
-function M.lsp_references()
-  return plugin.lsp_references({
-    jump_to_single_result = true,
-  })
-end
-
-function M.lsp_definitions()
-  return plugin.lsp_definitions({
-    jump_to_single_result = true,
-  })
-end
-
-function M.lsp_typedefs()
-  return plugin.lsp_typedefs({
-    jump_to_single_result = true,
-  })
-end
-
-function M.lsp_implementations()
-  return plugin.lsp_implementations({
-    jump_to_single_result = true,
-  })
-end
-
-function M.lsp_code_actions()
-  return plugin.lsp_code_actions({
-    sync = true
-  })
-end
-
-function M.lsp_document_symbols()
-  return plugin.lsp_document_symbols({
-    jump_to_single_result = true,
-    fzf_cli_args = "--with-nth 2.."
-  })
-end
-
-function M.lsp_live_workspace_symbols()
-  return plugin.lsp_live_workspace_symbols({
-    jump_to_single_result = true,
-    fzf_cli_args = "--nth 2..",
-  })
-end
-
-function M.lsp_document_diagnostics()
-  return plugin.lsp_document_diagnostics({
-    sync = true,
-    -- fzf_cli_args = "--with-nth 2.." -- FIXME: this also hides severity :cry:
-  })
-end
-
-function M.lsp_workspace_diagnostics()
-  return plugin.lsp_workspace_diagnostics({})
-end
-
-function M.grep()
-  return plugin.grep({
-    fzf_cli_args = "--nth 2..",
-    search = "",
-  })
-end
-
-function M.git_status()
-  return plugin.git_status({
-    winopts = {
-      preview = {
-        layout='vertical',
-      },
-    },
-  })
-end
-
-function M.grep_no_ignore()
-  local opts = get_rg_opts_grep({"--no-ignore"})
-  return plugin.grep({
-    rg_opts = opts,
-    search = "",
-  })
-end
-
-return M

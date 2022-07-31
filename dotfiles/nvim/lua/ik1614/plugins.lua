@@ -214,16 +214,11 @@ return require('packer').startup(
       },
     }
 
-    use 'https://github.com/junegunn/fzf'     -- TODO: deprecate in favour of 'fzf-lua'
-    use 'https://github.com/junegunn/fzf.vim' -- TODO: deprecate in favour of 'fzf-lua'
     use {'ibhagwan/fzf-lua',
       requires = {
         'vijaymarupudi/nvim-fzf',
         'kyazdani42/nvim-web-devicons'
       },
-      config = function()
-        require("ik1614.fzf-lua")
-      end,
     }
 
     use({
