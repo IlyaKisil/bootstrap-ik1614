@@ -48,9 +48,6 @@ return require('packer').startup(
         "quangnguyen30192/cmp-nvim-ultisnips",
         {
           "windwp/nvim-autopairs",
-          config = function()
-            require('nvim-autopairs').setup()
-          end,
         },
       },
     })
