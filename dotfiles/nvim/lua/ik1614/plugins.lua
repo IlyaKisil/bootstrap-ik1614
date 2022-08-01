@@ -99,17 +99,15 @@ return require('packer').startup(
         "nvim-lsp-ts-utils",
         "null-ls.nvim",
         "cmp-nvim-lsp",
-        "nvim-lsp-installer",
       },
-      config = function()
-        require("ik1614.lsp")
-      end,
       requires = {
         "jose-elias-alvarez/nvim-lsp-ts-utils",
         "jose-elias-alvarez/null-ls.nvim",
-        "williamboman/nvim-lsp-installer",
       },
     })
+
+    use({"https://github.com/williamboman/mason.nvim"})
+    use({"https://github.com/williamboman/mason-lspconfig.nvim"})
 
     -- use({'https://github.com/nvim-lua/lsp-status.nvim'})
     -- use({'https://github.com/arkav/lualine-lsp-progress'})
