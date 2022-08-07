@@ -63,12 +63,16 @@ plugin.setup({
     GitSignsAdd    = {bg = colors.bg1},
     GitSignsChange = {bg = colors.bg1},
     GitSignsDelete = {bg = colors.bg1},
-    GitSignsChange = {bg = colors.bg1},
 
     DiagnosticError = {bg = colors.bg1},
     DiagnosticWarn  = {bg = colors.bg1},
     DiagnosticInfo  = {bg = colors.bg1},
-    DiagnosticHint  = {bg = colors.bg1, fg = "$grey"},
+    DiagnosticHint  = {bg = colors.bg1, fg = colors.grey},
+
+    DiagnosticVirtualTextError = {bg = "$none", fg = colors.red},
+    DiagnosticVirtualTextWarn  = {bg = "$none", fg = colors.yellow},
+    DiagnosticVirtualTextInfo  = {bg = "$none", fg = colors.cyan},
+    DiagnosticVirtualTextHint  = {bg = "$none", fg = colors.grey},
 
     -- This is for fugitive
     gitcommitSummary  = {fg = colors.fg},

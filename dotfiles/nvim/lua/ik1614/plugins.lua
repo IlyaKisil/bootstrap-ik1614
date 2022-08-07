@@ -109,7 +109,7 @@ return require('packer').startup(
     use({"https://github.com/williamboman/mason.nvim"})
     use({"https://github.com/williamboman/mason-lspconfig.nvim"})
 
-    -- use({'https://github.com/nvim-lua/lsp-status.nvim'})
+    use({'https://github.com/nvim-lua/lsp-status.nvim'})
     -- use({'https://github.com/arkav/lualine-lsp-progress'})
 
     use {

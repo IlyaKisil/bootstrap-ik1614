@@ -5,6 +5,7 @@ local required_plugins = {
   "mason",
   "mason-lspconfig",
   "lspconfig",
+  "lsp-status"
 }
 
 for _, plugin_name in pairs(required_plugins) do
@@ -17,8 +18,17 @@ end
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
+local lsp_status = require("lsp-status")
 local path = require "mason-core.path"
 
+lsp_status.config {
+  indicator_ok = "",
+  status_symbol = "LSP",
+  spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+  diagnostics = false,
+  current_function = false,
+}
+lsp_status.register_progress()
 
 mason.setup({
   ui = {
@@ -48,18 +58,18 @@ end
 local custom_on_attach = function(client)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
+  lsp_status.on_attach(client)
+
+  -- Define mappings only for buffers with have LSP client attached to them
   mapping:buf_nnoremap({ "K", ':lua vim.lsp.buf.hover()<CR>' })
   mapping:buf_inoremap({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
-
   mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>' })
-  -- TODO: switch to Fzf-Lua implementation
-  mapping:buf_nnoremap({ "gD", vim.lsp.buf.declaration })
+  mapping:buf_nnoremap({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
   mapping:buf_nnoremap({ "gT", ':lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-
   mapping:buf_nnoremap({ "<leader>sl", ':lua vim.diagnostic.open_float()<CR>' })
   mapping:buf_nnoremap({ "<leader>sn", ':lua vim.diagnostic.goto_next()<CR>' })
   mapping:buf_nnoremap({ "<leader>se", ':lua vim.diagnostic.goto_prev()<CR>' })
-
+  mapping:buf_nnoremap({ "<leader>rn", ':lua vim.lsp.buf.rename()<CR>' })
   -- TODO: create general mapping for fzf spefic stuff
   mapping:buf_nnoremap({ "<leader>sa", ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
   mapping:buf_nnoremap({ "<leader>ss", ':lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
@@ -69,12 +79,12 @@ local custom_on_attach = function(client)
   mapping:buf_nnoremap({ "<leader>sr", ':lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
   mapping:buf_nnoremap({ "<leader>si", ':lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
 
-  mapping:buf_nnoremap({ "<leader>rn", ':lua vim.lsp.buf.rename()<CR>' })
-
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
+    -- NOTE: Sometimes shadows yank highlight area. Typically this happens if you
+    -- need to yank the same thing again without cursor being moved :shrug:
     vim.cmd [[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -84,18 +94,27 @@ local custom_on_attach = function(client)
     ]]
   end
 
+  if client.server_capabilities.codeLensProvider then
+    if filetype ~= "elm" then
+      vim.cmd [[
+        augroup lsp_document_codelens
+          au! * <buffer>
+          autocmd BufEnter ++once         <buffer> lua vim.lsp.codelens.refresh()
+          autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+        augroup END
+      ]]
+    end
+  end
 end
 
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
--- if nvim_status then
---   updated_capabilities = vim.tbl_deep_extend("keep", updated_capabilities, nvim_status.capabilities)
--- end
--- updated_capabilities.textDocument.codeLens = { dynamicRegistration = false }
+custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, lsp_status.capabilities)
+custom_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 custom_capabilities = require("cmp_nvim_lsp").update_capabilities(custom_capabilities)
 
 -- TODO: check if this is the problem.
--- updated_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
+-- custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 
 local setup_server = function(server, config)
