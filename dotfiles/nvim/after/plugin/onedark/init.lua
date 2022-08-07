@@ -69,9 +69,9 @@ plugin.setup({
     DiagnosticInfo  = {bg = colors.bg1},
     DiagnosticHint  = {bg = colors.bg1, fg = colors.grey},
 
-    DiagnosticVirtualTextError = {bg = "$none", fg = colors.red},
-    DiagnosticVirtualTextWarn  = {bg = "$none", fg = colors.yellow},
-    DiagnosticVirtualTextInfo  = {bg = "$none", fg = colors.cyan},
+    DiagnosticVirtualTextError = {bg = "$none", fg = colors.grey},
+    DiagnosticVirtualTextWarn  = {bg = "$none", fg = colors.grey},
+    DiagnosticVirtualTextInfo  = {bg = "$none", fg = colors.grey},
     DiagnosticVirtualTextHint  = {bg = "$none", fg = colors.grey},
 
     -- This is for fugitive

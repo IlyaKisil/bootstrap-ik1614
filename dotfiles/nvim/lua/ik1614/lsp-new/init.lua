@@ -21,6 +21,17 @@ local lspconfig = require("lspconfig")
 local lsp_status = require("lsp-status")
 local path = require "mason-core.path"
 
+vim.diagnostic.config({
+  severity_sort = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  virtual_text = {
+    spacing = 4,
+    prefix = "●"
+  },
+})
+
 lsp_status.config {
   indicator_ok = "",
   status_symbol = "LSP",
@@ -154,6 +165,30 @@ local servers = {
   --     config.settings.python.pythonPath = p
   --   end,
   -- },
+  gopls = {
+    root_dir = function(fname)
+      local Path = require "plenary.path"
+
+      local absolute_cwd = Path:new(vim.loop.cwd()):absolute()
+      local absolute_fname = Path:new(fname):absolute()
+
+      if string.find(absolute_cwd, "/cmd/", 1, true) and string.find(absolute_fname, absolute_cwd, 1, true) then
+        return absolute_cwd
+      end
+
+      return require("lspconfig.util").root_pattern("go.mod", ".git")(fname)
+    end,
+
+    settings = {
+      gopls = {
+        codelenses = { test = true },
+      },
+    },
+
+    flags = {
+      debounce_text_changes = 200,
+    },
+  },
   sumneko_lua = {
     settings = {
       Lua = {
