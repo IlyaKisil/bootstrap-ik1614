@@ -85,15 +85,15 @@ function M.t(str)
 end
 
 function M.log(level, msg, name)
-  name = name or "ik1614"
-  time = os.date("%X")
-  hl_map = {
+  local name = name or "ik1614"
+  local time = os.date("%X")
+  local hl_map = {
     WARN  = "WarningMessage",
     ERROR = "ErrorMessage",
     INFO  = "InfoMessage",
     DEBUG = "HintMessage",
   }
-  hl = hl_map[level]
+  local hl = hl_map[level]
   vim.api.nvim_echo({ { name .. " " .. time .. " " .. level .. ": ", hl }, { msg } }, true, {})
 end
 

@@ -11,6 +11,7 @@
 local M = {
   fzf = require("ik1614.functions.fzf-lua"),
   refactoring = require("ik1614.functions.refactoring"),
+  mapping = require("ik1614.functions.mapping"),
 }
 
 
