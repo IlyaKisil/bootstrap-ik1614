@@ -1,5 +1,6 @@
 local utils = require("ik1614.utils")
 local mapping = require("ik1614.functions.mapping")
+local f = require("ik1614.functions")
 
 local required_plugins = {
   "mason",
@@ -54,24 +55,39 @@ mason_lspconfig.setup({
     "sumneko_lua",
     "pyright",
     "gopls",
+    "bashls",
   },
   automatic_installation = true
 })
 
+--[[
+      Define all augroups here
+--]]
+local augroup_format = vim.api.nvim_create_augroup("lsp_format", { clear = true })
 
--- NOTE: not sure what this does exactly.
--- Take from https://github.com/tjdevries/config_manager/blob/cf973aa85234d0b9fb8b81b2652b87a304440c1c/xdg_config/nvim/lua/tj/lsp/init.lua#L32
-local custom_on_init = function(client)
-  client.config.flags = client.config.flags or {}
-  client.config.flags.allow_incremental_sync = true
-end
+
+--[[
+      Define everything that should be done when on attach of LSP client
+--]]
+local filetype_on_attach = setmetatable({
+  go = function()
+    f.format:autocmd_format(augroup_format, false)
+    f.format:autocmd_organise_go_imports(augroup_format)
+  end,
+}, {
+  __index = function()
+    return function() end
+  end,
+})
 
 local custom_on_attach = function(client)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
   lsp_status.on_attach(client)
 
-  -- Define mappings only for buffers with have LSP client attached to them
+  --[[
+       Define mappings only for buffers with have LSP client attached to them
+  --]]
   mapping:buf_nnoremap({ "K", ':lua vim.lsp.buf.hover()<CR>' })
   mapping:buf_inoremap({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
   mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>' })
@@ -92,7 +108,9 @@ local custom_on_attach = function(client)
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
-  -- Set autocommands conditional on server_capabilities
+  --[[
+       Set autocommands conditional on server_capabilities
+  --]]
   if client.server_capabilities.documentHighlightProvider then
     -- NOTE: Sometimes shadows yank highlight area. Typically this happens if you
     -- need to yank the same thing again without cursor being moved :shrug:
@@ -116,6 +134,19 @@ local custom_on_attach = function(client)
       ]]
     end
   end
+
+  --[[
+       Attach any filetype specific options to the client
+  --]]
+  filetype_on_attach[filetype](client)
+end
+
+
+-- NOTE: not sure what this does exactly.
+-- Take from https://github.com/tjdevries/config_manager/blob/cf973aa85234d0b9fb8b81b2652b87a304440c1c/xdg_config/nvim/lua/tj/lsp/init.lua#L32
+local custom_on_init = function(client)
+  client.config.flags = client.config.flags or {}
+  client.config.flags.allow_incremental_sync = true
 end
 
 
@@ -152,6 +183,7 @@ end
 
 
 local servers = {
+  bashls = true,
   pyright = true,
   -- pyright = {
   --   before_init = function(_, config)
@@ -181,7 +213,14 @@ local servers = {
 
     settings = {
       gopls = {
-        codelenses = { test = true },
+        codelenses = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#code-lenses
+          test = true,
+        },
+        gofumpt = true, -- NOTE: it won't format if there are errors
+        -- staticcheck = true, -- NOTE: Requires Go > 1.17
+        analyses = {
+          unusedparams = true,
+        }
       },
     },
 
