@@ -67,7 +67,7 @@ brew "kafka"
 # Apache Kafka C/C++ library
 brew "librdkafka"
 # Generic command-line non-JVM Apache Kafka producer and consumer
-brew "kafkacat"
+brew "kcat"
 # Open source relational database management system
 brew "mysql"
 # Object-relational database system

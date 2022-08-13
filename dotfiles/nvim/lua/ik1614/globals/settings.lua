@@ -111,6 +111,7 @@ vim.opt.listchars      = {
 -- Enable folding
 vim.opt.foldmethod     = 'indent'
 vim.opt.foldlevelstart = 99                                -- start unfolded
+vim.opt.foldlevel      = 99                                -- start unfolded
 -- Use treesitter for folding. FIXME: doesn't work currently :cry:
 -- vim.opt.foldmethod     = 'expr'
 -- vim.opt.foldtext       = 'nvim_treesitter#foldexpr()'

@@ -129,6 +129,3 @@ map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>')
 map('n', '{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>')
 
 map('n', "<C-p>",      ":<C-u>FzfLua git_files<CR>")
-
-map('n', 'K',          '<cmd>lua vim.lsp.buf.hover()<CR>')
-map('n', '<C-k>',      '<cmd>lua vim.lsp.buf.signature_help()<CR>')

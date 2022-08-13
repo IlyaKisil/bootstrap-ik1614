@@ -17,6 +17,8 @@ brew "curl"
 brew "git-delta"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Stricter gofmt
+brew "gofumpt"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Command-line fuzzy finder written in Go
@@ -53,6 +55,8 @@ brew "ripgrep"
 brew "rsync"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# State of the art linter for the Go programming language
+brew "staticcheck"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # User interface to the TELNET protocol

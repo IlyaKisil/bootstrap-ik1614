@@ -8,8 +8,8 @@ function M.install_missing(servers)
     local ok, s = lspi_servers.get_server(server)
     if ok then
       if not s:is_installed() then
-        util.info("Installing missing LSP server [" .. server .. "].")
-        s:install()
+        -- util.info("Installing missing LSP server [" .. server .. "].")
+        -- s:install()
       end
     else
       util.error("Server " .. server .. " not found")
