@@ -29,7 +29,6 @@ require("ik1614.globals.mappings")
 -- Hookup plugins
 require("ik1614.plugins")
 
--- require("ik1614.lsp")
-require("ik1614.lsp-new")
+require("ik1614.lsp")
 
 vim.cmd('luafile ~/.config/nvim/init-local.lua')
