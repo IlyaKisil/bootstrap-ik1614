@@ -42,7 +42,35 @@ plugin.setup({
     -- { name = 'snippy' }, -- For snippy users.
   },
   formatting = {
-    format = require("ik1614.lsp.kind").cmp_format(),
+    format = function(_entry, vim_item)
+      local icons = {
+        Class = " ",
+        Color = " ",
+        Constant = " ",
+        Constructor = " ",
+        Enum = "了 ",
+        EnumMember = " ",
+        Field = " ",
+        File = " ",
+        Folder = " ",
+        Function = " ",
+        Interface = "ﰮ ",
+        Keyword = " ",
+        Method = "ƒ ",
+        Module = " ",
+        Property = " ",
+        Snippet = "﬌ ",
+        Struct = " ",
+        Text = " ",
+        Unit = " ",
+        Value = " ",
+        Variable = " ",
+      }
+      if icons[vim_item.kind] then
+        vim_item.kind = icons[vim_item.kind] .. vim_item.kind
+      end
+      return vim_item
+    end,
   },
   window = {
     documentation = {
