@@ -73,9 +73,9 @@ local augroup_format = vim.api.nvim_create_augroup("lsp_format", { clear = true 
 --]]
 local filetype_on_attach = setmetatable({
   go = function()
+    -- TODO: there are some issues with formatting, e.g. it might truncate begining of the line where there are extra tabs :shrug:
     -- f.format:autocmd_format(augroup_format, false)
-    -- f.format:autocmd_organise_go_imports(augroup_format)
-    -- f.format:organise_go_imports(1000)
+    f.format:autocmd_organise_go_imports(augroup_format)
   end,
 }, {
   __index = function()
@@ -219,10 +219,12 @@ local servers = {
         codelenses = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#code-lenses
           test = true,
         },
-        gofumpt = false, -- NOTE: Use formatters from the 'null-ls'
+        gofumpt = false, -- NOTE: it won't format if there are errors
         -- staticcheck = true, -- NOTE: Requires Go > 1.17
         analyses = {
           unusedparams = true,
+          unusedwrite = true,
+          shadow = true,
         }
       },
     },
@@ -278,17 +280,16 @@ null_ls.setup({
         return not f.utils:is_environment_template()
       end,
     }),
-    -- NOTE: Some formatters might not work if there are errors in the code
+    -- NOTE: Some formatters might not trigger if there are errors in the code
     null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.gofumpt,
-    null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.shfmt,
     null_ls.builtins.formatting.terraform_fmt.with({
       timeout = 10000,
     }),
 
   },
-  on_attach = custom_on_attach
+  on_attach = custom_on_attach,
+  diagnostics_format = "#{m} (#{s})",
 })
 
 return {
