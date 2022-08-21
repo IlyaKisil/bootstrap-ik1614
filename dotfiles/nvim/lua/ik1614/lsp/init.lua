@@ -6,7 +6,8 @@ local required_plugins = {
   "mason",
   "mason-lspconfig",
   "lspconfig",
-  "lsp-status"
+  "lsp-status",
+  "null-ls",
 }
 
 for _, plugin_name in pairs(required_plugins) do
@@ -21,6 +22,7 @@ local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local lsp_status = require("lsp-status")
 local path = require "mason-core.path"
+local null_ls = require("null-ls")
 
 vim.diagnostic.config({
   severity_sort = true,
@@ -71,8 +73,9 @@ local augroup_format = vim.api.nvim_create_augroup("lsp_format", { clear = true 
 --]]
 local filetype_on_attach = setmetatable({
   go = function()
-    f.format:autocmd_format(augroup_format, false)
-    f.format:autocmd_organise_go_imports(augroup_format)
+    -- f.format:autocmd_format(augroup_format, false)
+    -- f.format:autocmd_organise_go_imports(augroup_format)
+    -- f.format:organise_go_imports(1000)
   end,
 }, {
   __index = function()
@@ -90,7 +93,7 @@ local custom_on_attach = function(client)
   --]]
   mapping:buf_nnoremap({ "K", ':lua vim.lsp.buf.hover()<CR>' })
   mapping:buf_inoremap({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
-  mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>' })
+  mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
   mapping:buf_nnoremap({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
   mapping:buf_nnoremap({ "gT", ':lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
   mapping:buf_nnoremap({ "<leader>sl", ':lua vim.diagnostic.open_float()<CR>' })
@@ -114,24 +117,24 @@ local custom_on_attach = function(client)
   if client.server_capabilities.documentHighlightProvider then
     -- NOTE: Sometimes shadows yank highlight area. Typically this happens if you
     -- need to yank the same thing again without cursor being moved :shrug:
-    vim.cmd [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]
+    -- vim.cmd [[
+    --   augroup lsp_document_highlight
+    --     autocmd! * <buffer>
+    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    --   augroup END
+    -- ]]
   end
 
   if client.server_capabilities.codeLensProvider then
     if filetype ~= "elm" then
-      vim.cmd [[
-        augroup lsp_document_codelens
-          au! * <buffer>
-          autocmd BufEnter ++once         <buffer> lua vim.lsp.codelens.refresh()
-          autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
-        augroup END
-      ]]
+      -- vim.cmd [[
+      --   augroup lsp_document_codelens
+      --     au! * <buffer>
+      --     autocmd BufEnter ++once         <buffer> lua vim.lsp.codelens.refresh()
+      --     autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
+      --   augroup END
+      -- ]]
     end
   end
 
@@ -159,7 +162,7 @@ custom_capabilities = require("cmp_nvim_lsp").update_capabilities(custom_capabil
 -- custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
 
 
-local setup_server = function(server, config)
+local function setup_server(server, config)
   if not config then
     utils.warn("Skipped [" .. server .. "] as no config was provided")
     return
@@ -183,7 +186,7 @@ end
 
 
 local servers = {
-  bashls = true,
+  -- bashls = true, -- Doesn't play ball with 'environment.template' which I have as 'sh' filetype
   pyright = true,
   -- pyright = {
   --   before_init = function(_, config)
@@ -216,7 +219,7 @@ local servers = {
         codelenses = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md#code-lenses
           test = true,
         },
-        gofumpt = true, -- NOTE: it won't format if there are errors
+        gofumpt = false, -- NOTE: Use formatters from the 'null-ls'
         -- staticcheck = true, -- NOTE: Requires Go > 1.17
         analyses = {
           unusedparams = true,
@@ -256,6 +259,37 @@ local servers = {
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
+
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.shellcheck.with({
+      runtime_condition = function()
+        -- Disable null-ls for 'environment.template' files
+        return not f.utils:is_environment_template()
+      end,
+    }),
+    -- null_ls.builtins.diagnostics.cspell,
+    null_ls.builtins.diagnostics.shellcheck.with({
+      runtime_condition = function()
+        -- Disable null-ls for 'environment.template' files
+        return not f.utils:is_environment_template()
+      end,
+    }),
+    -- NOTE: Some formatters might not work if there are errors in the code
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.terraform_fmt.with({
+      timeout = 10000,
+    }),
+
+  },
+  on_attach = custom_on_attach
+})
 
 return {
   on_init = custom_on_init,
