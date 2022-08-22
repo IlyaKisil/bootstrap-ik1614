@@ -32,17 +32,26 @@ plugin.setup({
   },
 
   -- Custom Highlights --
-  colors = { -- Override default colors
+  colors = {
+    -- Override default colors
     diff_add = '#294436',
     diff_change = '#294436',
     diff_delete = '#484A4A',
     diff_text = '#385570',
+
+    -- Add custom names for default colors
+    error = colors.red,
+    warn = colors.orange,
+    info = colors.blue,
+    debug = colors.light_grey,
+    trace = colors.grey,
   },
   highlights = { -- Override/extend highlight groups
-    ErrorMessage   = {fg = "#CC666E"},
-    WarningMessage = {fg = "#BE9117"},
-    InfoMessage    = {fg = "#A4A3A3"},
-    HintMessage    = {fg = "#606366"},
+    ErrorMessage = {fg = "$error"},
+    WarnMessage  = {fg = "$warn"},
+    InfoMessage  = {fg = "$info"},
+    DebugMessage = {fg = "$debug"},
+    TraceMessage = {fg = "$trace"},
 
     NonText    = {fg = "#373c43"},
     Whitespace = {fg = "#373c43"},
@@ -77,6 +86,23 @@ plugin.setup({
     -- This is for fugitive
     gitcommitSummary  = {fg = colors.fg},
     gitcommitOverflow = {fg = colors.red},
+
+    -- nvim-notify plugin
+    NotifyERRORBorder = {fg = '$error'},
+    NotifyERRORIcon   = {fg = '$error'},
+    NotifyERRORTitle  = {fg = '$error'},
+    NotifyWARNBorder  = {fg = '$warn'},
+    NotifyWARNIcon    = {fg = '$warn'},
+    NotifyWARNTitle   = {fg = '$warn'},
+    NotifyINFOBorder  = {fg = '$info'},
+    NotifyINFOIcon    = {fg = '$info'},
+    NotifyINFOTitle   = {fg = '$info'},
+    NotifyDEBUGBorder = {fg = '$debug'},
+    NotifyDEBUGIcon   = {fg = '$debug'},
+    NotifyDEBUGTitle  = {fg = '$debug'},
+    NotifyTRACEBorder = {fg = '$trace'},
+    NotifyTRACEIcon   = {fg = '$trace'},
+    NotifyTRACETitle  = {fg = '$trace'},
 
     -- This is to make active buffer more visible. Used as a part of autocommand
     IlyaInactiveBuffer = {bg = colors.bg1},

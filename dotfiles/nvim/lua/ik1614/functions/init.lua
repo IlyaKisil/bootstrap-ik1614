@@ -13,6 +13,7 @@ local M = {
   refactoring = require("ik1614.functions.refactoring"),
   mapping = require("ik1614.functions.mapping"),
   format = require("ik1614.functions.format"),
+  utils = require("ik1614.functions.utils"),
 }
 
 

@@ -30,9 +30,13 @@ snippet base "Boilerplate for any new Makefile" b
 # Use ## before target to provide a description
 #########################################################################################
 .DEFAULT_GOAL := help
+.DELETE_ON_ERROR:
+# Use a single shell for the whole recipe
+.ONESHELL:
 
-SHELL = /bin/bash -o errexit -o nounset -o pipefail
-HERE  = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+SHELL      = /bin/bash -o errexit -o nounset -o pipefail
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
 
 ifeq ($(shell uname), Darwin)
   GOOS = "darwin"
@@ -41,6 +45,13 @@ else ifeq ($(shell uname), Linux)
   GOOS = "linux"
   SED = sed -i
 endif
+
+HERE  = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+
+#########################################################################################
+# TARGETS
+#########################################################################################
 
 
 

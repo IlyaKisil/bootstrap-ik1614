@@ -76,6 +76,8 @@ return require('packer').startup(
       requires = {'kyazdani42/nvim-web-devicons', opt = true},
     })
 
+    use({'https://github.com/rcarriga/nvim-notify'})
+
     -- Color
     use({
       'norcalli/nvim-colorizer.lua',
