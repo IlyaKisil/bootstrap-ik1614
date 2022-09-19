@@ -98,6 +98,7 @@ export PATH=${MYSQL_BIN:=""}${PATH:+:${PATH}}
 export PATH=${LATEX_BIN:=""}${PATH:+:${PATH}}
 export PATH=${RUST_BIN:=""}${PATH:+:${PATH}}
 export PATH=${GO_BIN:=""}${PATH:+:${PATH}}
+export PATH=${INFLUX_BIN:=""}${PATH:+:${PATH}}
 
 # Configurations for 'CUDA'
 export PATH=${CUDA_BIN:=""}${PATH:+:${PATH}}

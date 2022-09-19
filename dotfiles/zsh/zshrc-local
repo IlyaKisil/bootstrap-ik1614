@@ -126,6 +126,7 @@ LOCAL_BIN="${HOME}/.local/bin"
 #CUDA_BIN=/usr/local/cuda/bin
 #CUDA_LIB64_HOME=/usr/local/cuda/lib64
 #CUDA_CUPTI_LIB64_HOME=/usr/local/cuda/extras/CUPTI/lib64
+#INFLUX_BIN=/usr/local/opt/influxdb@1/bin
 
 
 ### Configurations for nodejs version manager (nvm)
