@@ -1,4 +1,5 @@
 local utils = require("ik1614.utils")
+local f = require("ik1614.functions")
 local plugin_name = "onedark"
 
 if not utils.plugin_installed(plugin_name) then
@@ -7,12 +8,9 @@ end
 
 local plugin = require(plugin_name)
 
--- Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-local style = "warm"
-
-local colors = require('onedark.palette')[style]
+local colors = f.utils:get_color_pallet("onedark")
 plugin.setup({
-  style = style,
+  style = f.utils:get_color_pallet_style("onedark"),
   transparent = true,  -- Show/hide background, i.e. use background of the terminal colorsheme
   term_colors = true, -- Change terminal color as per the selected theme style
   ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden

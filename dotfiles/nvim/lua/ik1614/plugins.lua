@@ -87,6 +87,11 @@ return require('packer').startup(
     -- Colorschemes
     use({'https://github.com/navarasu/onedark.nvim'})
 
+    use({
+      'https://github.com/m-demare/hlargs.nvim',
+      requires = {'nvim-treesitter/nvim-treesitter'}
+    })
+
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
     -------------------------------------------------------------------------------------
