@@ -24,5 +24,24 @@ function M:is_environment_template()
   return false
 end
 
+function M:get_color_pallet(theme)
+  local pallets = {
+    onedark = function ()
+      local style = self:get_color_pallet_style(theme)
+      local colors = require('onedark.palette')[style]
+      return colors
+    end
+  }
+  return pallets[theme]()
+end
+
+function M:get_color_pallet_style(theme)
+  local styles = {
+    -- Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+    onedark = "warm"
+  }
+  return styles[theme]
+end
+
 
 return M.new()
