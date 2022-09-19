@@ -152,7 +152,11 @@ end
 
 function M:lsp_code_actions()
   return self.plugin.lsp_code_actions({
-    sync = true
+    sync = true,
+    winopts = {
+      height=0.33,
+      width=0.33,
+    }
   })
 end
 

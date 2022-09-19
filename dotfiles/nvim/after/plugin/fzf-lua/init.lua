@@ -12,7 +12,10 @@ plugin.setup {
   global_resume      = true,
   global_resume_query = true,
   winopts = {
-    fullscreen       = true,
+    -- fullscreen       = true,
+    -- Has the same effect, but makes it easier to override winopts for specific uscases
+    height=1,
+    width=1,
     hl = {
       cursorline     = 'PmenuSel', -- Only valid with the builtin previewer:
     },
