@@ -102,4 +102,5 @@ brew "rustup-init"
 brew "asciinema"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
-
+# A TUI playground to experiment and play with jq
+brew "noahgorstein/tap/jqp"
