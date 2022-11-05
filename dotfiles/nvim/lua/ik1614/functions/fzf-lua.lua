@@ -106,8 +106,15 @@ function M:git_status()
     winopts = {
       preview = {
         layout='vertical',
+        vertical = 'down:75%',
       },
     },
+    -- FIXME: this doesn't seem to be having any affect :shrug:
+    previewers = {
+      git_diff = {
+        pager = "delta --side-by-side -w 120",
+      },
+    }
   })
 end
 
@@ -129,24 +136,48 @@ end
 function M:lsp_references()
   return self.plugin.lsp_references({
     jump_to_single_result = true,
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
 function M:lsp_definitions()
   return self.plugin.lsp_definitions({
     jump_to_single_result = true,
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
 function M:lsp_typedefs()
   return self.plugin.lsp_typedefs({
     jump_to_single_result = true,
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
 function M:lsp_implementations()
   return self.plugin.lsp_implementations({
     jump_to_single_result = true,
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
@@ -163,7 +194,13 @@ end
 function M:lsp_document_symbols()
   return self.plugin.lsp_document_symbols({
     jump_to_single_result = true,
-    fzf_cli_args = "--with-nth 2.."
+    fzf_cli_args = "--with-nth 2..",
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
@@ -171,18 +208,37 @@ function M:lsp_live_workspace_symbols()
   return self.plugin.lsp_live_workspace_symbols({
     jump_to_single_result = true,
     fzf_cli_args = "--nth 2..",
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
   })
 end
 
 function M:lsp_document_diagnostics()
   return self.plugin.lsp_document_diagnostics({
     sync = true,
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
     -- fzf_cli_args = "--with-nth 2.." -- FIXME: this also hides severity :cry:
   })
 end
 
 function M:lsp_workspace_diagnostics()
-  return self.plugin.lsp_workspace_diagnostics({})
+  return self.plugin.lsp_workspace_diagnostics({
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
+  })
 end
 
 return M.new()
