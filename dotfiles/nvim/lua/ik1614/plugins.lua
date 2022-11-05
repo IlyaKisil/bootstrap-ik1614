@@ -65,6 +65,7 @@ return require('packer').startup(
       run = ':TSUpdate',
     })
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
+    use {'https://github.com/nvim-treesitter/nvim-treesitter-context'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
 
