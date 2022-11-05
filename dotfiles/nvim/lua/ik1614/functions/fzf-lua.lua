@@ -16,6 +16,18 @@ function M.new()
   return self
 end
 
+function M:get_fzf_for_grep_opts()
+  -- * Don't include filename into live search
+  -- * Make sure that `fzf` filtering doesn't skip entries
+  -- * Tiebreak by line no.
+  return {
+    ['--delimiter'] = vim.fn.shellescape('[:]'),
+    ["--nth"]  = '2..',
+    ["--tiebreak"]  = 'index',
+  }
+
+end
+
 function M:get_ignore_glob(type)
   local ignore = {
     ".cache",
@@ -53,6 +65,7 @@ function M:get_rg_opts_grep(extra_opts)
   local extra_opts = extra_opts or {}
 
   local default_opts = {
+    "--with-filename", -- To make result compatible with previewers, the result of `rg` must contain file name
     "--column",
     "--line-number",
     "--no-heading",
@@ -131,6 +144,29 @@ function M:grep()
     fzf_cli_args = "--nth 2..",
     search = "",
   })
+end
+
+function M:grep_selected_files(selected)
+  local rg_opts = self:get_rg_opts_grep()
+  local command = ("rg %s '' %s"):format(rg_opts, utils.table_to_string(selected, " "))
+
+  return self.plugin.fzf_exec(
+    command,
+    {
+      fn_transform = function(x)
+        return self.plugin.make_entry.file(x, {file_icons=false, color_icons=false})
+      end,
+      fzf_opts = self:get_fzf_for_grep_opts(),
+      previewer = "builtin",
+      prompt = "Grep in selected> ",
+      actions = {
+        ["default"] = self.plugin.actions.file_edit_or_qf,
+        ["ctrl-s"]  = self.plugin.actions.file_split,
+        ["ctrl-v"]  = self.plugin.actions.file_vsplit,
+        ["ctrl-t"]  = self.plugin.actions.file_tabedit,
+      }
+    }
+  )
 end
 
 function M:lsp_references()
