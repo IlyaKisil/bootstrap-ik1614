@@ -1,4 +1,5 @@
 local utils = require("ik1614.utils")
+local functions = require("ik1614.functions")
 local plugin_name = "fzf-lua"
 
 if not utils.plugin_installed(plugin_name) then
@@ -95,8 +96,8 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd = "rg " .. get_rg_opts_files(),
-    rg_opts           = require("ik1614.functions")["fzf"]:get_rg_opts_files(),
-    fd_opts           = require("ik1614.functions")["fzf"]:get_fd_opts_files(),
+    rg_opts           = functions.fzf:get_rg_opts_files(),
+    fd_opts           = functions.fzf:get_fd_opts_files(),
     actions = {
       -- set bind to 'false' to disable an action
       -- ["default"]     = actions.file_edit_or_qf,
@@ -104,7 +105,7 @@ plugin.setup {
       -- ["ctrl-v"]      = actions.file_vsplit,
       -- ["ctrl-t"]      = actions.file_tabedit,
       -- custom actions are available too
-      -- ["ctrl-y"]      = function(selected) print(selected[1]) end,
+      ["ctrl-r"]      = function(selected) functions.fzf:grep_selected_files(selected) end,
     }
   },
   git = {
@@ -113,6 +114,9 @@ plugin.setup {
       multiprocess    = true,
       git_icons       = false,
       file_icons      = false,
+      actions = {
+        ["ctrl-r"]      = function(selected) functions.fzf:grep_selected_files(selected) end,
+      }
     },
     status = {
       cmd             = "git status -s",
@@ -160,15 +164,10 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd            = "rg --vimgrep",
-    rg_opts           = require("ik1614.functions")["fzf"]:get_rg_opts_grep(),
+    rg_opts           = functions.fzf:get_rg_opts_grep(),
     glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
     glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
-    fzf_opts = {
-      -- don't include filename into live search, tiebreak by line no.
-      ['--delimiter'] = vim.fn.shellescape('[:]'),
-      ["--nth"]  = '2..',
-      ["--tiebreak"]  = 'index',
-    },
+    fzf_opts = functions.fzf:get_fzf_for_grep_opts(),
   },
   args = { -- TODO: figure out what this does :shrug:
     files_only        = true,
@@ -204,12 +203,7 @@ plugin.setup {
     file_icons        = false,
     show_unlisted     = false,        -- exclude 'help' buffers
     no_term_buffers   = true,         -- exclude 'term' buffers
-    fzf_opts = {
-      -- do not include bufnr in fuzzy matching. tiebreak by line no.
-      ['--delimiter'] = vim.fn.shellescape(']'),
-      ["--nth"]       = '2..',
-      ["--tiebreak"]  = 'index',
-    },
+    fzf_opts = functions.fzf:get_fzf_for_grep_opts(),
     actions = {
       ["default"]     = actions.buf_edit,
       ["ctrl-s"]      = actions.buf_split,
@@ -221,12 +215,7 @@ plugin.setup {
     previewer         = "builtin",
     show_unlisted     = true,         -- include 'help' buffers
     no_term_buffers   = false,        -- include 'term' buffers
-    fzf_opts = {
-      -- hide filename, tiebreak by line no.
-      ['--delimiter'] = vim.fn.shellescape('[:]'),
-      ["--with-nth"]  = '2..',
-      ["--tiebreak"]  = 'index',
-    },
+    fzf_opts = functions.fzf:get_fzf_for_grep_opts(),
     actions = {
       ["default"]     = actions.buf_edit,
       ["ctrl-s"]      = actions.buf_split,
