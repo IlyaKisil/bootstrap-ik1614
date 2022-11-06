@@ -74,7 +74,9 @@ plugin.setup {
       cmd_deleted     = "git diff --color HEAD --",
       cmd_modified    = "git diff --color HEAD",
       cmd_untracked   = "git diff --color --no-index /dev/null",
-      pager           = "delta",
+      -- NOTE: if `pager` is set here, then you won't be able to override pager
+      -- settings, e.g. in `git.status.preview_pager` or within opts for the API call
+      -- pager           = "delta",
     },
     man = {
       cmd             = "man -c %s | col -bx",
@@ -122,6 +124,7 @@ plugin.setup {
       cmd             = "git status -s",
       previewer       = "git_diff",
       git_icons       = true,
+      preview_pager   = "delta",
       file_icons      = false,
       actions = {
         ["right"]     = { actions.git_unstage, actions.resume },

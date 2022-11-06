@@ -115,19 +115,28 @@ function M:get_fd_opts_files(extra_opts)
 end
 
 function M:git_status()
+  local pager_flip_threshold = 120
+
+  -- Not sure where this offset comes from but looks like it is related to sign column etc
+  local offset = 6
+
+  -- Don't use `vim.api.nvim_win_get_width(0)` in case there are splits
+  local window_width = vim.o.columns - offset
+
+  local preview_pager = "delta"
+
+  if window_width > pager_flip_threshold then
+    preview_pager = ("%s --side-by-side --width %s"):format(preview_pager, window_width)
+  end
+
   return self.plugin.git_status({
     winopts = {
       preview = {
         layout='vertical',
-        vertical = 'down:75%',
+        vertical = 'down:80%',
       },
     },
-    -- FIXME: this doesn't seem to be having any affect :shrug:
-    previewers = {
-      git_diff = {
-        pager = "delta --side-by-side -w 120",
-      },
-    }
+    preview_pager = preview_pager,
   })
 end
 
