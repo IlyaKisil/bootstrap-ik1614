@@ -39,6 +39,7 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     use({
       "hrsh7th/nvim-cmp",
+      commit = "99ef8543",
       -- event = "InsertEnter",  # TODO: understand how this 'opt/event' work etc
       -- opt = true,
       requires = {
@@ -86,7 +87,10 @@ return require('packer').startup(
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
     -- Colorschemes
-    use({'https://github.com/navarasu/onedark.nvim'})
+    use({
+      'https://github.com/navarasu/onedark.nvim',
+      commit = "6c72a9c5",
+    })
 
     use({
       'https://github.com/m-demare/hlargs.nvim',
@@ -116,6 +120,11 @@ return require('packer').startup(
 
     use({"https://github.com/williamboman/mason.nvim"})
     use({"https://github.com/williamboman/mason-lspconfig.nvim"})
+
+    use({
+      "jose-elias-alvarez/null-ls.nvim",
+      commit = "76d0573f",
+    })
 
     use({'https://github.com/nvim-lua/lsp-status.nvim'})
     -- use({'https://github.com/arkav/lualine-lsp-progress'})
@@ -176,10 +185,12 @@ return require('packer').startup(
 
     use({
       'kyazdani42/nvim-tree.lua',
+      commit = "ac8d259b",
     })
 
     use({
       'https://github.com/folke/todo-comments.nvim',
+      commit = "916cd4f1",
     })
 
     use({
