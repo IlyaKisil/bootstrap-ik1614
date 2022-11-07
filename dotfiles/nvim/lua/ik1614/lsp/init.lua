@@ -156,7 +156,9 @@ end
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, lsp_status.capabilities)
 custom_capabilities.textDocument.codeLens = { dynamicRegistration = false }
-custom_capabilities = require("cmp_nvim_lsp").update_capabilities(custom_capabilities)
+-- custom_capabilities = require("cmp_nvim_lsp").update_capabilities(custom_capabilities)
+custom_capabilities = require("cmp_nvim_lsp").default_capabilities(custom_capabilities)
+-- custom_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- TODO: check if this is the problem.
 -- custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
