@@ -101,8 +101,8 @@ plugin.setup({
   filters = {
     dotfiles = false,
     custom = {
-      ".DS_Store",
-      ".git",
+      "^.DS_Store$",
+      "^.git$",
     }
   },
   git = {
