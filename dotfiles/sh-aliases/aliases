@@ -15,8 +15,8 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
     alias hide='defaults write com.apple.finder AppleShowAllFiles NO;killall Finder /System/Library/CoreServices/Finder.app'
 fi
 
-# alias vim='nvim'
-alias vim='/Users/ilyakisil/opt/nvim/v0.8.0-dev+547-ge837f29ce/bin/nvim'
+alias vim="nvim -c 'FzfLua git_files'"
+# alias vim='/Users/ilyakisil/opt/nvim/v0.8.0-dev+547-ge837f29ce/bin/nvim'
 alias vvim='\vim'
 alias :q='exit'
 alias :wq='exit'
