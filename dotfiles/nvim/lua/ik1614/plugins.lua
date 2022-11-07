@@ -185,7 +185,6 @@ return require('packer').startup(
 
     use({
       'kyazdani42/nvim-tree.lua',
-      commit = "ac8d259b",
     })
 
     use({

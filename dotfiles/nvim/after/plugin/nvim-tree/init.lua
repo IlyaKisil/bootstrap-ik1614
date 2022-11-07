@@ -13,8 +13,8 @@ vim.g.nvim_tree_refresh_wait = 1000
 
 local plugin = require(plugin_name)
 plugin.setup({
-  disable_netrw       = true,
-  hijack_netrw        = true,
+  disable_netrw       = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
+  hijack_netrw        = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
   open_on_tab         = false,
@@ -101,8 +101,8 @@ plugin.setup({
   filters = {
     dotfiles = false,
     custom = {
-      ".DS_Store",
-      ".git",
+      "^.DS_Store$",
+      "^.git$",
     }
   },
   git = {
@@ -111,8 +111,7 @@ plugin.setup({
     timeout = 500,
   },
   view = {
-    width = 30,
-    height = 30,
+    adaptive_size = true,
     hide_root_folder = false,
     side = 'left',
     mappings = {
