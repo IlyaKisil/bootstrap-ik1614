@@ -1,0 +1,52 @@
+# ---------------------------------------------------------------------------------------
+env:
+  TERM: xterm-256color
+
+# ---------------------------------------------------------------------------------------
+window:
+  padding:
+    x: 0
+    y: 0
+
+# ---------------------------------------------------------------------------------------
+font:
+  size: 14
+  normal:
+    family: Meslo LG S DZ for Powerline
+    style: Regular
+  bold:
+    family: Meslo LG M for Powerline
+    style: Bold
+  italic:
+    family: Meslo LG S DZ for Powerline
+    style: Italic
+  offset:
+    x: 0
+    y: 0
+
+# ---------------------------------------------------------------------------------------
+colors:
+  primary:
+    background: '#282c31'
+    foreground: '#abb2bf'
+  cursor:
+    text: '#abb2bf'
+    cursor: '#3f5e9b'
+  normal:
+    black: '#000000'
+    blue: '#a9a1e1'
+    cyan: '#51afef'
+    green: '#98be65'
+    magenta: '#c678dd'
+    red: '#ff6c6b'
+    white: '#bbc2cf'
+    yellow: '#ecbe7b'
+  bright:
+    black: '#000000'
+    blue: '#a9a1e1'
+    cyan: '#51afef'
+    green: '#99bb66'
+    magenta: '#c678dd'
+    red: '#ff6655'
+    white: '#bfbfbf'
+    yellow: '#ecbe7b'

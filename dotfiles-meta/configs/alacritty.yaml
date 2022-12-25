@@ -1,0 +1,5 @@
+- link:
+    ~/.config/alacritty/alacritty.yml: dotfiles/alacritty/alacritty.yml
+# - shell:
+#     # Executed only if this file doesn't exist (to prevent overriding)
+#     - ["[ -f ~/.config/kitty/kitty-local.conf ] && echo '=> Already exists, skipping' || cp dotfiles/kitty/kitty-local.conf ~/.config/kitty/kitty-local.conf", Initialising .kitty-local]

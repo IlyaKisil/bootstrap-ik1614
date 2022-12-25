@@ -6,6 +6,8 @@ cask_args appdir: "~/Applications"
 # Mac App Store command-line interface
 brew "mas"
 
+# GPU-based terminal emulator
+cask "alacritty", require_sha: true
 # Application launcher and productivity software
 cask "alfred", require_sha: true
 # Two-factor authentication software
