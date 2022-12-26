@@ -1,4 +1,4 @@
-local utils = require("ik1614.utils")
+local utils = require("ik1614.functions.utils")
 local mapping = require("ik1614.functions.mapping")
 local logging = require("ik1614.functions.logging")
 local f = require("ik1614.functions")
@@ -12,7 +12,7 @@ local required_plugins = {
 }
 
 for _, plugin_name in pairs(required_plugins) do
-  if not utils.plugin_installed(plugin_name) then
+  if not utils:plugin_installed(plugin_name) then
     logging:warn("LSP is disabled as it requires [" .. plugin_name .. "] plugin")
     return
   end

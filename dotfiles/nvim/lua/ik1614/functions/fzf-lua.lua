@@ -1,3 +1,4 @@
+local u = require("ik1614.functions.utils")
 local utils = require("ik1614.utils")
 local logging = require("ik1614.functions.logging")
 
@@ -8,7 +9,7 @@ function M.new()
   local self = setmetatable({}, M)
   local plugin_name = "fzf-lua"
 
-  if not utils.plugin_installed(plugin_name) then
+  if not u:plugin_installed(plugin_name) then
     logging:error("Failed to define custom functions based on [" .. plugin_name .. "] plugin")
     return {}
   end
