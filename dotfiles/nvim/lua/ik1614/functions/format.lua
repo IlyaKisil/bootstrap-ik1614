@@ -1,3 +1,4 @@
+local logging = require("ik1614.functions.logging")
 local util = require("ik1614.utils")
 
 local M = {}
@@ -29,9 +30,9 @@ end
 function M:toggle()
   self.auto_format = not self.auto_format
   if self.auto_format then
-    util.info("Enabled format on save")
+    logging:info("Enabled format on save")
   else
-    util.warn("Disabled format on save")
+    logging:warn("Disabled format on save")
   end
 end
 

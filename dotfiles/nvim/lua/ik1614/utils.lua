@@ -1,10 +1,12 @@
+local logging = require("ik1614.functions.logging")
+
 local M = {}
 
 M.functions = {}
 
 function M.plugin_installed(name)
   if not pcall(require, name) then
-    M.warn("Plugin ["  .. name .. "] is not installed")
+    logging:warn("Plugin ["  .. name .. "] is not installed")
     return
   end
   return true
@@ -84,36 +86,6 @@ function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-function M.log(level, msg, name)
-  local name = name or "ik1614"
-  local time = os.date("%X")
-  local hl_map = {
-    ERROR = "ErrorMessage",
-    WARN  = "WarnMessage",
-    INFO  = "InfoMessage",
-    DEBUG = "DebugMessage",
-    TRACE = "TraceMessage",
-  }
-  local hl = hl_map[level]
-  vim.api.nvim_echo({ { name .. " " .. time .. " " .. level .. ": ", hl }, { msg } }, true, {})
-end
-
-function M.error(msg, name)
-  M.log("ERROR", msg, name)
-end
-
-function M.warn(msg, name)
-  M.log("WARN", msg, name)
-end
-
-function M.info(msg, name)
-  M.log("INFO", msg, name)
-end
-
-function M.debug(msg, name)
-  M.log("DEBUG", msg, name)
-end
-
 function M.find_cmd(cmd, prefixes, start_from, stop_at)
     local path = require("lspconfig/util").path
 
@@ -163,9 +135,9 @@ function M.toggle(option, silent)
   options[option] = not options[option]
   if silent ~= true then
     if options[option] then
-      M.info("enabled vim." .. scope .. "." .. option, "Toggle")
+      logging:info("enabled vim." .. scope .. "." .. option, "Toggle")
     else
-      M.warn("disabled vim." .. scope .. "." .. option, "Toggle")
+      logging:warn("disabled vim." .. scope .. "." .. option, "Toggle")
     end
   end
 end

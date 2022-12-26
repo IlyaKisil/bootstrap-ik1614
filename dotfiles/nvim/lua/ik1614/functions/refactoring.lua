@@ -1,3 +1,5 @@
+local logging = require("ik1614.functions.logging")
+
 local utils = require("ik1614.utils")
 
 local M = {}
@@ -13,7 +15,7 @@ function M.new()
 
   for _, plugin_name in pairs(required_plugins) do
     if not utils.plugin_installed(plugin_name) then
-      utils.error("Failed to define custom functions based on [" .. plugin_name .. "] plugin")
+      logging:error("Failed to define custom functions based on [" .. plugin_name .. "] plugin")
       return {}
     end
   end
