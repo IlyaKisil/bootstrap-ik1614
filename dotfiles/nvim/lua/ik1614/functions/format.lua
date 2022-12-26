@@ -1,5 +1,4 @@
 local logging = require("ik1614.functions.logging")
-local util = require("ik1614.utils")
 
 local M = {}
 M.__index = M

@@ -7,6 +7,7 @@ function M.new()
 end
 
 -- Main functions.for mappings
+-- By default it does NOT do recursive remap
 function M:_map(mode, tbl)
   vim.keymap.set(mode, tbl[1], tbl[2], tbl[3])
 end
@@ -20,20 +21,28 @@ function M:_buf_map(mode, tbl)
   self:_map(mode, tbl)
 end
 
-function M:nmap(tbl)
+function M:c(tbl)
+  self:_map("c", tbl)
+end
+
+function M:n(tbl)
   self:_map("n", tbl)
 end
 
-function M:imap(tbl)
+function M:i(tbl)
   self:_map("i", tbl)
 end
 
-function M:buf_nnoremap(tbl)
-  self:_buf_map("n", tbl)
+function M:v(tbl)
+  self:_map("v", tbl)
 end
 
-function M:buf_inoremap(tbl)
+function M:buf_i(tbl)
   self:_buf_map("i", tbl)
+end
+
+function M:buf_n(tbl)
+  self:_buf_map("n", tbl)
 end
 
 return M.new()
