@@ -1,8 +1,8 @@
-local utils = require("ik1614.utils")
+local utils = require("ik1614.functions.utils")
 local f = require("ik1614.functions")
 local plugin_name = "onedark"
 
-if not utils.plugin_installed(plugin_name) then
+if not utils:plugin_installed(plugin_name) then
   return
 end
 

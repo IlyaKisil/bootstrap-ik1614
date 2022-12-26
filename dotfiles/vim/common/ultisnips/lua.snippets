@@ -1,8 +1,8 @@
 snippet plugin-setup "Add boiler plate for setting up a plugin" b
-local utils = require("ik1614.utils")
+local utils = require("ik1614.functions.utils")
 local plugin_name = "${1:}"
 
-if not utils.plugin_installed(plugin_name) then
+if not utils:plugin_installed(plugin_name) then
   return
 end
 
@@ -12,7 +12,7 @@ endsnippet
 
 
 snippet plugin-function "Add boiler plate to define functions based on a plugin" b
-local utils = require("ik1614.utils")
+local utils = require("ik1614.functions.utils")
 
 local M = {}
 M.__index = M
@@ -22,7 +22,7 @@ function M.new()
   local self = setmetatable({}, M)
   local plugin_name = "${1:}"
 
-  if not utils.plugin_installed(plugin_name) then
+  if not utils:plugin_installed(plugin_name) then
     utils.error("Failed to define custom functions based on [" .. plugin_name .. "] plugin")
     return {}
   end

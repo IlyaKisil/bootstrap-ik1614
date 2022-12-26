@@ -1,3 +1,5 @@
+local logging = require("ik1614.functions.logging")
+
 local M = {}
 M.__index = M
 
@@ -43,5 +45,12 @@ function M:get_color_pallet_style(theme)
   return styles[theme]
 end
 
+function M:plugin_installed(name)
+  if not pcall(require, name) then
+    logging:warn("Plugin ["  .. name .. "] is not installed")
+    return
+  end
+  return true
+end
 
 return M.new()
