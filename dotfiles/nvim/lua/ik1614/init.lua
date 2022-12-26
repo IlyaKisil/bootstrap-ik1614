@@ -2,17 +2,18 @@
 
 Notes to people reading my configuration (including myself in a future :rofl:)
 
-./after/plugin/*.[vim|lua]
+./after/plugin/*.lua
   * This is where configuration for plugins live.
 
   * They get auto sourced on startup. In general, the name of the file configures
     the plugin with the corresponding name.
 
-  * If plugin is written in Lua, then the corresponding config files should be with
-    '.lua' extension.
+  * Configuration of any plugin should be written in a file with '.lua' extension.
 
-  * If plugin is written in Vimscript, then the corresponding config files should be with
-    '.vim' extension.
+  * Use plugins that are written in Vimscript only if there is no good alternative
+    written in Lua, in which case configuration of such plugin should still be written
+    in Lua. You can use 'vim.cmd(...)' to do that with an intention to convert it to
+    Lua at some point.
 
 ./lua/ik1614/functions/*
   * This is where all custom functions live. This includes when I need to build something
@@ -29,6 +30,7 @@ require("ik1614.globals.mappings")
 -- Hookup plugins
 require("ik1614.plugins")
 
+-- Setup all things related to LSP
 require("ik1614.lsp")
 
 vim.cmd('luafile ~/.config/nvim/init-local.lua')

@@ -1,6 +1,6 @@
 - link:
     ~/.local/share/nvim/snippets: dotfiles/nvim/snippets
-    ~/.config/nvim/init.vim: dotfiles/nvim/init.vim
+    ~/.config/nvim/init.lua: dotfiles/nvim/init.lua
     ~/.config/nvim/lua: dotfiles/nvim/lua
     ~/.config/nvim/colors: dotfiles/nvim/colors
     ~/.config/nvim/after: dotfiles/nvim/after
