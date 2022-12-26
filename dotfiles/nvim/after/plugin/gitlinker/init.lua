@@ -1,7 +1,7 @@
-local utils = require("ik1614.functions.utils")
+local f = require("ik1614.functions")
 local plugin_name = "gitlinker"
 
-if not utils:plugin_installed(plugin_name) then
+if not f.utils:plugin_installed(plugin_name) then
   return
 end
 

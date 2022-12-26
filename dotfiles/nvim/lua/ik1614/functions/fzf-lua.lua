@@ -73,6 +73,7 @@ function M:get_rg_opts_grep(extra_opts)
     "--color=always",
     "--smart-case",
     "--max-columns=512",
+    "--hidden",
     self:get_ignore_glob("rg"),
   }
 
