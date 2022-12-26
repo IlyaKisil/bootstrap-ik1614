@@ -10,23 +10,14 @@
 " LOAD VM INVARIANT CONFIGURATIONS
 " ============================================================================"
 
+let $__VIM_DOTFILES_HOME = $HOME.'/.vim'
+
 let s:__configs = []
 
 call add(s:__configs, '/general/settings.vim')
 call add(s:__configs, '/general/mappings.vim')
 call add(s:__configs, '/general/theme.vim')
 call add(s:__configs, '/vim-plug/plugins.vim')
-
-if has("nvim")
-    let $__VIM_DOTFILES_HOME = $HOME.'/.config/nvim'
-    let __local_configs_path = $__VIM_DOTFILES_HOME.'/init-local.vim'
-
-    call add(s:__configs, '/init-nvim-specific.vim')
-else
-    let $__VIM_DOTFILES_HOME = $HOME.'/.vim'
-    let __local_configs_path = $__VIM_DOTFILES_HOME.'/vimrc-local'
-endif
-
 call add(s:__configs, '/vim-plug/configs/vim-airline.vim')
 call add(s:__configs, '/vim-plug/configs/vim-devicons.vim')
 call add(s:__configs, '/vim-plug/configs/nerdtree.vim')
@@ -55,6 +46,8 @@ endfor
 " ============================================================================
 " LOAD VM SPECIFIC (LOCAL) CONFIGURATIONS
 " ============================================================================
+let __local_configs_path = $__VIM_DOTFILES_HOME.'/vimrc-local'
+
 if filereadable(expand(__local_configs_path))
     execute "source " . __local_configs_path
 endif
