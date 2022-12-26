@@ -7,12 +7,12 @@
 
 --]]
 
-
 local M = {
-  fzf = require("ik1614.functions.fzf-lua"),
-  refactoring = require("ik1614.functions.refactoring"),
-  mapping = require("ik1614.functions.mapping"),
   format = require("ik1614.functions.format"),
+  fzf = require("ik1614.functions.fzf-lua"),
+  logging = require("ik1614.functions.logging"),
+  mapping = require("ik1614.functions.mapping"),
+  refactoring = require("ik1614.functions.refactoring"),
   utils = require("ik1614.functions.utils"),
 }
 

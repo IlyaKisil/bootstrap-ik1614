@@ -1,5 +1,6 @@
 local utils = require("ik1614.utils")
 local mapping = require("ik1614.functions.mapping")
+local logging = require("ik1614.functions.logging")
 local f = require("ik1614.functions")
 
 local required_plugins = {
@@ -12,7 +13,7 @@ local required_plugins = {
 
 for _, plugin_name in pairs(required_plugins) do
   if not utils.plugin_installed(plugin_name) then
-    utils.warn("LSP is disabled as it requires [" .. plugin_name .. "] plugin")
+    logging:warn("LSP is disabled as it requires [" .. plugin_name .. "] plugin")
     return
   end
 end
@@ -166,7 +167,7 @@ custom_capabilities = require("cmp_nvim_lsp").default_capabilities(custom_capabi
 
 local function setup_server(server, config)
   if not config then
-    utils.warn("Skipped [" .. server .. "] as no config was provided")
+    logging:warn("Skipped [" .. server .. "] as no config was provided")
     return
   end
 
@@ -265,34 +266,34 @@ for server, config in pairs(servers) do
 end
 
 
-null_ls.setup({
-  sources = {
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.refactoring,
-    null_ls.builtins.code_actions.shellcheck.with({
-      runtime_condition = function()
-        -- Disable null-ls for 'environment.template' files
-        return not f.utils:is_environment_template()
-      end,
-    }),
-    -- null_ls.builtins.diagnostics.cspell,
-    null_ls.builtins.diagnostics.shellcheck.with({
-      runtime_condition = function()
-        -- Disable null-ls for 'environment.template' files
-        return not f.utils:is_environment_template()
-      end,
-    }),
-    -- NOTE: Some formatters might not trigger if there are errors in the code
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.formatting.terraform_fmt.with({
-      timeout = 10000,
-    }),
+-- null_ls.setup({
+--   sources = {
+--     null_ls.builtins.code_actions.gitsigns,
+--     null_ls.builtins.code_actions.refactoring,
+--     null_ls.builtins.code_actions.shellcheck.with({
+--       runtime_condition = function()
+--         -- Disable null-ls for 'environment.template' files
+--         return not f.utils:is_environment_template()
+--       end,
+--     }),
+--     -- null_ls.builtins.diagnostics.cspell,
+--     null_ls.builtins.diagnostics.shellcheck.with({
+--       runtime_condition = function()
+--         -- Disable null-ls for 'environment.template' files
+--         return not f.utils:is_environment_template()
+--       end,
+--     }),
+--     -- NOTE: Some formatters might not trigger if there are errors in the code
+--     null_ls.builtins.formatting.black,
+--     null_ls.builtins.formatting.shfmt,
+--     null_ls.builtins.formatting.terraform_fmt.with({
+--       timeout = 10000,
+--     }),
 
-  },
-  on_attach = custom_on_attach,
-  diagnostics_format = "#{m} (#{s})",
-})
+--   },
+--   on_attach = custom_on_attach,
+--   diagnostics_format = "#{m} (#{s})",
+-- })
 
 return {
   on_init = custom_on_init,
