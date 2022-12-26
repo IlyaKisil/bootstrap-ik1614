@@ -134,35 +134,6 @@ function M.toggle(option, silent)
   end
 end
 
--- Merge two tables without mutation
-function M.table_merge(t1, t2)
-  local result = {}
-
-  for _, v in ipairs(t1) do
-    table.insert(result, v)
-  end
-
-  for _, v in ipairs(t2) do
-    table.insert(result, v)
-  end
-
-  return result
-end
-
-function M.table_to_string(t, separator)
-  local result = ""
-
-  for _, v in pairs(t) do
-      result = result .. separator .. v
-  end
-
-  -- Remove first hanging separtor
-  result = result:sub(2)
-
-  return result
-end
-
-
 -- NOTE: This isn't really needed. Instead of using ',' and ';' you can just
 -- keep using 'f' or 'F' with the 'mini.jump' plugin. For example, instead of
 -- 'fo,,,' the same can be done with 'fofff'

@@ -1,5 +1,4 @@
-local u = require("ik1614.functions.utils")
-local utils = require("ik1614.utils")
+local utils = require("ik1614.functions.utils")
 local logging = require("ik1614.functions.logging")
 
 local M = {}
@@ -9,7 +8,7 @@ function M.new()
   local self = setmetatable({}, M)
   local plugin_name = "fzf-lua"
 
-  if not u:plugin_installed(plugin_name) then
+  if not utils:plugin_installed(plugin_name) then
     logging:error("Failed to define custom functions based on [" .. plugin_name .. "] plugin")
     return {}
   end
@@ -49,7 +48,7 @@ function M:get_ignore_glob(type)
     "package-lock.json",
   }
 
-  local glob = utils.table_to_string(ignore, ",")
+  local glob = utils:table_to_string(ignore, ",")
 
   if type == "rg" then
     return "--glob '!{" .. glob .. "}'"
@@ -77,9 +76,9 @@ function M:get_rg_opts_grep(extra_opts)
     self:get_ignore_glob("rg"),
   }
 
-  local opts = utils.table_merge(default_opts, extra_opts)
+  local opts = utils:table_merge(default_opts, extra_opts)
 
-  return utils.table_to_string(opts, " ")
+  return utils:table_to_string(opts, " ")
 end
 
 function M:get_rg_opts_files(extra_opts)
@@ -94,9 +93,9 @@ function M:get_rg_opts_files(extra_opts)
     self:get_ignore_glob("rg"),
   }
 
-  local opts = utils.table_merge(default_opts, extra_opts)
+  local opts = utils:table_merge(default_opts, extra_opts)
 
-  return utils.table_to_string(opts, " ")
+  return utils:table_to_string(opts, " ")
 end
 
 function M:get_fd_opts_files(extra_opts)
@@ -111,9 +110,9 @@ function M:get_fd_opts_files(extra_opts)
     self:get_ignore_glob("fd"),
   }
 
-  local opts = utils.table_merge(default_opts, extra_opts)
+  local opts = utils:table_merge(default_opts, extra_opts)
 
-  return utils.table_to_string(opts, " ")
+  return utils:table_to_string(opts, " ")
 end
 
 function M:git_status()
@@ -159,7 +158,7 @@ end
 
 function M:grep_selected_files(selected)
   local rg_opts = self:get_rg_opts_grep()
-  local command = ("rg %s '' %s"):format(rg_opts, utils.table_to_string(selected, " "))
+  local command = ("rg %s '' %s"):format(rg_opts, utils:table_to_string(selected, " "))
 
   return self.plugin.fzf_exec(
     command,
