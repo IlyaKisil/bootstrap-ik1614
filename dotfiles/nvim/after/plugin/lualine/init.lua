@@ -1,13 +1,13 @@
-local utils = require("ik1614.functions.utils")
+local f = require("ik1614.functions")
 local plugin_name = "lualine"
 
-if not utils:plugin_installed(plugin_name) then
+if not f.utils:plugin_installed(plugin_name) then
   return
 end
 
 local function diff_source()
   -- Reuse git diff from 'gitsigns' if it exists
-  if utils:plugin_installed("gitsigns") then
+  if f.utils:plugin_installed("gitsigns") then
     -- TODO: I have a feeling there is some load dependency, race condition
     -- As at the moments this doesn't work on the start up but after that
     -- that dict is available :shrug:
@@ -72,7 +72,7 @@ plugin.setup({
       {
         function()
           local plugin_name = 'lsp-status'
-          if not utils:plugin_installed(plugin_name) then
+          if not f.utils:plugin_installed(plugin_name) then
             return ""
           end
           return require(plugin_name).status()

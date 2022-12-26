@@ -1,6 +1,3 @@
-local utils = require("ik1614.functions.utils")
-local mapping = require("ik1614.functions.mapping")
-local logging = require("ik1614.functions.logging")
 local f = require("ik1614.functions")
 
 local required_plugins = {
@@ -12,8 +9,8 @@ local required_plugins = {
 }
 
 for _, plugin_name in pairs(required_plugins) do
-  if not utils:plugin_installed(plugin_name) then
-    logging:warn("LSP is disabled as it requires [" .. plugin_name .. "] plugin")
+  if not f.utils:plugin_installed(plugin_name) then
+    f.logging:warn("LSP is disabled as it requires [" .. plugin_name .. "] plugin")
     return
   end
 end
@@ -92,23 +89,23 @@ local custom_on_attach = function(client)
   --[[
        Define mappings only for buffers with have LSP client attached to them
   --]]
-  mapping:buf_nnoremap({ "K", ':lua vim.lsp.buf.hover()<CR>' })
-  mapping:buf_inoremap({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
-  mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
-  mapping:buf_nnoremap({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
-  mapping:buf_nnoremap({ "gT", ':lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-  mapping:buf_nnoremap({ "<leader>sl", ':lua vim.diagnostic.open_float()<CR>' })
-  mapping:buf_nnoremap({ "<leader>sn", ':lua vim.diagnostic.goto_next()<CR>' })
-  mapping:buf_nnoremap({ "<leader>se", ':lua vim.diagnostic.goto_prev()<CR>' })
-  mapping:buf_nnoremap({ "<leader>rn", ':lua vim.lsp.buf.rename()<CR>' })
+  f.mapping:buf_nnoremap({ "K", ':lua vim.lsp.buf.hover()<CR>' })
+  f.mapping:buf_inoremap({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
+  f.mapping:buf_nnoremap({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
+  f.mapping:buf_nnoremap({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
+  f.mapping:buf_nnoremap({ "gT", ':lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sl", ':lua vim.diagnostic.open_float()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sn", ':lua vim.diagnostic.goto_next()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>se", ':lua vim.diagnostic.goto_prev()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>rn", ':lua vim.lsp.buf.rename()<CR>' })
   -- TODO: create general mapping for fzf spefic stuff
-  mapping:buf_nnoremap({ "<leader>sa", ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
-  mapping:buf_nnoremap({ "<leader>ss", ':lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
-  mapping:buf_nnoremap({ "<leader>sS", ':lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>'})
-  mapping:buf_nnoremap({ "<leader>sd", ':lua require("ik1614.functions.fzf-lua"):lsp_document_diagnostics()<CR>' })
-  mapping:buf_nnoremap({ "<leader>sD", ':lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
-  mapping:buf_nnoremap({ "<leader>sr", ':lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
-  mapping:buf_nnoremap({ "<leader>si", ':lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sa", ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>ss", ':lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sS", ':lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>'})
+  f.mapping:buf_nnoremap({ "<leader>sd", ':lua require("ik1614.functions.fzf-lua"):lsp_document_diagnostics()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sD", ':lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>sr", ':lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
+  f.mapping:buf_nnoremap({ "<leader>si", ':lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
 
   vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
 
@@ -198,7 +195,7 @@ local servers = {
   --     if vim.env.VIRTUAL_ENV then
   --       p = path.concat(vim.env.VIRTUAL_ENV, "bin", "python3")
   --     else
-  --       p = utils:find_cmd("python3", ".venv/bin", config.root_dir)
+  --       p = f.utils:find_cmd("python3", ".venv/bin", config.root_dir)
   --     end
   --     config.settings.python.pythonPath = p
   --   end,
