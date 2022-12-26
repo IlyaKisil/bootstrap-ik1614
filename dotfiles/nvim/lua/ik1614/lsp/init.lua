@@ -198,7 +198,7 @@ local servers = {
   --     if vim.env.VIRTUAL_ENV then
   --       p = path.concat(vim.env.VIRTUAL_ENV, "bin", "python3")
   --     else
-  --       p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
+  --       p = utils:find_cmd("python3", ".venv/bin", config.root_dir)
   --     end
   --     config.settings.python.pythonPath = p
   --   end,
