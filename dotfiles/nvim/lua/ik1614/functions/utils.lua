@@ -65,7 +65,9 @@ function M:reload_plugins(plugins)
       "/"
     )
     if not self:is_file(plugin_config_path) then
-      logging:warn("Plugin config ["  .. plugin_config_path .. "] does not exists")
+      local message = "Plugin config ["  .. plugin_config_path .. "] does not exists"
+      logging:warn(message)
+      vim.notify(message, "warn")
       return
     end
     local command = "source " .. plugin_config_path
