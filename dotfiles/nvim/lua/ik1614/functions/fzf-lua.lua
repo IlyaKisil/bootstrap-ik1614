@@ -213,7 +213,7 @@ function M:reload_select_plugins()
   return self.plugin.fzf_exec(
     "ls " .. utils:get_plugins_config_dir(),
     {
-      prompt = "Plugins> ",
+      prompt = "Plugins to reload> ",
       actions = {
         ["default"] = function(selected) utils:reload_plugins(selected) end,
       },
