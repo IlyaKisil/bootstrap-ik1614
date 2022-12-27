@@ -8,6 +8,14 @@
 [includeIf "gitdir:IlyaKisil/"]
     path = ~/.gitconfig-personal
 
+[core]
+    # Improves performance on large repos or when there are a quite a few changes
+    # * Available only in Git version >= 2.37.0
+    # * Not available for Linux :cry:
+    # * For more info see https://github.blog/2022-06-29-improve-git-monorepo-performance-with-a-file-system-monitor/
+    fsmonitor = true
+    untrackedcache = true
+
 # We keep this local in case some systems don't have nvim
 # For some reason 'vimdiff' doesn't pickup correct colors
 [diff]

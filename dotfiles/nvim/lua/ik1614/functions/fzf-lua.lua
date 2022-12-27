@@ -157,9 +157,9 @@ function M:grep()
   })
 end
 
-function M:grep_selected_files(selected)
+function M:grep_selected_files(data)
   local rg_opts = self:get_rg_opts_grep()
-  local command = ("rg %s '' %s"):format(rg_opts, utils:table_to_string(selected, " "))
+  local command = ("rg %s '' %s"):format(rg_opts, utils:table_to_string(data, " "))
 
   return self.plugin.fzf_exec(
     command,
@@ -175,6 +175,35 @@ function M:grep_selected_files(selected)
         ["ctrl-s"]  = self.plugin.actions.file_split,
         ["ctrl-v"]  = self.plugin.actions.file_vsplit,
         ["ctrl-t"]  = self.plugin.actions.file_tabedit,
+        ["ctrl-r"]  = function(selected) self:files_of_selected_lines(selected) end,
+      }
+    }
+  )
+end
+
+function M:files_of_selected_lines(data)
+  local selected_files = {}
+  local unique_files = {}
+  for _, v in pairs(data) do
+    local file_name = string.match(v, "(.-):") -- Split by ':' and get first item
+    if (not unique_files[file_name]) then
+      unique_files[file_name] = true
+      table.insert(selected_files, file_name)
+    end
+  end
+
+  self.plugin.fzf_exec(
+    selected_files,
+    {
+      fzf_opts = self:get_fzf_for_grep_opts(),
+      previewer = "builtin",
+      prompt = "Files from selected> ",
+      actions = {
+        ["default"] = self.plugin.actions.file_edit_or_qf,
+        ["ctrl-s"]  = self.plugin.actions.file_split,
+        ["ctrl-v"]  = self.plugin.actions.file_vsplit,
+        ["ctrl-t"]  = self.plugin.actions.file_tabedit,
+        ["ctrl-r"]  = function(selected) self:grep_selected_files(selected) end,
       }
     }
   )
