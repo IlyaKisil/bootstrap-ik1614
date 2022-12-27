@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "hlargs"
+local plugin = f.utils:load_plugin("hlargs")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 
 local colors = f.utils:get_color_pallet("onedark")
 plugin.setup({

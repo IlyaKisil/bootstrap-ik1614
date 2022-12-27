@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "neoclip"
+local plugin = f.utils:load_plugin("neoclip")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 
 -- FIXME: For some reason this still doesn't work :cry:
 -- On exit from, it pushes yanks from a current session to the DB.

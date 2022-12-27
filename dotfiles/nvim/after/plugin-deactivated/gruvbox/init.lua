@@ -1,13 +1,12 @@
 local f = require("ik1614.functions")
-local plugin_name = "gruvbox"
+local plugin = f.utils:load_plugin("gruvbox")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
 vim.o.background = "dark" -- or "light" for light mode
 
-local plugin = require(plugin_name)
 plugin.setup({
   undercurl = true,
   underline = true,

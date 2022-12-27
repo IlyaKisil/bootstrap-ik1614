@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "which-key"
+local plugin = f.utils:load_plugin("which-key")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
     return
 end
 
-local plugin = require(plugin_name)
 
 plugin.setup(
   {
@@ -165,6 +164,7 @@ local v_leader = {
 plugin.register(n_leader, { prefix = "<leader>", mode = "n" })
 plugin.register(v_leader, { prefix = "<leader>", mode = "v" })
 
+-- TODO: Somehow move keybindings to a central place.
 -- When we don't want to wait for auto pop-up :shrug:
-vim.api.nvim_set_keymap('n', '<Leader>?', ":WhichKey '' n<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<Leader>?', ":WhichKey '' v<CR>", { noremap = true, silent = true })
+f.mapping:n({'<Leader>?', ":WhichKey '' n<CR>"})
+f.mapping:v({'<Leader>?', ":WhichKey '' v<CR>"})

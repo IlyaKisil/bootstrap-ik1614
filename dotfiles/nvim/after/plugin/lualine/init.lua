@@ -1,7 +1,7 @@
 local f = require("ik1614.functions")
-local plugin_name = "lualine"
+local plugin = f.utils:load_plugin("lualine")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
@@ -24,7 +24,6 @@ local function diff_source()
   end
 end
 
-local plugin = require(plugin_name)
 
 plugin.setup({
   options = {

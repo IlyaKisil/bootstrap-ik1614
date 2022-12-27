@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "todo-comments"
+local plugin = f.utils:load_plugin("todo-comments")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 plugin.setup({
   signs = false,
   -- sign_priority = 8,

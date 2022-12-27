@@ -1,7 +1,7 @@
 -- local f = require("ik1614.functions")
--- local plugin_name = "vim-fugitive"
+-- local plugin = f.utils:load_plugin("vim-fugitive")
 
--- if not f.utils:plugin_installed(plugin_name) then
+-- if not plugin then
 --   return
 -- end
 

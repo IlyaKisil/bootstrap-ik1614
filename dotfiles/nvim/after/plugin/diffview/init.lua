@@ -1,13 +1,12 @@
 local f = require("ik1614.functions")
-local plugin_name = "diffview"
+local plugin = f.utils:load_plugin("diffview")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
 local cb = require('diffview.config').diffview_callback
 
-local plugin = require(plugin_name)
 plugin.setup({
   use_icons = true,         -- Requires nvim-web-devicons
   file_panel = {
