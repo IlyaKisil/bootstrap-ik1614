@@ -4,7 +4,7 @@ local required_plugins = {
   "mason",
   "mason-lspconfig",
   "lspconfig",
-  "lsp-status",
+  -- "lsp-status",
   "null-ls",
 }
 
@@ -18,7 +18,7 @@ end
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
-local lsp_status = require("lsp-status")
+-- local lsp_status = require("lsp-status")
 local path = require "mason-core.path"
 local null_ls = require("null-ls")
 
@@ -33,14 +33,14 @@ vim.diagnostic.config({
   },
 })
 
-lsp_status.config {
-  indicator_ok = "",
-  status_symbol = "LSP",
-  spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
-  diagnostics = false,
-  current_function = false,
-}
-lsp_status.register_progress()
+-- lsp_status.config {
+--   indicator_ok = "",
+--   status_symbol = "LSP",
+--   spinner_frames = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+--   diagnostics = false,
+--   current_function = false,
+-- }
+-- lsp_status.register_progress()
 
 mason.setup({
   ui = {
@@ -84,7 +84,7 @@ local filetype_on_attach = setmetatable({
 local custom_on_attach = function(client)
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
-  lsp_status.on_attach(client)
+  -- lsp_status.on_attach(client)
 
   --[[
        Define mappings only for buffers with have LSP client attached to them
@@ -152,7 +152,7 @@ end
 
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
-custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, lsp_status.capabilities)
+-- custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, lsp_status.capabilities)
 custom_capabilities.textDocument.codeLens = { dynamicRegistration = false }
 -- custom_capabilities = require("cmp_nvim_lsp").update_capabilities(custom_capabilities)
 custom_capabilities = require("cmp_nvim_lsp").default_capabilities(custom_capabilities)

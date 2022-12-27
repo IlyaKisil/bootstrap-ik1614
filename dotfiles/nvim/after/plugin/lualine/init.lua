@@ -68,15 +68,15 @@ plugin.setup({
       -- 'filetype',
     },
     lualine_y = {
-      {
-        function()
-          local plugin_name = 'lsp-status'
-          if not f.utils:plugin_installed(plugin_name) then
-            return ""
-          end
-          return require(plugin_name).status()
-        end
-      },
+      -- {
+      --   function()
+      --     local plugin_name = 'lsp-status'
+      --     if not f.utils:plugin_installed(plugin_name) then
+      --       return ""
+      --     end
+      --     return require(plugin_name).status()
+      --   end
+      -- },
       'diagnostics',
       -- {
       --   -- This only helps with LSP clients that take some time to initialise
