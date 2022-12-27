@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "nvim-treesitter"
+local plugin = f.utils:load_plugin("nvim-treesitter")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
--- local plugin = require(plugin_name)
 -- plugin.setup({})
 
 

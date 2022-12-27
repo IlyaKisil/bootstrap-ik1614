@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "which-key"
+local plugin = f.utils:load_plugin("which-key")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
     return
 end
 
-local plugin = require(plugin_name)
 
 plugin.setup(
   {

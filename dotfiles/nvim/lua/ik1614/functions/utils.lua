@@ -45,6 +45,15 @@ function M:get_color_pallet_style(theme)
   return styles[theme]
 end
 
+function M:load_plugin(name)
+  local ok, plugin = pcall(require, name)
+  if not ok then
+    logging:warn("Plugin ["  .. name .. "] is not installed")
+    return
+  end
+  return plugin
+end
+
 function M:plugin_installed(name)
   if not pcall(require, name) then
     logging:warn("Plugin ["  .. name .. "] is not installed")

@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "Navigator"
+local plugin = f.utils:load_plugin("Navigator")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 plugin.setup({
     -- When you want to save the modified buffers when moving to tmux
     -- nil - Don't save (default)

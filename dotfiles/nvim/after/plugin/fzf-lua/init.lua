@@ -1,11 +1,11 @@
 local f = require("ik1614.functions")
-local plugin_name = "fzf-lua"
 
-if not f.utils:plugin_installed(plugin_name) then
+local plugin = f.utils:load_plugin("fzf-lua")
+
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 local actions = require "fzf-lua.actions"
 
 plugin.setup {

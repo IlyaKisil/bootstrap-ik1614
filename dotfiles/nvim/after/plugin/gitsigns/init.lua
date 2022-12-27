@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "gitsigns"
+local plugin = f.utils:load_plugin("gitsigns")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 plugin.setup({
   signs = {
     -- NOTE: somehow it picks up correct colors from 'mdracula'. I think it just uses

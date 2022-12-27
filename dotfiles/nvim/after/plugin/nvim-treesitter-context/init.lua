@@ -1,11 +1,10 @@
 -- local f = require("ik1614.functions")
--- local plugin_name = "treesitter-context"
+-- local plugin = f.utils:load_plugin("treesitter-context")
 
--- if not f.utils:plugin_installed(plugin_name) then
+-- if not plugin then
 --   return
 -- end
 
--- local plugin = require(plugin_name)
 -- plugin.setup({
 --     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
 --     throttle = true, -- Throttles plugin updates (may improve performance)

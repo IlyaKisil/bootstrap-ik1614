@@ -1,11 +1,10 @@
 local f = require("ik1614.functions")
-local plugin_name = "gitlinker"
+local plugin = f.utils:load_plugin("gitlinker")
 
-if not f.utils:plugin_installed(plugin_name) then
+if not plugin then
   return
 end
 
-local plugin = require(plugin_name)
 
 --- copies the url to clipboard and opens the url in your default browser
 --
