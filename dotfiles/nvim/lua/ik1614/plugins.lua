@@ -39,7 +39,7 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     use({
       "hrsh7th/nvim-cmp",
-      commit = "99ef8543",
+      -- commit = "99ef8543",
       -- event = "InsertEnter",  # TODO: understand how this 'opt/event' work etc
       -- opt = true,
       requires = {
@@ -47,9 +47,9 @@ return require('packer').startup(
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "quangnguyen30192/cmp-nvim-ultisnips",
-        {
-          "windwp/nvim-autopairs",
-        },
+        -- {
+        --   "windwp/nvim-autopairs",
+        -- },
       },
     })
 
@@ -66,7 +66,7 @@ return require('packer').startup(
       run = ':TSUpdate',
     })
     use {'nvim-treesitter/nvim-treesitter-textobjects'}
-    use {'https://github.com/nvim-treesitter/nvim-treesitter-context'}
+    -- use {'https://github.com/nvim-treesitter/nvim-treesitter-context'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
     use 'nvim-treesitter/playground'
 
@@ -89,7 +89,7 @@ return require('packer').startup(
     -- Colorschemes
     use({
       'https://github.com/navarasu/onedark.nvim',
-      commit = "6c72a9c5",
+      -- commit = "6c72a9c5",
     })
 
     use({
@@ -123,10 +123,10 @@ return require('packer').startup(
 
     use({
       "jose-elias-alvarez/null-ls.nvim",
-      commit = "76d0573f",
+      -- commit = "76d0573f",
     })
 
-    use({'https://github.com/nvim-lua/lsp-status.nvim'})
+    -- use({'https://github.com/nvim-lua/lsp-status.nvim'})
     -- use({'https://github.com/arkav/lualine-lsp-progress'})
 
     use {
@@ -155,7 +155,7 @@ return require('packer').startup(
       end,
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use 'nvim-telescope/telescope-media-files.nvim'
+    -- use 'nvim-telescope/telescope-media-files.nvim'
     use 'nvim-telescope/telescope-symbols.nvim'
     -- use 'https://github.com/fhill2/telescope-ultisnips.nvim'
 
@@ -189,7 +189,7 @@ return require('packer').startup(
 
     use({
       'https://github.com/folke/todo-comments.nvim',
-      commit = "916cd4f1",
+      -- commit = "916cd4f1",
     })
 
     use({
@@ -232,9 +232,7 @@ return require('packer').startup(
       'https://github.com/Glench/Vim-Jinja2-Syntax',
     }
 
-    use {
-      "https://github.com/lervag/vimtex"
-    }
+    -- use { "https://github.com/lervag/vimtex" }
 
     -------------------------------------------------------------------------------------
     -- General Plugins
