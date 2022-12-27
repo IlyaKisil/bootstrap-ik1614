@@ -1,15 +1,14 @@
 local f = require("ik1614.functions")
+
+-- NOTE: These should be set before calling require'nvim-tree' or calling setup. They
+-- are being migrated to the setup function bit by bit
+vim.g.nvim_tree_refresh_wait = 1000
+
 local plugin = f.utils:load_plugin("nvim-tree")
 
 if not plugin then
   return
 end
-
--- NOTE: These should be set before calling require'nvim-tree' or calling setup. They
--- are being migrated to the setup function bit by bit
---
-vim.g.nvim_tree_refresh_wait = 1000
-
 
 plugin.setup({
   disable_netrw       = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
