@@ -170,6 +170,9 @@ plugin.setup {
     glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
     glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
     fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+    actions = {
+      ["ctrl-r"]      = function(selected) f.fzf:files_of_selected_lines(selected) end,
+    }
   },
   args = { -- TODO: figure out what this does :shrug:
     files_only        = true,
