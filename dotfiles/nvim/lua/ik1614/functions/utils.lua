@@ -54,6 +54,26 @@ function M:load_plugin(name)
   return plugin
 end
 
+function M:reload_plugins(plugins)
+  for _, name in pairs(plugins) do
+    local plugin_config_path = self:table_to_string(
+      {
+        self:get_plugins_config_dir(),
+        name,
+        "init.lua",
+      },
+      "/"
+    )
+    if not self:is_file(plugin_config_path) then
+      logging:warn("Plugin config ["  .. plugin_config_path .. "] does not exists")
+      return
+    end
+    local command = "source " .. plugin_config_path
+    vim.cmd(command)
+    vim.notify("Reloaded configuration of [" .. name .. "] plugin")
+  end
+end
+
 function M:plugin_installed(name)
   if not pcall(require, name) then
     logging:warn("Plugin ["  .. name .. "] is not installed")
@@ -144,6 +164,29 @@ function M:toggle(option, silent)
       logging:warn("disabled vim." .. scope .. "." .. option, "Toggle")
     end
   end
+end
+
+---Get the full path to directory with plugin configurations
+---@return string
+function M:get_plugins_config_dir()
+  local home = os.getenv "HOME"
+  return home .. "/.config/nvim/after/plugin"
+end
+
+--- Checks whether a given path exists and is a file.
+--@param path (string) path to check
+--@returns (bool)
+function M:is_file(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == "file" or false
+end
+
+--- Checks whether a given path exists and is a directory
+--@param path (string) path to check
+--@returns (bool)
+function M:is_directory(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == "directory" or false
 end
 
 return M.new()

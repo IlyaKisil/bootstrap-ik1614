@@ -81,8 +81,9 @@ local n_leader = {
     name = "Run/Refactor",
     n = {"Rename"},
     f = {':lua require("ik1614.functions").fzf:lsp_code_actions()<CR>', "Refactor"},
-    r = {':w<CR>:luafile %<CR>', "Run currentl lua file"},
+    r = {':w<CR>:luafile %<CR>', "Run current lua file"},
     l = {':call functions#exec_current_line()<CR>', "Run current lua line"},
+    p = {':lua require("ik1614.functions").fzf:reload_select_plugins()<CR>', "Reload plugin configuration"},
   },
   s = {
     name = "Show",
