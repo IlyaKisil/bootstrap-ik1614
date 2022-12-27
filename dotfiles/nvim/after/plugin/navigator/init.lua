@@ -17,15 +17,14 @@ plugin.setup({
 })
 
 -- TODO: Somehow move keybindings to a central place.
--- And refactor to use utility functions
-vim.keymap.set('n', "<S-Left>",  '<CMD>NavigatorLeft<CR>')
-vim.keymap.set('n', "<S-Right>", '<CMD>NavigatorRight<CR>')
-vim.keymap.set('n', "<S-Up>",    '<CMD>NavigatorUp<CR>')
-vim.keymap.set('n', "<S-Down>",  '<CMD>NavigatorDown<CR>')
-vim.keymap.set('n', "<C-\\>",    '<CMD>NavigatorPrevious<CR>')
+f.mapping:n({"<S-Left>",  '<CMD>NavigatorLeft<CR>'})
+f.mapping:n({"<S-Right>", '<CMD>NavigatorRight<CR>'})
+f.mapping:n({"<S-Up>",    '<CMD>NavigatorUp<CR>'})
+f.mapping:n({"<S-Down>",  '<CMD>NavigatorDown<CR>'})
+f.mapping:n({"<C-\\>",    '<CMD>NavigatorPrevious<CR>'})
 
-vim.keymap.set('i', "<S-Left>",  '<C-c><CMD>NavigatorLeft<CR>')
-vim.keymap.set('i', "<S-Right>", '<C-c><CMD>NavigatorRight<CR>')
-vim.keymap.set('i', "<S-Up>",    '<C-c><CMD>NavigatorUp<CR>')
-vim.keymap.set('i', "<S-Down>",  '<C-c><CMD>NavigatorDown<CR>')
-vim.keymap.set('i', "<C-\\>",    '<C-c><CMD>NavigatorPrevious<CR>')
+f.mapping:i({"<S-Left>",  '<C-c><CMD>NavigatorLeft<CR>'})
+f.mapping:i({"<S-Right>", '<C-c><CMD>NavigatorRight<CR>'})
+f.mapping:i({"<S-Up>",    '<C-c><CMD>NavigatorUp<CR>'})
+f.mapping:i({"<S-Down>",  '<C-c><CMD>NavigatorDown<CR>'})
+f.mapping:i({"<C-\\>",    '<C-c><CMD>NavigatorPrevious<CR>'})
