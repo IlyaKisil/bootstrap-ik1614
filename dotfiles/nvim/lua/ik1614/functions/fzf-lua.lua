@@ -209,6 +209,22 @@ function M:files_of_selected_lines(data)
   )
 end
 
+function M:reload_select_plugins()
+  return self.plugin.fzf_exec(
+    "ls " .. utils:get_plugins_config_dir(),
+    {
+      prompt = "Plugins> ",
+      actions = {
+        ["default"] = function(selected) utils:reload_plugins(selected) end,
+      },
+      winopts = {
+        height=0.33,
+        width=0.33,
+      }
+    }
+  )
+end
+
 function M:lsp_references()
   return self.plugin.lsp_references({
     jump_to_single_result = true,
