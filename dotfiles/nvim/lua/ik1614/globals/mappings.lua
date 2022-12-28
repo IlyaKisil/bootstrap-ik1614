@@ -34,6 +34,24 @@ f.mapping:n({'<localleader>e', ':Lprev<CR>'})
 f.mapping:v({'<Space>', '<NOP>'})
 
 
+-- Don't start default completion. All completion related tasks are handled
+-- by 'nvim-cmp' and 'luasnip' plugins and mappings are defined there. Also
+-- reserve some mappings for the insert mode, since I don't use these anyway.
+f.mapping:i({'<C-u>', '<NOP>'}) -- Default: Delete all entered characters in the current line
+f.mapping:i({'<C-d>', '<NOP>'}) -- Default: Delete one shiftwidth of indent in the current line
+f.mapping:i({'<C-q>', '<NOP>'}) -- Default: Same as CTRL-V, i.e. insert next non-digit literally (unless used for terminal control flow)
+f.mapping:i({'<C-a>', '<NOP>'}) -- Default: Insert previously inserted text
+f.mapping:i({'<C-e>', '<NOP>'}) -- Default: Insert the character which is below the cursor
+f.mapping:i({'<C-n>', '<NOP>'}) -- Default: Find next match for keyword in front of the cursor
+f.mapping:i({'<C-y>', '<NOP>'}) -- Default: Copy character above the cursor
+f.mapping:i({'<C-j>', '<NOP>'}) -- Default: Create new line
+f.mapping:i({'<C-p>', '<NOP>'}) -- Default: Find previous match for keyword in front of the cursor
+f.mapping:i({'<C-l>', '<NOP>'}) -- Default: Should be safe
+f.mapping:i({'<C-k>', '<NOP>'}) -- Default: Enter digraph
+f.mapping:i({'<C-o>', '<NOP>'}) -- Default: Go into normal mode for one command and then back to insert mode
+f.mapping:i({'<C-t>', '<NOP>'}) -- Default: Insert one shiftwidth of indent in current line
+
+
 -- Keep selection after tab adjust
 f.mapping:v({'<', '<gv'})
 f.mapping:v({'>', '>gv'})
