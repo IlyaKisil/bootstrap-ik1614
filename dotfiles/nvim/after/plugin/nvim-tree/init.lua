@@ -101,6 +101,8 @@ plugin.setup({
     custom = {
       "^.DS_Store$",
       "^.git$",
+      "^tfplan$",
+      "^.terraform$",
     }
   },
   git = {
