@@ -182,6 +182,7 @@ function M:grep_selected_files(data)
 end
 
 function M:files_of_selected_lines(data)
+  -- TODO: keep location of the selected lines.
   local selected_files = {}
   local unique_files = {}
   for _, v in pairs(data) do
@@ -195,7 +196,7 @@ function M:files_of_selected_lines(data)
   self.plugin.fzf_exec(
     selected_files,
     {
-      fzf_opts = self:get_fzf_for_grep_opts(),
+      -- fzf_opts = self:get_fzf_for_grep_opts(), -- NOTE: might need to have some options when location of selected lines will be preserved.
       previewer = "builtin",
       prompt = "Files from selected> ",
       actions = {
