@@ -50,9 +50,9 @@ return require('packer').startup(
         'saadparwaiz1/cmp_luasnip',
         'L3MON4D3/LuaSnip',
         'rafamadriz/friendly-snippets',
-        -- {
-        --   "windwp/nvim-autopairs",
-        -- },
+        {
+          "windwp/nvim-autopairs",
+        },
       },
     })
 
