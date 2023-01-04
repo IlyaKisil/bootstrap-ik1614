@@ -24,6 +24,11 @@ ls.config.set_config {
   -- https://www.youtube.com/watch?v=Dn800rlPIho&t=7m52s
   -- https://www.youtube.com/watch?v=KtQZRAkgLqo
   ext_opts = {
+    [types.insertNode] = {
+      unvisited = {
+        hl_group = "Visual"
+      }
+    },
     [types.choiceNode] = {
       active = {
         virt_text = { { " « ", "NonTest" } },
@@ -56,16 +61,8 @@ vim.keymap.set("i", "<C-l>", function()
   end
 end)
 
-ls.add_snippets(
-  "all",
-  {
-    ls.parser.parse_snippet("expand", "-- This is what expanded")
-  },
-  {
-    type="autosnippets",
-    key="all_auto"
-  }
-)
+-- TODO: switch path to snippets to some variable or something
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/ik1614/snippets/ft"})
 
 -- NOTE: Needs to be called after defining my own snippets
 -- require("luasnip.loaders.from_snipmate").lazy_load()
@@ -81,3 +78,5 @@ require("luasnip.loaders.from_vscode").lazy_load({
     "sql",
   }
 })
+
+
