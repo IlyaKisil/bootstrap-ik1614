@@ -33,4 +33,7 @@ require("ik1614.plugins")
 -- Setup all things related to LSP
 require("ik1614.lsp")
 
+-- Setup all autocommands
+require("ik1614.autocmd")
+
 vim.cmd('luafile ~/.config/nvim/init-local.lua')

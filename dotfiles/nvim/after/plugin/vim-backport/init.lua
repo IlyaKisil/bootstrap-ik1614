@@ -22,7 +22,11 @@ vim.cmd([[
   if !isdirectory(&undodir)
       call mkdir(&undodir, "p")
   endif
-  " Continue where you left off upon reopening vim session
+
+  " Continue where you left off upon reopening vim session, e.g.
+  " command history, search history etc. Potentially, it used to
+  " work for preserving last position in a given file, but I'm not sure
+  " TODO: Switch to 'shada' as 'viminfo' is deprecated
   set viminfo+=n$__NVIM_HOME/dirs/viminfo
 
   augroup ik1614_now
