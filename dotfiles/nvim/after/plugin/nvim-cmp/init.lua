@@ -1,44 +1,61 @@
 local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("cmp")
+local cmp = f.utils:load_plugin("cmp")
+local luasnip = f.utils:load_plugin("luasnip")
 
-if not plugin then
+if not cmp or not luasnip then
   return
 end
 
-
-plugin.setup({
+cmp.setup({
   snippet = {
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   mapping = {
-    ["<C-u>"] = plugin.mapping.scroll_docs(-4), -- Once again scropplin is a bit backwards
-    ["<C-d>"] = plugin.mapping.scroll_docs(4),
-    ["<C-Space>"] = plugin.mapping.complete(),
-    ["<C-n>"] = plugin.mapping.select_next_item({ behavior = plugin.SelectBehavior.Select }),
-    ["<C-e>"] = plugin.mapping.select_prev_item({ behavior = plugin.SelectBehavior.Select }),
-    -- ["<C-n>"] = plugin.mapping.select_next_item({ behavior = plugin.SelectBehavior.Insert }),
-    -- ["<C-e>"] = plugin.mapping.select_prev_item({ behavior = plugin.SelectBehavior.Insert }),
-    -- ["<C-e>"] = plugin.mapping.close(),
-    ["<C-q>"] = plugin.mapping.close(),
-    ["<C-a>"] = plugin.mapping.abort(),
-    ["<CR>"] = plugin.mapping.confirm({
-      select = true,
-      -- behavior = plugin.ConfirmBehavior.Replace,
-    }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Scrolling is a bit backwards
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-q>"] = cmp.mapping.close(), -- Just close completion options
+    ["<C-a>"] = cmp.mapping.abort(), -- Stop completion and go back to the original text
+    ["<C-e>"]  = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-n>"]  = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-y>"] = cmp.mapping(
+      cmp.mapping.confirm{
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+      { "i", "c" }
+    ),
+    ["<CR>"] = cmp.mapping(
+      cmp.mapping.confirm{
+        select = true,
+        behavior = cmp.ConfirmBehavior.Insert,
+      },
+      { "i", "c" }
+    ),
+    ['<DOWN>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        -- TODO: close popup and make a move.
+        -- By default, it will just move you without closing it
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<UP>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        -- TODO: close popup and make a move.
+        -- By default, it will just move you without closing it
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   },
   sources = {
     { name = "nvim_lsp" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    { name = 'ultisnips' }, -- For ultisnips users. -- FIXME: Doesn't work :cry:
-    -- { name = 'snippy' }, -- For snippy users.
+    { name = 'luasnip' },
   },
   formatting = {
     format = function(_entry, vim_item)
