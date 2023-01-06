@@ -18,21 +18,21 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-q>"] = cmp.mapping.close(), -- Just close completion options
     ["<C-a>"] = cmp.mapping.abort(), -- Stop completion and go back to the original text
-    ["<C-e>"]  = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<C-n>"]  = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-e>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-y>"] = cmp.mapping(
       cmp.mapping.confirm{
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       },
-      { "i", "c" }
+      { "i" }
     ),
     ["<CR>"] = cmp.mapping(
       cmp.mapping.confirm{
         select = true,
         behavior = cmp.ConfirmBehavior.Insert,
       },
-      { "i", "c" }
+      { "i" }
     ),
     ['<DOWN>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
