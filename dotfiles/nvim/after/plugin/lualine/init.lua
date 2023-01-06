@@ -24,13 +24,25 @@ local function diff_source()
   end
 end
 
+local function show_dap_status()
+  local dap = f.utils:load_plugin("dap")
+  if not dap then
+    return ""
+  end
+
+  local status = dap.status()
+  if status == "" then
+    return status
+  end
+
+  return "DAP: " .. status
+end
+
 
 plugin.setup({
   options = {
     icons_enabled = false,
     theme = 'auto',
-    -- component_separators = { left = '', right = ''},
-    -- section_separators = { left = '', right = ''},
     disabled_filetypes = {
       'packer',
       'fugitive',
@@ -51,9 +63,7 @@ plugin.setup({
       }
     },
     lualine_b = {
-      -- 'branch',
       {'b:gitsigns_head'}, -- Reuse, branch info from 'gitsigns'
-      -- 'diff',
       {'diff', source = diff_source}, -- Reuse diff infom from 'gitsigns'
     },
     lualine_c = {
@@ -68,63 +78,25 @@ plugin.setup({
       -- 'filetype',
     },
     lualine_y = {
-      -- {
-      --   function()
-      --     local plugin_name = 'lsp-status'
-      --     if not f.utils:plugin_installed(plugin_name) then
-      --       return ""
-      --     end
-      --     return require(plugin_name).status()
-      --   end
-      -- },
+      { show_dap_status },
       'diagnostics',
-      -- {
-      --   -- This only helps with LSP clients that take some time to initialise
-      --   -- Requires: https://github.com/arkav/lualine-lsp-progress
-      --   'lsp_progress',
-      --   timer = {
-      --     progress_enddelay = 1000,
-      --     spinner = 100,
-      --     lsp_client_name_enddelay = -1,  -- Always show LSP client name
-      --   },
-      --   display_components = { { 'title', 'percentage', 'message' }, 'spinner',  'lsp_client_name'},
-      --   spinner_symbols = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
-      --   separators = {
-      --     component = ' ',
-      --     progress = ' | ',
-      --     percentage      = { pre = '',  post = '%% ' },
-      --     title           = { pre = '',  post = ': ' },
-      --     lsp_client_name = { pre = '',  post = '' },
-      --     spinner         = { pre = '',  post = '' },
-      --     message         = { pre = '(', post =')', commenced = 'In Progress', completed = 'Completed', },
-      --   },
-      -- },
       'filetype',
-      -- 'progress',
     },
     lualine_z = {
-      {
-        'location', -- TODO: remove padding
-      }
+      'location'
     }
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {
+    lualine_a = {
       {
         'filename',
         path = 1,
       }
     },
+    -- Disable default settings for these sections
+    lualine_c = {},
     lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
   },
   tabline = {},
   extensions = {}
 })
-
--- Custom function based on the plugin
-local M = {}
-return M

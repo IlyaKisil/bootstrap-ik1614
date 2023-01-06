@@ -40,6 +40,10 @@ plugin.setup({
     info = colors.blue,
     debug = colors.light_grey,
     trace = colors.grey,
+
+    -- Add test color for highlight groups that I don't what they do
+    unknown_fg = "#BBB529",
+    unknown_bg = "#EB4034",
   },
   highlights = { -- Override/extend highlight groups
     ErrorMessage = {fg = "$error"},
@@ -78,6 +82,37 @@ plugin.setup({
     DiagnosticVirtualTextInfo  = {bg = "$none", fg = colors.grey},
     DiagnosticVirtualTextHint  = {bg = "$none", fg = colors.grey},
 
+    -- Thes are basically headings within corresponding buffer
+    DapUIWatchesEmpty    = {fg = colors.blue},
+    DapUIScope           = {fg = colors.blue},
+    DapUIStoppedThread   = {fg = colors.blue},
+    DapUIBreakpointsPath = {fg = colors.blue},
+
+    -- Related to stacks section
+    DapUIThread           = {fg = colors.cyan},
+    DapUIFrameName        = {fg = colors.light_grey},
+    DapUICurrentFrameName = {fg = colors.yellow, fmt = "bold"},
+    DapUISource           = {fg = colors.grey}, -- Name of a file
+    DapUILineNumber       = {fg = colors.grey}, -- Line within that file
+
+    DapUIWatchesValue = {fg = colors.green},
+    DapUIWatchesError = {fg = "$error"},
+
+    DapUIType          = {fg = colors.grey},
+    DapUIValue         = {fg = colors.light_grey},
+    DapUIVariable      = {fg = colors.fg},
+    DapUIModifiedValue = {fg = colors.yellow, fmt = "bold"},
+
+    DapUIBreakpointsLine        = {fg = colors.grey},
+    DapUIBreakpointsInfo        = {fg = colors.cyan}, -- This is when a break point has a condition
+    DapUIBreakpointsCurrentLine = {fg = colors.yellow, fmt = "bold"},
+
+    -- DapUIBreakpointsDisabledLine = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
+    -- DapUIUnavailable             = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
+    -- DapUIDecoration              = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
+
+    DapSignDefault             = {bg = colors.bg1, fg = colors.red },
+
     -- This is for fugitive
     gitcommitSummary  = {fg = colors.fg},
     gitcommitOverflow = {fg = colors.red},
@@ -100,7 +135,9 @@ plugin.setup({
     NotifyTRACETitle  = {fg = '$trace'},
 
     -- This is to make active buffer more visible. Used as a part of autocommand
-    IlyaInactiveBuffer = {bg = colors.bg1},
+    -- IlyaInactiveBuffer = {bg = colors.bg1},
+    InactiveBufferNoBackground = {bg = "$none"},
+    InactiveBufferCursorLineNr = {fg = colors.grey, bg=colors.bg1}
   },
 
   -- Plugins Config --

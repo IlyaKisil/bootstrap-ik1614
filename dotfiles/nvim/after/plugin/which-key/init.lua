@@ -85,9 +85,46 @@ local n_leader = {
     l = {':call functions#exec_current_line()<CR>', "Run current lua line"},
     p = {':lua require("ik1614.functions").fzf:reload_select_plugins()<CR>', "Reload plugin configuration"},
   },
+  d = {
+    name = "Debug",
+    b = {':lua require("dap").toggle_breakpoint()<CR>', "Toggle breakpoint"},
+    B = {':lua require("dap").set_breakpoint(vim.fn.input("[DAP] Breakpoint condition: "))<CR>', "Set condidional breakpoint"},
+
+    a = {''},
+    r = {':w<CR>:lua P("Restart of debug session still needs to be implemented")<CR>', "Restart debugging session"},
+    s = {''},
+    t = {
+      name = "+Toggle",
+      t = { require("dapui").toggle, "Toggle UI" },
+      w = { ':lua require("dapui").toggle({layout=1})<CR>', "Toggle section with Watches" },
+      s = { ':lua require("dapui").toggle({layout=1})<CR>', "Toggle section with Scopes and Stacks" },
+      b = { ':lua require("dapui").toggle({layout=1})<CR>', "Toggle section with Breakpoints" },
+      r = { ':lua require("dapui").toggle({layout=2})<CR>', "Toggle section with REPL" },
+      c = { ':lua require("dapui").toggle({layout=2})<CR>', "Toggle section with Console" },
+      h = { ':lua require("dapui").toggle({layout=1})<CR>', "Toggle sections on the Left" },
+      i = { ':lua require("dapui").toggle({layout=2})<CR>', "Toggle sections on the Right" },
+      u = { ':lua require("dapui").open({reset=true})<CR>', "Reset/Undo changes to the layout" },
+    },
+
+    n = {':lua require("dap").continue()<CR>', "Run to next breakpoint if any"},
+    e = {''},
+    i = {':lua require("dap").step_into()<CR>', "Step into"},
+    o = {':lua require("dap").step_over()<CR>', "Step over"},
+
+    p = {':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("[DAP] Log point message: "))<CR>', ":shrug:"},
+    d = {':w<CR>:lua require("ik1614.functions").fzf:dap_configurations()<CR>', "Select debugging configuration"},
+    h = {':w<CR>:lua require("dap").run_to_cursor()<CR>', "Run to here (cursor potision)"}, -- NOTE: At the moment it requires active session, but would it make sense to start that session at the same time?
+    l = {':w<CR>:lua require("dap").run_last()<CR>', "Run last debugging configuration"},
+
+    q = {':lua require("dap").terminate()<CR>', "Terminate debugging session"},
+    u = {':lua require("dap").step_out()<CR>', "Step out"},
+
+    ["?"] = {':lua require("ik1614.functions").fzf:dap_commands()<CR>', "List all available DAP commands"},
+  },
   s = {
     name = "Show",
     a = {"Code actions"},
+    b = {':lua require("ik1614.functions").fzf:dap_breakpoints()<CR>', "Breakpoints"},
     s = {"Symbols"},
     S = {"Workspace symbols"},
     d = {"Diagnostics"},

@@ -334,4 +334,33 @@ function M:lsp_workspace_diagnostics()
   })
 end
 
+function M:dap_configurations()
+  return self.plugin.dap_configurations({
+    winopts = {
+      height=0.33,
+      width=0.33,
+    },
+  })
+end
+
+function M:dap_breakpoints()
+  return self.plugin.dap_breakpoints({
+    winopts = {
+      preview = {
+        layout   = 'vertical',
+        vertical = 'down:75%',
+      },
+    },
+  })
+end
+
+function M:dap_commands()
+  return self.plugin.dap_commands({
+    winopts = {
+      height=0.33,
+      width=0.33,
+    },
+  })
+end
+
 return M.new()
