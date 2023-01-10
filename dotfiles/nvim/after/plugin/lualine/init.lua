@@ -38,6 +38,53 @@ local function show_dap_status()
   return "DAP: " .. status
 end
 
+local lualine_a = {
+  active = {
+    {
+      'mode',
+      fmt = function(str) return str:sub(1,1) end,
+      padding = {
+        left = 1,
+        right = 1,
+      }
+    }
+  },
+  inactive = {
+    {
+      'filename',
+      path = 1,
+    },
+  }
+}
+
+local lualine_c = {
+  active = {
+    {
+      'filename',
+      path = 1,
+    },
+  },
+  inactive = {}
+}
+
+local minimal_info = {
+  sections = {
+    lualine_a = lualine_a.active,
+    lualine_c = lualine_c.active,
+  },
+  inactive_sections = {
+    lualine_a = lualine_a.inactive,
+  },
+  filetypes = {
+    'dapui_watches',
+    'dapui_scopes',
+    'dapui_stacks',
+    'dapui_console',
+    'dapui_breakpoints',
+    'dap-repl',
+    'fugitive',
+  }
+}
 
 plugin.setup({
   options = {
@@ -45,33 +92,18 @@ plugin.setup({
     theme = 'auto',
     disabled_filetypes = {
       'packer',
-      'fugitive',
       'NvimTree'
     },
     -- always_divide_middle = true,
     globalstatus = false,
   },
   sections = {
-    lualine_a = {
-      {
-        'mode',
-        fmt = function(str) return str:sub(1,1) end,
-        padding = {
-          left = 1,
-          right = 1,
-        }
-      }
-    },
+    lualine_a = lualine_a.active,
     lualine_b = {
       {'b:gitsigns_head'}, -- Reuse, branch info from 'gitsigns'
       {'diff', source = diff_source}, -- Reuse diff infom from 'gitsigns'
     },
-    lualine_c = {
-      {
-        'filename',
-        path = 1,
-      }
-    },
+    lualine_c = lualine_c.active,
     lualine_x = {
       -- 'encoding',
       -- 'fileformat',
@@ -87,16 +119,14 @@ plugin.setup({
     }
   },
   inactive_sections = {
-    lualine_a = {
-      {
-        'filename',
-        path = 1,
-      }
-    },
+    lualine_a = lualine_a.inactive,
     -- Disable default settings for these sections
     lualine_c = {},
     lualine_x = {},
   },
   tabline = {},
-  extensions = {}
+  extensions = {
+    minimal_info,
+    "quickfix",
+  }
 })
