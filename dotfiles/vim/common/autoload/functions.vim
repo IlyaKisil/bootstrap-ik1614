@@ -141,8 +141,13 @@ function! functions#ShowHLGroupUnderCursor()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
-" Utility to change highlight group of active/inactive windows
+" Utilities to change highlight group within of active/inactive buffers
 function! functions#HandleWinEnter()
-  setlocal winhighlight=Normal:MdraculaNormal,NormalNC:IlyaInactiveBuffer
+  " setlocal winhighlight=Normal:MdraculaNormal,NormalNC:IlyaInactiveBuffer
+  setlocal winhighlight=CursorLine:CursorLine,ColorColumn:ColorColumn,CursorLineNr:CursorLineNr
+endfunction
+
+function! functions#HandleWinLeave()
+  setlocal winhighlight=CursorLine:InactiveBufferNoBackground,ColorColumn:InactiveBufferNoBackground,CursorLineNr:InactiveBufferCursorLineNr
 endfunction
 

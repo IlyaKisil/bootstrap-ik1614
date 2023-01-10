@@ -13,6 +13,8 @@ brew "black"
 brew "cookiecutter"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Debugger for the Go programming language
+brew "delve"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Open source programming language to build simple/reliable/efficient software

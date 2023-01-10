@@ -51,6 +51,7 @@ vim.cmd([[
       " Change highlight group of active/inactive windows
       " https://caleb89taylor.medium.com/customizing-individual-neovim-windows-4a08f2d02b4e
       autocmd WinEnter * call functions#HandleWinEnter()
+      autocmd WinLeave * call functions#HandleWinLeave()
 
       " Highlight yank
       autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=400 }

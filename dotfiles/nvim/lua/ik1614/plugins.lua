@@ -200,8 +200,27 @@ return require('packer').startup(
     -------------------------------------------------------------------------------------
     -- Debugging
     -------------------------------------------------------------------------------------
-    -- use 'mfussenegger/nvim-dap'
+    -- Debug adapter protocol
+    use({
+      "mfussenegger/nvim-dap"
+    })
+    use({
+      "rcarriga/nvim-dap-ui"
+    })
+    -- use({
+    --   "theHamsta/nvim-dap-virtual-text"
+    -- })
+    -- use({
+    --   "nvim-telescope/telescope-dap.nvim"
+    -- })
 
+    --  Adaparter configuration for specific languages
+    use({
+      "leoluz/nvim-dap-go"
+    })
+    -- use({
+    --   "mfussenegger/nvim-dap-python"
+    -- })
 
     -------------------------------------------------------------------------------------
     -- Git
