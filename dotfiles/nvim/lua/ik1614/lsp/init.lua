@@ -68,6 +68,7 @@ local augroup_format = vim.api.nvim_create_augroup("lsp_format", { clear = true 
 
 --[[
       Define everything that should be done when on attach of LSP client
+      based on a filetype
 --]]
 local filetype_on_attach = setmetatable({
   go = function()
@@ -82,7 +83,8 @@ local filetype_on_attach = setmetatable({
 })
 
 local custom_on_attach = function(client)
-  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local bufnr = 0
+  local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
 
   -- lsp_status.on_attach(client)
 
@@ -112,28 +114,21 @@ local custom_on_attach = function(client)
   --[[
        Set autocommands conditional on server_capabilities
   --]]
-  if client.server_capabilities.documentHighlightProvider then
-    -- NOTE: Sometimes shadows yank highlight area. Typically this happens if you
-    -- need to yank the same thing again without cursor being moved :shrug:
-    -- vim.cmd [[
-    --   augroup lsp_document_highlight
-    --     autocmd! * <buffer>
-    --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-    --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    --   augroup END
-    -- ]]
-  end
-
-  if client.server_capabilities.codeLensProvider then
-    if filetype ~= "elm" then
-      -- vim.cmd [[
-      --   augroup lsp_document_codelens
-      --     au! * <buffer>
-      --     autocmd BufEnter ++once         <buffer> lua vim.lsp.codelens.refresh()
-      --     autocmd BufWritePost,CursorHold <buffer> lua vim.lsp.codelens.refresh()
-      --   augroup END
-      -- ]]
-    end
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr }) -- NOTE: might conflit with go 'autocmd_organise_go_imports'
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup_format,
+      buffer = bufnr,
+      callback = function()
+        -- Only "null-ls" should receive the formatting request
+        vim.lsp.buf.format({
+          bufnr = bufnr,
+          filter = function()
+            return client.name == "null-ls"
+          end
+        })
+      end,
+    })
   end
 
   --[[
@@ -187,19 +182,16 @@ end
 
 local servers = {
   -- bashls = true, -- Doesn't play ball with 'environment.template' which I have as 'sh' filetype
-  pyright = true,
-  -- pyright = {
-  --   before_init = function(_, config)
-  --     -- Make LSP server to use virtual environment
-  --     local p
-  --     if vim.env.VIRTUAL_ENV then
-  --       p = path.concat(vim.env.VIRTUAL_ENV, "bin", "python3")
-  --     else
-  --       p = f.utils:find_cmd("python3", ".venv/bin", config.root_dir)
-  --     end
-  --     config.settings.python.pythonPath = p
-  --   end,
-  -- },
+  pyright = {
+    python = {
+      settings = {
+        reportUnusedImport = true,
+        reportUnusedVariable = true,
+        reportDuplicateImport = true,
+        reportDeprecated = true,
+      }
+    }
+  },
   gopls = {
     root_dir = function(fname)
       local Path = require "plenary.path"
@@ -263,34 +255,33 @@ for server, config in pairs(servers) do
 end
 
 
--- null_ls.setup({
---   sources = {
---     null_ls.builtins.code_actions.gitsigns,
---     null_ls.builtins.code_actions.refactoring,
---     null_ls.builtins.code_actions.shellcheck.with({
---       runtime_condition = function()
---         -- Disable null-ls for 'environment.template' files
---         return not f.utils:is_environment_template()
---       end,
---     }),
---     -- null_ls.builtins.diagnostics.cspell,
---     null_ls.builtins.diagnostics.shellcheck.with({
---       runtime_condition = function()
---         -- Disable null-ls for 'environment.template' files
---         return not f.utils:is_environment_template()
---       end,
---     }),
---     -- NOTE: Some formatters might not trigger if there are errors in the code
---     null_ls.builtins.formatting.black,
---     null_ls.builtins.formatting.shfmt,
---     null_ls.builtins.formatting.terraform_fmt.with({
---       timeout = 10000,
---     }),
-
---   },
---   on_attach = custom_on_attach,
---   diagnostics_format = "#{m} (#{s})",
--- })
+null_ls.setup({
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.refactoring,
+    -- null_ls.builtins.code_actions.shellcheck.with({
+    --   runtime_condition = function()
+    --     -- Disable null-ls for 'environment.template' files
+    --     return not f.utils:is_environment_template()
+    --   end,
+    -- }),
+    -- null_ls.builtins.diagnostics.cspell,
+    -- null_ls.builtins.diagnostics.shellcheck.with({
+    --   runtime_condition = function()
+    --     -- Disable null-ls for 'environment.template' files
+    --     return not f.utils:is_environment_template()
+    --   end,
+    -- }),
+    -- NOTE: Some formatters might not trigger if there are errors in the code
+    null_ls.builtins.formatting.black,
+    -- null_ls.builtins.formatting.shfmt,
+    -- null_ls.builtins.formatting.terraform_fmt.with({
+    --   timeout = 10000,
+    -- }),
+  },
+  on_attach = custom_on_attach,
+  diagnostics_format = "#{m} (#{s})",
+})
 
 return {
   on_init = custom_on_init,
