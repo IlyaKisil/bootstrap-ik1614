@@ -266,5 +266,9 @@ return require('packer').startup(
       'https://github.com/echasnovski/mini.nvim',
       branch = 'stable',
     })
+
+    use({
+      'xorid/asciitree.nvim'
+    })
   end
 )
