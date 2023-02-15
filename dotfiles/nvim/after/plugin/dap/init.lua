@@ -61,7 +61,7 @@ local function setup_ui()
       {
         elements = {
           "repl",
-          -- "console",
+          "console",
         },
         size = 0.25,
         position = "right",
@@ -86,6 +86,7 @@ local function setup_ui()
 
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({})
+    -- dapui.open({layout=1})
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close({})
@@ -97,6 +98,11 @@ end
 
 
 require('dap-go').setup()
+require("dap-python").setup("python", {})
+
+require('dap-python').resolve_python = function()
+  return f.utils:find_cmd("python3", ".venv/bin", vim.fn.getcwd())
+end
 setup_signs()
 setup_ui()
 

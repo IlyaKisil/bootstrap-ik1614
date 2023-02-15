@@ -218,9 +218,9 @@ return require('packer').startup(
     use({
       "leoluz/nvim-dap-go"
     })
-    -- use({
-    --   "mfussenegger/nvim-dap-python"
-    -- })
+    use({
+      "mfussenegger/nvim-dap-python"
+    })
 
     -------------------------------------------------------------------------------------
     -- Git
