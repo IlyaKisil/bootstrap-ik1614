@@ -111,6 +111,7 @@ local n_leader = {
     i = {':lua require("dap").step_into()<CR>', "Step into"},
     o = {':lua require("dap").step_over()<CR>', "Step over"},
 
+    f = {':lua require("ik1614.functions").fzf:dap_ui_float()<CR>', "DAP: Open UI component in a float"},
     p = {':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("[DAP] Log point message: "))<CR>', ":shrug:"},
     d = {':w<CR>:lua require("ik1614.functions").fzf:dap_configurations()<CR>', "Select debugging configuration"},
     h = {':w<CR>:lua require("dap").run_to_cursor()<CR>', "Run to here (cursor potision)"}, -- NOTE: At the moment it requires active session, but would it make sense to start that session at the same time?

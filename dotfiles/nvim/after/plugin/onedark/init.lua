@@ -107,6 +107,9 @@ plugin.setup({
     DapUIBreakpointsInfo        = {fg = colors.cyan}, -- This is when a break point has a condition
     DapUIBreakpointsCurrentLine = {fg = colors.yellow, fmt = "bold"},
 
+    DapUIFloatBorder = {fg = colors.grey, bg = colors.bg1},
+    -- DapUINormalFloat = {fg = colors.grey, bg = colors.bg},
+
     -- DapUIBreakpointsDisabledLine = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
     -- DapUIUnavailable             = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
     -- DapUIDecoration              = {fg = "$unknown_fg", bg = "$unknown_bg"}, -- :shrug:
