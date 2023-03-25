@@ -100,9 +100,15 @@ plugin.setup({
     dotfiles = false,
     custom = {
       "^.DS_Store$",
+      "^.idea$",
       "^.git$",
       "^tfplan$",
       "^.terraform$",
+      "^__pycache__$",
+      "^.coverage$",
+      "^.pytest_cache$",
+      "^.venv$",
+      ".egg-info$",
     }
   },
   git = {
