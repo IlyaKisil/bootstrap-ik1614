@@ -128,6 +128,9 @@ plugin.setup({
     relativenumber = false,
     signcolumn = "no"
   },
+  notify = {
+    threshold = vim.log.levels.WARN,
+  },
   trash = {
     cmd = "trash",
     require_confirm = true
