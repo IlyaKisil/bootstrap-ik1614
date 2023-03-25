@@ -256,6 +256,7 @@ local servers = {
         workspace = {
           -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false, -- https://www.reddit.com/r/neovim/comments/wgu8dx/configuring_neovim_for_lövelua_i_always_get/?utm_source=share&utm_medium=web2x&context=3
         },
       },
     },
