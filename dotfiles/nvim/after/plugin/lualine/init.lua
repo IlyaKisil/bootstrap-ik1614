@@ -38,6 +38,57 @@ local function show_dap_status()
   return "DAP: " .. status
 end
 
+local function list_registered_providers_names(filetype)
+  local s = require "null-ls.sources"
+  local available_sources = s.get_available(filetype)
+  local registered = {}
+  for _, source in ipairs(available_sources) do
+    for method in pairs(source.methods) do
+      registered[method] = registered[method] or {}
+      table.insert(registered[method], source.name)
+    end
+  end
+  return registered
+end
+
+local function lsp_client(msg)
+  -- TODO: Refactor into something more usable
+  -- https://github.com/alpha2phi/neovim-for-beginner/blob/14-null-ls/lua/config/lualine.lua
+  -- https://github.com/alpha2phi/neovim-for-beginner/blob/383bf9a7b655ef0da604e88773940a636ee3fae4/lua/config/lualine.lua#L22
+  msg = msg or ""
+  local buf_clients = vim.lsp.buf_get_clients()
+  if next(buf_clients) == nil then
+    if type(msg) == "boolean" or #msg == 0 then
+      return ""
+    end
+    return msg
+  end
+
+  local buf_ft = vim.bo.filetype
+  local buf_client_names = {}
+
+  -- add client
+  for _, client in pairs(buf_clients) do
+    if client.name ~= "null-ls" then
+      table.insert(buf_client_names, client.name)
+    end
+  end
+
+  -- add linter
+  local supported_linters = list_registered_providers_names(buf_ft)[require("null-ls").methods.DIAGNOSTICS] or {}
+  vim.list_extend(buf_client_names, supported_linters)
+
+  -- add formatter
+  local supported_formatters = list_registered_providers_names(buf_ft)[require("null-ls").methods.FORMATTING] or {}
+  vim.list_extend(buf_client_names, supported_formatters)
+
+  if next(buf_client_names) == nil then
+    return ""
+  end
+
+  return "LSP: " .. table.concat(buf_client_names, ", ")
+end
+
 local lualine_a = {
   active = {
     {
@@ -111,6 +162,7 @@ plugin.setup({
     },
     lualine_y = {
       { show_dap_status },
+      { lsp_client },
       'diagnostics',
       'filetype',
     },

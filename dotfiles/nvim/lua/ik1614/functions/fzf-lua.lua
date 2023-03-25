@@ -363,4 +363,37 @@ function M:dap_commands()
   })
 end
 
+function M:dap_ui_float()
+  return self.plugin.fzf_exec(
+    {
+      "console",
+      "repl",
+      "scopes",
+      "watches",
+      "stacks",
+      "breakpoints"
+    },
+    {
+      prompt = "DAP UI Float> ",
+      actions = {
+        ["default"] = function(selected)
+          require("dapui").float_element(
+            selected[1],
+            {
+              enter = true,
+              -- width = math.floor(vim.api.nvim_win_get_width(0) * 0.85),
+              -- height = math.floor(vim.api.nvim_win_get_height(0) * 0.85),
+              position = "center",
+            }
+          )
+        end,
+      },
+      winopts = {
+        height=0.33,
+        width=0.33,
+      }
+    }
+  )
+end
+
 return M.new()

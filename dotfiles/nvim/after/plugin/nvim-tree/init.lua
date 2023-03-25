@@ -100,9 +100,15 @@ plugin.setup({
     dotfiles = false,
     custom = {
       "^.DS_Store$",
+      "^.idea$",
       "^.git$",
       "^tfplan$",
       "^.terraform$",
+      "^__pycache__$",
+      "^.coverage$",
+      "^.pytest_cache$",
+      "^.venv$",
+      ".egg-info$",
     }
   },
   git = {
@@ -121,6 +127,9 @@ plugin.setup({
     number = false,
     relativenumber = false,
     signcolumn = "no"
+  },
+  notify = {
+    threshold = vim.log.levels.WARN,
   },
   trash = {
     cmd = "trash",

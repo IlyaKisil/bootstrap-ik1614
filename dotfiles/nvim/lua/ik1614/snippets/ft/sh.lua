@@ -9,7 +9,7 @@ return {
          trig = "here",
          dscr = "Get the full path to location of current script"
       },
-      t([[HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"]])
+      t([[HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"]])
    ),
   s(
       {
@@ -44,6 +44,60 @@ return {
          set -euo pipefail
 
          . import_blockchain_module utils
+
+      ]], {})
+   ),
+  s(
+      {
+         trig = "parseargs",
+         dscr = "Parse key word arguments"
+      },
+      fmt([[
+        while [ $# -gt 0 ]; do
+          case "$1" in
+            -h|--help)
+              __show_help
+              exit 0
+              ;;
+            --flag)
+              FLAG=true
+              shift
+              ;;
+            --arg)
+              ARG="$2"
+              shift 2
+              ;;
+            *)
+              utils::echo_err "Unknown argument: $1"
+              exit 1
+              ;;
+          esac
+        done
+
+      ]], {})
+   ),
+  s(
+      {
+         trig = "parseopts",
+         dscr = "Parse option"
+      },
+      fmt([[
+        while getopts ':h' opt; do
+          case "$opt" in
+            h)
+              __show_help
+              exit 0
+              ;;
+            \?)
+              utils::echo_warn "Invalid option: $OPTARG" 1>&2
+              ;;
+            :)
+              utils::echo_err "Invalid option: $OPTARG requires an argument" 1>&2
+              exit 1
+              ;;
+          esac
+        done
+        shift $((OPTIND -1))
 
       ]], {})
    ),

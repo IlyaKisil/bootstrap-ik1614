@@ -183,6 +183,19 @@ end
 local servers = {
   -- bashls = true, -- Doesn't play ball with 'environment.template' which I have as 'sh' filetype
   pyright = {
+    before_init = function(_, config)
+      -- Make LSP server to use virtual environment
+      local p
+      if vim.env.VIRTUAL_ENV then
+        -- NOTE: Not sure if this is working :shrug:
+        p = path.concat(vim.env.VIRTUAL_ENV, "bin", "python3")
+      else
+        p = f.utils:find_cmd("python3", ".venv/bin", config.root_dir)
+        -- p = f.utils:find_cmd("python3", ".venv/bin", vim.fn.getcwd())
+      end
+      -- TODO: implement fall back to the system defaults
+      config.settings.python.pythonPath = p
+    end,
     python = {
       settings = {
         reportUnusedImport = true,
@@ -243,6 +256,7 @@ local servers = {
         workspace = {
           -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false, -- https://www.reddit.com/r/neovim/comments/wgu8dx/configuring_neovim_for_lövelua_i_always_get/?utm_source=share&utm_medium=web2x&context=3
         },
       },
     },
