@@ -165,6 +165,10 @@ done
 ### Don't polute history with the following command patterns
 export HISTORY_IGNORE="(git (s|l|add *|co *|push|pull)|vim(| .)|vagrant (up|ssh|status|destroy)|la|ls|docker ps|* (-h|--help)|man *)"
 
+### Don't run 'brew [upgrade|reinstall]' for outdated dependants
+# TODO: Make this specific to MacOS
+export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK="true"
+
 ### KEEP THIS AT THE BOTTOM AS MUCH AS POSSIBLE
 source $ZSH/oh-my-zsh.sh
 

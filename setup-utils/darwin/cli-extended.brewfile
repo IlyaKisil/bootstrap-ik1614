@@ -55,6 +55,8 @@ brew "ipcalc"
 brew "iproute2mac"
 # SSL tunneling program
 brew "stunnel"
+# Command-line client for WebSockets
+brew "websocat"
 # Internet file retriever
 brew "wget"
 
