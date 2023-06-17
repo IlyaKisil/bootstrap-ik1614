@@ -89,10 +89,10 @@ return {
               exit 0
               ;;
             \?)
-              utils::echo_warn "Invalid option: $OPTARG" 1>&2
+              utils::echo_warn "Invalid option: '-$OPTARG'. Skipping." 1>&2
               ;;
             :)
-              utils::echo_err "Invalid option: $OPTARG requires an argument" 1>&2
+              utils::echo_err "Invalid option: '-$OPTARG' requires an argument." 1>&2
               exit 1
               ;;
           esac
