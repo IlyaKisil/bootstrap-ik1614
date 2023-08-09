@@ -118,6 +118,11 @@ if command -v pipenv 1>/dev/null 2>&1; then
     export PIPENV_VERBOSITY=-1
 fi
 
+# poetry
+if command -v poetry 1>/dev/null 2>&1; then
+    export POETRY_VIRTUALENVS_IN_PROJECT=true
+fi
+
 # pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
     export PYENV_ROOT
