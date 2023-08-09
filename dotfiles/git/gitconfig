@@ -12,6 +12,8 @@
 [user]
     name = Ilya Kisil
 [core]
+    # enable Git to work better on filesystems that are not case sensitive, like FAT
+    ignorecase = false
     # excludesfile = ~/.gitignore-global
     editor = $EDITOR
     # https://github.com/wfxr/forgit/issues/121#issuecomment-725811214
