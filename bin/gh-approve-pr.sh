@@ -60,7 +60,7 @@ SELECTED="$(
     -r \
     --arg delimiter "$DELIMITER" \
     '.[] | "\(.number)" + $delimiter + " \(.url) " + $delimiter + " \((if .author.name != "" then .author.name else .author.login end)) " + $delimiter + " \(.title)"' \
-    | sort --numeric-sort \
+    | sort --numeric-sort --reverse \
     | utils::fzf_select "PR you want to approve"
 )"
 
