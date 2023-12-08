@@ -30,6 +30,7 @@ set -euo pipefail
 . import_blockchain_module utils
 
 __SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+__SEE_HELP="For more info see help message '${__SCRIPT_NAME} -h'."
 
 function __show_help() {
   cat << HELP_USAGE
@@ -113,6 +114,7 @@ endsnippet
 
 snippet help "Boilerplate for help message" b
 __SCRIPT_NAME="$(basename "${BASH_SOURCE[0]}")"
+__SEE_HELP="For more info see help message '${__SCRIPT_NAME} -h'."
 
 function __show_help() {
   cat << HELP_USAGE

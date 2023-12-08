@@ -24,11 +24,20 @@ return {
    ),
   s(
       {
+         trig = "warning",
+         dscr = "Add warning prefix"
+      },
+      fmt([[
+        :bangbang: **WARNING:**
+      ]], {})
+   ),
+  s(
+      {
          trig = "important",
          dscr = "Add important prefix"
       },
       fmt([[
-        :warning: **Important:**
+        :warning: **IMPORTANT:**
       ]], {})
    ),
   -- FIXME: Need to escape brakets within the snippet content

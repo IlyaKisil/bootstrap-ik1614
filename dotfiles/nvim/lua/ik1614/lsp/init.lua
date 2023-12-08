@@ -202,6 +202,7 @@ local servers = {
         reportUnusedVariable = true,
         reportDuplicateImport = true,
         reportDeprecated = true,
+        reportUnnecessaryTypeIgnoreComment = true,
       }
     }
   },
