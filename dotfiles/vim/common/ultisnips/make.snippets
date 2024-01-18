@@ -2,6 +2,15 @@ snippet here "Get the full path to location of current script" b
 HERE = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 endsnippet
 
+snippet repo-home "Get absolute path for current git repo" b
+GIT_REPO_HOME = $(shell git rev-parse --show-toplevel)
+endsnippet
+
+
+snippet codebase "Get name of git repo" b
+CODEBASE = $(shell git remote get-url origin | rev | cut -d '/' -f1 | rev | cut -d '.' -f1)
+endsnippet
+
 snippet now "Get current time in ISO8601 format" b
 NOW = $(shell date +%Y-%m-%dT%H:%M:%S)
 endsnippet
