@@ -54,7 +54,7 @@ DELIMITER='|'
 
 if [[ -z "$REPO" ]]; then
   if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
-      REPO="$(git remote get-url origin | awk -F'/' '{print $(NF-1) "/" $NF}' | awk -F'.' '{print $1}')"
+      REPO="$(git remote get-url origin | awk -F'github.com' '{print $NF}' | cut -c2- | awk -F'.git' '{print $1}')"
     else
       utils::echo_err "You need to explicity specify name of the repo when you are not inside Git directory."
       exit 1
