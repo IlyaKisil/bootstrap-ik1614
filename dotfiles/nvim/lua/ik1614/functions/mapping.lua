@@ -37,6 +37,10 @@ function M:v(tbl)
   self:_map("v", tbl)
 end
 
+function M:x(tbl)
+  self:_map("x", tbl)
+end
+
 function M:buf_i(tbl)
   self:_buf_map("i", tbl)
 end
