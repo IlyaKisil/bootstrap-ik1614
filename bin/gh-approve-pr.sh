@@ -14,11 +14,20 @@ __show_help() {
   cat << HELP_USAGE
 
 Description:
+  Lists PRs within a repo, prompts to select with FZF and approves selected PR
 
 Usage: $__SCRIPT_NAME [-h] REPO
 
 Examples:
+  $__SCRIPT_NAME
+    Attempts to extract GH repo reference to get info about PRs based on the current
+    location.
+
   $__SCRIPT_NAME IlyaKisil/bootstrap-ik1614
+    GH repo is explicitly specified. Can be used from any location
+
+  GITHUB_TOKEN="foo-bar" $__SCRIPT_NAME
+    Override default token used for Auth with GH
 
 Arguments:
   REPO
