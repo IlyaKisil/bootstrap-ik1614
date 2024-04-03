@@ -91,6 +91,9 @@
     # Delete merged branches unless it is current or one of
     cleanmerged = "!git remote prune origin && git branch --merged | egrep -v \"^\\s*(\\*.*|master|main|dev|staging|prod)\\s*$\" | xargs git branch -d #"
 
+    # Fixup a commit in the past selected with FZF
+    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+
     # Convert a shell command to a properly escaped command that you can use in as alias in .gitconfig
     quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
     quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\([\\\"]\\)/\\1/g'; printf \"\\n\""
