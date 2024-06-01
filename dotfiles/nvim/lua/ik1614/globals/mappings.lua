@@ -156,3 +156,6 @@ f.mapping:n({'}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>'})
 f.mapping:n({'{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>'})
 
 f.mapping:n({"<C-p>", ":<C-u>FzfLua git_files<CR>"})
+
+f.mapping:x({'ga', '<Plug>(EasyAlign)'})
+f.mapping:n({'ga', '<Plug>(EasyAlign)'})

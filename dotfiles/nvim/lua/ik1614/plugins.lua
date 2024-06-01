@@ -96,6 +96,23 @@ return require('packer').startup(
       requires = {'nvim-treesitter/nvim-treesitter'}
     })
 
+    use({
+      'https://github.com/junegunn/vim-easy-align',
+      -- commit = "6c72a9c5",
+    })
+
+    use({
+      "folke/noice.nvim",
+      requires = {
+        -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+        "MunifTanjim/nui.nvim",
+        -- OPTIONAL:
+        --   `nvim-notify` is only needed, if you want to use the notification view.
+        --   If not available, we use `mini` as the fallback
+        "rcarriga/nvim-notify",
+        }
+    })
+
     -------------------------------------------------------------------------------------
     -- LSP, file and general navigation
     -------------------------------------------------------------------------------------
