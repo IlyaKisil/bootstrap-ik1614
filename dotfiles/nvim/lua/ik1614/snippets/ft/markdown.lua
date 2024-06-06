@@ -7,37 +7,51 @@ return {
   s(
       {
          trig = "note",
-         dscr = "Add note prefix"
+         dscr = "Highlights information that users should take into account"
       },
       fmt([[
-        :books: **Note:**
+        > [!NOTE]
+        >
       ]], {})
    ),
   s(
       {
          trig = "tip",
-         dscr = "Add hot tip prefix"
+         dscr = "Optional information to help a user be more successful"
       },
       fmt([[
-        :bulb: **Tip:**
+        > [!TIP]
+        >
       ]], {})
    ),
   s(
       {
          trig = "warning",
-         dscr = "Add warning prefix"
+         dscr = "Critical content demanding immediate user attention due to potential risks"
       },
       fmt([[
-        :bangbang: **WARNING:**
+        > [!WARNING]
+        >
       ]], {})
    ),
   s(
       {
          trig = "important",
-         dscr = "Add important prefix"
+         dscr = "Crucial information necessary for users to succeed"
       },
       fmt([[
-        :warning: **IMPORTANT:**
+        > [!IMPORTANT]
+        >
+      ]], {})
+   ),
+  s(
+      {
+         trig = "caution",
+         dscr = "Negative potential consequences of an action"
+      },
+      fmt([[
+        > [!CAUTION]
+        >
       ]], {})
    ),
   -- FIXME: Need to escape brakets within the snippet content
