@@ -1,5 +1,6 @@
 - link:
     ~/.config/nvim/init.lua: dotfiles/nvim/init.lua
+    ~/.config/nvim/lazy-lock.json: dotfiles/nvim/lazy-lock.json
     ~/.config/nvim/lua: dotfiles/nvim/lua
     ~/.config/nvim/colors: dotfiles/nvim/colors
     ~/.config/nvim/after: dotfiles/nvim/after
