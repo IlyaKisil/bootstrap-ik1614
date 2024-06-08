@@ -5,5 +5,3 @@ vim.g.maplocalleader = ' '
 require('ik1614.globals')
 require('ik1614.globals.settings')
 require('ik1614.lazy')
-
-

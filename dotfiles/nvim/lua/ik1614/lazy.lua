@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- vim.g.have_nerd_font = false
---
+
 require("lazy").setup(
   {
     { import = "ik1614.lazy-plugins" },
