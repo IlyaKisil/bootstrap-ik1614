@@ -1,5 +1,8 @@
 {
   "Navigator.nvim": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },
   "lazy.nvim": { "branch": "main", "commit": "eb4957442e3182f051b0ae11da32e06d22c190e3" },
+  "nvim-treesitter": { "branch": "master", "commit": "c1e1e24b6433d4539bad9f5daa207df39633071b" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "34867c69838078df7d6919b130c0541c0b400c47" },
+  "nvim-ts-autotag": { "branch": "main", "commit": "6eb4120a1aadef07ac312f1c4bc6456712220007" },
   "onedark.nvim": { "branch": "master", "commit": "8e4b79b0e6495ddf29552178eceba1e147e6cecf" }
 }
