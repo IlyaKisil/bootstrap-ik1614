@@ -72,6 +72,7 @@ return {
           lualine_x = empty_section,
         },
         extensions = {
+          "fugitive",
           "quickfix",
         }
       })
