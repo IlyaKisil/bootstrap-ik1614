@@ -10,6 +10,10 @@ if not plugin then
   return
 end
 
+-- NOTE: Recommended settings from nvim-tree documentation to disable `netrw` completely
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 plugin.setup({
   disable_netrw       = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
   hijack_netrw        = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`

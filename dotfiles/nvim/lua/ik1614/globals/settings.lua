@@ -116,10 +116,6 @@ vim.opt.foldlevel      = 99                                -- start unfolded
 -- vim.opt.foldmethod     = 'expr'
 -- vim.opt.foldtext       = 'nvim_treesitter#foldexpr()'
 
--- Disable `netrw` completely
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 --
 vim.opt.fillchars = {
   diff = ' ', -- Don't display symbols for deleted lines in the diff mode
