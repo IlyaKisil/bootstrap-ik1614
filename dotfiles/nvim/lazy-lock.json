@@ -1,5 +1,6 @@
 {
   "Navigator.nvim": { "branch": "master", "commit": "91d86506ac2a039504d5205d32a1d4bc7aa57072" },
+  "gitlinker.nvim": { "branch": "master", "commit": "cc59f732f3d043b626c8702cb725c82e54d35c25" },
   "gitsigns.nvim": { "branch": "main", "commit": "4a143f13e122ab91abdc88f89eefbe70a4858a56" },
   "hlargs.nvim": { "branch": "main", "commit": "30fe1b3de2b7614f061be4fc9c71984a2b87e50a" },
   "lazy.nvim": { "branch": "main", "commit": "eb4957442e3182f051b0ae11da32e06d22c190e3" },
@@ -10,5 +11,6 @@
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "34867c69838078df7d6919b130c0541c0b400c47" },
   "nvim-ts-autotag": { "branch": "main", "commit": "6eb4120a1aadef07ac312f1c4bc6456712220007" },
   "nvim-web-devicons": { "branch": "master", "commit": "b4b302d6ae229f67df7a87ef69fa79473fe788a9" },
-  "onedark.nvim": { "branch": "master", "commit": "8e4b79b0e6495ddf29552178eceba1e147e6cecf" }
+  "onedark.nvim": { "branch": "master", "commit": "8e4b79b0e6495ddf29552178eceba1e147e6cecf" },
+  "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" }
 }
