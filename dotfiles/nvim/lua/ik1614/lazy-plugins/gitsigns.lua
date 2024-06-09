@@ -16,11 +16,6 @@ return {
         },
         numhl = false,  -- highlights the line number
         linehl = false, -- highlights the whole line
-        keymaps = {
-          -- Default keymap options
-          noremap = true,
-          buffer = true,
-        },
         watch_gitdir = {
           interval = 1000
         },
