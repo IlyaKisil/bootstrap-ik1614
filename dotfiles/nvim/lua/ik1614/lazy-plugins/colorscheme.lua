@@ -1,3 +1,5 @@
+local colorsheme_name = "onedark"
+
 return {
   {
     "https://github.com/navarasu/onedark.nvim",
@@ -5,11 +7,11 @@ return {
     priority = 1000,
     config = function()
       local f = require("ik1614.functions")
-      local colors = f.utils:get_color_pallet("onedark")
-      local onedark = require("onedark")
+      local colors = f.utils:get_color_pallet(colorsheme_name)
+      local onedark = require(colorsheme_name)
 
       onedark.setup({
-        style = f.utils:get_color_pallet_style("onedark"),
+        style = f.utils:get_color_pallet_style(colorsheme_name),
         transparent = true,  -- Show/hide background, i.e. use background of the terminal colorsheme
         term_colors = true, -- Change terminal color as per the selected theme style
         ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
@@ -155,5 +157,56 @@ return {
 
       onedark.load()
     end
-  }
+  },
+  {
+    "https://github.com/m-demare/hlargs.nvim",
+    enabled = true,
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      local f = require("ik1614.functions")
+      local colors = f.utils:get_color_pallet(colorsheme_name)
+
+      require("hlargs").setup({
+        color = colors.red,
+        excluded_filetypes = {},
+        -- disable = function(lang, bufnr) -- If changed, `excluded_filetypes` will be ignored
+        --   return vim.tbl_contains(opts.excluded_filetypes, lang)
+        -- end,
+        paint_arg_declarations = true,
+        paint_arg_usages = true,
+        paint_catch_blocks = {
+          declarations = false,
+          usages = false
+        },
+        hl_priority = 10000,
+        excluded_argnames = {
+          declarations = {},
+          usages = {
+            python = {
+              'self',
+              'cls'
+            },
+            lua = {
+              'self'
+            }
+          }
+        },
+        performance = {
+          parse_delay = 1,
+          slow_parse_delay = 50,
+          max_iterations = 400,
+          max_concurrent_partial_parses = 30,
+          debounce = {
+            partial_parse = 3,
+            partial_insert_mode = 100,
+            total_parse = 700,
+            slow_parse = 5000
+          }
+        }
+      })
+    end
+  },
 }
