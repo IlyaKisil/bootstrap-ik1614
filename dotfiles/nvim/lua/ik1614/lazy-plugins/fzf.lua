@@ -1,13 +1,32 @@
 return {
   {
     "https://github.com/ibhagwan/fzf-lua",
-    enabled = false,
+    enabled = true,
+    lazy = false,
     dependencies = {
       "https://github.com/vijaymarupudi/nvim-fzf",
       "https://github.com/nvim-tree/nvim-web-devicons",
     },
+    keys = {
+      {"<leader>gC", "<cmd>FzfLua git_commits<cr>",                                        mode="n", desc="FZF for git commits"},
+      {"<leader>gl", "<cmd>FzfLua git_branches<cr>",                                       mode="n", desc="FZF for git log of the branches"},
+      {"<leader>gs", "<cmd>:lua require('ik1614.functions.fzf-lua'):git_status()<cr>",     mode="n", desc="FZF for git status"},
+      {"<leader>ff", "<cmd>FzfLua git_files<cr>",                                          mode="n", desc="FZF for git files"},
+      {"<leader>fF", "<cmd>FzfLua files<cr>",                                              mode="n", desc="FZF for all files"},
+      {"<leader>fb", "<cmd>FzfLua buffers<cr>",                                            mode="n", desc="FZF for buffers"},
+      {"<leader>fs", "<cmd>:lua require('ik1614.functions.fzf-lua'):grep_no_ignore()<cr>", mode="n", desc="FZF for all lines"},
+      {"<leader>fp", "<cmd>FzfLua grep_project<cr>",                                       mode="n", desc="FZF for lines in a project"},
+      {"<leader>fw", "<cmd>FzfLua grep_cword<cr>",                                         mode="n", desc="FZF for word under cursor"},
+      {"<leader>fl", "<cmd>FzfLua grep_curbuf<cr>",                                        mode="n", desc="FZF for lines in current buffer"},
+      {"<leader>fr", "<cmd>FzfLua resume<cr>",                                             mode="n", desc="FZF resume last search"},
+      {"<leader>fq", "<cmd>FzfLua quickfix<cr>",                                           mode="n", desc="FZF for quickfix"},
+      {"<leader>fn", "<cmd>TODO: Fill me<cr>",                                             mode="n", desc="FZF for neoclip"},
+      {"<leader>f:", "<cmd>FzfLua command_history<cr>",                                    mode="n", desc="FZF for command history"},
+      {"<leader>f/", "<cmd>FzfLua search_history<cr>",                                     mode="n", desc="FZF for search history"},
+      {"<leader>f?", "<cmd>FzfLua builtin<cr>",                                            mode="n", desc="FZF for builtins"},
+    },
     config = function()
-      local f = require("ik1614.functions")
+      local fzf = require("ik1614.functions.fzf-lua")
       local actions = require("fzf-lua.actions")
 
       require("fzf-lua").setup({
@@ -99,8 +118,8 @@ return {
           git_icons         = false,
           file_icons        = false,
           -- cmd = "rg " .. get_rg_opts_files(),
-          rg_opts           = f.fzf:get_rg_opts_files(),
-          fd_opts           = f.fzf:get_fd_opts_files(),
+          rg_opts           = fzf:get_rg_opts_files(),
+          fd_opts           = fzf:get_fd_opts_files(),
           actions = {
             -- set bind to 'false' to disable an action
             -- ["default"]     = actions.file_edit_or_qf,
@@ -108,7 +127,7 @@ return {
             -- ["ctrl-v"]      = actions.file_vsplit,
             -- ["ctrl-t"]      = actions.file_tabedit,
             -- custom actions are available too
-            ["ctrl-r"]      = function(selected) f.fzf:grep_selected_files(selected) end,
+            ["ctrl-r"]      = function(selected) fzf:grep_selected_files(selected) end,
           }
         },
         git = {
@@ -118,7 +137,7 @@ return {
             git_icons       = false,
             file_icons      = false,
             actions = {
-              ["ctrl-r"]      = function(selected) f.fzf:grep_selected_files(selected) end,
+              ["ctrl-r"]      = function(selected) fzf:grep_selected_files(selected) end,
             }
           },
           status = {
@@ -168,12 +187,12 @@ return {
           git_icons         = false,
           file_icons        = false,
           -- cmd            = "rg --vimgrep",
-          rg_opts           = f.fzf:get_rg_opts_grep(),
+          rg_opts           = fzf:get_rg_opts_grep(),
           glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
           glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
-          fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+          fzf_opts = fzf:get_fzf_for_grep_opts(),
           actions = {
-            ["ctrl-r"]      = function(selected) f.fzf:files_of_selected_lines(selected) end,
+            ["ctrl-r"]      = function(selected) fzf:files_of_selected_lines(selected) end,
           }
         },
         args = { -- TODO: figure out what this does :shrug:
@@ -210,7 +229,7 @@ return {
           file_icons        = false,
           show_unlisted     = false,        -- exclude 'help' buffers
           no_term_buffers   = true,         -- exclude 'term' buffers
-          fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+          fzf_opts = fzf:get_fzf_for_grep_opts(),
           actions = {
             ["default"]     = actions.buf_edit,
             ["ctrl-s"]      = actions.buf_split,
@@ -222,7 +241,7 @@ return {
           previewer         = "builtin",
           show_unlisted     = true,         -- include 'help' buffers
           no_term_buffers   = false,        -- include 'term' buffers
-          fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+          fzf_opts = fzf:get_fzf_for_grep_opts(),
           actions = {
             ["default"]     = actions.buf_edit,
             ["ctrl-s"]      = actions.buf_split,
