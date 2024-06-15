@@ -6,12 +6,12 @@ return {
     enabled = true,
     priority = 1000,
     config = function()
-      local f = require("ik1614.functions")
-      local colors = f.utils:get_color_pallet(colorsheme_name)
+      local utils = require("ik1614.functions.utils")
+      local colors = utils:get_color_pallet(colorsheme_name)
       local onedark = require(colorsheme_name)
 
       onedark.setup({
-        style = f.utils:get_color_pallet_style(colorsheme_name),
+        style = utils:get_color_pallet_style(colorsheme_name),
         transparent = true,  -- Show/hide background, i.e. use background of the terminal colorsheme
         term_colors = true, -- Change terminal color as per the selected theme style
         ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
@@ -166,8 +166,8 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      local f = require("ik1614.functions")
-      local colors = f.utils:get_color_pallet(colorsheme_name)
+      local utils = require("ik1614.functions.utils")
+      local colors = utils:get_color_pallet(colorsheme_name)
 
       require("hlargs").setup({
         color = colors.red,

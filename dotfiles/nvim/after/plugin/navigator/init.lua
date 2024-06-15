@@ -1,5 +1,6 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("Navigator")
+local utils = require("ik1614.functions.utils")
+local map = require("ik1614.functions.mapping")
+local plugin = utils:load_plugin("Navigator")
 
 if not plugin then
   return
@@ -17,14 +18,14 @@ plugin.setup({
 })
 
 -- TODO: Somehow move keybindings to a central place.
-f.mapping:n({"<S-Left>",  '<CMD>NavigatorLeft<CR>'})
-f.mapping:n({"<S-Right>", '<CMD>NavigatorRight<CR>'})
-f.mapping:n({"<S-Up>",    '<CMD>NavigatorUp<CR>'})
-f.mapping:n({"<S-Down>",  '<CMD>NavigatorDown<CR>'})
-f.mapping:n({"<C-\\>",    '<CMD>NavigatorPrevious<CR>'})
+map:n({"<S-Left>",  '<CMD>NavigatorLeft<CR>'})
+map:n({"<S-Right>", '<CMD>NavigatorRight<CR>'})
+map:n({"<S-Up>",    '<CMD>NavigatorUp<CR>'})
+map:n({"<S-Down>",  '<CMD>NavigatorDown<CR>'})
+map:n({"<C-\\>",    '<CMD>NavigatorPrevious<CR>'})
 
-f.mapping:i({"<S-Left>",  '<C-c><CMD>NavigatorLeft<CR>'})
-f.mapping:i({"<S-Right>", '<C-c><CMD>NavigatorRight<CR>'})
-f.mapping:i({"<S-Up>",    '<C-c><CMD>NavigatorUp<CR>'})
-f.mapping:i({"<S-Down>",  '<C-c><CMD>NavigatorDown<CR>'})
-f.mapping:i({"<C-\\>",    '<C-c><CMD>NavigatorPrevious<CR>'})
+map:i({"<S-Left>",  '<C-c><CMD>NavigatorLeft<CR>'})
+map:i({"<S-Right>", '<C-c><CMD>NavigatorRight<CR>'})
+map:i({"<S-Up>",    '<C-c><CMD>NavigatorUp<CR>'})
+map:i({"<S-Down>",  '<C-c><CMD>NavigatorDown<CR>'})
+map:i({"<C-\\>",    '<C-c><CMD>NavigatorPrevious<CR>'})

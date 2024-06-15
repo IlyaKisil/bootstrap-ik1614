@@ -1,5 +1,6 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("which-key")
+local utils = require("ik1614.functions.utils")
+local map = require("ik1614.functions.mapping")
+local plugin = utils:load_plugin("which-key")
 
 if not plugin then
     return
@@ -73,17 +74,17 @@ local n_leader = {
     c = {':DiffviewFileHistory<CR>', "Commits for current buffer"},
     C = {':<C-u>FzfLua git_commits<CR>', "Commits"},
     l = {':<C-u>FzfLua git_branches<CR>', "Log of a branches"},
-    s = {':lua require("ik1614.functions").fzf:git_status()<CR>', "Status"},
+    s = {':lua require("ik1614.functions.fzf-lua"):git_status()<CR>', "Status"},
     o = "Open in web", -- TODO: currently this is defined in the 'gitlinker' config
     h = { name = "+hunk" },
   },
   r = {
     name = "Run/Refactor",
     n = {"Rename"},
-    f = {':lua require("ik1614.functions").fzf:lsp_code_actions()<CR>', "Refactor"},
+    f = {':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>', "Refactor"},
     r = {':w<CR>:luafile %<CR>', "Run current lua file"},
     l = {':call functions#exec_current_line()<CR>', "Run current lua line"},
-    p = {':lua require("ik1614.functions").fzf:reload_select_plugins()<CR>', "Reload plugin configuration"},
+    p = {':lua require("ik1614.functions.fzf-lua"):reload_select_plugins()<CR>', "Reload plugin configuration"},
   },
   d = {
     name = "Debug",
@@ -111,21 +112,21 @@ local n_leader = {
     i = {':lua require("dap").step_into()<CR>', "Step into"},
     o = {':lua require("dap").step_over()<CR>', "Step over"},
 
-    f = {':lua require("ik1614.functions").fzf:dap_ui_float()<CR>', "DAP: Open UI component in a float"},
+    f = {':lua require("ik1614.functions.fzf-lua"):dap_ui_float()<CR>', "DAP: Open UI component in a float"},
     p = {':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("[DAP] Log point message: "))<CR>', ":shrug:"},
-    d = {':w<CR>:lua require("ik1614.functions").fzf:dap_configurations()<CR>', "Select debugging configuration"},
+    d = {':w<CR>:lua require("ik1614.functions.fzf-lua"):dap_configurations()<CR>', "Select debugging configuration"},
     h = {':w<CR>:lua require("dap").run_to_cursor()<CR>', "Run to here (cursor potision)"}, -- NOTE: At the moment it requires active session, but would it make sense to start that session at the same time?
     l = {':w<CR>:lua require("dap").run_last()<CR>', "Run last debugging configuration"},
 
     q = {':lua require("dap").terminate()<CR>', "Terminate debugging session"},
     u = {':lua require("dap").step_out()<CR>', "Step out"},
 
-    ["?"] = {':lua require("ik1614.functions").fzf:dap_commands()<CR>', "List all available DAP commands"},
+    ["?"] = {':lua require("ik1614.functions.fzf-lua"):dap_commands()<CR>', "List all available DAP commands"},
   },
   s = {
     name = "Show",
     a = {"Code actions"},
-    b = {':lua require("ik1614.functions").fzf:dap_breakpoints()<CR>', "Breakpoints"},
+    b = {':lua require("ik1614.functions.fzf-lua"):dap_breakpoints()<CR>', "Breakpoints"},
     s = {"Symbols"},
     S = {"Workspace symbols"},
     d = {"Diagnostics"},
@@ -140,7 +141,7 @@ local n_leader = {
     name = "Find (fzf)",
     f = {':<C-u>FzfLua files<CR>', "Files"},
     b = {':<C-u>FzfLua buffers<CR>', "Buffers"},
-    s = {':lua require("ik1614.functions").fzf:grep_no_ignore()<CR>', "Search all"},
+    s = {':lua require("ik1614.functions.fzf-lua"):grep_no_ignore()<CR>', "Search all"},
     p = {':<C-u>FzfLua grep_project<CR>', "Search project"},
     w = {':<C-u>FzfLua grep_cword<CR>', "Current word"},
     l = {':<C-u>FzfLua grep_curbuf<CR>', "Lines of current buffer"},
@@ -193,7 +194,7 @@ local v_leader = {
   },
   r = {
     name = "Run/Refactor",
-    f = {'<esc><cmd>lua require("ik1614.functions").refactoring:refactors()<CR>', "Refactor selection"},
+    f = {'<esc><cmd>lua require("ik1614.functions.refactoring"):refactors()<CR>', "Refactor selection"},
   },
   s = {
     name = "Show",
@@ -205,5 +206,5 @@ plugin.register(v_leader, { prefix = "<leader>", mode = "v" })
 
 -- TODO: Somehow move keybindings to a central place.
 -- When we don't want to wait for auto pop-up :shrug:
-f.mapping:n({'<Leader>?', ":WhichKey '' n<CR>"})
-f.mapping:v({'<Leader>?', ":WhichKey '' v<CR>"})
+map:n({'<Leader>?', ":WhichKey '' n<CR>"})
+map:v({'<Leader>?', ":WhichKey '' v<CR>"})

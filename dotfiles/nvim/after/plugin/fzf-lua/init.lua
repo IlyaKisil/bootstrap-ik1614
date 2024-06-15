@@ -1,6 +1,7 @@
-local f = require("ik1614.functions")
+local utils = require("ik1614.functions.utils")
+local fzf = require("ik1614.functions.fzf-lua")
 
-local plugin = f.utils:load_plugin("fzf-lua")
+local plugin = utils:load_plugin("fzf-lua")
 
 if not plugin then
   return
@@ -97,8 +98,8 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd = "rg " .. get_rg_opts_files(),
-    rg_opts           = f.fzf:get_rg_opts_files(),
-    fd_opts           = f.fzf:get_fd_opts_files(),
+    rg_opts           = fzf:get_rg_opts_files(),
+    fd_opts           = fzf:get_fd_opts_files(),
     actions = {
       -- set bind to 'false' to disable an action
       -- ["default"]     = actions.file_edit_or_qf,
@@ -106,7 +107,7 @@ plugin.setup {
       -- ["ctrl-v"]      = actions.file_vsplit,
       -- ["ctrl-t"]      = actions.file_tabedit,
       -- custom actions are available too
-      ["ctrl-r"]      = function(selected) f.fzf:grep_selected_files(selected) end,
+      ["ctrl-r"]      = function(selected) fzf:grep_selected_files(selected) end,
     }
   },
   git = {
@@ -116,7 +117,7 @@ plugin.setup {
       git_icons       = false,
       file_icons      = false,
       actions = {
-        ["ctrl-r"]      = function(selected) f.fzf:grep_selected_files(selected) end,
+        ["ctrl-r"]      = function(selected) fzf:grep_selected_files(selected) end,
       }
     },
     status = {
@@ -166,12 +167,12 @@ plugin.setup {
     git_icons         = false,
     file_icons        = false,
     -- cmd            = "rg --vimgrep",
-    rg_opts           = f.fzf:get_rg_opts_grep(),
+    rg_opts           = fzf:get_rg_opts_grep(),
     glob_flag         = "--iglob",  -- for case sensitive globs use '--glob'
     glob_separator    = "%s%-%-",    -- query separator pattern (lua): ' --'
-    fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+    fzf_opts = fzf:get_fzf_for_grep_opts(),
     actions = {
-      ["ctrl-r"]      = function(selected) f.fzf:files_of_selected_lines(selected) end,
+      ["ctrl-r"]      = function(selected) fzf:files_of_selected_lines(selected) end,
     }
   },
   args = { -- TODO: figure out what this does :shrug:
@@ -208,7 +209,7 @@ plugin.setup {
     file_icons        = false,
     show_unlisted     = false,        -- exclude 'help' buffers
     no_term_buffers   = true,         -- exclude 'term' buffers
-    fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+    fzf_opts = fzf:get_fzf_for_grep_opts(),
     actions = {
       ["default"]     = actions.buf_edit,
       ["ctrl-s"]      = actions.buf_split,
@@ -220,7 +221,7 @@ plugin.setup {
     previewer         = "builtin",
     show_unlisted     = true,         -- include 'help' buffers
     no_term_buffers   = false,        -- include 'term' buffers
-    fzf_opts = f.fzf:get_fzf_for_grep_opts(),
+    fzf_opts = fzf:get_fzf_for_grep_opts(),
     actions = {
       ["default"]     = actions.buf_edit,
       ["ctrl-s"]      = actions.buf_split,

@@ -1,6 +1,6 @@
-local f = require("ik1614.functions")
-local cmp = f.utils:load_plugin("cmp")
-local luasnip = f.utils:load_plugin("luasnip")
+local utils = require("ik1614.functions.utils")
+local cmp = utils:load_plugin("cmp")
+local luasnip = utils:load_plugin("luasnip")
 
 vim.opt.completeopt = {
   "menu",

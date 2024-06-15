@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local ls = f.utils:load_plugin("luasnip")
+local utils = require("ik1614.functions.utils")
+local ls = utils:load_plugin("luasnip")
 
 if not ls then
   return

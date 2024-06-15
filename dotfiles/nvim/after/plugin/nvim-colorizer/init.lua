@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("colorizer")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("colorizer")
 
 if not plugin then
   return

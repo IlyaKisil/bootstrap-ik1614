@@ -1,10 +1,10 @@
-local f = require("ik1614.functions")
+local utils = require("ik1614.functions.utils")
 
 -- NOTE: These should be set before calling require'nvim-tree' or calling setup. They
 -- are being migrated to the setup function bit by bit
 vim.g.nvim_tree_refresh_wait = 1000
 
-local plugin = f.utils:load_plugin("nvim-tree")
+local plugin = utils:load_plugin("nvim-tree")
 
 if not plugin then
   return
