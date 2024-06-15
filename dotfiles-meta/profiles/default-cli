@@ -1,6 +1,8 @@
 bin
+cookiecutter
 git
 jetbrains
+kitty
 nvim
 sh-aliases
 ssh

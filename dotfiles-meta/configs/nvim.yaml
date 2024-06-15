@@ -3,7 +3,7 @@
     ~/.config/nvim/lazy-lock.json: dotfiles/nvim/lazy-lock.json
     ~/.config/nvim/lua: dotfiles/nvim/lua
     ~/.config/nvim/colors: dotfiles/nvim/colors
-    ~/.config/nvim/after: dotfiles/nvim/after
+    # ~/.config/nvim/after: dotfiles/nvim/after
     # ~/.config/nvim/general: dotfiles/vim/common/general
     ~/.config/nvim/autoload: dotfiles/vim/common/autoload
     ~/.config/nvim/ftplugin: dotfiles/vim/common/ftplugin
