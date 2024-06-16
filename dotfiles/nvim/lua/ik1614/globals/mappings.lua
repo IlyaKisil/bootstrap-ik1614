@@ -4,6 +4,7 @@
 local map = require("ik1614.functions.mapping")
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 vim.g.completion_confirm_key = ""
 
@@ -26,8 +27,8 @@ map:n({'<C-e>', ':Cprev<CR>'})
 -- " Since location list is for current buffer, it kind makes sense to
 -- " use local leader for mnemonic, although I'd prefer to have something
 -- " that can be constantly pressed (similar to <C-n>)
-map:n({'<localleader>n', ':Lnext<CR>'})
-map:n({'<localleader>e', ':Lprev<CR>'})
+-- map:n({'<localleader>n', ':Lnext<CR>'})
+-- map:n({'<localleader>e', ':Lprev<CR>'})
 
 
 -- Don't move cursor
@@ -154,8 +155,3 @@ map:i({';', ';<C-g>u'})
 -- Don't send add '{' and '}' to jump list
 map:n({'}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>'})
 map:n({'{', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>'})
-
-map:n({"<C-p>", ":<C-u>FzfLua git_files<CR>"})
-
-map:x({'ga', '<Plug>(EasyAlign)'})
-map:n({'ga', '<Plug>(EasyAlign)'})
