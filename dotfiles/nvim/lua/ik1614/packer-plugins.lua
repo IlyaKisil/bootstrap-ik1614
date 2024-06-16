@@ -30,7 +30,7 @@ return require('packer').startup(
     -- If you use Neovim, then you need these :wink:
     -------------------------------------------------------------------------------------
     use 'nvim-lua/popup.nvim'
-    use 'nvim-lua/plenary.nvim'
+    use 'nvim-lua/plenary.nvim' -- kinda ported over (as a dependency)
     use "tami5/sqlite.lua"
 
 
@@ -61,19 +61,19 @@ return require('packer').startup(
     -- Style and visual sugar
     -------------------------------------------------------------------------------------
     use({
-      'nvim-treesitter/nvim-treesitter',
+      'nvim-treesitter/nvim-treesitter', -- Ported over
       run = ':TSUpdate',
     })
-    use {'nvim-treesitter/nvim-treesitter-textobjects'}
+    use {'nvim-treesitter/nvim-treesitter-textobjects'} -- Ported over
     -- use {'https://github.com/nvim-treesitter/nvim-treesitter-context'}
     -- use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'nvim-treesitter/playground'
+    use 'nvim-treesitter/playground' -- I think this is now comes by default?
 
-    use 'https://github.com/ryanoasis/vim-devicons'
-    use 'https://github.com/kyazdani42/nvim-web-devicons'
+    use 'https://github.com/ryanoasis/vim-devicons' -- Don't think I need this
+    use 'https://github.com/kyazdani42/nvim-web-devicons' -- ported over
 
     use({
-      'https://github.com/nvim-lualine/lualine.nvim',
+      'https://github.com/nvim-lualine/lualine.nvim', -- ported over
       requires = {'kyazdani42/nvim-web-devicons', opt = true},
     })
 
@@ -81,18 +81,18 @@ return require('packer').startup(
 
     -- Color
     use({
-      'norcalli/nvim-colorizer.lua',
+      'norcalli/nvim-colorizer.lua', -- ported over
     })
     use 'sheerun/vim-polyglot' -- TODO: need to reduce footprint and use Treesitter as much as possible
 
     -- Colorschemes
     use({
-      'https://github.com/navarasu/onedark.nvim',
+      'https://github.com/navarasu/onedark.nvim', -- ported over
       -- commit = "6c72a9c5",
     })
 
     use({
-      'https://github.com/m-demare/hlargs.nvim',
+      'https://github.com/m-demare/hlargs.nvim', -- ported over
       requires = {'nvim-treesitter/nvim-treesitter'}
     })
 
@@ -188,7 +188,7 @@ return require('packer').startup(
       },
     }
 
-    use {'ibhagwan/fzf-lua',
+    use {'ibhagwan/fzf-lua', -- ported over
       requires = {
         'vijaymarupudi/nvim-fzf',
         'kyazdani42/nvim-web-devicons'
@@ -200,7 +200,7 @@ return require('packer').startup(
     })
 
     use({
-      'kyazdani42/nvim-tree.lua',
+      'kyazdani42/nvim-tree.lua', -- ported over
     })
 
     use({
@@ -243,17 +243,17 @@ return require('packer').startup(
     -- Git
     -------------------------------------------------------------------------------------
     use {
-      'lewis6991/gitsigns.nvim',
+      'lewis6991/gitsigns.nvim', -- ported over
       requires = {'nvim-lua/plenary.nvim'},
     }
     use {
       'sindrets/diffview.nvim',
       requires = 'nvim-lua/plenary.nvim',
     }
-    use 'tpope/vim-fugitive' -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
+    use 'tpope/vim-fugitive' -- ported over -- Can be substituted with https://github.com/TimUntersberger/neogit which is written in Lua
     -- use 'https://github.com/TimUntersberger/neogit'
     use {
-      'ruifm/gitlinker.nvim',
+      'ruifm/gitlinker.nvim', -- ported over
       requires = 'nvim-lua/plenary.nvim',
     }
 
@@ -273,7 +273,7 @@ return require('packer').startup(
     -- General Plugins
     -------------------------------------------------------------------------------------
     use({
-      'https://github.com/numToStr/Navigator.nvim',
+      'https://github.com/numToStr/Navigator.nvim', -- ported over
     })
 
     use 'https://github.com/tpope/vim-commentary'

@@ -29,7 +29,7 @@ require("ik1614.globals.mappings")
 require("ik1614.globals.vim-backport")
 
 -- Hookup plugins
-require("ik1614.plugins")
+require("ik1614.packer-plugins")
 
 -- Setup all things related to LSP
 require("ik1614.lsp")

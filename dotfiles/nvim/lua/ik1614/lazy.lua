@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup(
   {
-    { import = "ik1614.lazy-plugins" },
+    { import = "ik1614.plugins" },
   },
   {
     ui = {
