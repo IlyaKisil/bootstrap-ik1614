@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 ### Quick locations
-alias gg='cd ~/GitHub'
-alias gl='cd ~/GitLab'
-alias bb='cd ~/BitBucket'
-
-### Python
-alias sa='conda activate'
-alias sd='conda deactivate'
-alias jl='jupyter-lab'
-
-### Matlab
-alias mat='matlab -nodisplay -nosplash'
-
-### LaTeX
-alias pdflatex='pdflatex -output-directory=build'
+alias gg='cd ~/github'
+alias gl='cd ~/gitlab'
+alias bb='cd ~/bitbucket'

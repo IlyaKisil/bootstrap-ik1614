@@ -101,10 +101,6 @@
     quote-string = "!read -r l; printf \\\"!; printf %s \"$l\" | sed 's/\\([\\\"]\\)/\\\\\\1/g'; printf \" #\\\"\\n\" #"
     quote-string-undo = "!read -r l; printf %s \"$l\" | sed 's/\\\\\\([\\\"]\\)/\\1/g'; printf \"\\n\""
 
-    # merge to always create a new commit object,
-    # even if the merge could be performed with a fast-forward
-    m = merge --no-ff
-
     # Show user defined alias list
     aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'"
 [filter "lfs"]

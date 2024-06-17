@@ -14,14 +14,13 @@ easier to do (in particular, syncing updates between machines becomes really eas
 ## Table of Contents
 Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-Last Update: 2021-08-29
+Last Update: 2024-06-17
 
 - [Quick setups](#quick-setups)
   - [Setup dotfiles](#setup-dotfiles)
   - [Setup iTerm2](#setup-iterm2)
 - [Post install actions](#post-install-actions)
   - [Nvim](#nvim)
-    - [TODO](#todo)
   - [Useful npm packages](#useful-npm-packages)
   - [`gcloud`](#gcloud)
 - [Overview of this configuration files and scripts](#overview-of-this-configuration-files-and-scripts)
@@ -38,8 +37,12 @@ Last Update: 2021-08-29
 
 ## Quick setups
 
-:exclamation: **Important:** You need to have `PyYAML` installed before trying to install
-profile or configuration.
+> [!IMPORTANT]
+> You need to have `PyYAML` installed before trying to install profile or configuration.
+>
+> ```bash
+> pip install pyyaml
+> ```
 
 ### Setup dotfiles
 ```bash
@@ -78,11 +81,6 @@ npm install -g neovim
 
 nvim -c ':check health provider'
 ```
-#### TODO
-- [ ] There is a bad dependency in mapping on a plugin that are not installed and getting
-  sourced only after
-- [ ] Intall nvr for latex sync???
-- [ ] Install lsp automatically???
 
 
 ### Install useful npm packages
@@ -123,11 +121,11 @@ make test-install-config
 # or
 make test-install-profile
 ```
-:exclamation: **Important:** Some of the configs are git submodules, i.e. `tpm`,
-`oh-my-zsh`. However, we don't want our install bash scripts, i.e. `install-profile`,
-`install-config`,  to pull/update them as a default behaviour, since we don't want to
-overload different environments. Thus, this should be manged as a stand-alone task within
-`shell` directive of a config.
+> [!IMPORTANT]
+> Some of the configs are git submodules, i.e. `tpm`, `oh-my-zsh`. However, we don't want
+> our install bash scripts, i.e. `install-profile`, `install-config`,  to pull/update
+> them as a default behaviour, since we don't want to overload different environments.
+> Thus, this should be manged as a stand-alone task within `shell` directive of a config.
 
 
 ## Reporting problems and issues
