@@ -5,3 +5,4 @@
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.gitconfig-local ] && echo '=> Already exists, skipping' || cp dotfiles/git/gitconfig-local ~/.gitconfig-local", Initialising .gitconfig-local]
+    - ["[ -d ~/github/personal ] && echo '=> Already exists, skipping' || mkdir -p ~/github/personal", Initialising ~/github/personal directory]
