@@ -35,7 +35,7 @@ Last Update: 2024-06-17
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Quick setups
+# Quick setups
 
 > [!IMPORTANT]
 > You need to have `PyYAML` installed before trying to install profile or configuration.
@@ -44,7 +44,6 @@ Last Update: 2024-06-17
 > pip install pyyaml
 > ```
 
-### Setup dotfiles
 ```bash
 git clone https://github.com/IlyaKisil/bootstrap-ik1614.git
 cd bootstrap-ik1614
@@ -54,36 +53,27 @@ cd bootstrap-ik1614
 
 # Apply selected configs
 ./install-config.sh git tmux zsh sh-aliases bin
-
-# Verify the corresponding parts are configures correctly
-./tests/verify-setup.sh
 ```
 
-### Setup iTerm2
-* Use [misc/iterm2/mdracula.itermcolors](./misc/iterm2/mdracula.itermcolors) which kinda
-  replicates Dracula theme from JetBrains products. It will also match `mdracula` color
-  scheme for vim.
-
-* Imort [misc/iterm2/profile-mdracula.json](./misc/iterm2/profile-mdracula.json) and set
-  it as default profile. You might need to install fonts 🤷
-
-
-## Post install actions
-### Nvim
-
+# Optional post install actions
+## Python
+Install whatever versions of Python you need with `pyenv`
 ```bash
 pyenv install 3.9.4
 pyenv global 3.9.4
-pip install neovim
-
-nvm install node
-npm install -g neovim
-
-nvim -c ':check health provider'
 ```
 
 
-### Install useful npm packages
+## Node
+> [!IMPORTANT]
+> NVM is not imported by default because it increases shell start up time. It is likely
+> that you would need to comment out `NODE_VERSION` env variable in the `~/.zshrc-local`.
+> In general, see `~/.zshrc` for more info.
+
+```bash
+nvm install --lts --default
+```
+Useful `npm` packages
 ```
 ├── commitizen@4.0.3
 ├── conventional-changelog-cli@2.1.1
@@ -94,7 +84,22 @@ nvim -c ':check health provider'
 ```
 
 
-### `gcloud`
+## Nvim
+Check health and adjust accordingly.
+```bash
+nvim -c ':checkhealth'
+```
+
+For example, you might need to install missing providers
+```bash
+pip install pynvim
+
+nvm install node
+npm install -g neovim
+```
+
+
+## Configure `gcloud`
 ```bash
 gcloud init ...
 
@@ -104,16 +109,17 @@ gcloud auth application-default login
 ```
 
 
-## Overview of this configuration files and scripts
-### dotfiles
-### dotfiles-meta
-### setup-utils
-### bin
-### misc
-### tests
+# Overview of this configuration files and scripts
+## dotfiles
+## dotfiles-meta
+## setup-utils
+## bin
+## misc
+## tests
 
 
-## Development
+
+# Development
 Testing out new configuration can easily be done within Docker.
 In this way, you don't risk of accidentally overriding your existing dotfiles of configs.
 ```bash
@@ -128,8 +134,8 @@ make test-install-profile
 > Thus, this should be manged as a stand-alone task within `shell` directive of a config.
 
 
-## Reporting problems and issues
 
+# Reporting problems and issues
 Please use one of [these forms][this-repo-issues] which supports `markdown` text
 formatting. It would also be helpful if you include as much relevant information as
 possible. This could include screenshots, code snippets etc.
@@ -138,4 +144,3 @@ possible. This could include screenshots, code snippets etc.
 
 <!-- References -->
 [this-repo-issues]: https://github.com/IlyaKisil/bootstrap-ik1614/issues/new/choose
-
