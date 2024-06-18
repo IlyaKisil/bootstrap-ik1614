@@ -9,4 +9,5 @@
     - ["git submodule update --init --depth 1 --remote dotfiles/zsh/custom/themes/powerlevel10k", Initiliasing theme powerlevel10k]
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.zshrc-local ] && echo '=> Already exists, skipping' || cp dotfiles/zsh/zshrc-local ~/.zshrc-local", Initialising .zshrc-local]
+    - ["[ -d ~/.bak/zsh-history ] && echo '=> Already exists, skipping' || mkdir -p ~/.bak/zsh-history", Initialising ~/.bak/zsh-history directory]
     - ["touch ~/.zshenv-secrets", Initialising .zshenv-secrets]
