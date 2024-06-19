@@ -23,10 +23,10 @@ Notes to people reading my configuration (including myself in a future :rofl:)
 
 -- Setup globals that I expect to be always available.
 -- Basically this is config for (N)vim without batteries. Well for 99% of cases :wink:
-require('ik1614.globals')
-require('ik1614.globals.settings')
-require("ik1614.globals.mappings")
-require("ik1614.globals.vim-backport")
+require('ik1614.core.globals')
+require('ik1614.core.settings')
+require("ik1614.core.mappings")
+require("ik1614.core.vim-backport")
 
 -- Hookup plugins
 require("ik1614.packer-plugins")
