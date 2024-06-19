@@ -1,7 +1,7 @@
-require('ik1614.globals')
-require('ik1614.globals.settings')
-require("ik1614.globals.mappings")
-require("ik1614.globals.vim-backport")
+require('ik1614.core.globals')
+require('ik1614.core.settings')
+require("ik1614.core.mappings")
+require("ik1614.core.vim-backport")
 
 require('ik1614.lazy')
 
