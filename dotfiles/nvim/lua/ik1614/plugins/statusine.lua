@@ -12,8 +12,35 @@ return {
         return "DAP: TODO"
       end
 
-      local function lsp_status()
-        return "LSP: TODO"
+      local function lsp_status(msg)
+          --[[
+            References:
+            * https://github.com/alpha2phi/neovim-for-beginner/blob/14-null-ls/lua/config/lualine.lua
+            * https://github.com/alpha2phi/neovim-for-beginner/blob/383bf9a7b655ef0da604e88773940a636ee3fae4/lua/config/lualine.lua#L22
+          --]]
+          msg = msg or ""
+
+          local buf_ft = vim.bo.filetype
+          local buf_client_names = {}
+          local buf_clients = vim.lsp.get_clients()
+          if next(buf_clients) == nil then
+              if type(msg) == "boolean" or #msg == 0 then
+                  return ""
+              end
+              return msg
+          end
+
+          for _, client in pairs(buf_clients) do
+            if client.name ~= "null-ls" then
+              table.insert(buf_client_names, client.name)
+            end
+          end
+
+          if next(buf_client_names) == nil then
+            return ""
+          end
+
+          return "LSP: " .. table.concat(buf_client_names, ", ")
       end
 
       local lualine_a = {
@@ -54,6 +81,10 @@ return {
         },
         sections = {
           lualine_a = lualine_a.active,
+          lualine_b = {
+            'branch',
+            'diff',
+          },
           lualine_c = lualine_c.active,
           lualine_x = empty_section,
           lualine_y = {
