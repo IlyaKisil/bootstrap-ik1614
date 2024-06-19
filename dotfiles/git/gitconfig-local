@@ -5,7 +5,7 @@
 
 # Keep this at the bottom as a fallback for personal repos
 # regardless of any setting above
-[includeIf "gitdir:IlyaKisil/"]
+[includeIf "gitdir:personal/"]
     path = ~/.gitconfig-personal
 
 [core]

@@ -1,5 +1,6 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("mini.jump")
+local utils = require("ik1614.functions.utils")
+local map = require("ik1614.functions.mapping")
+local plugin = utils:load_plugin("mini.jump")
 
 if not plugin then
   return
@@ -38,4 +39,4 @@ local function repeat_jump_in_oposite_direction()
     MiniJump.state = state
 end
 
-f.mapping:n({",", repeat_jump_in_oposite_direction})
+map:n({",", repeat_jump_in_oposite_direction})

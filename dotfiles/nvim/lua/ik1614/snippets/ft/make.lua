@@ -1,7 +1,7 @@
 local ls = require("luasnip")
 local s = ls.snippet
 local t = ls.text_node
-local fmt = require("luasnip.extras.fmt").fmt
+local fmt = require("luasnip.extras.fmt").fmta
 
 return {
   s(
@@ -59,29 +59,28 @@ return {
 
       ]], {})
    ),
-  -- FIXME: Need to escape brakets within the snippet content
-  --s(
-  --    {
-  --       trig = "toc",
-  --       dscr = "Create target for updating readme with 'doctoc'"
-  --    },
-  --    fmt([[
-  --      .PHONY: update-readme-toc
+  s(
+      {
+         trig = "toc",
+         dscr = "Create target for updating readme with 'doctoc'"
+      },
+      fmt([[
+        .PHONY: update-readme-toc
 
-  --      define README_TOC_TITLE
-  --      Table of Contents
-  --      -----------------
-  --      Generated with [DocToc](https://github.com/thlorenz/doctoc)
+        define README_TOC_TITLE
+        Table of Contents
+        -----------------
+        Generated with [DocToc](https://github.com/thlorenz/doctoc)
 
-  --      Last Update: $(shell date +%Y-%m-%d)
-  --      endef
-  --      export README_TOC_TITLE
-  --      ## Update table of contents only for staged 'README.md' known to git. Requires 'doctoc' to be installed
-  --      update-readme-toc:
-  --      	@git diff --name-only --cached \
-  --      		| grep README.md \
-  --      		| xargs -I FILE sh -c '{ doctoc --github --title "$${README_TOC_TITLE}" FILE && git add FILE; }'
-  --    ]], {})
-  -- ),
+        Last Update: $(shell date +%Y-%m-%d)
+        endef
+        export README_TOC_TITLE
+        ## Update table of contents only for staged 'README.md' known to git. Requires 'doctoc' to be installed
+        update-readme-toc:
+        	@git diff --name-only --cached \
+        		| grep README.md \
+        		| xargs -I FILE sh -c '{ doctoc --github --title "$${README_TOC_TITLE}" FILE && git add FILE; }'
+      ]], {})
+   ),
 }
 

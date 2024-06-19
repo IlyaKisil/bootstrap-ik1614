@@ -21,19 +21,17 @@ alias vim="nvim"
 alias vvim='\vim'
 alias :q='exit'
 alias :wq='exit'
+alias :qa='exit'
+
 alias import-secrets="source $ZSHENV_SECRETS"
 
 alias ..='cd ..'
-
-alias clc='clear'
-
 alias la='ls --color=auto -la'
-
 alias grep='grep --color=auto'
 
 alias gh-doctoc='doctoc --github --title "$(echo "\n## Table of Contents\nGenerated with [DocToc](https://github.com/thlorenz/doctoc)\n\nLast Update: `date +%Y-%m-%d`")"'
 alias bb-doctoc='doctoc --bitbucket --title "$(echo "\n## Table of Contents\nGenerated with [DocToc](https://github.com/thlorenz/doctoc)\n\nLast Update: `date +%Y-%m-%d`")"'
-
+alias pdflatex='pdflatex -output-directory=build'
 
 ALIASES_LOCAL="${HOME}/.aliases-local"
 if [[ -f "${ALIASES_LOCAL}" ]]; then

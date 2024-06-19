@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("lualine")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("lualine")
 
 if not plugin then
   return
@@ -7,7 +7,7 @@ end
 
 local function diff_source()
   -- Reuse git diff from 'gitsigns' if it exists
-  if f.utils:plugin_installed("gitsigns") then
+  if utils:plugin_installed("gitsigns") then
     -- TODO: I have a feeling there is some load dependency, race condition
     -- As at the moments this doesn't work on the start up but after that
     -- that dict is available :shrug:
@@ -25,7 +25,7 @@ local function diff_source()
 end
 
 local function show_dap_status()
-  local dap = f.utils:load_plugin("dap")
+  local dap = utils:load_plugin("dap")
   if not dap then
     return ""
   end

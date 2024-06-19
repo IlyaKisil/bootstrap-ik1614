@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("twilight")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("twilight")
 
 if not plugin then
   return

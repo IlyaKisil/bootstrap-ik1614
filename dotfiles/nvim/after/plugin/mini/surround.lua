@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("mini.surround")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("mini.surround")
 
 if not plugin then
   return

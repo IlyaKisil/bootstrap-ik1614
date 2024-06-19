@@ -1,6 +1,12 @@
-local f = require("ik1614.functions")
-local cmp = f.utils:load_plugin("cmp")
-local luasnip = f.utils:load_plugin("luasnip")
+local utils = require("ik1614.functions.utils")
+local cmp = utils:load_plugin("cmp")
+local luasnip = utils:load_plugin("luasnip")
+
+vim.opt.completeopt = {
+  "menu",
+  "menuone",  -- show menu even if there is only one candidate (for nvim-compe)
+  "noselect", -- don't automatically select canditate (for nvim-compe)
+}
 
 if not cmp or not luasnip then
   return

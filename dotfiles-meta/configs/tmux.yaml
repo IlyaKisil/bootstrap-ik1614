@@ -4,6 +4,7 @@
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.tmux-local.conf ] && echo '=> Already exists, skipping' || cp dotfiles/tmux/tmux-local.conf ~/.tmux-local.conf", Initialising .tmux-local.conf]
+    - ["[ -d ~/.bak/tmux/resurrect ] && echo '=> Already exists, skipping' || mkdir -p ~/.bak/tmux/resurrect", Initialising ~/.bak/tmux/resurrect directory]
 
     # Bootstrap Tmux plugin manges and init plugins based on info in tmux.conf and tmux-local.conf
     - ["git submodule update --init --depth 1 --remote dotfiles/tmux/tpm", Initiliasing tmux plugin manager]

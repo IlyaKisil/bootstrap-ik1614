@@ -59,13 +59,6 @@ vim.opt.smartcase = true -- Except when using capital letters
 
 vim.o.pumheight = 7 -- Determines the maximum number of items to show in the popup menu (auto-completion). Better to keep it less then 'scrolloff'
 
-vim.opt.completeopt = {
-  "menu",
-  "menuone",  -- show menu even if there is only one candidate (for nvim-compe)
-  "noselect", -- don't automatically select canditate (for nvim-compe)
-}
-
-
 -- ----------- Splits, Windows, Buffers
 vim.opt.splitbelow    = true                    -- open horizontal splits below current window
 vim.opt.splitright    = true                    -- open vertical splits to the right of the current window
@@ -115,10 +108,6 @@ vim.opt.foldlevel      = 99                                -- start unfolded
 -- Use treesitter for folding. FIXME: doesn't work currently :cry:
 -- vim.opt.foldmethod     = 'expr'
 -- vim.opt.foldtext       = 'nvim_treesitter#foldexpr()'
-
--- Disable `netrw` completely
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 --
 vim.opt.fillchars = {

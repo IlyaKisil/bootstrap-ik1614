@@ -1,6 +1,6 @@
 snippet plugin-setup "Add boiler plate for setting up a plugin" b
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("${1:}")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("${1:}")
 
 if not plugin then
   return

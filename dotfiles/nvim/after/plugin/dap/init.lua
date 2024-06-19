@@ -1,5 +1,5 @@
-local f = require("ik1614.functions")
-local dap = f.utils:load_plugin("dap")
+local utils = require("ik1614.functions.utils")
+local dap = utils:load_plugin("dap")
 
 if not dap then
   return
@@ -101,7 +101,7 @@ require('dap-go').setup()
 require("dap-python").setup("python", {})
 
 require('dap-python').resolve_python = function()
-  return f.utils:find_cmd("python3", ".venv/bin", vim.fn.getcwd())
+  return utils:find_cmd("python3", ".venv/bin", vim.fn.getcwd())
 end
 setup_signs()
 setup_ui()

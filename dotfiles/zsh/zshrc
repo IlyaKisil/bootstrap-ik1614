@@ -147,8 +147,8 @@ if [[ -z ${NODE_VERSION:=""} ]]; then
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
     # Assumes NVM was installed with 'brew'
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 else
     # This will work after initial node setup of via NVM
     export PATH=${NODE_BIN:=""}${PATH:+:${PATH}}
@@ -168,7 +168,7 @@ for secret_env_var in "${COMMON_SECRETS[@]}"; do
 done
 
 ### Don't polute history with the following command patterns
-export HISTORY_IGNORE="(git (s|l|add *|co *|push|pull)|vim(| .)|vagrant (up|ssh|status|destroy)|la|ls|docker ps|* (-h|--help)|man *)"
+export HISTORY_IGNORE="(git (s|l|add *|co *|push|pull)|vim(| .)|vagrant (up|ssh|status|destroy)|../*|cd|la|(cd|la|ls) *|docker ps|* (-h|--help)|man *)"
 
 ### Don't run 'brew [upgrade|reinstall]' for outdated dependants
 # TODO: Make this specific to MacOS

@@ -1,12 +1,12 @@
-local f = require("ik1614.functions")
-local plugin = f.utils:load_plugin("hlargs")
+local utils = require("ik1614.functions.utils")
+local plugin = utils:load_plugin("hlargs")
 
 if not plugin then
   return
 end
 
 
-local colors = f.utils:get_color_pallet("onedark")
+local colors = utils:get_color_pallet("onedark")
 plugin.setup({
   color = colors.red,
   excluded_filetypes = {},
