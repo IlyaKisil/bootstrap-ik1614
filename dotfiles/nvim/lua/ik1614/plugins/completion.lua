@@ -95,25 +95,25 @@ return {
         },
       }
 
-      cmp.setup.cmdline('/', {
-        mapping = default_mappings,
-        sources = {
-          { name = 'buffer', keyword_length = 3 }
-        }
-      })
-
-      cmp.setup.cmdline(':', {
-        mapping = default_mappings,
-        sources = cmp.config.sources(
-          {
-            { name = 'path', keyword_length = 3 }
-          },
-          {
-            { name = 'cmdline', keyword_length = 3 }
-          }
-        ),
-        matching = { disallow_symbol_nonprefix_matching = false }
-      })
+      -- cmp.setup.cmdline('/', {
+      --   mapping = default_mappings,
+      --   sources = {
+      --     { name = 'buffer', keyword_length = 3 }
+      --   }
+      -- })
+      --
+      -- cmp.setup.cmdline(':', {
+      --   mapping = default_mappings,
+      --   sources = cmp.config.sources(
+      --     {
+      --       { name = 'path', keyword_length = 3 }
+      --     },
+      --     {
+      --       { name = 'cmdline', keyword_length = 3 }
+      --     }
+      --   ),
+      --   matching = { disallow_symbol_nonprefix_matching = false }
+      -- })
     end,
   },
 }
