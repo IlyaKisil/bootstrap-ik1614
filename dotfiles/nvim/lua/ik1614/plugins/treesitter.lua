@@ -20,6 +20,7 @@ return {
           "diff",
           "go",
           "html",
+          "hcl",
           "javascript",
           "json",
           "jsonc",
@@ -47,8 +48,6 @@ return {
           disable = {
             "bash", -- TODO: after switching to `lazy.nvim` stopped working :shrug:
             "json", -- breaks for environment.template
-            "yaml", -- There is something weird with it as well
-            "hcl",
           },
         },
         indent = {
