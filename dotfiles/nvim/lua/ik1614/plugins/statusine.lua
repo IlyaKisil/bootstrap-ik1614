@@ -20,10 +20,11 @@ return {
           --]]
         msg = msg or ""
 
-        local buf_ft = vim.bo.filetype
-        local buf_client_names = {}
-        local buf_clients = vim.lsp.get_clients()
-        if next(buf_clients) == nil then
+        local info = {}
+        local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+        local buf_formatters = require("conform").list_formatters(0)
+
+        if next(buf_clients) == nil and next(buf_formatters) == nil then
           if type(msg) == "boolean" or #msg == 0 then
             return ""
           end
@@ -31,16 +32,18 @@ return {
         end
 
         for _, client in pairs(buf_clients) do
-          if client.name ~= "null-ls" then
-            table.insert(buf_client_names, client.name)
-          end
+          table.insert(info, client.name)
         end
 
-        if next(buf_client_names) == nil then
+        for _, formatter in pairs(buf_formatters) do
+          table.insert(info, formatter.name)
+        end
+
+        if next(info) == nil then
           return ""
         end
 
-        return "LSP: " .. table.concat(buf_client_names, ", ")
+        return "LSP: " .. table.concat(info, ", ")
       end
 
       local lualine_a = {
