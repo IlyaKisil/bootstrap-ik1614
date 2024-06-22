@@ -22,11 +22,10 @@ function M:get_fzf_for_grep_opts()
   -- * Make sure that `fzf` filtering doesn't skip entries
   -- * Tiebreak by line no.
   return {
-    ['--delimiter'] = vim.fn.shellescape('[:]'),
-    ["--nth"]  = '2..',
-    ["--tiebreak"]  = 'index',
+    ["--delimiter"] = vim.fn.shellescape("[:]"),
+    ["--nth"] = "2..",
+    ["--tiebreak"] = "index",
   }
-
 end
 
 function M:get_ignore_glob(type)
@@ -134,8 +133,8 @@ function M:git_status()
   return self.plugin.git_status({
     winopts = {
       preview = {
-        layout='vertical',
-        vertical = 'down:80%',
+        layout = "vertical",
+        vertical = "down:80%",
       },
     },
     preview_pager = preview_pager,
@@ -143,7 +142,7 @@ function M:git_status()
 end
 
 function M:grep_no_ignore()
-  local opts = self:get_rg_opts_grep({"--no-ignore"})
+  local opts = self:get_rg_opts_grep({ "--no-ignore" })
   return self.plugin.grep({
     rg_opts = opts,
     search = "",
@@ -161,24 +160,23 @@ function M:grep_selected_files(data)
   local rg_opts = self:get_rg_opts_grep()
   local command = ("rg %s '' %s"):format(rg_opts, utils:table_to_string(data, " "))
 
-  return self.plugin.fzf_exec(
-    command,
-    {
-      fn_transform = function(x)
-        return self.plugin.make_entry.file(x, {file_icons=false, color_icons=false})
+  return self.plugin.fzf_exec(command, {
+    fn_transform = function(x)
+      return self.plugin.make_entry.file(x, { file_icons = false, color_icons = false })
+    end,
+    fzf_opts = self:get_fzf_for_grep_opts(),
+    previewer = "builtin",
+    prompt = "Grep in selected> ",
+    actions = {
+      ["default"] = self.plugin.actions.file_edit_or_qf,
+      ["ctrl-s"] = self.plugin.actions.file_split,
+      ["ctrl-v"] = self.plugin.actions.file_vsplit,
+      ["ctrl-t"] = self.plugin.actions.file_tabedit,
+      ["ctrl-r"] = function(selected)
+        self:files_of_selected_lines(selected)
       end,
-      fzf_opts = self:get_fzf_for_grep_opts(),
-      previewer = "builtin",
-      prompt = "Grep in selected> ",
-      actions = {
-        ["default"] = self.plugin.actions.file_edit_or_qf,
-        ["ctrl-s"]  = self.plugin.actions.file_split,
-        ["ctrl-v"]  = self.plugin.actions.file_vsplit,
-        ["ctrl-t"]  = self.plugin.actions.file_tabedit,
-        ["ctrl-r"]  = function(selected) self:files_of_selected_lines(selected) end,
-      }
-    }
-  )
+    },
+  })
 end
 
 function M:files_of_selected_lines(data)
@@ -187,43 +185,41 @@ function M:files_of_selected_lines(data)
   local unique_files = {}
   for _, v in pairs(data) do
     local file_name = string.match(v, "(.-):") -- Split by ':' and get first item
-    if (not unique_files[file_name]) then
+    if not unique_files[file_name] then
       unique_files[file_name] = true
       table.insert(selected_files, file_name)
     end
   end
 
-  self.plugin.fzf_exec(
-    selected_files,
-    {
-      -- fzf_opts = self:get_fzf_for_grep_opts(), -- NOTE: might need to have some options when location of selected lines will be preserved.
-      previewer = "builtin",
-      prompt = "Files from selected> ",
-      actions = {
-        ["default"] = self.plugin.actions.file_edit_or_qf,
-        ["ctrl-s"]  = self.plugin.actions.file_split,
-        ["ctrl-v"]  = self.plugin.actions.file_vsplit,
-        ["ctrl-t"]  = self.plugin.actions.file_tabedit,
-        ["ctrl-r"]  = function(selected) self:grep_selected_files(selected) end,
-      }
-    }
-  )
+  self.plugin.fzf_exec(selected_files, {
+    -- fzf_opts = self:get_fzf_for_grep_opts(), -- NOTE: might need to have some options when location of selected lines will be preserved.
+    previewer = "builtin",
+    prompt = "Files from selected> ",
+    actions = {
+      ["default"] = self.plugin.actions.file_edit_or_qf,
+      ["ctrl-s"] = self.plugin.actions.file_split,
+      ["ctrl-v"] = self.plugin.actions.file_vsplit,
+      ["ctrl-t"] = self.plugin.actions.file_tabedit,
+      ["ctrl-r"] = function(selected)
+        self:grep_selected_files(selected)
+      end,
+    },
+  })
 end
 
 function M:reload_select_plugins()
-  return self.plugin.fzf_exec(
-    "ls " .. utils:get_plugins_config_dir(),
-    {
-      prompt = "Plugins to reload> ",
-      actions = {
-        ["default"] = function(selected) utils:reload_plugins(selected) end,
-      },
-      winopts = {
-        height=0.33,
-        width=0.33,
-      }
-    }
-  )
+  return self.plugin.fzf_exec("ls " .. utils:get_plugins_config_dir(), {
+    prompt = "Plugins to reload> ",
+    actions = {
+      ["default"] = function(selected)
+        utils:reload_plugins(selected)
+      end,
+    },
+    winopts = {
+      height = 0.33,
+      width = 0.33,
+    },
+  })
 end
 
 function M:lsp_references()
@@ -231,8 +227,8 @@ function M:lsp_references()
     jump_to_single_result = true,
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -243,8 +239,8 @@ function M:lsp_definitions()
     jump_to_single_result = true,
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -255,8 +251,8 @@ function M:lsp_typedefs()
     jump_to_single_result = true,
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -267,8 +263,8 @@ function M:lsp_implementations()
     jump_to_single_result = true,
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -278,9 +274,9 @@ function M:lsp_code_actions()
   return self.plugin.lsp_code_actions({
     sync = true,
     winopts = {
-      height=0.33,
-      width=0.33,
-    }
+      height = 0.33,
+      width = 0.33,
+    },
   })
 end
 
@@ -290,8 +286,8 @@ function M:lsp_document_symbols()
     fzf_cli_args = "--with-nth 2..",
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -303,8 +299,8 @@ function M:lsp_live_workspace_symbols()
     fzf_cli_args = "--nth 2..",
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -315,8 +311,8 @@ function M:lsp_document_diagnostics()
     sync = true,
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
     -- fzf_cli_args = "--with-nth 2.." -- FIXME: this also hides severity :cry:
@@ -327,8 +323,8 @@ function M:lsp_workspace_diagnostics()
   return self.plugin.lsp_workspace_diagnostics({
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -337,8 +333,8 @@ end
 function M:dap_configurations()
   return self.plugin.dap_configurations({
     winopts = {
-      height=0.33,
-      width=0.33,
+      height = 0.33,
+      width = 0.33,
     },
   })
 end
@@ -347,8 +343,8 @@ function M:dap_breakpoints()
   return self.plugin.dap_breakpoints({
     winopts = {
       preview = {
-        layout   = 'vertical',
-        vertical = 'down:75%',
+        layout = "vertical",
+        vertical = "down:75%",
       },
     },
   })
@@ -357,43 +353,37 @@ end
 function M:dap_commands()
   return self.plugin.dap_commands({
     winopts = {
-      height=0.33,
-      width=0.33,
+      height = 0.33,
+      width = 0.33,
     },
   })
 end
 
 function M:dap_ui_float()
-  return self.plugin.fzf_exec(
-    {
-      "console",
-      "repl",
-      "scopes",
-      "watches",
-      "stacks",
-      "breakpoints"
+  return self.plugin.fzf_exec({
+    "console",
+    "repl",
+    "scopes",
+    "watches",
+    "stacks",
+    "breakpoints",
+  }, {
+    prompt = "DAP UI Float> ",
+    actions = {
+      ["default"] = function(selected)
+        require("dapui").float_element(selected[1], {
+          enter = true,
+          -- width = math.floor(vim.api.nvim_win_get_width(0) * 0.85),
+          -- height = math.floor(vim.api.nvim_win_get_height(0) * 0.85),
+          position = "center",
+        })
+      end,
     },
-    {
-      prompt = "DAP UI Float> ",
-      actions = {
-        ["default"] = function(selected)
-          require("dapui").float_element(
-            selected[1],
-            {
-              enter = true,
-              -- width = math.floor(vim.api.nvim_win_get_width(0) * 0.85),
-              -- height = math.floor(vim.api.nvim_win_get_height(0) * 0.85),
-              position = "center",
-            }
-          )
-        end,
-      },
-      winopts = {
-        height=0.33,
-        width=0.33,
-      }
-    }
-  )
+    winopts = {
+      height = 0.33,
+      width = 0.33,
+    },
+  })
 end
 
 return M.new()

@@ -14,28 +14,25 @@ vim.opt.rtp:prepend(lazypath)
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- vim.g.have_nerd_font = false
 
-require("lazy").setup(
-  {
-    { import = "ik1614.plugins" },
-  },
-  {
-    ui = {
-      -- Use unicode icons if Nerd Font is not setup
-      icons = vim.g.have_nerd_font and {} or {
-        cmd = '⌘',
-        config = '🛠',
-        event = '📅',
-        ft = '📂',
-        init = '⚙',
-        keys = '🗝',
-        plugin = '🔌',
-        runtime = '💻',
-        require = '🌙',
-        source = '📄',
-        start = '🚀',
-        task = '📌',
-        lazy = '💤',
-      },
+require("lazy").setup({
+  { import = "ik1614.plugins" },
+}, {
+  ui = {
+    -- Use unicode icons if Nerd Font is not setup
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤",
     },
-  }
-)
+  },
+})

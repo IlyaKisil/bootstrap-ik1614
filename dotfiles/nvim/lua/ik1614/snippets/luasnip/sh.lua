@@ -4,40 +4,29 @@ local t = ls.text_node
 local fmt = require("luasnip.extras.fmt").fmt
 
 return {
+  s({
+    trig = "here",
+    dscr = "Get the full path to location of current script",
+  }, t([[HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"]])),
+  s({
+    trig = "repo-home",
+    dscr = "Get absolute path for current git repo",
+  }, t([[GIT_REPO_HOME="$(git rev-parse --show-toplevel)"]])),
+  s({
+    trig = "codebase",
+    dscr = "Get name of git repo",
+  }, t([[CODEBASE="$(basename "$(git remote get-url origin)" .git)"]])),
+  s({
+    trig = "now",
+    dscr = "Get current time",
+  }, t([[NOW="$(date +"%Y-%m-%dT%H:%M:%S")"]])),
   s(
-      {
-         trig = "here",
-         dscr = "Get the full path to location of current script"
-      },
-      t([[HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"]])
-   ),
-  s(
-      {
-         trig = "repo-home",
-         dscr = "Get absolute path for current git repo"
-      },
-      t([[GIT_REPO_HOME="$(git rev-parse --show-toplevel)"]])
-   ),
-  s(
-      {
-         trig = "codebase",
-         dscr = "Get name of git repo"
-      },
-      t([[CODEBASE="$(basename "$(git remote get-url origin)" .git)"]])
-   ),
-  s(
-      {
-         trig = "now",
-         dscr = "Get current time"
-      },
-      t([[NOW="$(date +"%Y-%m-%dT%H:%M:%S")"]])
-   ),
-  s(
-      {
-         trig = "base-minimal",
-         dscr = "Add shebang and basic options"
-      },
-      fmt([[
+    {
+      trig = "base-minimal",
+      dscr = "Add shebang and basic options",
+    },
+    fmt(
+      [[
          #!/usr/bin/env bash
          # vim: ft=sh softtabstop=2 tabstop=2 shiftwidth=2 expandtab autoindent cc=90
 
@@ -45,14 +34,17 @@ return {
 
          . import_blockchain_module utils
 
-      ]], {})
-   ),
+      ]],
+      {}
+    )
+  ),
   s(
-      {
-         trig = "parseargs",
-         dscr = "Parse key word arguments"
-      },
-      fmt([[
+    {
+      trig = "parseargs",
+      dscr = "Parse key word arguments",
+    },
+    fmt(
+      [[
         while [ $# -gt 0 ]; do
           case "$1" in
             -h|--help)
@@ -74,14 +66,17 @@ return {
           esac
         done
 
-      ]], {})
-   ),
+      ]],
+      {}
+    )
+  ),
   s(
-      {
-         trig = "parseopts",
-         dscr = "Parse option"
-      },
-      fmt([[
+    {
+      trig = "parseopts",
+      dscr = "Parse option",
+    },
+    fmt(
+      [[
         while getopts ':h' opt; do
           case "$opt" in
             h)
@@ -99,6 +94,8 @@ return {
         done
         shift $((OPTIND -1))
 
-      ]], {})
-   ),
+      ]],
+      {}
+    )
+  ),
 }

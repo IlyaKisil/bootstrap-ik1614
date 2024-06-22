@@ -1,4 +1,4 @@
-if not pcall(require, 'telescope') then
+if not pcall(require, "telescope") then
   return
 end
 
@@ -6,10 +6,7 @@ end
 -- It also allows to transparenly reference custom functions along with the builtins
 local map = function(key, f, options, buffer)
   local mode = "n"
-  local rhs = string.format(
-    "<cmd>lua R('ik1614.telescope')['%s']()<CR>",
-    f
-  )
+  local rhs = string.format("<cmd>lua R('ik1614.telescope')['%s']()<CR>", f)
 
   -- FIXME: To pass some options to a telescope function but this Doesn't work :cry:
   -- local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)

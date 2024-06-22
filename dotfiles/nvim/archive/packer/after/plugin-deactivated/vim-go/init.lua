@@ -4,7 +4,6 @@ vim.g.go_list_type = "quickfix"
 -- " text object motions, e.g. 'vaf', 'vif'
 vim.g.go_textobj_include_function_doc = 1
 
-
 -- " Syntax highlighting. For more options check out ':help go-settings'
 vim.g.go_highlight_types = 1
 -- vim.g.go_highlight_fields = 1

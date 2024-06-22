@@ -19,7 +19,7 @@ return {
           },
         },
         view = {
-          signcolumn = "no"
+          signcolumn = "no",
         },
         renderer = {
           group_empty = true, --  compact folders that only contain a single folder into one node in the file tree
@@ -50,7 +50,7 @@ return {
             },
           },
           indent_markers = {
-            enable = true
+            enable = true,
           },
         },
         diagnostics = {
@@ -60,7 +60,7 @@ return {
             info = "",
             warning = "",
             error = "",
-          }
+          },
         },
         filters = {
           enable = true,
@@ -76,7 +76,7 @@ return {
             "^.pytest_cache$",
             "^.venv$",
             ".egg-info$",
-          }
+          },
         },
         git = {
           ignore = false,
@@ -86,15 +86,19 @@ return {
         },
         trash = {
           cmd = "trash",
-          require_confirm = true
-        }
+          require_confirm = true,
+        },
       })
 
+      -- set keymaps
+      local keymap = vim.keymap -- for conciseness
 
-    -- set keymaps
-    local keymap = vim.keymap -- for conciseness
-
-    vim.keymap.set("n", "<leader>ob", "<cmd>NvimTreeFindFileToggle<CR>zz", { desc = "[O]pen current file in a file [b]rowser" }) -- toggle file explorer
-    end
-  }
+      vim.keymap.set(
+        "n",
+        "<leader>ob",
+        "<cmd>NvimTreeFindFileToggle<CR>zz",
+        { desc = "[O]pen current file in a file [b]rowser" }
+      ) -- toggle file explorer
+    end,
+  },
 }

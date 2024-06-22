@@ -5,7 +5,6 @@ if not plugin then
   return
 end
 
-
 plugin.setup({
   level = vim.log.levels.INFO,
   background_colour = "#35373b",
@@ -13,7 +12,6 @@ plugin.setup({
 
 -- Setting as default notify function for all other plugins
 vim.notify = plugin
-
 
 -- Utility functions shared between progress reports for LSP and DAP
 local client_notifs = {}
@@ -58,7 +56,6 @@ end
 local function format_message(message, percentage)
   return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
-
 
 -- Integrate LSP Status Updates with progress notifications provided through Neovim's LSP functionality
 -- vim.lsp.handlers["$/progress"] = function(_, result, ctx)

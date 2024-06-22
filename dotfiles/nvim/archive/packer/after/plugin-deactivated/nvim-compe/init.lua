@@ -1,11 +1,11 @@
 vim.o.completeopt = "menuone,noinsert,noselect"
 
-require'compe'.setup {
+require("compe").setup({
   enabled = O.auto_complete,
   autocomplete = true,
   debug = false,
   min_length = 1,
-  preselect = 'disable',  -- FIXME: as I understand, this should disable autoselect from popup menu, but it doesn't
+  preselect = "disable", -- FIXME: as I understand, this should disable autoselect from popup menu, but it doesn't
   throttle_time = 80,
   source_timeout = 200,
   incomplete_delay = 400,
@@ -15,36 +15,37 @@ require'compe'.setup {
   documentation = true,
   source = {
     path = {
-      kind = "  "
+      kind = "  ",
     },
     buffer = {
-      kind = "  "
+      kind = "  ",
     },
     calc = {
-      kind = "  "
+      kind = "  ",
     },
     -- vsnip = {
     --   kind = "  "
     -- },
     nvim_lsp = {
-      kind = "  "
+      kind = "  ",
     },
     -- nvim_lua = {kind = "  "},
     nvim_lua = false,
     spell = {
-      kind = "  "
+      kind = "  ",
     },
     tags = false,
     -- snippets_nvim = {kind = "  "},
     ultisnips = {
-      kind = "  "
+      kind = "  ",
     },
     -- treesitter = {kind = "  "},
     emoji = {
-      kind = " ﲃ ", filetypes={"markdown" }
-    }
-  }
-}
+      kind = " ﲃ ",
+      filetypes = { "markdown" },
+    },
+  },
+})
 
 -- 
 -- 

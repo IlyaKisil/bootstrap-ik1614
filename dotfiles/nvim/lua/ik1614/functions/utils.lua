@@ -9,12 +9,12 @@ function M.new()
 end
 
 function M:get_buf_extension(buffer)
-  local parts = vim.split(vim.api.nvim_buf_get_name(buffer), ".", {plain=true})
+  local parts = vim.split(vim.api.nvim_buf_get_name(buffer), ".", { plain = true })
   return parts[#parts]
 end
 
 function M:get_buf_filename(buffer)
-  local parts = vim.split(vim.api.nvim_buf_get_name(buffer), "/", {plain=true})
+  local parts = vim.split(vim.api.nvim_buf_get_name(buffer), "/", { plain = true })
   return parts[#parts]
 end
 
@@ -28,11 +28,11 @@ end
 
 function M:get_color_pallet(theme)
   local pallets = {
-    onedark = function ()
+    onedark = function()
       local style = self:get_color_pallet_style(theme)
-      local colors = require('onedark.palette')[style]
+      local colors = require("onedark.palette")[style]
       return colors
-    end
+    end,
   }
   return pallets[theme]()
 end
@@ -40,7 +40,7 @@ end
 function M:get_color_pallet_style(theme)
   local styles = {
     -- Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-    onedark = "warm"
+    onedark = "warm",
   }
   return styles[theme]
 end
@@ -48,7 +48,7 @@ end
 function M:load_plugin(name)
   local ok, plugin = pcall(require, name)
   if not ok then
-    logging:warn("Plugin ["  .. name .. "] is not installed")
+    logging:warn("Plugin [" .. name .. "] is not installed")
     return
   end
   return plugin
@@ -56,16 +56,13 @@ end
 
 function M:reload_plugins(plugins)
   for _, name in pairs(plugins) do
-    local plugin_config_path = self:table_to_string(
-      {
-        self:get_plugins_config_dir(),
-        name,
-        "init.lua",
-      },
-      "/"
-    )
+    local plugin_config_path = self:table_to_string({
+      self:get_plugins_config_dir(),
+      name,
+      "init.lua",
+    }, "/")
     if not self:is_file(plugin_config_path) then
-      local message = "Plugin config ["  .. plugin_config_path .. "] does not exists"
+      local message = "Plugin config [" .. plugin_config_path .. "] does not exists"
       logging:warn(message)
       vim.notify(message, "warn")
       return
@@ -78,7 +75,7 @@ end
 
 function M:plugin_installed(name)
   if not pcall(require, name) then
-    logging:warn("Plugin ["  .. name .. "] is not installed")
+    logging:warn("Plugin [" .. name .. "] is not installed")
     return
   end
   return true
@@ -103,7 +100,7 @@ function M:table_to_string(t, separator)
   local result = ""
 
   for _, v in pairs(t) do
-      result = result .. separator .. v
+    result = result .. separator .. v
   end
 
   -- Remove first hanging separtor
@@ -113,44 +110,44 @@ function M:table_to_string(t, separator)
 end
 
 function M:find_cmd(cmd, prefixes, start_from, stop_at)
-    local path = require("lspconfig/util").path
+  local path = require("lspconfig/util").path
 
-    if type(prefixes) == "string" then
-        prefixes = { prefixes }
+  if type(prefixes) == "string" then
+    prefixes = { prefixes }
+  end
+
+  local found
+  for _, prefix in ipairs(prefixes) do
+    local full_cmd = prefix and path.join(prefix, cmd) or cmd
+    local possibility
+
+    -- if start_from is a dir, test it first since transverse will start from its parent
+    if start_from and path.is_dir(start_from) then
+      possibility = path.join(start_from, full_cmd)
+      if vim.fn.executable(possibility) > 0 then
+        found = possibility
+        break
+      end
     end
 
-    local found
-    for _, prefix in ipairs(prefixes) do
-        local full_cmd = prefix and path.join(prefix, cmd) or cmd
-        local possibility
+    path.traverse_parents(start_from, function(dir)
+      possibility = path.join(dir, full_cmd)
+      if vim.fn.executable(possibility) > 0 then
+        found = possibility
+        return true
+      end
+      -- use cwd as a stopping point to avoid scanning the entire file system
+      if stop_at and dir == stop_at then
+        return true
+      end
+    end)
 
-        -- if start_from is a dir, test it first since transverse will start from its parent
-        if start_from and path.is_dir(start_from) then
-            possibility = path.join(start_from, full_cmd)
-            if vim.fn.executable(possibility) > 0 then
-                found = possibility
-                break
-            end
-        end
-
-        path.traverse_parents(start_from, function(dir)
-            possibility = path.join(dir, full_cmd)
-            if vim.fn.executable(possibility) > 0 then
-                found = possibility
-                return true
-            end
-            -- use cwd as a stopping point to avoid scanning the entire file system
-            if stop_at and dir == stop_at then
-                return true
-            end
-        end)
-
-        if found ~= nil then
-            break
-        end
+    if found ~= nil then
+      break
     end
+  end
 
-    return found or cmd
+  return found or cmd
 end
 
 function M:toggle(option, silent)
@@ -171,7 +168,7 @@ end
 ---Get the full path to directory with plugin configurations
 ---@return string
 function M:get_plugins_config_dir()
-  local home = os.getenv "HOME"
+  local home = os.getenv("HOME")
   return home .. "/.config/nvim/after/plugin"
 end
 
@@ -213,7 +210,7 @@ end
 
 function M:show_most_sever_diagnostics_sign()
   ---custom namespace
-  local ns = vim.api.nvim_create_namespace('severe-diagnostics')
+  local ns = vim.api.nvim_create_namespace("severe-diagnostics")
 
   ---reference to the original handler
   local orig_signs_handler = vim.diagnostic.handlers.signs

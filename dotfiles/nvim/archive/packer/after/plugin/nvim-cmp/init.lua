@@ -4,7 +4,7 @@ local luasnip = utils:load_plugin("luasnip")
 
 vim.opt.completeopt = {
   "menu",
-  "menuone",  -- show menu even if there is only one candidate (for nvim-compe)
+  "menuone", -- show menu even if there is only one candidate (for nvim-compe)
   "noselect", -- don't automatically select canditate (for nvim-compe)
 }
 
@@ -15,7 +15,7 @@ end
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -27,41 +27,41 @@ cmp.setup({
     ["<C-e>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ["<C-y>"] = cmp.mapping(
-      cmp.mapping.confirm{
+      cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
-      },
+      }),
       { "i" }
     ),
     ["<CR>"] = cmp.mapping(
-      cmp.mapping.confirm{
+      cmp.mapping.confirm({
         select = true,
         behavior = cmp.ConfirmBehavior.Insert,
-      },
+      }),
       { "i" }
     ),
-    ['<DOWN>'] = cmp.mapping(function(fallback)
+    ["<DOWN>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         -- TODO: close popup and make a move.
         -- By default, it will just move you without closing it
       else
         fallback()
       end
-    end, { 'i', 's' }),
-    ['<UP>'] = cmp.mapping(function(fallback)
+    end, { "i", "s" }),
+    ["<UP>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         -- TODO: close popup and make a move.
         -- By default, it will just move you without closing it
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { "i", "s" }),
   },
   sources = {
     { name = "nvim_lsp" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },
-    { name = 'luasnip' },
+    { name = "luasnip" },
   },
   formatting = {
     format = function(_entry, vim_item)

@@ -5,7 +5,6 @@ if not plugin then
   return
 end
 
-
 local colors = utils:get_color_pallet("onedark")
 plugin.setup({
   color = colors.red,
@@ -17,20 +16,20 @@ plugin.setup({
   paint_arg_usages = true,
   paint_catch_blocks = {
     declarations = false,
-    usages = false
+    usages = false,
   },
   hl_priority = 10000,
   excluded_argnames = {
     declarations = {},
     usages = {
       python = {
-        'self',
-        'cls'
+        "self",
+        "cls",
       },
       lua = {
-        'self'
-      }
-    }
+        "self",
+      },
+    },
   },
   performance = {
     parse_delay = 1,
@@ -41,7 +40,7 @@ plugin.setup({
       partial_parse = 3,
       partial_insert_mode = 100,
       total_parse = 700,
-      slow_parse = 5000
-    }
-  }
+      slow_parse = 5000,
+    },
+  },
 })

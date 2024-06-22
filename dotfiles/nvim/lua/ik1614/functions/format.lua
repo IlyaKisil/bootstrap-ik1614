@@ -9,11 +9,10 @@ function M.new()
   return self
 end
 
-
 -- Taken from https://github.com/golang/tools/blob/master/gopls/doc/vim.md#imports
 function M:organise_go_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for cid, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
@@ -25,7 +24,6 @@ function M:organise_go_imports(wait_ms)
   end
 end
 
-
 function M:toggle()
   self.auto_format = not self.auto_format
   if self.auto_format then
@@ -35,16 +33,14 @@ function M:toggle()
   end
 end
 
-
 function M:format(async, filter)
   if self.auto_format then
     vim.lsp.buf.format({
       async = async,
-      filter = filter
+      filter = filter,
     })
   end
 end
-
 
 -- Create autocommand to format things
 function M:autocmd_format(augroup, async, filter)
@@ -54,7 +50,7 @@ function M:autocmd_format(augroup, async, filter)
     pattern = pattern,
     callback = function()
       self:format(async, filter)
-    end
+    end,
   })
 end
 
@@ -64,9 +60,8 @@ function M:autocmd_organise_go_imports(augroup)
     pattern = "*.go",
     callback = function()
       self:organise_go_imports(1000)
-    end
+    end,
   })
 end
 
 return M.new()
-

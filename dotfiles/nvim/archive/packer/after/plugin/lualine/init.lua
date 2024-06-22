@@ -16,7 +16,7 @@ local function diff_source()
       return {
         added = gitsigns.added,
         modified = gitsigns.changed,
-        removed = gitsigns.removed
+        removed = gitsigns.removed,
       }
     end
   else
@@ -39,7 +39,7 @@ local function show_dap_status()
 end
 
 local function list_registered_providers_names(filetype)
-  local s = require "null-ls.sources"
+  local s = require("null-ls.sources")
   local available_sources = s.get_available(filetype)
   local registered = {}
   for _, source in ipairs(available_sources) do
@@ -92,30 +92,32 @@ end
 local lualine_a = {
   active = {
     {
-      'mode',
-      fmt = function(str) return str:sub(1,1) end,
+      "mode",
+      fmt = function(str)
+        return str:sub(1, 1)
+      end,
       padding = {
         left = 1,
         right = 1,
-      }
-    }
+      },
+    },
   },
   inactive = {
     {
-      'filename',
+      "filename",
       path = 1,
     },
-  }
+  },
 }
 
 local lualine_c = {
   active = {
     {
-      'filename',
+      "filename",
       path = 1,
     },
   },
-  inactive = {}
+  inactive = {},
 }
 
 local minimal_info = {
@@ -127,23 +129,23 @@ local minimal_info = {
     lualine_a = lualine_a.inactive,
   },
   filetypes = {
-    'dapui_watches',
-    'dapui_scopes',
-    'dapui_stacks',
-    'dapui_console',
-    'dapui_breakpoints',
-    'dap-repl',
-    'fugitive',
-  }
+    "dapui_watches",
+    "dapui_scopes",
+    "dapui_stacks",
+    "dapui_console",
+    "dapui_breakpoints",
+    "dap-repl",
+    "fugitive",
+  },
 }
 
 plugin.setup({
   options = {
     icons_enabled = false,
-    theme = 'auto',
+    theme = "auto",
     disabled_filetypes = {
-      'packer',
-      'NvimTree'
+      "packer",
+      "NvimTree",
     },
     -- always_divide_middle = true,
     globalstatus = false,
@@ -151,8 +153,8 @@ plugin.setup({
   sections = {
     lualine_a = lualine_a.active,
     lualine_b = {
-      {'b:gitsigns_head'}, -- Reuse, branch info from 'gitsigns'
-      {'diff', source = diff_source}, -- Reuse diff infom from 'gitsigns'
+      { "b:gitsigns_head" }, -- Reuse, branch info from 'gitsigns'
+      { "diff", source = diff_source }, -- Reuse diff infom from 'gitsigns'
     },
     lualine_c = lualine_c.active,
     lualine_x = {
@@ -163,12 +165,12 @@ plugin.setup({
     lualine_y = {
       { show_dap_status },
       { lsp_client },
-      'diagnostics',
-      'filetype',
+      "diagnostics",
+      "filetype",
     },
     lualine_z = {
-      'location'
-    }
+      "location",
+    },
   },
   inactive_sections = {
     lualine_a = lualine_a.inactive,
@@ -180,5 +182,5 @@ plugin.setup({
   extensions = {
     minimal_info,
     "quickfix",
-  }
+  },
 })

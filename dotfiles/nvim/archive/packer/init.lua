@@ -20,11 +20,10 @@ Notes to people reading my configuration (including myself in a future :rofl:)
     using some functionality from the installed plugins.
 --]]
 
-
 -- Setup globals that I expect to be always available.
 -- Basically this is config for (N)vim without batteries. Well for 99% of cases :wink:
-require('ik1614.core.globals')
-require('ik1614.core.settings')
+require("ik1614.core.globals")
+require("ik1614.core.settings")
 require("ik1614.core.mappings")
 require("ik1614.core.vim-backport")
 
@@ -37,4 +36,4 @@ require("ik1614.lsp")
 -- Setup all autocommands
 require("ik1614.autocmd")
 
-vim.cmd('luafile ~/.config/nvim/init-local.lua')
+vim.cmd("luafile ~/.config/nvim/init-local.lua")
