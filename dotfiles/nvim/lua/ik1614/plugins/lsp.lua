@@ -25,6 +25,7 @@ return {
       local mason_tool_installer = require("mason-tool-installer")
       local mason_lspconfig = require("mason-lspconfig")
       local utils = require("ik1614.functions.utils")
+      local formatting = require("ik1614.functions.formatting")
       local path = require("mason-core.path")
 
       vim.diagnostic.config({
@@ -43,8 +44,12 @@ return {
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+          if not client then
+            return
+          end
+
           -- Highlight references of the word under your cursor
-          if client and client.server_capabilities.documentHighlightProvider then
+          if client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup("ik1614-lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
@@ -85,7 +90,7 @@ return {
           map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
           map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
 
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+          if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             -- [T]oggle Inlay [H]ints
             map:buf_n({
               "<leader>th",
@@ -93,6 +98,11 @@ return {
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
               end,
             })
+          end
+
+          if client.supports_method("textDocument/formatting") then
+            local formatting_augroup = vim.api.nvim_create_augroup("ik1614-lsp-formatting", { clear = true })
+            formatting:autocmd_organise_go_imports(formatting_augroup)
           end
 
           utils:show_most_sever_diagnostics_sign()
