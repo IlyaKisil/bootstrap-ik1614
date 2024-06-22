@@ -33,28 +33,7 @@ function M:toggle()
   end
 end
 
-function M:format(async, filter)
-  if self.enabled_on_save then
-    vim.lsp.buf.format({
-      async = async,
-      filter = filter,
-    })
-  end
-end
-
--- Create autocommand to format things
-function M:autocmd_format(augroup, async, filter)
-  vim.api.nvim_clear_autocmds({ buffer = 0, group = augroup })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    buffer = 0,
-    pattern = pattern,
-    callback = function()
-      self:format(async, filter)
-    end,
-  })
-end
-
-function M:autocmd_organise_go_imports(augroup)
+function M:organise_go_imports_on_save(augroup)
   vim.api.nvim_clear_autocmds({ buffer = 0, group = augroup })
   vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",

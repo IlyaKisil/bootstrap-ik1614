@@ -75,7 +75,7 @@ local filetype_on_attach = setmetatable({
   go = function()
     -- TODO: there are some issues with formatting, e.g. it might truncate begining of the line where there are extra tabs :shrug:
     -- format:autocmd_format(augroup_format, false)
-    format:autocmd_organise_go_imports(augroup_format)
+    format:organise_go_imports_on_save(augroup_format)
   end,
 }, {
   __index = function()

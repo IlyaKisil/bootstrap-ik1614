@@ -102,7 +102,7 @@ return {
 
           if client.supports_method("textDocument/formatting") then
             local formatting_augroup = vim.api.nvim_create_augroup("ik1614-lsp-formatting", { clear = true })
-            formatting:autocmd_organise_go_imports(formatting_augroup)
+            formatting:organise_go_imports_on_save(formatting_augroup)
           end
 
           utils:show_most_sever_diagnostics_sign()
