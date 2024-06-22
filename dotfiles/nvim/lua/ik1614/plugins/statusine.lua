@@ -6,6 +6,8 @@ return {
       "https://github.com/nvim-tree/nvim-web-devicons",
     },
     config = function()
+      local formatting = require("ik1614.functions.formatting")
+
       local empty_section = {}
 
       local function dap_status()
@@ -19,10 +21,11 @@ return {
             * https://github.com/alpha2phi/neovim-for-beginner/blob/383bf9a7b655ef0da604e88773940a636ee3fae4/lua/config/lualine.lua#L22
           --]]
         msg = msg or ""
+        local cur_buf = 0
 
         local info = {}
-        local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-        local buf_formatters = require("conform").list_formatters(0)
+        local buf_clients = vim.lsp.get_clients({ bufnr = cur_buf })
+        local buf_formatters = require("conform").list_formatters(cur_buf)
 
         if next(buf_clients) == nil and next(buf_formatters) == nil then
           if type(msg) == "boolean" or #msg == 0 then
@@ -35,8 +38,10 @@ return {
           table.insert(info, client.name)
         end
 
-        for _, formatter in pairs(buf_formatters) do
-          table.insert(info, formatter.name)
+        if formatting.enabled_on_save then
+          for _, formatter in pairs(buf_formatters) do
+            table.insert(info, formatter.name)
+          end
         end
 
         if next(info) == nil then

@@ -5,7 +5,7 @@ M.__index = M
 
 function M.new()
   local self = setmetatable({}, M)
-  self.auto_format = true
+  self.enabled_on_save = true
   return self
 end
 
@@ -25,8 +25,8 @@ function M:organise_go_imports(wait_ms)
 end
 
 function M:toggle()
-  self.auto_format = not self.auto_format
-  if self.auto_format then
+  self.enabled_on_save = not self.enabled_on_save
+  if self.enabled_on_save then
     logging:info("Enabled format on save")
   else
     logging:warn("Disabled format on save")
@@ -34,7 +34,7 @@ function M:toggle()
 end
 
 function M:format(async, filter)
-  if self.auto_format then
+  if self.enabled_on_save then
     vim.lsp.buf.format({
       async = async,
       filter = filter,

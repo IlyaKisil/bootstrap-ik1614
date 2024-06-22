@@ -1,5 +1,5 @@
 local map = require("ik1614.functions.mapping")
-local format = require("ik1614.functions.format")
+local format = require("ik1614.functions.formatting")
 local utils = require("ik1614.functions.utils")
 local logging = require("ik1614.functions.logging")
 
