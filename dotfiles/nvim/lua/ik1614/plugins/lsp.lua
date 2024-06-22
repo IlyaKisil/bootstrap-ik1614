@@ -150,6 +150,20 @@ return {
             },
           },
         },
+        gopls = {
+          settings = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+            gopls = {
+              completeUnimported = true,
+              usePlaceholders = true, -- add placeholders for function parameters/struct fields
+              gofumpt = false, -- Formatting is done by 'conform.nvim'
+              analyses = { -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+                unusedparams = true,
+                unusedwrite = true,
+                shadow = true,
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
@@ -161,8 +175,12 @@ return {
       mason_tool_installer.setup({
         ensure_installed = {
           "black",
+          "doctoc",
           "eslint_d",
+          "goimports-reviser",
+          "gofumpt",
           "gopls",
+          "hclfmt",
           "isort",
           "lua_ls",
           "prettier",
