@@ -42,7 +42,7 @@ vim.wo.wrap = false
 -- ----------- Line num and position
 vim.opt.number         = true -- show line numbers in gutter
 vim.opt.cursorline     = true                              -- highlight current line
-vim.wo.signcolumn = "yes"
+vim.wo.signcolumn = "yes:2"
 vim.opt.relativenumber = true -- show relative numbers in gutter
 vim.opt.colorcolumn = '90'
 

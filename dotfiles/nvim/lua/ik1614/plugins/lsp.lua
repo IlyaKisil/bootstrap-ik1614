@@ -90,6 +90,7 @@ return {
             map:buf_n({ "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end })
           end
 
+          utils:show_most_sever_diagnostics_sign()
         end,
       })
 
