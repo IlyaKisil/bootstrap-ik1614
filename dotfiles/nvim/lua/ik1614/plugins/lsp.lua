@@ -12,20 +12,20 @@
 --   * https://github.com/josean-dev/dev-environment-files/blob/2c12f439f.config/nvim/lua/josean/plugins/lsp/lspconfig.lua
 return {
   {
-    'https://github.com/neovim/nvim-lspconfig',
+    "https://github.com/neovim/nvim-lspconfig",
     dependencies = {
-      { 'https://github.com/williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-      { 'https://github.com/williamboman/mason-lspconfig.nvim' },
-      { 'https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim' },
-      { 'https://github.com/j-hui/fidget.nvim', opts = {} }, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'https://github.com/folke/neodev.nvim', opts = {} },
+      { "https://github.com/williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+      { "https://github.com/williamboman/mason-lspconfig.nvim" },
+      { "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+      { "https://github.com/j-hui/fidget.nvim", opts = {} }, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      { "https://github.com/folke/neodev.nvim", opts = {} },
     },
     config = function()
       local mason = require("mason")
       local mason_tool_installer = require("mason-tool-installer")
       local mason_lspconfig = require("mason-lspconfig")
       local utils = require("ik1614.functions.utils")
-      local path = require "mason-core.path"
+      local path = require("mason-core.path")
 
       vim.diagnostic.config({
         severity_sort = true,
@@ -34,46 +34,46 @@ return {
         update_in_insert = false,
         virtual_text = {
           spacing = 4,
-          prefix = "●"
+          prefix = "●",
         },
       })
 
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('ik1614-lsp-attach', { clear = true }),
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("ik1614-lsp-attach", { clear = true }),
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           -- Highlight references of the word under your cursor
           if client and client.server_capabilities.documentHighlightProvider then
-            local highlight_augroup = vim.api.nvim_create_augroup('ik1614-lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            local highlight_augroup = vim.api.nvim_create_augroup("ik1614-lsp-highlight", { clear = false })
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
 
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('ik1614-lsp-detach', { clear = true }),
+            vim.api.nvim_create_autocmd("LspDetach", {
+              group = vim.api.nvim_create_augroup("ik1614-lsp-detach", { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'ik1614-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds({ group = "ik1614-lsp-highlight", buffer = event2.buf })
               end,
             })
           end
 
           local map = require("ik1614.functions.mapping")
-          map:buf_n({ "K",          '<cmd>lua vim.lsp.buf.hover()<CR>' })
-          map:buf_i({ "<C-k>",      '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
-          map:buf_n({ "<leader>sl", '<cmd>lua vim.diagnostic.open_float()<CR>' })
-          map:buf_n({ "<leader>sn", '<cmd>lua vim.diagnostic.goto_next()<CR>' })
-          map:buf_n({ "<leader>se", '<cmd>lua vim.diagnostic.goto_prev()<CR>' })
-          map:buf_n({ "<leader>rn", '<cmd>lua vim.lsp.buf.rename()<CR>' })
+          map:buf_n({ "K", "<cmd>lua vim.lsp.buf.hover()<CR>" })
+          map:buf_i({ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" })
+          map:buf_n({ "<leader>sl", "<cmd>lua vim.diagnostic.open_float()<CR>" })
+          map:buf_n({ "<leader>sn", "<cmd>lua vim.diagnostic.goto_next()<CR>" })
+          map:buf_n({ "<leader>se", "<cmd>lua vim.diagnostic.goto_prev()<CR>" })
+          map:buf_n({ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" })
           map:buf_n({ "<leader>sa", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
           map:buf_n({ "<leader>ss", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
           map:buf_n({ "<leader>sS", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>' })
@@ -81,13 +81,18 @@ return {
           map:buf_n({ "<leader>sD", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
           map:buf_n({ "<leader>sr", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
           map:buf_n({ "<leader>si", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
-          map:buf_n({ "gT",         '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-          map:buf_n({ "gd",         '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
+          map:buf_n({ "gT", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
+          map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
           map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
 
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             -- [T]oggle Inlay [H]ints
-            map:buf_n({ "<leader>th", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end })
+            map:buf_n({
+              "<leader>th",
+              function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end,
+            })
           end
 
           utils:show_most_sever_diagnostics_sign()
@@ -95,7 +100,7 @@ return {
       })
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       --  Enable LSP and override configuration. Available keys are:
       --  * cmd (table):
@@ -132,16 +137,16 @@ return {
               reportDuplicateImport = true,
               reportDeprecated = true,
               reportUnnecessaryTypeIgnoreComment = true,
-            }
-          }
+            },
+          },
         },
         lua_ls = {
           settings = {
             Lua = {
               completion = {
-                callSnippet = 'Replace',
+                callSnippet = "Replace",
               },
-              diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { "missing-fields" } },
             },
           },
         },
@@ -150,7 +155,7 @@ return {
       -- Ensure the servers and tools above are installed and ready to be used.
       -- This could also include some additional things used for formatting/linting.
       mason.setup({
-        install_root_dir = path.concat({DATA_PATH, 'mason'}),
+        install_root_dir = path.concat({ DATA_PATH, "mason" }),
       })
 
       mason_tool_installer.setup({
@@ -164,21 +169,21 @@ return {
           "pylint",
           "pyright",
           "stylua",
-        }
+        },
       })
 
-      mason_lspconfig.setup {
+      mason_lspconfig.setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            require("lspconfig")[server_name].setup(server)
           end,
         },
-      }
+      })
     end,
   },
 }

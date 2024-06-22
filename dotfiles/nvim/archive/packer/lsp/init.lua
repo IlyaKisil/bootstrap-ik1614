@@ -22,7 +22,7 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 -- local lsp_status = require("lsp-status")
-local path = require "mason-core.path"
+local path = require("mason-core.path")
 local null_ls = require("null-ls")
 
 vim.diagnostic.config({
@@ -32,7 +32,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   virtual_text = {
     spacing = 4,
-    prefix = "●"
+    prefix = "●",
   },
 })
 
@@ -49,9 +49,8 @@ mason.setup({
   ui = {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
-  install_root_dir = path.concat({DATA_PATH, 'mason'}),
+  install_root_dir = path.concat({ DATA_PATH, "mason" }),
 })
-
 
 mason_lspconfig.setup({
   ensure_installed = {
@@ -60,14 +59,13 @@ mason_lspconfig.setup({
     "gopls",
     "bashls",
   },
-  automatic_installation = true
+  automatic_installation = true,
 })
 
 --[[
       Define all augroups here
 --]]
 local augroup_format = vim.api.nvim_create_augroup("lsp_format", { clear = true })
-
 
 --[[
       Define everything that should be done when on attach of LSP client
@@ -94,19 +92,19 @@ local custom_on_attach = function(client)
   --[[
        Define mappings only for buffers with have LSP client attached to them
   --]]
-  map:buf_n({ "K", ':lua vim.lsp.buf.hover()<CR>' })
-  map:buf_i({ "<C-k>", '<cmd>lua vim.lsp.buf.signature_help()<CR>' })
+  map:buf_n({ "K", ":lua vim.lsp.buf.hover()<CR>" })
+  map:buf_i({ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" })
   map:buf_n({ "gd", ':lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
   map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
   map:buf_n({ "gT", ':lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-  map:buf_n({ "<leader>sl", ':lua vim.diagnostic.open_float()<CR>' })
-  map:buf_n({ "<leader>sn", ':lua vim.diagnostic.goto_next()<CR>' })
-  map:buf_n({ "<leader>se", ':lua vim.diagnostic.goto_prev()<CR>' })
-  map:buf_n({ "<leader>rn", ':lua vim.lsp.buf.rename()<CR>' })
+  map:buf_n({ "<leader>sl", ":lua vim.diagnostic.open_float()<CR>" })
+  map:buf_n({ "<leader>sn", ":lua vim.diagnostic.goto_next()<CR>" })
+  map:buf_n({ "<leader>se", ":lua vim.diagnostic.goto_prev()<CR>" })
+  map:buf_n({ "<leader>rn", ":lua vim.lsp.buf.rename()<CR>" })
   -- TODO: create general mapping for fzf spefic stuff
   map:buf_n({ "<leader>sa", ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
   map:buf_n({ "<leader>ss", ':lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
-  map:buf_n({ "<leader>sS", ':lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>'})
+  map:buf_n({ "<leader>sS", ':lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>' })
   map:buf_n({ "<leader>sd", ':lua require("ik1614.functions.fzf-lua"):lsp_document_diagnostics()<CR>' })
   map:buf_n({ "<leader>sD", ':lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
   map:buf_n({ "<leader>sr", ':lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
@@ -128,7 +126,7 @@ local custom_on_attach = function(client)
           bufnr = bufnr,
           filter = function()
             return client.name == "null-ls"
-          end
+          end,
         })
       end,
     })
@@ -140,14 +138,12 @@ local custom_on_attach = function(client)
   filetype_on_attach[filetype](client)
 end
 
-
 -- NOTE: not sure what this does exactly.
 -- Take from https://github.com/tjdevries/config_manager/blob/cf973aa85234d0b9fb8b81b2652b87a304440c1c/xdg_config/nvim/lua/tj/lsp/init.lua#L32
 local custom_on_init = function(client)
   client.config.flags = client.config.flags or {}
   client.config.flags.allow_incremental_sync = true
 end
-
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
 -- custom_capabilities = vim.tbl_deep_extend("keep", custom_capabilities, lsp_status.capabilities)
@@ -158,7 +154,6 @@ custom_capabilities = require("cmp_nvim_lsp").default_capabilities(custom_capabi
 
 -- TODO: check if this is the problem.
 -- custom_capabilities.textDocument.completion.completionItem.insertReplaceSupport = false
-
 
 local function setup_server(server, config)
   if not config then
@@ -181,7 +176,6 @@ local function setup_server(server, config)
 
   lspconfig[server].setup(config)
 end
-
 
 local servers = {
   -- bashls = true, -- Doesn't play ball with 'environment.template' which I have as 'sh' filetype
@@ -206,12 +200,12 @@ local servers = {
         reportDuplicateImport = true,
         reportDeprecated = true,
         reportUnnecessaryTypeIgnoreComment = true,
-      }
-    }
+      },
+    },
   },
   gopls = {
     root_dir = function(fname)
-      local Path = require "plenary.path"
+      local Path = require("plenary.path")
 
       local absolute_cwd = Path:new(vim.loop.cwd()):absolute()
       local absolute_fname = Path:new(fname):absolute()
@@ -234,7 +228,7 @@ local servers = {
           unusedparams = true,
           unusedwrite = true,
           shadow = true,
-        }
+        },
       },
     },
 
@@ -251,7 +245,7 @@ local servers = {
             "vim",
             -- Custom
             "RELOAD",
-            "P"
+            "P",
           },
           disable = {
             "trailing-space",
@@ -267,11 +261,9 @@ local servers = {
   },
 }
 
-
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
-
 
 null_ls.setup({
   sources = {

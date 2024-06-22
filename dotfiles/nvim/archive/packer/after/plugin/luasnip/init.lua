@@ -5,10 +5,9 @@ if not ls then
   return
 end
 
-
 local types = require("luasnip.util.types")
 
-ls.config.set_config {
+ls.config.set_config({
   -- This tells LuaSnip to remember to keep around the last snippet.
   -- You can jump back into it even if you move outside of the selection
   history = true,
@@ -26,8 +25,8 @@ ls.config.set_config {
   ext_opts = {
     [types.insertNode] = {
       unvisited = {
-        hl_group = "Visual"
-      }
+        hl_group = "Visual",
+      },
     },
     [types.choiceNode] = {
       active = {
@@ -35,7 +34,7 @@ ls.config.set_config {
       },
     },
   },
-}
+})
 
 -- <C-j> is my expansion key (for [J]ump)
 -- this will expand the current item or jump to the next item within the snippet.
@@ -62,7 +61,7 @@ vim.keymap.set("i", "<C-l>", function()
 end)
 
 -- TODO: switch path to snippets to some variable or something
-require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/ik1614/snippets/ft"})
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/ik1614/snippets/ft" })
 
 -- NOTE: Needs to be called after defining my own snippets
 -- require("luasnip.loaders.from_snipmate").lazy_load()
@@ -76,7 +75,5 @@ require("luasnip.loaders.from_vscode").lazy_load({
     "python",
     "shell",
     "sql",
-  }
+  },
 })
-
-

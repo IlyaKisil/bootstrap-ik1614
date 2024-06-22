@@ -7,7 +7,7 @@
 --
 -- which is a bit more native but it doesn't do anything with the colorcolumn.
 vim.api.nvim_create_autocmd("WinLeave", {
-  group = vim.api.nvim_create_augroup("CustomiseInactiveWindow", {clear=true}),
+  group = vim.api.nvim_create_augroup("CustomiseInactiveWindow", { clear = true }),
   callback = function()
     vim.cmd([[
       setlocal winhighlight=CursorLine:InactiveBufferNoBackground,ColorColumn:InactiveBufferNoBackground,CursorLineNr:InactiveBufferCursorLineNr
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
 })
 
 vim.api.nvim_create_autocmd("WinEnter", {
-  group = vim.api.nvim_create_augroup("CustomiseActiveWindow", {clear=true}),
+  group = vim.api.nvim_create_augroup("CustomiseActiveWindow", { clear = true }),
   callback = function()
     vim.cmd([[
       " setlocal winhighlight=Normal:MdraculaNormal,NormalNC:IlyaInactiveBuffer

@@ -15,22 +15,22 @@ plugin.setup({
     },
     TODO = {
       color = "default",
-      alt = {"Todo", "todo"}
+      alt = { "Todo", "todo" },
     },
     NOTE = {
       color = "default",
-      alt = { "INFO", "TIP" }
+      alt = { "INFO", "TIP" },
     },
     HACK = {
       color = "default",
     },
     WARN = {
       color = "default",
-      alt = { "WARNING", "XXX" }
+      alt = { "WARNING", "XXX" },
     },
     PERF = {
       color = "default",
-      alt = { "OPTIM", "PERFORMANCE", "OPTIMISE" , "OPTIMIZE" }
+      alt = { "OPTIM", "PERFORMANCE", "OPTIMISE", "OPTIMIZE" },
     },
   },
   merge_keywords = true, -- when true, custom keywords will be merged with the defaults
@@ -43,8 +43,8 @@ plugin.setup({
     keyword = "fg", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
     after = "", -- "fg" or "bg" or empty
     pattern = { -- vim regex
-        [[.*<(KEYWORDS)\s*\([a-zA-Z]*\):]],
-        [[.*<(KEYWORDS)\s*:]],
+      [[.*<(KEYWORDS)\s*\([a-zA-Z]*\):]],
+      [[.*<(KEYWORDS)\s*:]],
     },
     comments_only = true, -- uses treesitter to match keywords in comments only
     max_line_len = 400, -- ignore lines longer than this
@@ -52,7 +52,7 @@ plugin.setup({
   },
   colors = {
     default = {
-      "Todo"
+      "Todo",
     },
   },
   search = {

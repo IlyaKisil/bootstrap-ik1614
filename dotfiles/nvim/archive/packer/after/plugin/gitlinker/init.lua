@@ -5,7 +5,6 @@ if not plugin then
   return
 end
 
-
 --- copies the url to clipboard and opens the url in your default browser
 --
 -- @param url the url string
@@ -38,5 +37,5 @@ plugin.setup({
   },
   -- mapping to call url generation
   -- TODO: extract this from some global mapping variable.
-  mappings = "<leader>go"
+  mappings = "<leader>go",
 })

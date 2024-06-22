@@ -35,15 +35,15 @@ local function setup_signs()
     },
   }
 
-  vim.fn.sign_define("DapBreakpoint",          dap_signs.breakpoint)
+  vim.fn.sign_define("DapBreakpoint", dap_signs.breakpoint)
   vim.fn.sign_define("DapBreakpointCondition", dap_signs.breakpoint_condition)
-  vim.fn.sign_define("DapBreakpointRejected",  dap_signs.breakpoint_regected)
-  vim.fn.sign_define("DapLogPoint",            dap_signs.log_point)
-  vim.fn.sign_define("DapStopped",             dap_signs.stopped)
+  vim.fn.sign_define("DapBreakpointRejected", dap_signs.breakpoint_regected)
+  vim.fn.sign_define("DapLogPoint", dap_signs.log_point)
+  vim.fn.sign_define("DapStopped", dap_signs.stopped)
 end
 
 local function setup_ui()
-  local dapui = require "dapui"
+  local dapui = require("dapui")
   dapui.setup({
     icons = { expanded = "", collapsed = "", current_frame = "" },
     layouts = {
@@ -96,13 +96,11 @@ local function setup_ui()
   end
 end
 
-
-require('dap-go').setup()
+require("dap-go").setup()
 require("dap-python").setup("python", {})
 
-require('dap-python').resolve_python = function()
+require("dap-python").resolve_python = function()
   return utils:find_cmd("python3", ".venv/bin", vim.fn.getcwd())
 end
 setup_signs()
 setup_ui()
-

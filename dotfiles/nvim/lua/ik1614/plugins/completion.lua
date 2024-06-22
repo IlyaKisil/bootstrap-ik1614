@@ -1,7 +1,7 @@
 return {
   {
-    'hrsh7th/nvim-cmp',
-    event = {'InsertEnter', 'CmdlineEnter'},
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -9,21 +9,21 @@ return {
       "hrsh7th/cmp-cmdline",
       "onsails/lspkind.nvim",
       { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-      'saadparwaiz1/cmp_luasnip',
+      "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      local cmp = require('cmp')
-      local luasnip = require('luasnip')
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
       local lspkind = require("lspkind")
 
-      luasnip.config.setup {}
+      luasnip.config.setup({})
 
       vim.opt.completeopt = {
         "menu",
         "menuone",
         "noselect",
         "noinsert",
-        "preview"
+        "preview",
       }
 
       local default_mappings = {
@@ -37,42 +37,30 @@ return {
         ["<C-c>"] = cmp.mapping.close(),
 
         -- Move to [N]ext item in completion menue
-        ["<C-n>"] = cmp.mapping(
-          cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-          {"i", "c"}
-        ),
+        ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 
         -- Move to previous item in completion menu
-        ["<C-e>"] = cmp.mapping(
-          cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-          {"i", "c"}
-        ),
+        ["<C-e>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
 
         -- Scrolling [U]p / back
-        ['<C-u>'] = cmp.mapping(
-          cmp.mapping.scroll_docs(-4),
-          {"i"}
-        ),
+        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i" }),
 
         -- Scrolling [D]own / forward
-        ['<C-d>'] = cmp.mapping(
-          cmp.mapping.scroll_docs(4),
-          {"i"}
-        ),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i" }),
 
         -- Confirm selection
         -- Alternative could be using '<C-y>' -> Confirm [Y]es
         ["<CR>"] = cmp.mapping(
-          cmp.mapping.confirm {
+          cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Insert,
             -- behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-          },
+          }),
           { "i", "c" }
         ),
       }
 
-      cmp.setup {
+      cmp.setup({
         -- Enable luasnip to handle snippet expansion for nvim-cmp
         snippet = {
           expand = function(args)
@@ -83,9 +71,9 @@ return {
         mapping = default_mappings,
         sources = {
           { name = "buffer", keyword_length = 5 },
-          { name = 'luasnip' },
-          { name = 'nvim_lsp' },
-          { name = 'path' },
+          { name = "luasnip" },
+          { name = "nvim_lsp" },
+          { name = "path" },
         },
         formatting = {
           format = lspkind.cmp_format({
@@ -93,7 +81,7 @@ return {
             ellipsis_char = "...",
           }),
         },
-      }
+      })
 
       -- cmp.setup.cmdline('/', {
       --   mapping = default_mappings,

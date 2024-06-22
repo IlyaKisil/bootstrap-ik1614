@@ -35,10 +35,9 @@ return {
         end
       end
 
-
       local types = require("luasnip.util.types")
 
-      ls.config.set_config {
+      ls.config.set_config({
         -- This tells LuaSnip to remember to keep around the last snippet.
         -- You can jump back into it even if you move outside of the selection
         history = true,
@@ -56,8 +55,8 @@ return {
         ext_opts = {
           [types.insertNode] = {
             unvisited = {
-              hl_group = "Visual"
-            }
+              hl_group = "Visual",
+            },
           },
           [types.choiceNode] = {
             active = {
@@ -65,20 +64,20 @@ return {
             },
           },
         },
-      }
+      })
 
       -- TODO: switch path to snippets to some variable or something
-      require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/ik1614/snippets/luasnip"})
+      require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/ik1614/snippets/luasnip" })
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       -- * https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       -- Alternative could be using Tab and S-Tab, <C-j> for [J]ump, <C-p> for [P]revious
       vim.keymap.set({ "i", "s" }, "<c-i>", function()
-        return vim.snippet.active { direction = 1 } and vim.snippet.jump(1)
+        return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
       end, { silent = true })
 
       vim.keymap.set({ "i", "s" }, "<c-h>", function()
-        return vim.snippet.active { direction = -1 } and vim.snippet.jump(-1)
+        return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
       end, { silent = true })
 
       -- <C-l> is selecting within a list of options. (for [L]ist)
@@ -88,6 +87,6 @@ return {
           ls.change_choice(1)
         end
       end)
-    end
-  }
+    end,
+  },
 }

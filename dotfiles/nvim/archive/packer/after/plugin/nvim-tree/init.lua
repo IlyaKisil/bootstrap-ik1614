@@ -15,13 +15,13 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 plugin.setup({
-  disable_netrw       = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
-  hijack_netrw        = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  open_on_tab         = false,
-  hijack_cursor       = false,
-  update_cwd          = false,
+  disable_netrw = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
+  hijack_netrw = true, -- NOTE: If set to 'true' and you open a directory, then that pane won't get auto-resized, e.g. when you do `<C-W>=`
+  open_on_setup = false,
+  ignore_ft_on_setup = {},
+  open_on_tab = false,
+  hijack_cursor = false,
+  update_cwd = false,
   create_in_closed_folder = true, -- When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
   actions = {
     open_file = {
@@ -34,12 +34,12 @@ plugin.setup({
           -- indicates to the window picker that the buffer's window should not be
           -- selectable.
           filetype = {
-            'notify',
-            'packer',
-            'qf'
+            "notify",
+            "packer",
+            "qf",
           },
           buftype = {
-            'terminal'
+            "terminal",
           },
         },
       },
@@ -50,7 +50,7 @@ plugin.setup({
     highlight_git = true, -- enable file highlight for git attributes (can be used without the icons).
     highlight_opened_files = "0", -- Should be string 1 -> icon; 2 -> name; 3 -> all
     icons = {
-      padding = ' ', -- used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+      padding = " ", -- used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
       symlink_arrow = " -> ", -- used as a separator between symlinks' source and target.
       show = {
         git = true,
@@ -75,10 +75,10 @@ plugin.setup({
       },
     },
     indent_markers = {
-      enable = true
+      enable = true,
     },
     group_empty = true, --  compact folders that only contain a single folder into one node in the file tree
-    root_folder_modifier = ':t', -- Value translates to a folder name from where nvim was opened from. See :help filename-modifiers for more options
+    root_folder_modifier = ":t", -- Value translates to a folder name from where nvim was opened from. See :help filename-modifiers for more options
     special_files = {}, -- List of filenames that gets highlighted with NvimTreeSpecialFile. Override defaults (e.g. README, Makefile etc) with an empty list.
   },
 
@@ -89,16 +89,16 @@ plugin.setup({
       info = "",
       warning = "",
       error = "",
-    }
+    },
   },
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
-    ignore_list = {}
+    enable = false,
+    update_cwd = false,
+    ignore_list = {},
   },
   system_open = {
-    cmd  = nil,
-    args = {}
+    cmd = nil,
+    args = {},
   },
   filters = {
     dotfiles = false,
@@ -113,7 +113,7 @@ plugin.setup({
       "^.pytest_cache$",
       "^.venv$",
       ".egg-info$",
-    }
+    },
   },
   git = {
     enable = true, -- Although I don't like icons but without it file name highlight doesn't work
@@ -123,20 +123,20 @@ plugin.setup({
   view = {
     adaptive_size = true,
     hide_root_folder = false,
-    side = 'left',
+    side = "left",
     mappings = {
       custom_only = false,
-      list = {}
+      list = {},
     },
     number = false,
     relativenumber = false,
-    signcolumn = "no"
+    signcolumn = "no",
   },
   notify = {
     threshold = vim.log.levels.WARN,
   },
   trash = {
     cmd = "trash",
-    require_confirm = true
-  }
+    require_confirm = true,
+  },
 })

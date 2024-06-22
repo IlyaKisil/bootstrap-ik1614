@@ -11,8 +11,8 @@ function M:log(level, msg, name)
   local time = os.date("%X")
   local hl_map = {
     ERROR = "ErrorMessage",
-    WARN  = "WarnMessage",
-    INFO  = "InfoMessage",
+    WARN = "WarnMessage",
+    INFO = "InfoMessage",
     DEBUG = "DebugMessage",
     TRACE = "TraceMessage",
   }

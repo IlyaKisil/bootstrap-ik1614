@@ -4,11 +4,12 @@ local fmt = require("luasnip.extras.fmt").fmta
 
 return {
   s(
-      {
-         trig = "plugin-setup",
-         dscr = "Add boilerplate for setting up a plugin with 'lazy.nvim'"
-      },
-      fmt([[
+    {
+      trig = "plugin-setup",
+      dscr = "Add boilerplate for setting up a plugin with 'lazy.nvim'",
+    },
+    fmt(
+      [[
         return {
           {
             "__URL_FILL_ME__",
@@ -20,6 +21,8 @@ return {
             end
           }
         }
-      ]], {})
-   ),
+      ]],
+      {}
+    )
+  ),
 }

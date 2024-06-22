@@ -5,5 +5,4 @@ if not plugin then
   return
 end
 
-
 plugin.setup({})

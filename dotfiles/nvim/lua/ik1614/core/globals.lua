@@ -8,10 +8,9 @@ P = function(v)
   return v
 end
 
-
 -- Utility to hot reload/require stuff
-if pcall(require, 'plenary') then
-  RELOAD = require('plenary.reload').reload_module
+if pcall(require, "plenary") then
+  RELOAD = require("plenary.reload").reload_module
 
   R = function(name)
     RELOAD(name)
@@ -19,7 +18,6 @@ if pcall(require, 'plenary') then
   end
 end
 
-
 -- NOTE: not sure about this, but :shrug:
-DATA_PATH = vim.fn.stdpath('data')
-CACHE_PATH = vim.fn.stdpath('cache')
+DATA_PATH = vim.fn.stdpath("data")
+CACHE_PATH = vim.fn.stdpath("cache")
