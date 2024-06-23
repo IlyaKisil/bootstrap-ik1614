@@ -11,7 +11,13 @@ return {
       local empty_section = {}
 
       local function dap_status()
-        return "DAP: TODO"
+        local dap = require("dap")
+        local status = dap.status()
+        if status == "" then
+          return ""
+        end
+
+        return "DAP: " .. status
       end
 
       local function lsp_status(msg)
@@ -120,6 +126,7 @@ return {
         extensions = {
           "fugitive",
           "quickfix",
+          "nvim-dap-ui",
         },
       })
     end,
