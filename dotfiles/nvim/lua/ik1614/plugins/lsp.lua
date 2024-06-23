@@ -25,6 +25,7 @@ return {
       local mason_tool_installer = require("mason-tool-installer")
       local mason_lspconfig = require("mason-lspconfig")
       local utils = require("ik1614.functions.utils")
+      local formatting = require("ik1614.functions.formatting")
       local path = require("mason-core.path")
 
       vim.diagnostic.config({
@@ -43,8 +44,12 @@ return {
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+          if not client then
+            return
+          end
+
           -- Highlight references of the word under your cursor
-          if client and client.server_capabilities.documentHighlightProvider then
+          if client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup("ik1614-lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
@@ -70,22 +75,17 @@ return {
           local map = require("ik1614.functions.mapping")
           map:buf_n({ "K", "<cmd>lua vim.lsp.buf.hover()<CR>" })
           map:buf_i({ "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>" })
-          map:buf_n({ "<leader>sl", "<cmd>lua vim.diagnostic.open_float()<CR>" })
-          map:buf_n({ "<leader>sn", "<cmd>lua vim.diagnostic.goto_next()<CR>" })
-          map:buf_n({ "<leader>se", "<cmd>lua vim.diagnostic.goto_prev()<CR>" })
           map:buf_n({ "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" })
           map:buf_n({ "<leader>sa", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
           map:buf_n({ "<leader>ss", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
           map:buf_n({ "<leader>sS", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>' })
-          map:buf_n({ "<leader>sd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_document_diagnostics()<CR>' })
-          map:buf_n({ "<leader>sD", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
           map:buf_n({ "<leader>sr", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
           map:buf_n({ "<leader>si", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
           map:buf_n({ "gT", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
           map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
           map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
 
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+          if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             -- [T]oggle Inlay [H]ints
             map:buf_n({
               "<leader>th",
@@ -93,6 +93,11 @@ return {
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
               end,
             })
+          end
+
+          if client.supports_method("textDocument/formatting") then
+            local formatting_augroup = vim.api.nvim_create_augroup("ik1614-lsp-formatting", { clear = true })
+            formatting:organise_go_imports_on_save(formatting_augroup)
           end
 
           utils:show_most_sever_diagnostics_sign()
@@ -150,6 +155,20 @@ return {
             },
           },
         },
+        gopls = {
+          settings = { -- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+            gopls = {
+              completeUnimported = true,
+              usePlaceholders = true, -- add placeholders for function parameters/struct fields
+              gofumpt = false, -- Formatting is done by 'conform.nvim'
+              analyses = { -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+                unusedparams = true,
+                unusedwrite = true,
+                shadow = true,
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
@@ -161,11 +180,17 @@ return {
       mason_tool_installer.setup({
         ensure_installed = {
           "black",
+          "doctoc",
           "eslint_d",
+          "goimports-reviser",
+          "gofumpt",
           "gopls",
+          "hclfmt",
           "isort",
           "lua_ls",
           "prettier",
+          "flake8",
+          "hadolint",
           "pylint",
           "pyright",
           "stylua",

@@ -6,6 +6,8 @@ return {
       "https://github.com/nvim-tree/nvim-web-devicons",
     },
     config = function()
+      local formatting = require("ik1614.functions.formatting")
+
       local empty_section = {}
 
       local function dap_status()
@@ -19,11 +21,14 @@ return {
             * https://github.com/alpha2phi/neovim-for-beginner/blob/383bf9a7b655ef0da604e88773940a636ee3fae4/lua/config/lualine.lua#L22
           --]]
         msg = msg or ""
+        local cur_buf = 0
 
-        local buf_ft = vim.bo.filetype
-        local buf_client_names = {}
-        local buf_clients = vim.lsp.get_clients()
-        if next(buf_clients) == nil then
+        local info = {}
+        local buf_clients = vim.lsp.get_clients({ bufnr = cur_buf })
+        local buf_formatters = require("conform").list_formatters(cur_buf)
+        local buf_linters = require("lint").get_running(cur_buf)
+
+        if next(buf_clients) == nil and next(buf_formatters) == nil and next(buf_linters) == nil then
           if type(msg) == "boolean" or #msg == 0 then
             return ""
           end
@@ -31,16 +36,24 @@ return {
         end
 
         for _, client in pairs(buf_clients) do
-          if client.name ~= "null-ls" then
-            table.insert(buf_client_names, client.name)
+          table.insert(info, client.name)
+        end
+
+        for _, linter in pairs(buf_linters) do
+          table.insert(info, linter.name)
+        end
+
+        if formatting.enabled_on_save then
+          for _, formatter in pairs(buf_formatters) do
+            table.insert(info, formatter.name)
           end
         end
 
-        if next(buf_client_names) == nil then
+        if next(info) == nil then
           return ""
         end
 
-        return "LSP: " .. table.concat(buf_client_names, ", ")
+        return "LSP: " .. table.concat(info, ", ")
       end
 
       local lualine_a = {

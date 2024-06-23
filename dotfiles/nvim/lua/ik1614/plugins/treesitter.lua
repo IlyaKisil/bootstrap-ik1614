@@ -18,8 +18,10 @@ return {
           "cpp",
           "css",
           "diff",
+          "dockerfile",
           "go",
           "html",
+          "hcl",
           "javascript",
           "json",
           "jsonc",
@@ -27,6 +29,7 @@ return {
           "latex",
           "lua",
           "luadoc",
+          "make",
           "markdown",
           "python",
           "query",
@@ -47,8 +50,6 @@ return {
           disable = {
             "bash", -- TODO: after switching to `lazy.nvim` stopped working :shrug:
             "json", -- breaks for environment.template
-            "yaml", -- There is something weird with it as well
-            "hcl",
           },
         },
         indent = {

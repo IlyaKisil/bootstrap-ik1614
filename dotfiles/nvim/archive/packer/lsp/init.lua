@@ -1,5 +1,5 @@
 local map = require("ik1614.functions.mapping")
-local format = require("ik1614.functions.format")
+local format = require("ik1614.functions.formatting")
 local utils = require("ik1614.functions.utils")
 local logging = require("ik1614.functions.logging")
 
@@ -75,7 +75,7 @@ local filetype_on_attach = setmetatable({
   go = function()
     -- TODO: there are some issues with formatting, e.g. it might truncate begining of the line where there are extra tabs :shrug:
     -- format:autocmd_format(augroup_format, false)
-    format:autocmd_organise_go_imports(augroup_format)
+    format:organise_go_imports_on_save(augroup_format)
   end,
 }, {
   __index = function()
@@ -105,8 +105,8 @@ local custom_on_attach = function(client)
   map:buf_n({ "<leader>sa", ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>' })
   map:buf_n({ "<leader>ss", ':lua require("ik1614.functions.fzf-lua"):lsp_document_symbols()<CR>' })
   map:buf_n({ "<leader>sS", ':lua require("ik1614.functions.fzf-lua"):lsp_live_workspace_symbols()<CR>' })
-  map:buf_n({ "<leader>sd", ':lua require("ik1614.functions.fzf-lua"):lsp_document_diagnostics()<CR>' })
-  map:buf_n({ "<leader>sD", ':lua require("ik1614.functions.fzf-lua"):lsp_workspace_diagnostics()<CR>' })
+  map:buf_n({ "<leader>sd", ':lua require("ik1614.functions.fzf-lua"):show_document_diagnostics()<CR>' })
+  map:buf_n({ "<leader>sD", ':lua require("ik1614.functions.fzf-lua"):show_workspace_diagnostics()<CR>' })
   map:buf_n({ "<leader>sr", ':lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
   map:buf_n({ "<leader>si", ':lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
 
