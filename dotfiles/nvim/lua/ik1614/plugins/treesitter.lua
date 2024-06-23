@@ -64,6 +64,19 @@ return {
             node_decremental = "<BS>",
           },
         },
+        textobjects = {
+          select = {
+            enable = true,
+            keymaps = {
+              ["af"] = { query = "@function.outer", desc = "Select outer part of a function/method definition" },
+              ["if"] = { query = "@function.inner", desc = "Select inner part of a function/method definition" },
+              ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
+              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
+              ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
+              ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
+            },
+          },
+        },
       })
     end,
   },
