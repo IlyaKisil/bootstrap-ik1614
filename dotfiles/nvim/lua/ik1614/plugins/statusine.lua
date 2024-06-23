@@ -26,8 +26,9 @@ return {
         local info = {}
         local buf_clients = vim.lsp.get_clients({ bufnr = cur_buf })
         local buf_formatters = require("conform").list_formatters(cur_buf)
+        local buf_linters = require("lint").get_running(cur_buf)
 
-        if next(buf_clients) == nil and next(buf_formatters) == nil then
+        if next(buf_clients) == nil and next(buf_formatters) == nil and next(buf_linters) == nil then
           if type(msg) == "boolean" or #msg == 0 then
             return ""
           end
@@ -36,6 +37,10 @@ return {
 
         for _, client in pairs(buf_clients) do
           table.insert(info, client.name)
+        end
+
+        for _, linter in pairs(buf_linters) do
+          table.insert(info, linter.name)
         end
 
         if formatting.enabled_on_save then

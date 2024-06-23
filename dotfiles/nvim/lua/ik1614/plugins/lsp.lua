@@ -194,6 +194,8 @@ return {
           "isort",
           "lua_ls",
           "prettier",
+          "flake8",
+          "hadolint",
           "pylint",
           "pyright",
           "stylua",
