@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.surround",
+    "echasnovski/mini.nvim",
     enabled = true,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {},
@@ -19,14 +19,7 @@ return {
       -- Surrounding for Visual mode selection
       vim.keymap.del("x", "ys")
       vim.api.nvim_set_keymap("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { noremap = true })
-    end,
-  },
-  {
-    "echasnovski/mini.jump",
-    enabled = true,
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {},
-    config = function()
+
       require("mini.jump").setup({
         delay = {
           -- Delay between jump and automatic stop if idle (no jump is done)
