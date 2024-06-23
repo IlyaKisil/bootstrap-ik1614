@@ -39,15 +39,6 @@ function! functions#add_file_header(lines)
 endfunction
 
 
-" Utility for using '*' and '#' for a selected region
-function! functions#visual_selection_search()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
-endfunction
-
-
 " Utility for creating highlight groups
 function! functions#HL(group, fg, ...)
   " arguments: group, fg, bg, style

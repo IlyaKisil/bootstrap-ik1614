@@ -64,11 +64,6 @@ map:n({ "<S-TAB>", ":tabprevious<CR>" })
 -- TODO: Neovim 0.7 added support to distiguish between them. So need to dig in
 -- map('n', '<TAB>',     ':tabnext<CR>')
 
--- By default it will extend highlighting till the next match.
--- Doesn't work very smooth
-map:v({ "*", ":call functions#visual_selection_search()<CR>//<C-R><c-o>" })
-map:v({ "#", ":call functions#visual_selection_search()<CR>??<C-R><c-o>" })
-
 -- Move selection up and down. This will also respect indentation levels
 map:v({ "J", ":m '>+1<CR>gv=gv" })
 map:v({ "K", ":m '<-2<CR>gv=gv" })
