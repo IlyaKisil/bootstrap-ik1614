@@ -47,16 +47,23 @@ return {
         -- Scrolling [D]own / forward
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i" }),
 
-        -- Confirm selection
-        -- Alternative could be using '<C-y>' -> Confirm [Y]es
-        ["<CR>"] = cmp.mapping(
-          cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            -- behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          }),
-          { "i" }
-        ),
+        -- Confirm selection: Safely select entries
+        -- * If nothing is selected (including preselections) add a newline as usual.
+        -- * If something has explicitly been selected by the user, select it.
+        --
+        -- Alternative could use
+        -- * <CR>  (Confirm)        as cmp.ConfirmBehavior.Insert
+        -- * <C-y> (Confirm [Y]es ) as cmp.ConfirmBehavior.Replace
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm({ select = true }),
+        }),
       }
 
       cmp.setup({
