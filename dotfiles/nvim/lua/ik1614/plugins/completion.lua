@@ -6,7 +6,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
       "onsails/lspkind.nvim",
       { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
       "saadparwaiz1/cmp_luasnip",
@@ -37,10 +36,10 @@ return {
         ["<C-c>"] = cmp.mapping.close(),
 
         -- Move to [N]ext item in completion menue
-        ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+        ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
 
         -- Move to previous item in completion menu
-        ["<C-e>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i", "c" }),
+        ["<C-e>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
 
         -- Scrolling [U]p / back
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i" }),
@@ -56,7 +55,7 @@ return {
             -- behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           }),
-          { "i", "c" }
+          { "i" }
         ),
       }
 
@@ -82,26 +81,6 @@ return {
           }),
         },
       })
-
-      -- cmp.setup.cmdline('/', {
-      --   mapping = default_mappings,
-      --   sources = {
-      --     { name = 'buffer', keyword_length = 3 }
-      --   }
-      -- })
-      --
-      -- cmp.setup.cmdline(':', {
-      --   mapping = default_mappings,
-      --   sources = cmp.config.sources(
-      --     {
-      --       { name = 'path', keyword_length = 3 }
-      --     },
-      --     {
-      --       { name = 'cmdline', keyword_length = 3 }
-      --     }
-      --   ),
-      --   matching = { disallow_symbol_nonprefix_matching = false }
-      -- })
     end,
   },
 }
