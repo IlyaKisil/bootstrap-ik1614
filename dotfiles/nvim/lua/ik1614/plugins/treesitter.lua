@@ -32,6 +32,7 @@ return {
           "make",
           "markdown",
           "python",
+          "terraform",
           "query",
           "regex",
           "rust",
