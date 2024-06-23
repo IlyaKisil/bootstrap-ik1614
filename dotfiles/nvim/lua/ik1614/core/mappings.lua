@@ -137,3 +137,9 @@ map:i({ ";", ";<C-g>u" })
 -- Don't send add '{' and '}' to jump list
 map:n({ "}", ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>' })
 map:n({ "{", ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>' })
+
+map:n({ "<leader>sl", vim.diagnostic.open_float })
+map:n({ "<leader>sn", vim.diagnostic.goto_next })
+map:n({ "<leader>se", vim.diagnostic.goto_prev })
+map:n({ "<leader>sd", '<cmd>lua require("ik1614.functions.fzf-lua"):show_document_diagnostics()<CR>' })
+map:n({ "<leader>sD", '<cmd>lua require("ik1614.functions.fzf-lua"):show_workspace_diagnostics()<CR>' })

@@ -306,7 +306,7 @@ function M:lsp_live_workspace_symbols()
   })
 end
 
-function M:lsp_document_diagnostics()
+function M:show_document_diagnostics()
   return self.plugin.lsp_document_diagnostics({
     sync = true,
     winopts = {
@@ -319,7 +319,7 @@ function M:lsp_document_diagnostics()
   })
 end
 
-function M:lsp_workspace_diagnostics()
+function M:show_workspace_diagnostics()
   return self.plugin.lsp_workspace_diagnostics({
     winopts = {
       preview = {
