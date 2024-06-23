@@ -59,8 +59,7 @@ plugin.setup({
   --   i = { "j", "k" },
   --   v = { "j", "k" },
   -- },
-}
-)
+})
 
 local n_leader = {
   g = {
@@ -80,7 +79,6 @@ local n_leader = {
     n = { "Rename" },
     f = { ':lua require("ik1614.functions.fzf-lua"):lsp_code_actions()<CR>', "Refactor" },
     r = { ":w<CR>:luafile %<CR>", "Run current lua file" },
-    l = { ":call functions#exec_current_line()<CR>", "Run current lua line" },
     p = { ':lua require("ik1614.functions.fzf-lua"):reload_select_plugins()<CR>', "Reload plugin configuration" },
   },
   d = {
@@ -156,7 +154,6 @@ local n_leader = {
     name = "Open",
     b = { ":NvimTreeFindFile<CR>zz", "File browser" },
     t = { ":TodoTelescope<CR>", "Todo" },
-    w = { ":call functions#OpenURL()<CR>", "Web browser" },
   },
   h = {
     name = "Help",
@@ -187,10 +184,6 @@ local v_leader = {
   },
   g = {
     o = "Open selection in web", -- TODO: currently this is defined in the 'gitlinker' config
-  },
-  o = {
-    name = "Open",
-    w = { ":call functions#OpenURL()<CR>", "Web browser" },
   },
   r = {
     name = "Run/Refactor",

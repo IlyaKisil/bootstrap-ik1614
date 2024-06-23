@@ -31,15 +31,6 @@ vim.cmd([[
 
   augroup ik1614_now
       autocmd!
-      autocmd Syntax * call functions#UpdateTodoKeywords(
-                  \ "NOTE",
-                  \ "Note",
-                  \ "note",
-                  \ "Todo",
-                  \ "todo",
-                  \ "Fixme",
-                  \ "fixme",
-                  \ )
 
       autocmd BufWritePre * :call functions#TrimWhitespace()
       autocmd BufWritePre * :call functions#MakeNonExistingDir(expand('<afile>'), +expand('<abuf>'))
@@ -62,9 +53,4 @@ vim.cmd([[
 
   " vimscript
   command! DiffviewFile execute("DiffviewOpen -- " . expand("%")) | DiffviewToggleFiles
-
-
-
-  " Allows to first grep for something, and then use Telescope as the secondary filter
-  command! -nargs=? Tgrep lua require 'telescope.builtin'.grep_string({ search = vim.fn.input("Grep For > ")})
 ]])
