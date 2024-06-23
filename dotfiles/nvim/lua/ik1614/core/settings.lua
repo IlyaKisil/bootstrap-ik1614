@@ -94,6 +94,9 @@ vim.opt.listchars = {
   space = ".",
 }
 
+-- :help shortmess
+vim.opt.shortmess:append("A")
+
 -- Enable folding
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99 -- start unfolded
