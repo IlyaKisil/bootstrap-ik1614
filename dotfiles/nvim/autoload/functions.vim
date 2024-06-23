@@ -39,59 +39,6 @@ function! functions#add_file_header(lines)
 endfunction
 
 
-function! functions#UpdateTodoKeywords(...)
-    " Extend default highlight group (in this case it is 'Todo' group.
-    " Reference: https://vi.stackexchange.com/a/19043/30655
-    let newKeywords = join(a:000, " ")
-    let synTodo = map(filter(split(execute("syntax list"), '\n') , { i,v -> match(v, '^\w*Todo\>') == 0}), {i,v -> substitute(v, ' .*$', '', '')})
-    for synGrp in synTodo
-        execute "syntax keyword " . synGrp . " contained " . newKeywords
-    endfor
-endfunction
-
-
-function! functions#OpenURL()
-    " Open URL found on the current line
-    let line = getline(".")
-    let uri = matchstr(line, '[a-z]*:\/\/[^ >,;:]*')
-    if uri != ""
-        let uri = substitute(uri, "'", '', '')
-        let uri = substitute(uri, '"', '', '')
-        echom "Found " . uri
-        let uri = escape(uri, "#?&;|%")
-        " Todo: Potentially need to extend bey
-        if has('macunix')
-            silent exec "!open '" . uri . "'"
-        else
-            echom "Don't know how to open " . uri
-        endif
-    else
-        echom "No URI found in line."
-    endif
-endfunction
-
-
-function! functions#save_and_exec() abort
-  if &filetype == 'vim'
-    :silent! write
-    :source %
-  elseif &filetype == 'lua'
-    :silent! write
-    :luafile %
-  endif
-  return
-endfunction
-
-
-function! functions#exec_current_line() abort
-  if &ft == 'lua'
-    execute(printf(":lua %s", getline(".")))
-  elseif &ft == 'vim'
-    exe getline(">")
-  endif
-endfunction
-
-
 " Utility for using '*' and '#' for a selected region
 function! functions#visual_selection_search()
   let temp = @@
@@ -125,21 +72,6 @@ function! functions#HL(group, fg, ...)
     \ ]
   execute join(hiList)
 endfunction
-
-" Utility to show highlight group under the cursor
-function! functions#ShowSyntaxGroupUnderCursor()
-  if !exists("*synstack")
-    echo "Nothing found"
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" Utility to show highlight group under the cursor
-function! functions#ShowHLGroupUnderCursor()
-    let l:s = synID(line('.'), col('.'), 1)
-    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun
 
 " Utilities to change highlight group within of active/inactive buffers
 function! functions#HandleWinEnter()

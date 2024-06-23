@@ -12,13 +12,8 @@ vim.g.completion_confirm_key = ""
 map:c({ "<C-e>", "<C-p>" })
 
 -- Move within quickfix list
--- FIXME: resolve clash with LSP diagnostics
 map:n({ "<C-n>", ":Cnext<CR>" })
 map:n({ "<C-e>", ":Cprev<CR>" })
--- map:nmap({'<leader>n',  ':Cnext<CR>'})
--- map:nmap({'<leader>e',  ':Cprev<CR>'})
--- map:nmap({'<leader>qn', ':Cnext<CR>'})
--- map:nmap({'<leader>qe', ':Cprev<CR>'})
 -- map:nmap({'<leader>qq', ':toggle quickfix list<CR>'})
 
 -- Move within location list
