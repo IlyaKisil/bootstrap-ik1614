@@ -3,13 +3,7 @@
 -- ============================================================================
 
 -- ---------- Syntax
--- vim.cmd('syntax on')
-vim.cmd("syntax enable")
 vim.o.fileencoding = "utf-8"
-
--- vim.cmd('set nocompatible')  -- Nvim is always 'nocompatible'
--- Allow plugins by file type (required for plugins!)
-vim.cmd("filetype plugin indent on")
 
 -- NOTE: For some reason 'nvim' doesn't respect/sources 'ftdetect' :shrug:
 -- Maybe this was handled by some other plugin???
@@ -28,8 +22,8 @@ vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in te
 -- ----------- Indents
 vim.opt.expandtab = true -- always use spaces instead of tabs
 vim.opt.autoindent = true -- maintain indent of current line
-vim.opt.tabstop = 4 -- spaces per tab
-vim.opt.softtabstop = 4 -- use 'shiftwidth' for tab/bs at end of line
+vim.opt.tabstop = 2 -- spaces per tab
+vim.opt.softtabstop = 2 -- use 'shiftwidth' for tab/bs at end of line
 vim.opt.shiftwidth = 2 -- spaces per tab (when shifting)
 
 -- ----------- Wrapping
