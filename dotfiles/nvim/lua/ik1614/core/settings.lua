@@ -5,16 +5,6 @@
 -- ---------- Syntax
 vim.o.fileencoding = "utf-8"
 
--- NOTE: For some reason 'nvim' doesn't respect/sources 'ftdetect' :shrug:
--- Maybe this was handled by some other plugin???
-vim.cmd([[
-    augroup filetypedetect
-      for f in split(glob('~/.config/nvim/ftdetect/*.vim'), '\n')
-        exe 'source' f
-      endfor
-    augroup END
-]])
-
 -- Support for 256 colors
 -- vim.o.t_Co = "256" -- This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
 vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
