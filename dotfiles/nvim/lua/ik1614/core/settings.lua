@@ -101,3 +101,17 @@ vim.o.timeoutlen = 1000
 vim.cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"zz" | endif
 ]])
+
+vim.filetype.add({
+  extension = {
+    brewfile = "brewfile",
+    mk = "make",
+  },
+  filename = {
+    ["environment.template"] = "sh",
+    ["configuration.template.meta"] = "json",
+  },
+  pattern = {
+    ["%.env%.[%w_.-]+"] = "sh",
+  },
+})
