@@ -11,3 +11,4 @@
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)
     - ["[ -f ~/.config/nvim/init-local.lua ] && echo '=> Already exists, skipping' || cp dotfiles/nvim/init-local.lua ~/.config/nvim/init-local.lua", Initialising init-local.lua]
+    - ["mkdir -p ~/.config/nvim-sandbox", Initialising '~/.config/nvim-sandbox' directory if it doesn't exist]

@@ -1,3 +1,6 @@
+# vim: ft=sshconfig
+
+### This part is useful when you want to have a dedicated SSH key for Github
 HOST github.com
     HostName github.com
     PreferredAuthentications publickey
@@ -20,3 +23,8 @@ HOST github.com
 #    ControlPersist 10m
 #Host *.dev
 #    ProxyCommand ssh %r@dev -W $(echo %h | awk '{ gsub(/.dev$/, "some-internal-host-pattern", $1); print $1}'):%p
+
+
+### NOTE: Ordering of statemets matters
+HOST *
+  SetEnv TERM='xterm-256color'

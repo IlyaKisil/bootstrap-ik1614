@@ -15,13 +15,14 @@ if [[ "${OSTYPE}" == "darwin"* ]]; then
     alias hide='defaults write com.apple.finder AppleShowAllFiles NO;killall Finder /System/Library/CoreServices/Finder.app'
 fi
 
-# alias vim="nvim -c 'FzfLua git_files'"
 alias vim="nvim"
-# alias vim='/Users/ilyakisil/opt/nvim/v0.8.0-dev+547-ge837f29ce/bin/nvim'
 alias vvim='\vim'
 alias :q='exit'
 alias :wq='exit'
 alias :qa='exit'
+alias vim-nightly="${HOME}/opt/nvim/${NVIM_NIGHTLY_VERSION}/bin/nvim"
+# Use the alternative directories for NeoVim setup, i.e. '~/.confing/nvim-sandbox' and '~/.local/share/nvim-sandbox'
+alias vim-sandbox='NVIM_APPNAME="nvim-sandbox" nvim'
 
 alias import-secrets="source $ZSHENV_SECRETS"
 

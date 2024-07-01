@@ -71,11 +71,16 @@ return {
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
       -- * https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-      -- Alternative could be using Tab and S-Tab, <C-j> for [J]ump, <C-p> for [P]revious
-      vim.keymap.set({ "i", "s" }, "<c-i>", function()
+      --
+      -- **IMPORTANT:** mappings that use <Tab> or <C-i> could be tricky as there is a
+      -- bunch of other stuff needs to happen to correctly distinguish between the two
+
+      -- <C-j> for [J]ump forward
+      vim.keymap.set({ "i", "s" }, "<c-j>", function()
         return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
       end, { silent = true })
 
+      -- Alternative could be <C-p> for [P]revious
       vim.keymap.set({ "i", "s" }, "<c-h>", function()
         return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
       end, { silent = true })
