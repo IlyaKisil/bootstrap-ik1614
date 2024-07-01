@@ -17,6 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { import = "ik1614.plugins" },
 }, {
+  change_detection = {
+    notify = false,
+  },
   ui = {
     -- Use unicode icons if Nerd Font is not setup
     icons = vim.g.have_nerd_font and {} or {
