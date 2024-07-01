@@ -49,7 +49,6 @@ return {
         highlight = {
           enable = true,
           disable = {
-            "bash", -- TODO: after switching to `lazy.nvim` stopped working :shrug:
             "json", -- breaks for environment.template
           },
         },

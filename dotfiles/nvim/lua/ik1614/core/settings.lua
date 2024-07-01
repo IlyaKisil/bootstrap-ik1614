@@ -3,23 +3,7 @@
 -- ============================================================================
 
 -- ---------- Syntax
--- vim.cmd('syntax on')
-vim.cmd("syntax enable")
 vim.o.fileencoding = "utf-8"
-
--- vim.cmd('set nocompatible')  -- Nvim is always 'nocompatible'
--- Allow plugins by file type (required for plugins!)
-vim.cmd("filetype plugin indent on")
-
--- NOTE: For some reason 'nvim' doesn't respect/sources 'ftdetect' :shrug:
--- Maybe this was handled by some other plugin???
-vim.cmd([[
-    augroup filetypedetect
-      for f in split(glob('~/.config/nvim/ftdetect/*.vim'), '\n')
-        exe 'source' f
-      endfor
-    augroup END
-]])
 
 -- Support for 256 colors
 -- vim.o.t_Co = "256" -- This seems to be deprecated. For more info see https://github.com/neovim/neovim/issues/14662
@@ -28,8 +12,8 @@ vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in te
 -- ----------- Indents
 vim.opt.expandtab = true -- always use spaces instead of tabs
 vim.opt.autoindent = true -- maintain indent of current line
-vim.opt.tabstop = 4 -- spaces per tab
-vim.opt.softtabstop = 4 -- use 'shiftwidth' for tab/bs at end of line
+vim.opt.tabstop = 2 -- spaces per tab
+vim.opt.softtabstop = 2 -- use 'shiftwidth' for tab/bs at end of line
 vim.opt.shiftwidth = 2 -- spaces per tab (when shifting)
 
 -- ----------- Wrapping
@@ -117,3 +101,17 @@ vim.o.timeoutlen = 1000
 vim.cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"zz" | endif
 ]])
+
+vim.filetype.add({
+  extension = {
+    brewfile = "brewfile",
+    mk = "make",
+  },
+  filename = {
+    ["environment.template"] = "sh",
+    ["configuration.template.meta"] = "json",
+  },
+  pattern = {
+    ["%.env%.[%w_.-]+"] = "sh",
+  },
+})
