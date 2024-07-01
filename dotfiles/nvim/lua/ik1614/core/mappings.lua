@@ -59,10 +59,27 @@ map:n({ "Q", "@q" })
 -- Movements between tabs
 map:n({ "<leader>q", ":tabclose<CR>" })
 map:n({ "<S-TAB>", ":tabprevious<CR>" })
--- <tab> and <C-i> are the codes for for vim/nvim. So if we override, then won't be
--- able to use jumplist
--- TODO: Neovim 0.7 added support to distiguish between them. So need to dig in
--- map('n', '<TAB>',     ':tabnext<CR>')
+-- NOTE: <TAB> and <C-i> could be sending the same codes. So if you remap one or the
+-- other then you might enter a world of pain with unexpected behaviours
+--
+-- This makes it possible to use different mappings for <TAB> and <C-i> within 'kitty' but
+-- not when it is being run within Tmux :rage:
+-- * https://github.com/tmux/tmux/issues/2705
+-- * https://github.com/tmux/tmux/wiki/Modifier-Keys#extended-keys
+-- * https://github.com/neovim/neovim/issues/5916
+if vim.env.TERM == "xterm-kitty" then
+  vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+  vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+
+  vim.cmd("nnoremap <c-i> <c-i>")
+  vim.cmd("nnoremap <ESC>[105;5u <C-I>")
+  vim.cmd("nnoremap <Tab>        %")
+  vim.cmd("noremap  <ESC>[88;5u  :!echo B<CR>")
+  vim.cmd("noremap  <ESC>[49;5u  :!echo C<CR>")
+  vim.cmd("noremap  <ESC>[1;5P   :!echo D<CR>")
+
+  map:n({ "<TAB>", ":tabnext<CR>" })
+end
 
 -- Move selection up and down. This will also respect indentation levels
 map:v({ "J", ":m '>+1<CR>gv=gv" })
