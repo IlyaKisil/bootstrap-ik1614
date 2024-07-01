@@ -1,3 +1,4 @@
+# vim: ft=sshconfig
 ############################################
 ###       THIS CONFIG IS SYMLINKED       ###
 ###    DONT' ENTER ANY SENSITIVE INFO    ###
@@ -8,11 +9,10 @@
 
 Include config-local
 
-# HOST *
-#     SetEnv SHELLOPTS=vi
-#     UseKeychain yes
-#     AddKeysToAgent yes
-#     ForwardAgent yes
+HOST *
+    UseKeychain yes
+    AddKeysToAgent yes
+    ForwardAgent yes
 
 ### GitHub Personal
 HOST IlyaKisil.github.com
