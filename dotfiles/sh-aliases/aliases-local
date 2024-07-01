@@ -3,3 +3,7 @@
 alias gg='cd ~/github'
 alias gl='cd ~/gitlab'
 alias bb='cd ~/bitbucket'
+
+### Setup for running Neovim Nightly
+# You can download version from https://github.com/neovim/neovim/releases
+# export NVIM_NIGHTLY_VERSION="v0.11.0-dev-322+ge7020306a"
