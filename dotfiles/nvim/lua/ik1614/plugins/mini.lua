@@ -5,6 +5,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {},
     config = function()
+      require("mini.align").setup()
+      require("mini.splitjoin").setup()
+
       require("mini.surround").setup({
         mappings = {
           add = "ys",
