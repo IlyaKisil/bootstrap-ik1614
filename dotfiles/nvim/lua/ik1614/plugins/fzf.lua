@@ -185,6 +185,13 @@ return {
             syntax = true,
             syntax_limit_l = 0, -- syntax limit (lines), 0=nolimit
             syntax_limit_b = 1024 * 1024, -- syntax limit (bytes), 0=nolimit
+            title_fnamemodify = function(s)
+              -- NOTE: By default, this displays only base path of a file at the top of the
+              -- preview windown. We overwrite it to display filepath. Potentioally, will
+              -- need to do it dynamic and add some truncation if it doesn't fit, but
+              -- this is relatively unlikely.
+              return s
+            end,
           },
         },
 
