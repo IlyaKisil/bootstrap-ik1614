@@ -108,10 +108,12 @@ vim.filetype.add({
     mk = "make",
   },
   filename = {
-    ["environment.template"] = "sh",
+    ["environment.template"] = "env-tmpl",
     ["configuration.template.meta"] = "json",
   },
   pattern = {
     ["%.env%.[%w_.-]+"] = "sh",
   },
 })
+
+vim.treesitter.language.register("gotmpl", { "env-tmpl" })
