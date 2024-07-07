@@ -2,11 +2,8 @@
     ~/.config/nvim/init.lua: dotfiles/nvim/init.lua
     ~/.config/nvim/lazy-lock.json: dotfiles/nvim/lazy-lock.json
     ~/.config/nvim/lua: dotfiles/nvim/lua
-    ~/.config/nvim/colors: dotfiles/nvim/colors
     ~/.config/nvim/after: dotfiles/nvim/after
     ~/.config/nvim/autoload: dotfiles/nvim/autoload
-    ~/.config/nvim/ftplugin: dotfiles/nvim/ftplugin
-    ~/.config/nvim/ftdetect: dotfiles/nvim/ftdetect
     ~/.config/dictionaries-ik1614: misc/dictionaries
 - shell:
     # Executed only if this file doesn't exist (to prevent overriding)

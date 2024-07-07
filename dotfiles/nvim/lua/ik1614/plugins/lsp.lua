@@ -37,6 +37,7 @@ return {
           spacing = 4,
           prefix = "●",
         },
+        float = { border = "rounded" },
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {

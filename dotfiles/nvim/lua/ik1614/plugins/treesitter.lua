@@ -42,15 +42,10 @@ return {
           "vimdoc",
           "yaml",
         },
-        -- NOTE seems to be broken
-        ignore_install = {
-          "haskell",
-        },
+        ignore_install = {},
         highlight = {
           enable = true,
-          disable = {
-            "json", -- breaks for environment.template
-          },
+          disable = {},
         },
         indent = {
           enable = true,
