@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd("WinEnter", {
   group = vim.api.nvim_create_augroup("CustomiseActiveWindow", { clear = true }),
   callback = function()
     vim.cmd([[
-      " setlocal winhighlight=Normal:MdraculaNormal,NormalNC:IlyaInactiveBuffer
       setlocal winhighlight=CursorLine:CursorLine,ColorColumn:ColorColumn,CursorLineNr:CursorLineNr
     ]])
   end,

@@ -1,3 +1,0 @@
-; highlights.scm
-
-(nil) @boolean

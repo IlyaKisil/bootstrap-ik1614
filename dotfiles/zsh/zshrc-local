@@ -59,6 +59,9 @@ if command -v fzf 1>/dev/null 2>&1; then
       --height 40%
       --inline-info
       --layout=reverse
+      --prompt='> '
+      --marker='>'
+      --pointer='>'
       --no-bold
       --cycle
     "
