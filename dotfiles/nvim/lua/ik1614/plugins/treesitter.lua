@@ -45,7 +45,9 @@ return {
         ignore_install = {},
         highlight = {
           enable = true,
-          disable = {},
+          disable = {
+            "dockerfile",
+          },
         },
         indent = {
           enable = true,
