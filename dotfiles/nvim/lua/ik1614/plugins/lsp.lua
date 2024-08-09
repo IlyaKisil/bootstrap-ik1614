@@ -17,7 +17,11 @@ return {
       { "https://github.com/williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       { "https://github.com/williamboman/mason-lspconfig.nvim" },
       { "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
-      { "https://github.com/j-hui/fidget.nvim", opts = {} }, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      {
+        "https://github.com/j-hui/fidget.nvim",
+        enabled = false,
+        opts = {}, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      },
       { "https://github.com/folke/neodev.nvim", opts = {} },
     },
     config = function()
@@ -170,6 +174,7 @@ return {
             },
           },
         },
+        tsserver = {},
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
@@ -185,18 +190,19 @@ return {
           "delve",
           "doctoc",
           "eslint_d",
-          "goimports-reviser",
+          "flake8",
           "gofumpt",
+          "goimports-reviser",
           "gopls",
+          "hadolint",
           "hclfmt",
           "isort",
           "lua_ls",
           "prettier",
-          "flake8",
-          "hadolint",
           "pylint",
           "pyright",
           "stylua",
+          "typescript-language-server",
         },
       })
 

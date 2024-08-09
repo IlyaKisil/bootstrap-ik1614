@@ -106,6 +106,7 @@ vim.filetype.add({
   extension = {
     brewfile = "brewfile",
     mk = "make",
+    tf = "terraform",
   },
   filename = {
     ["environment.template"] = "env-tmpl",
