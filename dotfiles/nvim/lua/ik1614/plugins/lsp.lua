@@ -87,7 +87,7 @@ return {
           map:buf_n({ "<leader>sr", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
           map:buf_n({ "<leader>si", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
           map:buf_n({ "gT", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-          map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
+          map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>' })
           map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
 
           if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
