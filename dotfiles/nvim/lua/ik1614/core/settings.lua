@@ -106,12 +106,15 @@ vim.filetype.add({
   extension = {
     brewfile = "brewfile",
     mk = "make",
+    tf = "terraform",
   },
   filename = {
-    ["environment.template"] = "sh",
+    ["environment.template"] = "env-tmpl",
     ["configuration.template.meta"] = "json",
   },
   pattern = {
     ["%.env%.[%w_.-]+"] = "sh",
   },
 })
+
+vim.treesitter.language.register("gotmpl", { "env-tmpl" })

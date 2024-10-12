@@ -67,6 +67,8 @@
     default = current
 [pull]
     rebase = false
+[rebase]
+    updateRefs = true
 [merge]
     log = true
     tool = vimdiff

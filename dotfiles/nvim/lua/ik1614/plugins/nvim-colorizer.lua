@@ -7,6 +7,7 @@ return {
       "html",
       "javascript",
       "typescript",
+      "lua",
     },
     dependencies = {},
     config = function()

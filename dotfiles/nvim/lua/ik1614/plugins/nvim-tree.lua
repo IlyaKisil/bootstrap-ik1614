@@ -96,7 +96,7 @@ return {
       vim.keymap.set(
         "n",
         "<leader>ob",
-        "<cmd>NvimTreeFindFileToggle<CR>zz",
+        "<cmd>NvimTreeFindFile<CR>zz",
         { desc = "[O]pen current file in a file [b]rowser" }
       ) -- toggle file explorer
     end,

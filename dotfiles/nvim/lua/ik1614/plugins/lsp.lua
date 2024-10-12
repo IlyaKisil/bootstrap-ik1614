@@ -17,7 +17,11 @@ return {
       { "https://github.com/williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       { "https://github.com/williamboman/mason-lspconfig.nvim" },
       { "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
-      { "https://github.com/j-hui/fidget.nvim", opts = {} }, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      {
+        "https://github.com/j-hui/fidget.nvim",
+        enabled = false,
+        opts = {}, -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+      },
       { "https://github.com/folke/neodev.nvim", opts = {} },
     },
     config = function()
@@ -37,6 +41,7 @@ return {
           spacing = 4,
           prefix = "●",
         },
+        float = { border = "rounded" },
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -82,7 +87,7 @@ return {
           map:buf_n({ "<leader>sr", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_references()<CR>' })
           map:buf_n({ "<leader>si", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_implementations()<CR>' })
           map:buf_n({ "gT", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_typedefs()<CR>' })
-          map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>zz' })
+          map:buf_n({ "gd", '<cmd>lua require("ik1614.functions.fzf-lua"):lsp_definitions()<CR>' })
           map:buf_n({ "gD", vim.lsp.buf.declaration }) -- TODO: switch to Fzf-Lua implementation
 
           if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
@@ -169,6 +174,7 @@ return {
             },
           },
         },
+        tsserver = {},
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
@@ -184,18 +190,19 @@ return {
           "delve",
           "doctoc",
           "eslint_d",
-          "goimports-reviser",
+          "flake8",
           "gofumpt",
+          "goimports-reviser",
           "gopls",
+          "hadolint",
           "hclfmt",
           "isort",
           "lua_ls",
           "prettier",
-          "flake8",
-          "hadolint",
           "pylint",
           "pyright",
           "stylua",
+          "typescript-language-server",
         },
       })
 
