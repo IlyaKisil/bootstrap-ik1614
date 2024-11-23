@@ -8,7 +8,7 @@
 
 [user]
     email = ilyakisil@gmail.com
-    signingkey = A6B9AB5B2EF5AA9A2131EADDF232CF0D71FECA79
+    signingkey = 6DD16E11D588635030493976C49B4B6F103FAD56
 [commit]
     gpgsign = true
 [gpg]

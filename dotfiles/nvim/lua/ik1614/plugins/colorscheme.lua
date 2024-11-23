@@ -59,8 +59,8 @@ return {
           NonText = { fg = "#373c43" },
           Whitespace = { fg = "#373c43" },
           Visual = { bg = "#214283" },
-          Search = { fg = "$none", bg = "#32593D" },
-          IncSearch = { fg = "$none", bg = "#214283" },
+          -- Search = { fg = "$none", bg = "#32593D" },
+          -- IncSearch = { fg = "$none", bg = "#214283" },
           MatchParen = { bg = "$none" },
           Todo = { fg = "#A35F96" },
 
