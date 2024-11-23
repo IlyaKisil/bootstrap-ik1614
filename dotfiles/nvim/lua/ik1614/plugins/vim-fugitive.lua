@@ -7,6 +7,7 @@ return {
     keys = {
       { "<leader>gg", "<cmd>GitInTab<cr>", mode = "n", desc = "[G]it in tab" },
     },
+    cmd = "G",
     config = function()
       vim.cmd([[
         command! GitInTab tabedit 'vim-fugitive'| Git | wincmd k | wincmd q
