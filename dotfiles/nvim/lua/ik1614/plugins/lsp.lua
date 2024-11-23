@@ -13,6 +13,7 @@
 return {
   {
     "https://github.com/neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "https://github.com/williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
       { "https://github.com/williamboman/mason-lspconfig.nvim" },

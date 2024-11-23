@@ -64,6 +64,10 @@ vim.opt.lazyredraw = true -- don't bother updating screen during macro playback
 
 vim.opt.backspace = "indent,start,eol" -- allow unrestricted backspacing in insert mode, e.g. linebreaks, autoindent etc.
 
+-- NOTE: Recommended settings from `nvim-tree` documentation to disable `netrw` completely
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Copy to system wide clipboard
 -- vim.o.clipboard = "unnamed"
 vim.o.clipboard = "unnamedplus"
