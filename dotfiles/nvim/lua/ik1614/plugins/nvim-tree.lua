@@ -2,16 +2,15 @@ return {
   {
     "https://github.com/nvim-tree/nvim-tree.lua",
     enabled = true,
+    keys = {
+      { "<leader>ob", "<cmd>NvimTreeFindFile<CR>zz", mode = "n", desc = "[O]pen current file in a file [b]rowser" },
+    },
     event = {},
-    lazy = false,
+    -- lazy = false,
     dependencies = {
       "https://github.com/nvim-tree/nvim-web-devicons",
     },
     config = function()
-      -- NOTE: Recommended settings from nvim-tree documentation to disable `netrw` completely
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
       require("nvim-tree").setup({
         actions = {
           open_file = {
@@ -89,16 +88,6 @@ return {
           require_confirm = true,
         },
       })
-
-      -- set keymaps
-      local keymap = vim.keymap -- for conciseness
-
-      vim.keymap.set(
-        "n",
-        "<leader>ob",
-        "<cmd>NvimTreeFindFile<CR>zz",
-        { desc = "[O]pen current file in a file [b]rowser" }
-      ) -- toggle file explorer
     end,
   },
 }

@@ -2,6 +2,7 @@ return {
   {
     "https://github.com/nvim-lualine/lualine.nvim",
     enabled = true,
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "https://github.com/nvim-tree/nvim-web-devicons",
     },
