@@ -9,6 +9,12 @@ return {
     },
     keys = {
       {
+        "<leader>gc",
+        "<cmd>FzfLua git_bcommits<cr>",
+        mode = "n",
+        desc = "FZF for git commits for current buffer",
+      },
+      {
         "<leader>gC",
         "<cmd>FzfLua git_commits<cr>",
         mode = "n",
@@ -243,25 +249,39 @@ return {
             },
           },
           commits = {
-            cmd = "git log --pretty=oneline --abbrev-commit --color",
+            cmd = "git log --abbrev-commit --color --pretty=format:'%C(red)%h%C(reset) %C(yellow)%ad%C(reset) %s %C(blue)<%an>%C(reset) %C(green)%d%C(reset)' --date=format:'%Y-%m-%d %H:%M'",
             preview = "git show --pretty='%Cred%H%n%Cblue%an%n%Cgreen%s' --color {1} | delta",
             actions = {
               ["default"] = actions.git_checkout,
             },
           },
           bcommits = {
-            cmd = "git log --pretty=oneline --abbrev-commit --color",
-            preview = "git show --pretty='%Cred%H%n%Cblue%an%n%Cgreen%s' --color {1} | delta",
+            cmd = "git log --abbrev-commit --color --pretty=format:'%C(red)%h%C(reset) %C(yellow)%ad%C(reset) %s %C(blue)<%an>%C(reset) %C(green)%d%C(reset)' --date=format:'%Y-%m-%d %H:%M'",
+            preview = {
+              type = "cmd",
+              fn = function(items)
+                local commit_hash = vim.split(items[1], " ")[1]
+                local git_command = string.format("git show --color %s", commit_hash)
+                local delta_command = string.format("delta --side-by-side --width %s", vim.api.nvim_win_get_width(0))
+                return git_command .. " | " .. delta_command
+              end,
+            },
             actions = {
               ["default"] = actions.git_buf_edit,
               ["ctrl-s"] = actions.git_buf_split,
               ["ctrl-v"] = actions.git_buf_vsplit,
               ["ctrl-t"] = actions.git_buf_tabedit,
             },
+            winopts = {
+              preview = {
+                layout = "vertical",
+                vertical = "down:75%",
+              },
+            },
           },
           branches = {
             cmd = "git branch --all --color",
-            preview = "git log --graph --pretty=oneline --abbrev-commit --color {1}",
+            preview = "git log --graph --abbrev-commit --color --pretty=format:'%C(red)%h%C(reset) %C(yellow)%ad%C(reset) %s %C(blue)<%an>%C(reset) %C(green)%d%C(reset)' --date=format:'%Y-%m-%d %H:%M' {1}",
             actions = {
               ["default"] = actions.git_switch,
             },
