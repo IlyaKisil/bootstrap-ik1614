@@ -25,6 +25,7 @@ function M:get_fzf_for_grep_opts()
     ["--delimiter"] = vim.fn.shellescape("[:]"),
     ["--nth"] = "2..",
     ["--tiebreak"] = "index",
+    ["--multi"] = "",
   }
 end
 
@@ -192,7 +193,7 @@ function M:files_of_selected_lines(data)
   end
 
   self.plugin.fzf_exec(selected_files, {
-    -- fzf_opts = self:get_fzf_for_grep_opts(), -- NOTE: might need to have some options when location of selected lines will be preserved.
+    fzf_opts = self:get_fzf_for_grep_opts(), -- NOTE: might need to have some options when location of selected lines will be preserved.
     previewer = "builtin",
     prompt = "Files from selected> ",
     actions = {
