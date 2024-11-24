@@ -89,7 +89,7 @@
     co = checkout
     s = status
     d = difftool
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%Y-%m-%d %H:%M'
+    l = log --graph --abbrev-commit --color --pretty=format:'%C(red)%h%C(reset) %C(yellow)%ad%C(reset) %s %C(blue)<%an>%C(reset) %C(green)%d%C(reset)' --date=format:'%Y-%m-%d %H:%M'
     unstage = reset HEAD --
     last = log -1 HEAD
 
