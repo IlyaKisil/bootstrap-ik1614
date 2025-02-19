@@ -251,6 +251,12 @@ return {
           commits = {
             cmd = "git log --abbrev-commit --color --pretty=format:'%C(red)%h%C(reset) %C(yellow)%ad%C(reset) %s %C(blue)<%an>%C(reset) %C(green)%d%C(reset)' --date=format:'%Y-%m-%d %H:%M'",
             preview = "git show --pretty='%Cred%H%n%Cblue%an%n%Cgreen%s' --color {1} | delta",
+            winopts = {
+              preview = {
+                layout = "vertical",
+                vertical = "down:75%",
+              },
+            },
             actions = {
               ["default"] = actions.git_checkout,
             },
@@ -266,17 +272,17 @@ return {
                 return git_command .. " | " .. delta_command
               end,
             },
-            actions = {
-              ["default"] = actions.git_buf_edit,
-              ["ctrl-s"] = actions.git_buf_split,
-              ["ctrl-v"] = actions.git_buf_vsplit,
-              ["ctrl-t"] = actions.git_buf_tabedit,
-            },
             winopts = {
               preview = {
                 layout = "vertical",
                 vertical = "down:75%",
               },
+            },
+            actions = {
+              ["default"] = actions.git_buf_edit,
+              ["ctrl-s"] = actions.git_buf_split,
+              ["ctrl-v"] = actions.git_buf_vsplit,
+              ["ctrl-t"] = actions.git_buf_tabedit,
             },
           },
           branches = {
