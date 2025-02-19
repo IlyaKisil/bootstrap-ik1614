@@ -36,14 +36,11 @@ P10K_CONFIG=${HOME}/.p10k.zsh
 ###---------------------------   ZSH PLUGINS   -----------------------------###
 ZSH_PLUGINS=(
     # tmux
-    # zsh-autosuggestions  # Don't really like it. Better to use 'fzf'
+    # aws
     # gcloud               # Relies on google-sdk being in certain locations, e.g. $HOME
     docker
     docker-compose
 )
-
-# This is tailored specifically for the p10k prompt scheme
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#595858,bg=underline"
 
 
 
