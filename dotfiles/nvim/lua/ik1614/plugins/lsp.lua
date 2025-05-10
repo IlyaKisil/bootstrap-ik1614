@@ -15,8 +15,8 @@ return {
     "https://github.com/neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "https://github.com/williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-      { "https://github.com/williamboman/mason-lspconfig.nvim" },
+      { "https://github.com/williamboman/mason.nvim", config = true, version = "^1.0.0" }, -- NOTE: Must be loaded before dependants
+      { "https://github.com/williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
       { "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
       {
         "https://github.com/j-hui/fidget.nvim",
@@ -175,7 +175,7 @@ return {
             },
           },
         },
-        tsserver = {},
+        ts_ls = {},
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
