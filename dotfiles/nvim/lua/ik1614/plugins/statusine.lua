@@ -42,25 +42,41 @@ return {
           return msg
         end
 
+        local lsp_info = {}
         for _, client in pairs(buf_clients) do
-          table.insert(info, client.name)
+          table.insert(lsp_info, client.name)
         end
 
+        if next(lsp_info) ~= nil then
+          table.insert(info, "LSP: " .. table.concat(lsp_info, ", "))
+        end
+
+        -- NOTE: This feels a bit useless as we get linters only while they are running
+        local linter_info = {}
         for _, linter in pairs(buf_linters) do
-          table.insert(info, linter.name)
+          table.insert(linter_info, linter.name)
         end
 
+        if next(linter_info) ~= nil then
+          table.insert(info, "Lint: " .. table.concat(lsp_info, ", "))
+        end
+
+        local formatter_info = {}
         if formatting.enabled_on_save then
           for _, formatter in pairs(buf_formatters) do
-            table.insert(info, formatter.name)
+            table.insert(formatter_info, formatter.name)
           end
+        end
+
+        if next(formatter_info) ~= nil then
+          table.insert(info, "Format: " .. table.concat(formatter_info, ", "))
         end
 
         if next(info) == nil then
           return ""
         end
 
-        return "LSP: " .. table.concat(info, ", ")
+        return table.concat(info, " | ")
       end
 
       local lualine_a = {
