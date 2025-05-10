@@ -26,7 +26,11 @@ return {
         end,
         formatters_by_ft = {
           lua = { "stylua" },
-          python = { "black" },
+          python = {
+            "ruff_fix", -- To fix auto-fixable lint errors
+            "ruff_format",
+            "ruff_organize_imports",
+          },
           hcl = { "hcl" },
           go = { "goimports-reviser", "gofumpt" },
         },
