@@ -41,6 +41,7 @@ return {
         virtual_text = {
           spacing = 4,
           prefix = "●",
+          source = "if_many",
         },
         float = { border = "rounded" },
       })
@@ -141,13 +142,20 @@ return {
             -- TODO: implement fall back to the system defaults
             config.settings.python.pythonPath = p
           end,
+          pyright = {
+            disableOrganizeImports = true, -- Using Ruff's import organizer
+          },
           python = {
             settings = {
+              -- Defaults ---> https://microsoft.github.io/pyright/#/configuration?id=diagnostic-settings-defaults
               reportUnusedImport = true,
               reportUnusedVariable = true,
               reportDuplicateImport = true,
               reportDeprecated = true,
               reportUnnecessaryTypeIgnoreComment = true,
+            },
+            analyses = {
+              ignore = { "*" },
             },
           },
         },
@@ -186,21 +194,17 @@ return {
 
       mason_tool_installer.setup({
         ensure_installed = {
-          "black",
           "debugpy",
           "delve",
           "doctoc",
           "eslint_d",
-          "flake8",
           "gofumpt",
           "goimports-reviser",
           "gopls",
           "hadolint",
           "hclfmt",
-          "isort",
           "lua_ls",
           "prettier",
-          "pylint",
           "pyright",
           "stylua",
           "typescript-language-server",

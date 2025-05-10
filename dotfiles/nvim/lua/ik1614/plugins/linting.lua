@@ -4,9 +4,10 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lint = require("lint")
+
       lint.linters_by_ft = {
         dockerfile = { "hadolint" },
-        python = { "flake8" },
+        python = { "ruff" },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup("ik1614-linting", { clear = true })
