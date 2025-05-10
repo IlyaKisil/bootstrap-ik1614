@@ -175,7 +175,7 @@ return {
             },
           },
         },
-        tsserver = {},
+        ts_ls = {},
       }
 
       -- Ensure the servers and tools above are installed and ready to be used.
