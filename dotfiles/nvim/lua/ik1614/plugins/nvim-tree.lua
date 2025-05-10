@@ -6,7 +6,7 @@ return {
       { "<leader>ob", "<cmd>NvimTreeFindFile<CR>zz", mode = "n", desc = "[O]pen current file in a file [b]rowser" },
     },
     event = {},
-    -- lazy = false,
+    lazy = false,
     dependencies = {
       "https://github.com/nvim-tree/nvim-web-devicons",
     },

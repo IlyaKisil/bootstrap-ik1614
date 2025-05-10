@@ -49,10 +49,14 @@ brew "pre-commit"
 brew "python-yq"
 # Python version management
 brew "pyenv"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Extremely fast Python linter, written in Rust
+brew "ruff"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Static analysis and lint tool, for (ba)sh scripts

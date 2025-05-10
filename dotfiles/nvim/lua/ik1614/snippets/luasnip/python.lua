@@ -12,4 +12,23 @@ return {
     trig = "now",
     dscr = "Get current time",
   }, t([[NOW = datetime.now().replace(microsecond=0).isoformat()]])),
+  s(
+    {
+      trig = "base-uv",
+      dscr = "Add basics for 'uv' based script",
+    },
+    fmt(
+      [[
+        #!/usr/bin/env -S uv run --script
+        # /// script
+        # requires-python = ">=3.13"
+        # dependencies = [
+        # ]
+        # ///
+        #
+
+      ]],
+      {}
+    )
+  ),
 }
