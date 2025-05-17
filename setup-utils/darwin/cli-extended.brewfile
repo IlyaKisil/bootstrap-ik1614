@@ -9,6 +9,8 @@ cask_args appdir: "~/Applications", require_sha: true
 #########################################################################################
 # Cloud
 #########################################################################################
+# Official Amazon AWS command-line interface
+brew "awscli"
 # GitHub command-line tool
 brew "gh"
 # Set of tools to manage resources and applications hosted on Google Cloud
@@ -43,6 +45,8 @@ cask "vagrant"
 cask "docker"
 # Tool for exploring each layer in a docker image
 brew "dive"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
 # Free and open-source hosted hypervisor for x86 virtualization
 cask "virtualbox"
 
