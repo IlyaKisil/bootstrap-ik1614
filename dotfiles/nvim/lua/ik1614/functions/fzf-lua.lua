@@ -275,9 +275,15 @@ function M:lsp_code_actions()
   return self.plugin.lsp_code_actions({
     sync = true,
     winopts = {
-      height = 0.33,
-      width = 0.33,
+      height = 0.75,
+      width = 0.75,
+      preview = {
+        layout = "vertical",
+        vertical = "down:75%",
+      },
     },
+    previewer = "codeaction_native",
+    pager = [[delta --width=$COLUMNS --hunk-header-style="omit" --file-style="omit"]],
   })
 end
 
