@@ -1,0 +1,12 @@
+-- ======================================================================================
+--
+-- Default autocmds that are set by LazyVim distro
+-- * https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+--
+-- To remove existing autocmds by their group name with
+--
+--   vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+--
+-- All of the defaults are prefixed `lazyvim_`
+--
+-- ======================================================================================
