@@ -10,3 +10,35 @@
 -- All of the defaults are prefixed `lazyvim_`
 --
 -- ======================================================================================
+
+local excluded = {
+  -- snacks_picker_list = true,
+  snacks_picker_input = true,
+}
+
+local function should_skip()
+  return excluded[vim.bo.filetype]
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+  desc = "Customise active window",
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("ik1614-customise-active-window", { clear = true }),
+  callback = function()
+    if should_skip() then
+      return
+    end
+    vim.wo.colorcolumn = "90"
+    vim.wo.cursorline = true
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
+  desc = "Customise in-active window",
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("ik1614-customise-inactive-window", { clear = true }),
+  callback = function()
+    vim.wo.colorcolumn = "0"
+    vim.wo.cursorline = false
+  end,
+})
