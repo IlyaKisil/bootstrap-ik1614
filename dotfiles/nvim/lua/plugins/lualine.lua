@@ -37,9 +37,27 @@ return {
         return table.concat(info, " | ")
       end
 
+      local function remove_components_if_exist(components, names_to_remove)
+        local filtered = {}
+        for _, comp in ipairs(components or {}) do
+          local name = type(comp) == "string" and comp or type(comp) == "table" and comp[1]
+          if not vim.tbl_contains(names_to_remove, name) then
+            table.insert(filtered, comp)
+          end
+        end
+        return filtered
+      end
+
       local empty_section = {}
 
       opts.options.disabled_filetypes.winbar = { "snacks_dashboard", "snacks_picker_list" }
+
+      vim.list_extend(opts.extensions, {
+        "fugitive",
+        "nvim-dap-ui",
+        "quickfix",
+      })
+
       opts.sections.lualine_a = {
         {
           "mode",
@@ -52,6 +70,37 @@ return {
           },
         },
       }
+      opts.sections.lualine_b = { "branch", "diff" }
+      opts.sections.lualine_c = remove_components_if_exist(opts.sections.lualine_c, { "diagnostics", "filetype" })
+      opts.sections.lualine_x = {
+        Snacks.profiler.status(),
+        -- NOTE: This displays key maps of some sort
+        -- {
+        --   function() return require("noice").api.status.command.get() end,
+        --   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+        --   color = function() return { fg = Snacks.util.color("Statement") } end,
+        -- },
+        -- stylua: ignore
+        -- NOTE: Not sufe what this actually does
+        {
+          function() return require("noice").api.status.mode.get() end,
+          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+          color = function() return { fg = Snacks.util.color("Constant") } end,
+        },
+        -- stylua: ignore
+        {
+          function() return "  " .. require("dap").status() end,
+          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+          color = function() return { fg = Snacks.util.color("Debug") } end,
+        },
+      }
+      opts.sections.lualine_y = {
+        {
+          "diagnostics",
+          symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
+        },
+      }
+      opts.sections.lualine_z = { { "location", padding = { left = 0, right = 1 } } }
 
       opts.winbar = {
         lualine_a = {
