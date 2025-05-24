@@ -18,7 +18,7 @@ local map = require("ik1614.functions.mapping")
 
 -- ======================================================================================
 --
--- REMOVE PREDEFINED KEY MAPS
+-- REMOVE KEY MAPS DEFINED BY LazyVim
 --
 -- ======================================================================================
 
@@ -58,14 +58,70 @@ vim.keymap.del({ "n" }, "<leader>fr")
 
 -- ======================================================================================
 --
+-- DISABLE DEFAULT KEY MAPS
+--
+-- ======================================================================================
+
+map:i({ "<C-u>", "<NOP>", { desc = "Disabled default: Delete all entered characters in the current line:" } })
+map:i({ "<C-d>", "<NOP>", { desc = "Disabled default: Delete one shiftwidth of indent in the current line" } })
+map:i({ "<C-q>", "<NOP>", { desc = "Disabled default: Same as CTRL-V, i.e. insert next non-digit literally " } })
+map:i({ "<C-a>", "<NOP>", { desc = "Disabled default: Insert previously inserted text" } })
+map:i({ "<C-e>", "<NOP>", { desc = "Disabled default: Insert the character which is below the cursor" } })
+map:i({ "<C-n>", "<NOP>", { desc = "Disabled default: Find next match for keyword in front of the cursor" } })
+map:i({ "<C-y>", "<NOP>", { desc = "Disabled default: Copy character above the cursor" } })
+map:i({ "<C-j>", "<NOP>", { desc = "Disabled default: Create new line" } })
+map:i({ "<C-p>", "<NOP>", { desc = "Disabled default: Find previous match for keyword in front of the cursor" } })
+map:i({ "<C-l>", "<NOP>", { desc = "Disabled default: Should be safe" } })
+map:i({ "<C-k>", "<NOP>", { desc = "Disabled default: Enter digraph" } })
+map:i({ "<C-o>", "<NOP>", { desc = "Disabled default: Go into normal mode for one command and back to insert mode" } })
+map:i({ "<C-t>", "<NOP>", { desc = "Disabled default: Insert one shiftwidth of indent in current line" } })
+map:n({ "<C-e>", "<NOP>", { desc = "Disabled default: Scroll window [count] lines downwards in the buffer" } })
+
+-- ======================================================================================
+--
 -- ADD MY KEY MAPS
 --
 -- ======================================================================================
 map:n({ "<C-d>", "<C-d>zz" })
 map:n({ "<C-u>", "<C-u>zz" })
 
-map:n({ "<C-n>", ":Cnext<CR>", { desc = "Goto next quickfix item" } })
-map:n({ "<C-e>", ":Cprev<CR>", { desc = "Goto prev quickfix item" } })
+-- Continious scroll of the quickfix items
+map:n({
+  "<C-n>",
+  function()
+    local ok = pcall(vim.cmd.cnext)
+    if not ok then
+      pcall(vim.cmd.cfirst)
+    end
+  end,
+  { desc = "Goto next quickfix item" },
+})
+map:n({
+  "<C-p>",
+  function()
+    local ok = pcall(vim.cmd.cprev)
+    if not ok then
+      pcall(vim.cmd.clast)
+    end
+  end,
+  { desc = "Goto prev quickfix item" },
+})
+
+-- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-command-line-history
+map:c({
+  "<C-n>",
+  function()
+    return vim.fn.wildmenumode() == 1 and "<C-n>" or "<Down>"
+  end,
+  { expr = true, desc = "Navigate down in cmdline or wildmenu" },
+})
+map:c({
+  "<C-p>",
+  function()
+    return vim.fn.wildmenumode() == 1 and "<C-p>" or "<Up>"
+  end,
+  { expr = true, desc = "Navigate up in cmdline or wildmenu" },
+})
 
 -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-ctrl-l
 map:n({ "<C-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", { desc = "Smarter redraw" } })
@@ -119,20 +175,3 @@ map:i({ "$", "$<C-g>u" })
 map:i({ "[", "[<C-g>u" })
 map:i({ ":", ":<C-g>u" })
 map:i({ ";", ";<C-g>u" })
-
--- Don't start default completion. All completion related tasks are handled
--- by 'nvim-cmp' and 'luasnip' plugins and mappings are defined there. Also
--- reserve some mappings for the insert mode, since I don't use these anyway.
-map:i({ "<C-u>", "<NOP>" }) -- Default: Delete all entered characters in the current line
-map:i({ "<C-d>", "<NOP>" }) -- Default: Delete one shiftwidth of indent in the current line
-map:i({ "<C-q>", "<NOP>" }) -- Default: Same as CTRL-V, i.e. insert next non-digit literally (unless used for terminal control flow)
-map:i({ "<C-a>", "<NOP>" }) -- Default: Insert previously inserted text
-map:i({ "<C-e>", "<NOP>" }) -- Default: Insert the character which is below the cursor
-map:i({ "<C-n>", "<NOP>" }) -- Default: Find next match for keyword in front of the cursor
-map:i({ "<C-y>", "<NOP>" }) -- Default: Copy character above the cursor
-map:i({ "<C-j>", "<NOP>" }) -- Default: Create new line
-map:i({ "<C-p>", "<NOP>" }) -- Default: Find previous match for keyword in front of the cursor
-map:i({ "<C-l>", "<NOP>" }) -- Default: Should be safe
-map:i({ "<C-k>", "<NOP>" }) -- Default: Enter digraph
-map:i({ "<C-o>", "<NOP>" }) -- Default: Go into normal mode for one command and then back to insert mode
-map:i({ "<C-t>", "<NOP>" }) -- Default: Insert one shiftwidth of indent in current line
