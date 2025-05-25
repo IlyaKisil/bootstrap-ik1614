@@ -28,6 +28,7 @@ Useful 'autocmds' that I used to have myself, but now they come as part of LazyV
 local excluded = {
   -- snacks_picker_list = true,
   snacks_picker_input = true,
+  snacks_dashboard = true,
 }
 
 local function should_skip()
