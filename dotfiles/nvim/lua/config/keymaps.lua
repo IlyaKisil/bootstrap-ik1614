@@ -1,26 +1,32 @@
--- ======================================================================================
---
--- Default keymaps that are set by LazyVim distro
--- * https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
---
--- To delete default keymap use something like
---   vim.keymap.del({ "n" }, "<space>-")
---
--- To override default keymap use
---   vim.keymap.set(...)
---
--- To add/delete/override plugin specifc keymaps see
--- * https://www.lazyvim.org/configuration/plugins#%EF%B8%8F-adding--disabling-plugin-keymaps
---
--- ======================================================================================
+--[[
+=========================================================================================
+
+
+Default keymaps that are set by LazyVim distro
+* https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+
+To delete default keymap use something like
+  vim.keymap.del({ "n" }, "<space>-")
+
+To override default keymap use
+  vim.keymap.set(...)
+
+To add/delete/override plugin specifc keymaps see
+* https://www.lazyvim.org/configuration/plugins#%EF%B8%8F-adding--disabling-plugin-keymaps
+
+
+=========================================================================================
+-- ]]
 
 local map = require("ik1614.functions.mapping")
 
--- ======================================================================================
---
--- REMOVE KEY MAPS DEFINED BY LazyVim
---
--- ======================================================================================
+--[[
+=========================================================================================
+
+REMOVE KEY MAPS DEFINED BY LazyVim
+
+=========================================================================================
+-- ]]
 
 -- NOTE: These are reserved for system wide movement of windows
 vim.keymap.del({ "n" }, "<C-Up>")
@@ -56,11 +62,13 @@ vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
 vim.keymap.del({ "n" }, "<leader>fr")
 
--- ======================================================================================
---
--- DISABLE DEFAULT KEY MAPS
---
--- ======================================================================================
+--[[
+=========================================================================================
+
+DISABLE DEFAULT KEY MAPS
+
+=========================================================================================
+-- ]]
 
 map:i({ "<C-u>", "<NOP>", { desc = "Disabled default: Delete all entered characters in the current line:" } })
 map:i({ "<C-d>", "<NOP>", { desc = "Disabled default: Delete one shiftwidth of indent in the current line" } })
@@ -77,11 +85,13 @@ map:i({ "<C-o>", "<NOP>", { desc = "Disabled default: Go into normal mode for on
 map:i({ "<C-t>", "<NOP>", { desc = "Disabled default: Insert one shiftwidth of indent in current line" } })
 map:n({ "<C-e>", "<NOP>", { desc = "Disabled default: Scroll window [count] lines downwards in the buffer" } })
 
--- ======================================================================================
---
--- ADD MY KEY MAPS
---
--- ======================================================================================
+--[[
+=========================================================================================
+
+ADD MY KEY MAPS
+
+=========================================================================================
+-- ]]
 map:n({ "<C-d>", "<C-d>zz" })
 map:n({ "<C-u>", "<C-u>zz" })
 

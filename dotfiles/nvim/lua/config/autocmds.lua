@@ -1,15 +1,29 @@
--- ======================================================================================
---
--- Default autocmds that are set by LazyVim distro
--- * https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
---
--- To remove existing autocmds by their group name with
---
---   vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
---
--- All of the defaults are prefixed `lazyvim_`
---
--- ======================================================================================
+--[[
+=========================================================================================
+
+
+Default autocmds that are set by LazyVim distro
+* https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+
+To remove existing autocmds by their group name with
+
+  vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+All of the defaults are prefixed `lazyvim_`
+
+
+-----------------------------------------------------------------------------------------
+Useful 'autocmds' that I used to have myself, but now they come as part of LazyVim:
+
+* Highlight yank
+* Trim whitespace
+* Go to last loc when opening a buffer
+* Close some filetypes with <q>
+* Auto create dir when saving a file, in case some intermediate directory does not exist
+
+
+=========================================================================================
+-- ]]
 
 local excluded = {
   -- snacks_picker_list = true,
