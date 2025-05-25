@@ -83,6 +83,7 @@ return {
         -- "dapui_breakpoints",
         -- "dapui_stacks",
         -- "dapui_watches",
+        "fugitive",
       }
 
       vim.list_extend(opts.extensions, {

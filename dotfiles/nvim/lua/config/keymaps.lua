@@ -62,6 +62,8 @@ vim.keymap.del({ "n" }, "<leader>ft")
 vim.keymap.del({ "n" }, "<leader>fT")
 vim.keymap.del({ "n" }, "<leader>fr")
 
+vim.keymap.del({ "n" }, "<leader>gB")
+vim.keymap.del({ "n" }, "<leader>gY")
 --[[
 =========================================================================================
 
@@ -185,3 +187,52 @@ map:i({ "$", "$<C-g>u" })
 map:i({ "[", "[<C-g>u" })
 map:i({ ":", ":<C-g>u" })
 map:i({ ";", ";<C-g>u" })
+
+--[[
+=========================================================================================
+
+Swap keymaps
+
+=========================================================================================
+-- ]]
+map:n({
+  "<leader>go",
+  function()
+    Snacks.gitbrowse({
+      open = function(url)
+        vim.fn.setreg("+", url)
+      end,
+      notify = false,
+    })
+  end,
+  { expr = true, desc = "Git Browse (copy line ref)" },
+})
+
+map:v({
+  "<leader>go",
+  function()
+    Snacks.gitbrowse({
+      open = function(url)
+        vim.fn.setreg("+", url)
+      end,
+      notify = false,
+    })
+  end,
+  { expr = true, desc = "Git Browse (copy range ref)" },
+})
+
+map:n({
+  "<leader>gO",
+  function()
+    Snacks.gitbrowse()
+  end,
+  { desc = "Git Browse (open range)" },
+})
+
+map:v({
+  "<leader>gO",
+  function()
+    Snacks.gitbrowse()
+  end,
+  { desc = "Git Browse (open line)" },
+})
