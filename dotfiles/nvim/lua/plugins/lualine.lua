@@ -13,8 +13,9 @@ return {
 
         local info = {}
         local buf_clients = vim.lsp.get_clients({ bufnr = cur_buf })
+        local buf_formatters = require("conform").list_formatters(cur_buf)
 
-        if next(buf_clients) == nil then
+        if next(buf_clients) == nil and next(buf_formatters) == nil then
           if type(msg) == "boolean" or #msg == 0 then
             return ""
           end
@@ -28,6 +29,27 @@ return {
 
         if next(lsp_info) ~= nil then
           table.insert(info, "LSP: " .. table.concat(lsp_info, ", "))
+        end
+
+        local formatter_info = {}
+        for _, formatter in pairs(buf_formatters) do
+          if string.sub(formatter.name, 1, #"ruff") == "ruff" then
+            local name = "ruff"
+            if not formatter_info[name] then
+              table.insert(formatter_info, name)
+              formatter_info[name] = true
+            end
+          else
+            table.insert(formatter_info, formatter.name)
+          end
+        end
+
+        if next(formatter_info) ~= nil then
+          if vim.g.autoformat then
+            table.insert(info, "Format: " .. table.concat(formatter_info, ", "))
+          else
+            table.insert(info, "Format: disabled")
+          end
         end
 
         if next(info) == nil then
@@ -50,7 +72,17 @@ return {
 
       local empty_section = {}
 
-      opts.options.disabled_filetypes.winbar = { "snacks_dashboard", "snacks_picker_list" }
+        -- stylua: ignore
+      opts.options.disabled_filetypes.winbar = {
+        "snacks_dashboard",
+        "snacks_picker_list",
+        "dap-repl",
+        -- "dapui_console",
+        -- "dapui_scopes",
+        -- "dapui_breakpoints",
+        -- "dapui_stacks",
+        -- "dapui_watches",
+      }
 
       vim.list_extend(opts.extensions, {
         "fugitive",
