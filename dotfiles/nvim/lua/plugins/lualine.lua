@@ -76,6 +76,7 @@ return {
       opts.options.disabled_filetypes.winbar = {
         "snacks_dashboard",
         "snacks_picker_list",
+        "snacks_picker_preview",
         "dap-repl",
         -- "dapui_console",
         -- "dapui_scopes",
