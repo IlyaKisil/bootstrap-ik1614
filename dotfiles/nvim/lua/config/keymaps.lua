@@ -289,9 +289,7 @@ map:n({
 
 map:n({
   "<leader>ob",
-  function()
-    Snacks.explorer({ cwd = LazyVim.root() })
-  end,
+  "<cmd>NvimTreeFindFile<CR>zz",
   { desc = "Browser/Explorer" },
 })
 

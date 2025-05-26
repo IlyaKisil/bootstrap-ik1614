@@ -84,6 +84,7 @@ return {
         -- "dapui_stacks",
         -- "dapui_watches",
         "fugitive",
+        "NvimTree",
       }
 
       vim.list_extend(opts.extensions, {

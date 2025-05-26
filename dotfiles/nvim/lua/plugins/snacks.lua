@@ -132,6 +132,8 @@ return {
     opts = function(_, opts)
       opts.scroll = { enabled = false }
       opts.indent = { enabled = false }
+      opts.explorer = { enabled = false }
+      opts.dashboard = { enabled = false }
       opts.picker = {
         enabled = true,
         formatters = {

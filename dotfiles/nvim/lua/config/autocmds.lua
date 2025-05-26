@@ -35,6 +35,7 @@ local exclude_colorcolumn = {
   snacks_picker_input = true,
   snacks_picker_list = true,
   snacks_picker_preview = true,
+  NvimTree = true,
 }
 
 local function should_skip_cursorline()
