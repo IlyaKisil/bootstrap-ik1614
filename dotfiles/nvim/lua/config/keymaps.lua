@@ -19,6 +19,7 @@ To add/delete/override plugin specifc keymaps see
 -- ]]
 
 local map = require("ik1614.functions.mapping")
+local watch = require("snacks.explorer.watch")
 
 --[[
 =========================================================================================
@@ -48,22 +49,48 @@ vim.keymap.del({ "v" }, "<A-j>")
 vim.keymap.del({ "i" }, "<A-k>")
 vim.keymap.del({ "i" }, "<A-j>")
 
+vim.keymap.del({ "n" }, "<leader>:")
+vim.keymap.del({ "n" }, "<leader>.")
 vim.keymap.del({ "n" }, "<leader>-")
 vim.keymap.del({ "n" }, "<leader>|")
 vim.keymap.del({ "n" }, "<leader>/")
 vim.keymap.del({ "n" }, "<leader>`")
 vim.keymap.del({ "n" }, "<leader>,")
+vim.keymap.del({ "n" }, "<leader><space>")
+
 vim.keymap.del({ "n" }, "<leader>l")
 vim.keymap.del({ "n" }, "<leader>L")
+
 vim.keymap.del({ "n" }, "<leader>e")
 vim.keymap.del({ "n" }, "<leader>E")
+
 vim.keymap.del({ "n" }, "<leader>fB")
-vim.keymap.del({ "n" }, "<leader>ft")
+vim.keymap.del({ "n" }, "<leader>fE")
+vim.keymap.del({ "n" }, "<leader>fF")
 vim.keymap.del({ "n" }, "<leader>fT")
+vim.keymap.del({ "n" }, "<leader>fc")
+vim.keymap.del({ "n" }, "<leader>fe")
+vim.keymap.del({ "n" }, "<leader>ff")
+vim.keymap.del({ "n" }, "<leader>fg")
 vim.keymap.del({ "n" }, "<leader>fr")
+vim.keymap.del({ "n" }, "<leader>ft")
 
 vim.keymap.del({ "n" }, "<leader>gB")
 vim.keymap.del({ "n" }, "<leader>gY")
+
+vim.keymap.del({ "n" }, "<leader>S")
+vim.keymap.del({ "n" }, "<leader>s/")
+vim.keymap.del({ "n" }, "<leader>sB")
+vim.keymap.del({ "n" }, "<leader>sG")
+vim.keymap.del({ "n" }, "<leader>sM")
+vim.keymap.del({ "n" }, "<leader>sW")
+vim.keymap.del({ "n" }, "<leader>sb")
+vim.keymap.del({ "n" }, "<leader>si")
+vim.keymap.del({ "n" }, "<leader>sj")
+vim.keymap.del({ "n" }, "<leader>sl")
+vim.keymap.del({ "n" }, "<leader>sm")
+
+vim.keymap.del({ "n" }, "<leader>K")
 --[[
 =========================================================================================
 
@@ -235,4 +262,90 @@ map:v({
     Snacks.gitbrowse()
   end,
   { desc = "Git Browse (open line)" },
+})
+
+map:n({
+  "<leader>gl",
+  function()
+    Snacks.picker.git_branches()
+  end,
+  { desc = "Git Log Branches" },
+})
+
+map:n({
+  "<leader>gC",
+  function()
+    Snacks.picker.git_log()
+  end,
+  { desc = "Git Commits" },
+})
+map:n({
+  "<leader>gc",
+  function()
+    Snacks.picker.git_log_file()
+  end,
+  { desc = "Git Commits File" },
+})
+
+map:n({
+  "<leader>ob",
+  function()
+    Snacks.explorer({ cwd = LazyVim.root() })
+  end,
+  { desc = "Browser/Explorer" },
+})
+
+map:n({
+  "<leader>os",
+  function()
+    Snacks.scratch.select()
+  end,
+  { desc = "Scratchpad Buffer" },
+})
+
+map:n({
+  "<leader>ok",
+  "<cmd>norm! K<cr>",
+  { desc = "Keywordprg" },
+})
+
+map:n({
+  "<leader>ff",
+  function()
+    Snacks.picker.git_files({ untracked = true, show_empty = true })
+  end,
+  { desc = "Find Files (git-files)" },
+})
+
+-- TODO: merge this with what I have for `fzf-lua`
+local always_exclude_from_search = {
+  ".cache",
+  ".coverage",
+  ".env",
+  ".git",
+  ".idea",
+  ".ipynb_checkpoints",
+  ".pytest_cache",
+  ".terraform",
+  ".terraform.lock.hcl",
+  ".venv",
+  "__pycache__",
+  "CODEOWNERS",
+  "cache",
+  "node_modules",
+  "package-lock.json",
+}
+
+map:n({
+  "<leader>fF",
+  function()
+    Snacks.picker.files({
+      show_empty = true,
+      follow = true,
+      hidden = true,
+      ignored = true,
+      exclude = always_exclude_from_search,
+    })
+  end,
+  { desc = "Find Files (fd)" },
 })
