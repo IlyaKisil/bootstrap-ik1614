@@ -25,14 +25,24 @@ Useful 'autocmds' that I used to have myself, but now they come as part of LazyV
 =========================================================================================
 -- ]]
 
-local excluded = {
-  -- snacks_picker_list = true,
-  snacks_picker_input = true,
+local exclude_cursorline = {
   snacks_dashboard = true,
+  snacks_picker_input = true,
 }
 
-local function should_skip()
-  return excluded[vim.bo.filetype]
+local exclude_colorcolumn = {
+  snacks_dashboard = true,
+  snacks_picker_input = true,
+  snacks_picker_list = true,
+  snacks_picker_preview = true,
+}
+
+local function should_skip_cursorline()
+  return exclude_cursorline[vim.bo.filetype]
+end
+
+local function should_skip_colorcolumn()
+  return exclude_colorcolumn[vim.bo.filetype]
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
@@ -40,11 +50,17 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
   pattern = "*",
   group = vim.api.nvim_create_augroup("ik1614-customise-active-window", { clear = true }),
   callback = function()
-    if should_skip() then
-      return
+    if not should_skip_cursorline() then
+      vim.wo.cursorline = true
+    else
+      vim.wo.cursorline = false
     end
-    vim.wo.colorcolumn = "90"
-    vim.wo.cursorline = true
+
+    if not should_skip_colorcolumn() then
+      vim.wo.colorcolumn = "90"
+    else
+      vim.wo.colorcolumn = "0"
+    end
   end,
 })
 
