@@ -75,5 +75,10 @@ brew "tmux"
 brew "tree"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
-# Hack Nerd Font (Hack)
+# A bunch of fonts -> No idea which of them I actually need :shrug:
 cask "font-hack-nerd-font"
+cask "font-symbols-only-nerd-font"
+cask "font-meslo-for-powerline"
+cask "font-meslo-for-powerlevel10k"
+cask "font-meslo-lg"
+cask "font-meslo-lg-dz"

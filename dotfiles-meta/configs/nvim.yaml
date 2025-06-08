@@ -1,6 +1,7 @@
 - link:
     ~/.config/nvim/init.lua: dotfiles/nvim/init.lua
     ~/.config/nvim/lazy-lock.json: dotfiles/nvim/lazy-lock.json
+    ~/.config/nvim/lazyvim.json: dotfiles/nvim/lazyvim.json
     ~/.config/nvim/lua: dotfiles/nvim/lua
     ~/.config/nvim/after: dotfiles/nvim/after
     ~/.config/nvim/autoload: dotfiles/nvim/autoload

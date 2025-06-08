@@ -2,9 +2,6 @@ return {
   {
     "https://github.com/nvim-tree/nvim-tree.lua",
     enabled = true,
-    keys = {
-      { "<leader>ob", "<cmd>NvimTreeFindFile<CR>zz", mode = "n", desc = "[O]pen current file in a file [b]rowser" },
-    },
     event = {},
     lazy = false,
     dependencies = {
@@ -53,7 +50,7 @@ return {
           },
         },
         diagnostics = {
-          enable = false,
+          enable = true,
           icons = {
             hint = "",
             info = "",
