@@ -67,16 +67,21 @@ vim.keymap.del({ "n" }, "<leader>E")
 vim.keymap.del({ "n" }, "<leader>fB")
 vim.keymap.del({ "n" }, "<leader>fE")
 vim.keymap.del({ "n" }, "<leader>fF")
+vim.keymap.del({ "n" }, "<leader>fR")
 vim.keymap.del({ "n" }, "<leader>fT")
 vim.keymap.del({ "n" }, "<leader>fc")
 vim.keymap.del({ "n" }, "<leader>fe")
 vim.keymap.del({ "n" }, "<leader>ff")
 vim.keymap.del({ "n" }, "<leader>fg")
+vim.keymap.del({ "n" }, "<leader>fn")
 vim.keymap.del({ "n" }, "<leader>fr")
 vim.keymap.del({ "n" }, "<leader>ft")
 
 vim.keymap.del({ "n" }, "<leader>gB")
 vim.keymap.del({ "n" }, "<leader>gY")
+vim.keymap.del({ "n" }, "<leader>gS")
+
+vim.keymap.del({ "n" }, "<leader>qq")
 
 vim.keymap.del({ "n" }, "<leader>S")
 vim.keymap.del({ "n" }, "<leader>s/")
@@ -85,6 +90,7 @@ vim.keymap.del({ "n" }, "<leader>sG")
 vim.keymap.del({ "n" }, "<leader>sM")
 vim.keymap.del({ "n" }, "<leader>sW")
 vim.keymap.del({ "n" }, "<leader>sb")
+vim.keymap.del({ "n" }, "<leader>sg")
 vim.keymap.del({ "n" }, "<leader>si")
 vim.keymap.del({ "n" }, "<leader>sj")
 vim.keymap.del({ "n" }, "<leader>sl")
@@ -222,6 +228,8 @@ Swap keymaps
 
 =========================================================================================
 -- ]]
+
+-- <leader>g...
 map:n({
   "<leader>go",
   function()
@@ -287,6 +295,7 @@ map:n({
   { desc = "Git Commits File" },
 })
 
+-- <leader>o...
 map:n({
   "<leader>ob",
   "<cmd>NvimTreeFindFile<CR>zz",
@@ -307,43 +316,36 @@ map:n({
   { desc = "Keywordprg" },
 })
 
+-- <leader>f...
 map:n({
   "<leader>ff",
-  function()
-    Snacks.picker.git_files({ untracked = true, show_empty = true })
-  end,
+  "<cmd>FzfLua git_files<cr>",
   { desc = "Find Files (git-files)" },
 })
 
--- TODO: merge this with what I have for `fzf-lua`
-local always_exclude_from_search = {
-  ".cache",
-  ".coverage",
-  ".env",
-  ".git",
-  ".idea",
-  ".ipynb_checkpoints",
-  ".pytest_cache",
-  ".terraform",
-  ".terraform.lock.hcl",
-  ".venv",
-  "__pycache__",
-  "CODEOWNERS",
-  "cache",
-  "node_modules",
-  "package-lock.json",
-}
-
 map:n({
   "<leader>fF",
-  function()
-    Snacks.picker.files({
-      show_empty = true,
-      follow = true,
-      hidden = true,
-      ignored = true,
-      exclude = always_exclude_from_search,
-    })
-  end,
+  "<cmd>FzfLua files<cr>",
   { desc = "Find Files (fd)" },
+})
+
+map:n({
+  "<leader>fr",
+  "<cmd>FzfLua resume<cr>",
+  { desc = "FZF Resume" },
+})
+
+-- <leader>s...
+map:n({
+  "<leader>sg",
+  "<cmd>FzfLua grep_project<cr>",
+  { desc = "Grep (git)" },
+})
+
+map:n({
+  "<leader>sG",
+  function()
+    require("ik1614.functions.fzf-lua"):grep_no_ignore()
+  end,
+  { desc = "Grep (all)" },
 })
