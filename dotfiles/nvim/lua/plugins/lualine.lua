@@ -134,6 +134,7 @@ return {
           "diagnostics",
           symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
         },
+        { lsp_status },
       }
       opts.sections.lualine_z = { { "location", padding = { left = 0, right = 1 } } }
 
@@ -147,9 +148,7 @@ return {
         lualine_b = empty_section,
         lualine_c = empty_section,
         lualine_x = empty_section,
-        lualine_y = {
-          { lsp_status },
-        },
+        lualine_y = empty_section,
         lualine_z = {
           {
             "filetype",
