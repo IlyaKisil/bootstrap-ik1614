@@ -19,7 +19,6 @@ To add/delete/override plugin specifc keymaps see
 -- ]]
 
 local map = require("ik1614.functions.mapping")
-local watch = require("snacks.explorer.watch")
 
 --[[
 =========================================================================================
@@ -261,7 +260,7 @@ map:n({
   function()
     Snacks.gitbrowse()
   end,
-  { desc = "Git Browse (open range)" },
+  { desc = "Git Browse (open line)" },
 })
 
 map:v({
@@ -269,7 +268,7 @@ map:v({
   function()
     Snacks.gitbrowse()
   end,
-  { desc = "Git Browse (open line)" },
+  { desc = "Git Browse (open range)" },
 })
 
 map:n({
