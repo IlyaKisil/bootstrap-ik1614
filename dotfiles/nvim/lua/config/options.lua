@@ -18,10 +18,18 @@ Some settings that I used to have myself, but now they came as a part of LazyVim
 
 =========================================================================================
 -- ]]
+vim.opt.autoread = true
+vim.opt.autowrite = true
 
+-- ----------- Indents
+vim.opt.expandtab = true -- always use spaces instead of tabs
+vim.opt.shiftwidth = 2 -- spaces per tab (when shifting)
+vim.opt.softtabstop = 2 -- use 'shiftwidth' for tab/bs at end of line
+vim.opt.tabstop = 2 -- spaces per tab
+
+vim.opt.pumheight = 7 -- Determines the maximum number of items to show in the popup menu (auto-completion). Better to keep it less then 'scrolloff'
 vim.opt.scrolloff = 8 -- When scrolling, keep cursor N lines away from screen border. Better to keep greater then 'pumheight'
 vim.opt.sidescroll = 10 -- Same as 'scrolloff'
-vim.opt.pumheight = 7 -- Determines the maximum number of items to show in the popup menu (auto-completion). Better to keep it less then 'scrolloff'
 
 -- Show special characters
 vim.opt.listchars = {
