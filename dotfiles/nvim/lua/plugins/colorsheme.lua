@@ -10,8 +10,10 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "frappe",
-      transparent_background = true, -- We get this from Tmux setting for the active window
+      -- flavour = "frappe",
+      flavour = "macchiato",
+      -- flavour = "mocha",
+      transparent_background = false, -- We get this from Tmux setting for the active window
       dim_inactive = {
         enabled = false, -- dims the background color of inactive window
         shade = "dark",
