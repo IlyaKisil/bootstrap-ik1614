@@ -168,7 +168,11 @@ map:c({
 })
 
 -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-ctrl-l
-map:n({ "<C-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", { desc = "Smarter redraw" } })
+map:n({
+  "<C-l>",
+  ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>",
+  { desc = "Smarter redraw", silent = true },
+})
 
 -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-behavior-of-n-and-n
 -- * Center result
