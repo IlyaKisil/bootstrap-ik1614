@@ -18,6 +18,10 @@ Some settings that I used to have myself, but now they came as a part of LazyVim
 
 =========================================================================================
 -- ]]
+
+vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/versions/3.13.2/bin/python3")
+
+--
 vim.opt.autoread = true
 vim.opt.autowrite = true
 
