@@ -57,6 +57,8 @@ brew "reattach-to-user-namespace"
 brew "ripgrep"
 # Extremely fast Python linter, written in Rust
 brew "ruff"
+# Safe, concurrent, practical language
+brew "rust"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Static analysis and lint tool, for (ba)sh scripts

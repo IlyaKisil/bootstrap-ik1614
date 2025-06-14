@@ -19,7 +19,7 @@ return {
           -- Has the same effect, but makes it easier to override winopts for specific uscases
           height = 1,
           width = 1,
-          hl = {
+          hls = {
             cursorline = "PmenuSel", -- Only valid with the builtin previewer:
           },
           preview = {
