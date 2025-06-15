@@ -49,6 +49,8 @@ vim.opt.fillchars = {
   eob = " ", -- Don't display end of buffer symbol
 }
 
+vim.opt.conceallevel = 0 -- Show text normally including for the markup languages
+
 vim.filetype.add({
   extension = {
     -- brewfile = "brewfile",
