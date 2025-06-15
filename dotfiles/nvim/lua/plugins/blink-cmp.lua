@@ -15,6 +15,8 @@ return {
         return true
       end
 
+      opts.snippets.preset = "luasnip"
+
       -- Not really a fun of icons ('kind_icon') as they are ambigious
       opts.completion.menu.draw.columns =
         { { "label", "label_description", gap = 1 }, { "source_name", "kind", gap = 1 } }
@@ -32,7 +34,7 @@ return {
       --   * https://github.com/linkarzu/dotfiles-latest/blob/a9a8dd3f2a9b91236300522324ebc71a30412600/neovim/neobean/lua/plugins/blink-cmp.lua#L91-L137
       opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
         min_keyword_length = 2, -- Minimum number of characters in the keyword to trigger all providers
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
           buffer = {
             name = "Buffer",
@@ -41,6 +43,13 @@ return {
             module = "blink.cmp.sources.buffer",
             min_keyword_length = 5,
             score_offset = 15, -- the higher the number, the higher the priority
+          },
+          copilot = {
+            name = "Copilot",
+            module = "blink-cmp-copilot",
+            kind = "Copilot",
+            score_offset = 100,
+            async = true,
           },
         },
       })
