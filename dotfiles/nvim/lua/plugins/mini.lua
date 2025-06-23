@@ -1,6 +1,7 @@
 return {
   {
     "echasnovski/mini.surround",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       mappings = {
         --[[
@@ -23,9 +24,9 @@ return {
            highlight = "gsh", -- Highlight surrounding
            update_n_lines = "gsn", -- Update `n_lines`
         --]]
-        add = "gsa", -- Add surrounding in Normal and Visual modes
-        delete = "gsd", -- Delete surrounding
-        replace = "gsc", -- [C]hange surrounding
+        add = "", -- [A]dd surrounding in Normal and Visual modes
+        delete = "ds", -- [D]elete surrounding
+        replace = "cs", -- [C]hange surrounding
         find_left = "",
         find = "",
         highlight = "",

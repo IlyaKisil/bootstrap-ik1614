@@ -211,6 +211,9 @@ end
 map:n({ "j", add_multiline_movevment_to_jumplist("j"), { expr = true } })
 map:n({ "k", add_multiline_movevment_to_jumplist("k"), { expr = true } })
 
+-- NOTE: this interfes with default LazyVim mapping for Flash Treesitter
+map:x({ "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Surround visual selection", noremap = true } })
+
 -- Undo break points. When you type a very long line but then realise that you
 -- want to undo something, these mappings will undo text until certain special
 -- characters at a time
