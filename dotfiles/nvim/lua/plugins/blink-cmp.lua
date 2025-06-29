@@ -60,7 +60,7 @@ return {
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
         ["<Up>"] = { "select_prev", "fallback" },
-        ["<C-p>"] = { "select_prev", "fallback" },
+        -- ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-e>"] = { "select_prev", "fallback" },
 
         ["<Down>"] = { "select_next", "fallback" },

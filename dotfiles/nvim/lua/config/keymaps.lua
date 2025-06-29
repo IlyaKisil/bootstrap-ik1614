@@ -141,7 +141,7 @@ map:n({
   { desc = "Goto next quickfix item" },
 })
 map:n({
-  "<C-p>",
+  "<C-e>",
   function()
     local ok = pcall(vim.cmd.cprev)
     if not ok then
@@ -160,7 +160,7 @@ map:c({
   { expr = true, desc = "Navigate down in cmdline or wildmenu" },
 })
 map:c({
-  "<C-p>",
+  "<C-e>",
   function()
     return vim.fn.wildmenumode() == 1 and "<C-p>" or "<Up>"
   end,

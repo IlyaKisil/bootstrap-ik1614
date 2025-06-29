@@ -8,7 +8,7 @@ Interesting options to discover
 local picker_win_input_default_keys = {
   ["/"] = "toggle_focus",
   ["<CR>"] = { "confirm", mode = { "n", "i" } },
-  ["<Esc>"] = false, -- "cancel",
+  ["<Esc>"] = "cancel",
   ["<S-CR>"] = false,
   ["<S-Tab>"] = { "select_and_prev", mode = { "i", "n" } },
   ["<Tab>"] = { "select_and_next", mode = { "i", "n" } },
@@ -29,13 +29,14 @@ local picker_win_input_default_keys = {
   ["<c-b>"] = false,
   ["<c-c>"] = { "cancel", mode = { "i", "n" } },
   ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+  ["<c-e>"] = { "list_up", mode = { "i", "n" } },
   ["<c-f>"] = false,
   ["<c-g>"] = false,
   ["<c-j>"] = false,
   ["<c-k>"] = false,
   ["<c-n>"] = { "list_down", mode = { "i", "n" } },
   ["<c-o>"] = { "select_all", mode = { "i", "n" } },
-  ["<c-p>"] = { "list_up", mode = { "i", "n" } },
+  ["<c-p>"] = false,
   ["<c-q>"] = { "qflist", mode = { "i", "n" } },
   ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
   ["<c-t>"] = { "tab", mode = { "n", "i" } },
@@ -67,7 +68,7 @@ local picker_win_list_default_keys = {
   ["<2-LeftMouse>"] = false,
   ["/"] = "toggle_focus",
   ["<CR>"] = "confirm",
-  ["<Esc>"] = false, -- "cancel",
+  ["<Esc>"] = "cancel",
   ["<S-CR>"] = false,
   ["<S-Tab>"] = { "select_and_prev", mode = { "n", "x" } },
   ["<Tab>"] = { "select_and_next", mode = { "n", "x" } },
@@ -118,7 +119,7 @@ local picker_win_list_default_keys = {
 }
 
 local picker_win_preview_default_keys = {
-  ["<Esc>"] = false, -- "cancel",
+  ["<Esc>"] = "cancel",
   ["q"] = "close",
   ["i"] = "focus_input",
   ["<a-w>"] = false,
