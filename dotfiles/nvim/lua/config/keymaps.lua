@@ -141,7 +141,7 @@ map:n({
   { desc = "Goto next quickfix item" },
 })
 map:n({
-  "<C-p>",
+  "<C-e>",
   function()
     local ok = pcall(vim.cmd.cprev)
     if not ok then
@@ -160,7 +160,7 @@ map:c({
   { expr = true, desc = "Navigate down in cmdline or wildmenu" },
 })
 map:c({
-  "<C-p>",
+  "<C-e>",
   function()
     return vim.fn.wildmenumode() == 1 and "<C-p>" or "<Up>"
   end,
@@ -168,7 +168,11 @@ map:c({
 })
 
 -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-ctrl-l
-map:n({ "<C-l>", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>", { desc = "Smarter redraw" } })
+map:n({
+  "<C-l>",
+  ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>",
+  { desc = "Smarter redraw", silent = true },
+})
 
 -- https://github.com/mhinz/vim-galore?tab=readme-ov-file#saner-behavior-of-n-and-n
 -- * Center result
@@ -207,6 +211,9 @@ end
 map:n({ "j", add_multiline_movevment_to_jumplist("j"), { expr = true } })
 map:n({ "k", add_multiline_movevment_to_jumplist("k"), { expr = true } })
 
+-- NOTE: this interfes with default LazyVim mapping for Flash Treesitter
+map:x({ "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { desc = "Surround visual selection", noremap = true } })
+
 -- Undo break points. When you type a very long line but then realise that you
 -- want to undo something, these mappings will undo text until certain special
 -- characters at a time
@@ -219,6 +226,75 @@ map:i({ "$", "$<C-g>u" })
 map:i({ "[", "[<C-g>u" })
 map:i({ ":", ":<C-g>u" })
 map:i({ ";", ";<C-g>u" })
+
+map:n({
+  "yd",
+  function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local line_num = pos[1] - 1 -- 0-indexed
+    local line_text = vim.api.nvim_buf_get_lines(0, line_num, line_num + 1, false)[1]
+    local diagnostics = vim.diagnostic.get(0, { lnum = line_num })
+    if #diagnostics == 0 then
+      vim.notify("No diagnostic found on this line", vim.log.levels.WARN)
+      return
+    end
+    local message_lines = {}
+    for _, d in ipairs(diagnostics) do
+      for msg_line in d.message:gmatch("[^\n]+") do
+        table.insert(message_lines, msg_line)
+      end
+    end
+    local formatted = {}
+    table.insert(formatted, "Line:\n" .. line_text .. "\n")
+    table.insert(formatted, "Diagnostic on that line:\n" .. table.concat(message_lines, "\n"))
+    vim.fn.setreg("+", table.concat(formatted, "\n\n"))
+    vim.notify("Line and diagnostic copied to clipboard", vim.log.levels.INFO)
+  end,
+  { desc = "Yank line and [D]iagnostic to system clipboard" },
+})
+
+map:n({
+  "<leader>cb",
+  function()
+    local file = vim.fn.expand("%")
+    local first_line = vim.fn.getline(1)
+    if not string.match(first_line, "^#!/") then
+      vim.cmd("echo 'Not a script. Shebang line not found.'")
+    else
+      local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
+      vim.cmd(
+        "silent !tmux split-window -v 'bash -c \""
+          .. escaped_file
+          .. "; echo; echo Press any key to exit...; read -n 1; exit\"'"
+      )
+    end
+  end,
+  { desc = "Bash, execute file in a TMUX pane" },
+})
+
+map:n({
+  "<leader>cg",
+  function()
+    local file = vim.fn.expand("%")
+    if not string.match(file, "%.go$") then
+      vim.cmd("echo 'Not a Go file.'")
+    else
+      local file_dir = vim.fn.expand("%:p:h")
+      -- local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
+      -- local command_to_run = "go run " .. escaped_file
+      local command_to_run = "go run *.go"
+      local cmd = "silent !tmux split-window -v 'cd "
+        .. file_dir
+        .. ' && echo "'
+        .. command_to_run
+        .. '\\n" && bash -c "'
+        .. command_to_run
+        .. "; echo; echo Press enter to exit...; read _\"'"
+      vim.cmd(cmd)
+    end
+  end,
+  { desc = "Golang, execute file in a TMUX pane" },
+})
 
 --[[
 =========================================================================================

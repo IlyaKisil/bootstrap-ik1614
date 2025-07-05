@@ -18,6 +18,10 @@ Some settings that I used to have myself, but now they came as a part of LazyVim
 
 =========================================================================================
 -- ]]
+
+vim.g.python3_host_prog = vim.fn.expand("~/.pyenv/versions/3.13.2/bin/python3")
+
+--
 vim.opt.autoread = true
 vim.opt.autowrite = true
 
@@ -44,6 +48,8 @@ vim.opt.fillchars = {
   diff = " ", -- Don't display symbols for deleted lines in the diff mode
   eob = " ", -- Don't display end of buffer symbol
 }
+
+vim.opt.conceallevel = 0 -- Show text normally including for the markup languages
 
 vim.filetype.add({
   extension = {
