@@ -7,7 +7,7 @@
     "enableRecursiveFileSearch": true
   },
   "telemetry": {
-    "enabled": false,
+    "enabled": false
   },
   "usageStatisticsEnabled": false
 }
