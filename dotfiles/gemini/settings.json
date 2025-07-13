@@ -1,0 +1,13 @@
+{
+  "selectedAuthType": "gemini-api-key",
+  "theme": "GitHub",
+  "preferredEditor": "neovim",
+  "fileFiltering": {
+    "respectGitIgnore": true,
+    "enableRecursiveFileSearch": true
+  },
+  "telemetry": {
+    "enabled": false
+  },
+  "usageStatisticsEnabled": false
+}

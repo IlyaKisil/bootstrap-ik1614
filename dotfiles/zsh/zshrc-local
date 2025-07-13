@@ -166,4 +166,5 @@ export ZSHENV_SECRETS=${HOME}/.zshenv-secrets
 # and will be loaded in the '.zshrc' for every shell.
 COMMON_SECRETS=(
   "GITHUB_TOKEN"
+  "GEMINI_API_KEY"
 )
