@@ -36,6 +36,13 @@ return {
         min_keyword_length = 2, -- Minimum number of characters in the keyword to trigger all providers
         default = { "lsp", "path", "snippets", "buffer", "copilot" },
         providers = {
+          lsp = {
+            -- name = "LSP",
+            enabled = true,
+            module = "blink.cmp.sources.lsp",
+            -- kind = "LSP",
+            score_offset = 90, -- the higher the number, the higher the priority
+          },
           buffer = {
             name = "Buffer",
             enabled = true,
@@ -48,7 +55,7 @@ return {
             name = "Copilot",
             module = "blink-cmp-copilot",
             kind = "Copilot",
-            score_offset = 100,
+            score_offset = 10,
             async = true,
           },
         },
