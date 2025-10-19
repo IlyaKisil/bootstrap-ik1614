@@ -16,7 +16,7 @@ return {
         =================================================================================
       --]]
       opts.servers.gopls.settings.gopls.hints.assignVariableTypes = false
-      -- opts.servers.gopls.settings.gopls.hints.compositeLiteralFields = false
+      opts.servers.gopls.settings.gopls.hints.compositeLiteralFields = false
       opts.servers.gopls.settings.gopls.hints.compositeLiteralTypes = false
       -- opts.servers.gopls.settings.gopls.hints.constantValues = false
       -- opts.servers.gopls.settings.gopls.hints.functionTypeParameters = false

@@ -48,7 +48,7 @@ return {
             enabled = true,
             max_items = 5,
             module = "blink.cmp.sources.buffer",
-            min_keyword_length = 5,
+            min_keyword_length = 3,
             score_offset = 15, -- the higher the number, the higher the priority
           },
           copilot = {
