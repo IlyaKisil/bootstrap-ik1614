@@ -56,6 +56,7 @@ vim.filetype.add({
     -- brewfile = "brewfile",
     -- mk = "make",
     -- tf = "terraform",
+    ["tmpl-meta"] = "json",
   },
   filename = {
     ["environment.template"] = "env-tmpl",
