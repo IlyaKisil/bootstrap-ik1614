@@ -59,6 +59,7 @@ if command -v fzf 1>/dev/null 2>&1; then
       --prompt='> '
       --marker='>'
       --pointer='>'
+      --gutter=' '
       --no-bold
       --cycle
     "
