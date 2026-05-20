@@ -20,6 +20,8 @@ return {
     fmt(
       [[
         #!/usr/bin/env -S uv run --script
+        # vim: ft=python
+        #
         # /// script
         # requires-python = ">=3.13"
         # dependencies = [
