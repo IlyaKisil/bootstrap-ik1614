@@ -46,6 +46,26 @@ Used for Dotbot itself, oh-my-zsh, powerlevel10k, fzf-tab, and tmux TPM. Submodu
 
 `setup-utils/darwin/` contains macOS Brewfiles and `defaults` commands. `setup-utils/debian/` covers Linux. `setup-utils/common/` has cross-platform scripts.
 
+# Neovim Config
+
+Lives under `dotfiles/nvim/`. Built on [LazyVim](https://www.lazyvim.org/) as the distro layer on top of lazy.nvim.
+
+## Key Directories
+
+- `lua/config/` — core setup loaded at startup: `lazy.lua` (plugin manager bootstrap), `options.lua`, `keymaps.lua`, `autocmds.lua`
+- `lua/plugins/` — plugin specs that add new plugins or override LazyVim defaults
+- `lua/ik1614/` — personal code: helper functions (`functions/`) and snippets (`snippets/`)
+- `after/ftplugin/` — filetype-specific settings (Go, Python, Terraform, Markdown, TeX, etc.)
+- `after/queries/` — Treesitter query overrides, including a custom `env-tmpl` language
+- `lazyvim.json` — LazyVim extras (language packs, coding tools) enabled for this config
+
+## Conventions
+
+- **Adding a plugin:** create a spec file under `lua/plugins/`. To override a LazyVim default, use the same plugin name in the spec.
+- **Personal helpers/functions:** add under `lua/ik1614/functions/`, not in `lua/plugins/` or `lua/config/`.
+- **Keymaps:** use the helper in `lua/ik1614/functions/mapping.lua` — it wraps `vim.keymap.set` with mode-specific methods (`.n()`, `.i()`, `.v()`, `.buf_n()`, etc.).
+- **LazyVim extras:** managed via `:LazyExtras` UI, which writes to `lazyvim.json` — don't edit that file by hand.
+
 # Adding a New Tool Config
 
 1. Add dotfiles under `dotfiles/<tool>/`
