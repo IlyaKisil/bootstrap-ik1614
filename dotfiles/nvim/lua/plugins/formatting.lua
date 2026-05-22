@@ -10,6 +10,7 @@ return {
       opts.formatters_by_ft.hcl = {
         "hcl",
       }
+      opts.formatters_by_ft.sh = {}
       -- NOTE: Apparently this is handled by LazyVim
       -- opts.format_on_save = function(bufnr)
       --   if not vim.g.autoformat then

@@ -1,0 +1,3 @@
+- link:
+    ~/.claude/settings.json: dotfiles/claude/settings.json
+    ~/.claude/keybindings.json: dotfiles/claude/keybindings.json

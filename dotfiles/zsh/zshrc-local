@@ -59,6 +59,7 @@ if command -v fzf 1>/dev/null 2>&1; then
       --prompt='> '
       --marker='>'
       --pointer='>'
+      --gutter=' '
       --no-bold
       --cycle
     "
@@ -165,5 +166,6 @@ export ZSHENV_SECRETS=${HOME}/.zshenv-secrets
 # such variale should be added to the keychain with 'add-secret-environment-variable.sh'
 # and will be loaded in the '.zshrc' for every shell.
 COMMON_SECRETS=(
-  "GITHUB_TOKEN"
+  "GITHUB_TOKEN" # NOTE: Consider using  `gh auth login` instead of this
+  "GEMINI_API_KEY"
 )

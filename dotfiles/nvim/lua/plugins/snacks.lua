@@ -147,6 +147,9 @@ return {
             enabled = false,
           },
         },
+        layout = {
+          fullscreen = true,
+        },
         win = {
           input = {
             keys = picker_win_input_default_keys,

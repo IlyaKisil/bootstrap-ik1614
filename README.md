@@ -78,6 +78,7 @@ Useful `npm` packages
 ├── commitizen@4.0.3
 ├── conventional-changelog-cli@2.1.1
 ├── cz-conventional-changelog@3.1.0
+├── gemini-cli
 ├── doctoc@1.4.0
 ├── standard-version@9.3.0
 └── wscat@4.0.0
