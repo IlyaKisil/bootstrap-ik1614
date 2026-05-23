@@ -41,7 +41,7 @@ vim.opt.listchars = {
   extends = "»", -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
   precedes = "«", -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
   tab = "-->",
-  space = ".",
+  space = "·", -- MIDDLE DOT (U+00B7) — visually distinct from a period
 }
 
 vim.opt.fillchars = {
