@@ -65,6 +65,25 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Close nvim-tree and jump to first item when quickfix is freshly populated",
+  pattern = "qf",
+  group = vim.api.nvim_create_augroup("ik1614-qf-close-nvimtree", { clear = true }),
+  callback = function()
+    local qf_win = vim.api.nvim_get_current_win()
+
+    local ok, api = pcall(require, "nvim-tree.api")
+    if ok and api.tree.is_visible() then
+      api.tree.close()
+    end
+
+    vim.schedule(function()
+      vim.cmd("cfirst")
+      vim.api.nvim_win_set_height(qf_win, 10)
+    end)
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
   desc = "Customise in-active window",
   pattern = "*",

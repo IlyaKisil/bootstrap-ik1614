@@ -3,39 +3,31 @@
 # Use ## before target to provide a description
 #################################################################################
 .DEFAULT_GOAL := help
+.DELETE_ON_ERROR:
+# Use a single shell for the whole recipe
+.ONESHELL:
 
-SHELL = /bin/bash
+SHELL      = /bin/bash -o errexit -o nounset -o pipefail
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
 
-.PHONY: update-submodules test-install-profile test-install-config
+ifeq ($(shell uname), Darwin)
+  GOOS = "darwin"
+  SED = sed -i ''
+else ifeq ($(shell uname), Linux)
+  GOOS = "linux"
+  SED = sed -i
+endif
+
+HERE  = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+#################################################################################
+
+
+.PHONY: update-submodules 
 
 ## Recursively udpate all existing submodules
 update-submodules:
 	git submodule update --init --recursive --remote
-
-## Build docker image with installed profile
-test-install-profile:
-	cd ..
-	docker build \
-		-t test-install-profile:latest \
-		-f tests/test-install-profile.dockerfile \
-		.
-	docker run \
-		-it \
-		--rm \
-		--name dotbot-install-profile \
-		test-install-profile:latest
-
-## Build docker image with installed stand alone configs
-test-install-config:
-	cd ..
-	docker build -t test-install-config:latest \
-				 -f tests/test-install-config.dockerfile \
-				 .
-	docker run \
-		-it \
-		--rm \
-		--name dotbot-install-config \
-		test-install-config:latest
 
 
 #################################################################################
