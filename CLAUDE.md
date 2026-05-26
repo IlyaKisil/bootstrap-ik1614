@@ -34,13 +34,12 @@ make help
 
 Live under `dotfiles/<tool>/`. Each tool may define a `-local` variant for machine-specific overrides (e.g. `~/.zshrc-local`, `~/.gitconfig-local`, `~/.tmux-local.conf`). On first install these are **copied** (not symlinked) to the target location, so they are standalone files that will not receive future updates from this repo. To pick up upstream changes to a local template, delete the file and re-run the install.
 
-## Git Submodules
+## Adding a New Tool Config
 
-Used for Dotbot itself, oh-my-zsh, powerlevel10k, fzf-tab, and tmux TPM. Submodules are **not** auto-initialized during install to avoid overloading environments — each tool's YAML shell directive initializes only what it needs.
-
-## Bash Module System
-
-`bin/bash-modules/` contains reusable shell libraries (colors, tmux, utils). Convention: functions are namespaced as `module::function`. Scripts source these via `import_ik1614_module`.
+1. Add dotfiles under `dotfiles/<tool>/`
+2. Create `dotfiles-meta/configs/<tool>.yaml` with `link` and optionally `shell` directives for helper/bootstrap task. For example, if the tool relies on a git submodule (e.g. a plugin manager or external theme), register it in `.gitmodules` and make sure that it will be initialised it via a `shell` directive in the tool's YAML — do not auto-init submodules outside of their owning config.
+3. Add the tool name to any relevant profile files under `dotfiles-meta/profiles/`
+4. Initialise setup with `./install-config.sh <tool>`
 
 ## Platform-Specific Setup
 
@@ -66,9 +65,8 @@ Lives under `dotfiles/nvim/`. Built on [LazyVim](https://www.lazyvim.org/) as th
 - **Keymaps:** use the helper in `lua/ik1614/functions/mapping.lua` — it wraps `vim.keymap.set` with mode-specific methods (`.n()`, `.i()`, `.v()`, `.buf_n()`, etc.).
 - **LazyVim extras:** managed via `:LazyExtras` UI, which writes to `lazyvim.json` — don't edit that file by hand.
 
-# Adding a New Tool Config
+# Scripting 
 
-1. Add dotfiles under `dotfiles/<tool>/`
-2. Create `dotfiles-meta/configs/<tool>.yaml` with `link` and optionally `shell` directives
-3. Add the tool name to any relevant profile files under `dotfiles-meta/profiles/`
-4. Test with `./install-config.sh <tool>` or via Docker
+## Bash
+
+`bin/bash-modules/` contains reusable shell libraries (colors, tmux, utils). Convention: functions are namespaced as `module::function`. Scripts source these via `import_ik1614_module`.
