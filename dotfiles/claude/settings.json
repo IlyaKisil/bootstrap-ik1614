@@ -1,3 +1,14 @@
 {
+  "enabledPlugins": {
+    "pohuy@pohuy": true
+  },
+  "extraKnownMarketplaces": {
+    "pohuy": {
+      "source": {
+        "source": "github",
+        "repo": "smixs/pohuy"
+      }
+    }
+  },
   "tui": "fullscreen"
 }
