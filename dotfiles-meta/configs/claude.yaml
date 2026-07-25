@@ -2,3 +2,6 @@
     ~/.claude/settings.json: dotfiles/claude/settings.json
     ~/.claude/keybindings.json: dotfiles/claude/keybindings.json
     ~/.claude/CLAUDE.md: dotfiles/claude/CLAUDE.md
+- shell:
+    - ["claude plugin marketplace add smixs/pohuy", Adding pohuy marketplace]
+    - ["claude plugin install pohuy@pohuy", Installing pohuy plugin]

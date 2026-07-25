@@ -1,3 +1,9 @@
+# General Guidelines
+
+- For every response, always mention the user's name (Ilya) in the beginning.
+- Never use em-dashes (`—`). Use a comma, colon, parentheses, restructure the sentence instead or fall back to plain dash `-` 
+- When generating a `CLAUDE.md` file do not add a `# CLAUDE.md` title or any preamble line (e.g. "This file provides guidance to Claude Code...") and start top-level sections at `#`, not `##`.
+
 # Python
 
 - **Package manager:** uv
