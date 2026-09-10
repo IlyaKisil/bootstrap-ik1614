@@ -1,4 +1,5 @@
-############################################
+# vim: ft=gitconfig
+###########################################
 ###       THIS CONFIG IS SYMLINKED       ###
 ###    DONT' ENTER ANY SENSITIVE INFO    ###
 ###                                      ###
@@ -31,7 +32,10 @@
     }"
 
 [diff]
-    colorMoved = default
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 ; [blame]
 ;     NOTE: this requires file to be present in all repos
 ;     ignoreRevsFile = .git-blame-ignore-revs
@@ -65,6 +69,8 @@
     defaultBranch = master
 [push]
     default = current
+    autoSetupRemote = true
+    followTags = true
 [pull]
     rebase = false
 [rebase]
@@ -75,6 +81,12 @@
     conflictstyle = diff3
 [mergetool]
     prompt = false
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
 [color "status"]
     added = yellow
     changed = green
